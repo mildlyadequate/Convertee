@@ -5,8 +5,6 @@
     <color name="themePrimaryLight">#c60f7b</color>
     <color name="themeSecondaryDark">#252525</color>
     <color name="themeSecondaryLight">#8d99ae</color>
-    <color name="themeTertiaryDark">#ef233c</color>
-    <color name="themeTertiaryLight">#e15554</color>
 
     <color name="themeDayDarkText">#edf2f4</color>
     <color name="themeDayBlackText">@color/white</color>
