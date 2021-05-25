@@ -16,8 +16,8 @@
  Need to convert a specific unit type that isn't available yet? Just send me a message!
  
  ## Requirements
- Minimum Android 5.1 Lollipop (API level 22)
- NO Permissions needed at all
+ - Minimum Android 5.1 Lollipop (API level 22)
+ - NO Permissions needed at all
  
  ## Translation
  Currently only in English :uk: and German :de:
