@@ -27,24 +27,15 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
     /**TODO LIST
-      - Search through unit types
-      - Add two / more input edit texts for pixel to cm converter / color codes / cup size eg. https://www.pixelto.net/px-to-cm-converter
-      - Make more Unit Types (Next: ,,,Brasize,Color codes,ElectricityCurrent/Charge)
-     https://www.unitconverters.net/pressure-converter.html
-      - Add option to special formula calculation -> instead of VAR use VAR(-someunitname-) to convert through other units first
-
-     - TUTORIAL
-     https://stackoverflow.com/questions/40440366/android-how-to-create-tutorial-at-app-start-like-in-google-analytics-app
-     https://developer.android.com/training/tv/playback/onboarding
-     https://stackoverflow.com/questions/56224100/how-to-create-onboarding-walkthrough-inside-first-show-screens
-
+      - (Search through unit types)
+      - Add two / more input edit texts for pixel to cm converter / color codes / Brasize eg. https://www.pixelto.net/px-to-cm-converter
+      - Make more Unit Types (Next: Brasize,Color codes,ElectricityCurrent/Charge)
+      - (Add option to special formula calculation -> instead of VAR use VAR(-someunitname-) to convert through other units first)
     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //TODO LOOK INTO VIEWPAGER https://stackoverflow.com/questions/38877202/android-activity-with-many-fragments-the-correct-way-to-handle-lifecycle-change
 
         // Make sure application is NOT Re-Rendering for some reason eg. change of theme
         if( savedInstanceState == null ){
@@ -54,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                     .getDefaultSharedPreferences(this);
 
             if( sharedPref.getBoolean( "showTutorialOnStart" ,true ) ){
-                sharedPref.edit().putBoolean( "showTutorialOnStart" , true ).apply();
+                sharedPref.edit().putBoolean( "showTutorialOnStart" , false ).apply();
                 Intent intent = new Intent(this, AppIntroActivity.class);
                 startActivity(intent);
             }
@@ -150,6 +141,10 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
      * =========================================== EVENTS ==========================================
      */
 
+    /**
+     * Open the unit converter of given unit type key
+     * @param unitTypeKey converter type to open
+     */
     public void openUnitConverterWith( String unitTypeKey ){
         Bundle bundle = new Bundle();
         bundle.putString( getString(R.string.bundle_selected_unittype) , unitTypeKey );
