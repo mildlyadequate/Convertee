@@ -1,0 +1,59 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="Theme.Convertee" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- brand color.-->
+        <item name="colorPrimary">@color/themePrimary</item>
+        <item name="colorPrimaryVariant">@color/themePrimaryLight</item>
+        <item name="colorOnPrimary">@color/themeBackground</item>
+        <item name="colorSecondary">@color/themeSecondaryDark</item>
+        <item name="colorSecondaryVariant">@color/themeSecondaryLight</item>
+        <item name="colorOnSecondary">@color/themeBackground</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="colorControlActivated">@color/themePrimary</item>
+
+        <item name="android:itemTextAppearance">@style/MenuItemTextAppearance</item>
+    </style>
+
+    <style name="MenuItemTextAppearance">
+        <item name="android:textColor">@color/themeDayBlackText</item>
+    </style>
+
+    <style name="Theme.Convertee.TextAppearance.Large" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/themeSecondaryDark</item>
+    </style>
+
+    <!-- UNIT CONVERTER FRAGMENT  -->
+    <style name="Theme.Convertee.TextAppearance.UnitValue" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/themeDayDarkText</item>
+    </style>
+    <style name="Theme.Convertee.TextAppearance.UnitValue.Selected" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/themeBackground</item>
+    </style>
+    <style name="Theme.Convertee.TextAppearance.UnitNameSmall" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/themeDayDarkText</item>
+    </style>
+    <style name="Theme.Convertee.TextAppearance.UnitNameSmall.Selected" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/themeBackground</item>
+    </style>
+    <style name="Theme.Convertee.textAppearanceListItemSmall" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/themeBackground</item>
+    </style>
+
+    <style name="Theme.Convertee.NoActionBar" >
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Convertee.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+    </style>
+
+    <style name="Theme.Convertee.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

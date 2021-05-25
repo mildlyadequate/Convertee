@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/llDistanceValueContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textDistanceItemUnitShort"
+        app:layout_constraintEnd_toStartOf="@+id/textDistanceItemUnitShort"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textDistanceItemUnitShort">
+
+        <TextView
+            android:id="@+id/textDistanceItemValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:singleLine="true"
+            android:textAppearance="@style/Theme.Convertee.TextAppearance.UnitValue"
+            android:textIsSelectable="false"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textDistanceItemUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textAppearance="@style/Theme.Convertee.TextAppearance.UnitNameSmall"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <com.sbsc.convertee.tools.customlayouts.ClickableCustomTextView
+        android:id="@+id/textDistanceItemUnitShort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/unit_button_selector"
+        android:clickable="true"
+        android:elevation="2dp"
+        android:focusable="true"
+        android:longClickable="true"
+        android:minEms="3"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@drawable/unit_type_item_text_selector"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

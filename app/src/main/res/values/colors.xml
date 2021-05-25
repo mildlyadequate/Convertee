@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="themeUnitTypeIconColor">@color/themeSecondaryDark</color>
+
+    <color name="themePrimary">#b7245c</color>
+    <color name="themePrimaryLight">#F5CCDC</color>
+    <color name="themeSecondaryDark">#2B2D42</color>
+    <color name="themeSecondaryLight">#8d99ae</color>
+    <color name="themeBackground">#edf2f4</color>
+    <color name="themeBackgroundDark">#2B2D42</color>
+    <color name="themeTertiary">#7EBDC2</color>
+    <color name="themeQuaternary">#7161EF</color>
+    <color name="themeRed">#ff6542</color>
+
+    <color name="themeDayBlackText">@color/black</color>
+    <color name="themeDayDarkText">@color/themeSecondaryDark</color>
+    <color name="themeDayLightText">@color/themeBackground</color>
+    <color name="mtrl_textinput_default_box_stroke_color">@color/themeBackground</color>
+
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.sbsc.convertee.ui.overview.UnitOverviewFragment"
+        tools:layout="@layout/fragment_unit_overview" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_distance"
+            app:destination="@id/nav_distance" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_distance"
+        android:name="com.sbsc.convertee.ui.converter.UnitConverterFragment"
+        tools:layout="@layout/fragment_unit_converter">
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.sbsc.convertee.ui.settings.SettingsFragment"
+        android:label="@string/app_settings" />
+
+    <!--Global action-->
+    <action android:id="@+id/open_settings_fragment"
+        app:destination="@id/settingsFragment"/>
+</navigation>

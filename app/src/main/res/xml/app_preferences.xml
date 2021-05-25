@@ -1,0 +1,62 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="20dp">
+
+    <com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory android:title="@string/pref_category_app_settings">
+
+        <EditTextPreference
+            android:defaultValue="4"
+            android:key="@string/preference_round_value"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_round_value_picker_title" />
+        <ListPreference
+            android:entries="@array/pref_number_format_locales_titles"
+            android:entryValues="@array/pref_number_format_locales_values"
+            android:key="@string/preference_locale"
+            android:title="@string/pref_locale_title"
+            app:defaultValue="@string/preference_locale_default_UK"
+            app:summary="@string/pref_locale_subtitle" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/preference_pro_mode"
+            android:title="@string/pref_pro_mode_select_title"
+            app:summary="@string/pref_pro_mode_select_subtitle" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_hidden_unit_types_defaults"
+            android:entries="@array/pref_hidden_unit_types_values"
+            android:entryValues="@array/pref_hidden_unit_types_titles"
+            android:key="@string/preference_hidden_unit_types"
+            android:title="@string/pref_hidden_unit_types_title"
+            app:summary="@string/pref_hidden_unit_types_subtitle" />
+    </com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory>
+
+    <com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory android:title="@string/pref_category_other">
+
+        <EditTextPreference
+            android:key="@string/preference_action_reset"
+            android:persistent="false"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_action_reset_title"
+            app:defaultValue="" />
+    </com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory>
+
+    <com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory>
+
+        <Preference
+            android:key="@string/preference_credits"
+            android:persistent="false"
+            android:title="@string/pref_credits_title"
+            app:summary="@string/pref_credits_subtitle" />
+    </com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory>
+
+
+
+
+
+
+
+
+    u
+</PreferenceScreen>

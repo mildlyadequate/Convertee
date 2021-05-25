@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- APP -->
+    <string name="app_name">Convertee</string>
+    <string name="app_settings">Einstellungen</string>
+    <string name="unit_settings">Einheiten selektieren</string>
+
+    <!-- TUTORIAL -->
+    <string name="tutorial_screen1_title">Hi!</string>
+    <string name="tutorial_screen1_description">Diese App wird dein Assistent zur Konvertierung fast aller Einheiten sein.</string>
+    <string name="tutorial_screen2_title">Anpassen</string>
+    <string name="tutorial_screen2_description">Wähle deine meistbenutzten Einheiten als Favoriten, blende sowohl Einheiten als auch Einheitstypen die du nicht brauchst aus.</string>
+    <string name="tutorial_screen3_title">Teilen</string>
+    <string name="tutorial_screen3_description">Klicke auf die Abkürzung einer Einheit rechts um sie für Andere oder dich selbst zu markieren. Außerdem kannst du das Ergebnis in jeder Zeile lange klicken um es zu kopieren!</string>
+
+    <!-- CONTENT DESCRIPTION -->
+    <string name="content_description_unittype_icon">Bild für diese Einheit</string>
+    <string name="content_description_unittype_status">Zeigt den aktuellen status der Einheit zB. Favorit, Versteckt</string>
+
+    <!-- TABBED PANE TABS -->
+    <string name="tabbed_pane_tab_customized">Angepasst</string>
+    <string name="tabbed_pane_tab_categories">Kategorien</string>
+
+    <!-- CATEGORIES -->
+    <string name="unit_type_categories_favourites">Favoriten</string>
+    <string name="unit_type_categories_all">Andere</string>
+    <string name="unit_type_categories_basics">Basics</string>
+    <string name="unit_type_categories_living">Alltag</string>
+    <string name="unit_type_categories_science">Wissenschaft</string>
+    <string name="unit_type_categories_maths">Mathematik</string>
+    <string name="unit_type_categories_technology">Technologie</string>
+
+    <!-- ADAPTER -->
+    <string name="adapter_popup_favourite">Zu Favoriten hinzufügen</string>
+    <string name="adapter_popup_unfavourite">Von Favoriten entfernen</string>
+    <string name="adapter_popup_hide">Verstecken</string>
+    <string name="adapter_popup_show">Zeigen</string>
+    <string name="adapter_clipboard_label">Wert in</string>
+    <string name="adapter_clipboard_toast">in die Zwischenablage kopiert</string>
+    <string name="adapter_clipboard_toast_error">ERROR: kopieren fehlgeschlagen</string>
+    <!-- Category: App Settings -->
+    <string name="pref_category_app_settings">App Einstellungen</string>
+    <!-- Setting: Round Value -->
+    <string name="pref_round_value_picker_title">Nachkommastellen</string>
+    <string name="pref_round_value_picker_subtitle">Aktuell wird bis zu</string>
+    <string name="pref_round_value_picker_subtitle2">stellen gerundet.</string>
+    <string name="pref_round_value_picker_error">Not saved: Value must be between 1 and 15</string>
+    <!-- Setting: Pro Mode -->
+    <string name="pref_pro_mode_select_title">Einheits-Pro-Modus</string>
+    <string name="pref_pro_mode_select_subtitle">Versteckt ganze Einheitsnamen. Empfholen wenn dir die Abkürzungen ausreichen.</string>
+    <!-- Setting: Locale -->
+    <string name="pref_locale_title">Zahlenformatierung</string>
+    <string name="pref_locale_subtitle">Aktuell formatiert als </string>
+    <string name="pref_locale_none">None</string>
+    <!-- Category: Select UnitTypes to hide -->
+    <string name="pref_hidden_unit_types_title">Einheitstypen ein-/ausblenden</string>
+    <string name="pref_hidden_unit_types_subtitle">Vom Startbildschirm.</string>
+    <string name="pref_hidden_unit_types_error">Nicht gespeichert: Mindestens ein Typ muss sichtbar sein</string>
+    <!-- Category: Select Units to hide -->
+    <string name="pref_category_select_units">Einheiten</string>
+    <string name="pref_category_select_units_subtitle">Bestimmte auswählen um sie auszublenden</string>
+    <string name="pref_select_units_hidden_subtitle">Einheiten ausgeblendet.</string>
+    <string name="pref_select_units_hidden_error">Nicht gespeichert: Mindestens zwei Einheiten müssen sichtbar sein</string>
+    <!-- Category: Other -->
+    <string name="pref_category_other">Andere</string>
+    <!-- Setting Action: Reset everything -->
+    <string name="pref_action_reset_title">App zurücksetzen</string>
+    <string name="pref_action_reset_subtitle">Löscht alle gespeicherten Einstellungen. Schreibe \'</string>
+    <string name="pref_action_reset_targetword">reset</string>
+    <string name="pref_action_reset_subtitle2">\' zum bestätigen.</string>
+    <string name="pref_action_reset_error">Bestätigungswort falsch</string>
+    <string name="pref_action_reset_success">App zurückgesetzt</string>
+    <!-- CREDITS -->
+    <string name="pref_credits_title">Credits</string>
+    <string name="pref_credits_subtitle">Made by Sebastian Schuler</string>
+    <string name="pref_credits_link">https://twitter.com/REALmildly</string>
+
+    <!-- ========================================= UNITS =========================================== -->
+    <!-- Everything below here has to exist for EVERY SINGLE UNIT TYPE ! -->
+    <string name="unit_type_value_text_hint">Wert</string>
+
+    <!-- MENUS / UNIT TYPE NAMES -->
+    <string name="unit_type_name_distance">Länge / Distanz</string>
+    <string name="unit_type_name_weight">Gewicht / Masse</string>
+    <string name="unit_type_name_temperature">Temperatur</string>
+    <string name="unit_type_name_time">Zeit</string>
+    <string name="unit_type_name_numerative">Zahlensystem</string>
+    <string name="unit_type_name_shoesize">Schuhgrösse</string>
+    <string name="unit_type_name_volume">Volumen</string>
+    <string name="unit_type_name_energy">Energie</string>
+    <string name="unit_type_name_fueleconomy">Kraftstoffverbrauch</string>
+    <string name="unit_type_name_datastorage">Datenspeicher</string>
+    <string name="unit_type_name_pressure">Druck</string>
+    <string name="unit_type_name_area">Fläche</string>
+    <string name="unit_type_name_angle">Winkel</string>
+    <string name="unit_type_name_speed">Geschwindigkeit</string>
+    <string name="unit_type_name_force">Kraft</string>
+
+    <!-- Distance Names -->
+    <string name="distance_unit_km">Kilometer</string>
+    <string name="distance_unit_m">Meter</string>
+    <string name="distance_unit_cm">Centimeter</string>
+    <string name="distance_unit_mm">Millimeter</string>
+    <string name="distance_unit_micm">Mikrometer</string>
+    <string name="distance_unit_nm">Nanometer</string>
+    <string name="distance_unit_mi">Meile</string>
+    <string name="distance_unit_yd">Yard</string>
+    <string name="distance_unit_in">Zoll</string>
+    <string name="distance_unit_ft">Fuß</string>
+    <!-- Weight Names -->
+    <string name="weight_unit_tonnemetric">Tonne (Metrisch)</string>
+    <string name="weight_unit_kg">Kilogramm</string>
+    <string name="weight_unit_cg">Centigramm</string>
+    <string name="weight_unit_g">Gramm</string>
+    <string name="weight_unit_mg">Milligramm</string>
+    <string name="weight_unit_micg">Mikrogramm</string>
+    <string name="weight_unit_st">Stone</string>
+    <string name="weight_unit_lbs">Pfund</string>
+    <string name="weight_unit_oz">Unze</string>
+    <string name="weight_unit_ct">Karat</string>
+    <string name="weight_unit_longton">Britische Tonne</string>
+    <string name="weight_unit_shortton">Amerikanische Tonne</string>
+    <!-- Temperature Names -->
+    <string name="temperature_unit_k">Kelvin</string>
+    <string name="temperature_unit_f">Fahrenheit</string>
+    <string name="temperature_unit_c">Celsius</string>
+    <!-- Time Names -->
+    <string name="time_unit_c">Jahrhundert</string>
+    <string name="time_unit_dec">Jahrzehnt</string>
+    <string name="time_unit_y">Jahr</string>
+    <string name="time_unit_mon">Monat</string>
+    <string name="time_unit_w">Woche</string>
+    <string name="time_unit_d">Tag</string>
+    <string name="time_unit_h">Stunde</string>
+    <string name="time_unit_min">Minute</string>
+    <string name="time_unit_s">Sekunde</string>
+    <string name="time_unit_ms">Millisekunde</string>
+    <string name="time_unit_mics">Microsekunde</string>
+    <string name="time_unit_ns">Nanosekunde</string>
+    <!-- Numerative Names -->
+    <string name="num_unit_oct">Oktal</string>
+    <string name="num_unit_hex">Hexadezimal</string>
+    <string name="num_unit_dec">Dezimal</string>
+    <string name="num_unit_bin">Binär</string>
+    <!-- Shoesize Names -->
+    <string name="shoesize_unit_eu">EU</string>
+    <string name="shoesize_unit_uk">UK</string>
+    <string name="shoesize_unit_mon">Mondopoint</string>
+    <string name="shoesize_unit_usm">US Men</string>
+    <string name="shoesize_unit_usw">US Women</string>
+    <!-- Volume Names -->
+    <string name="volume_unit_l">Liter</string>
+    <string name="volume_unit_ml">Milliliter</string>
+    <string name="volume_unit_cm">Kubikmeter</string>
+    <string name="volume_unit_ccm">Kubikcentimeter</string>
+    <string name="volume_unit_ckm">Kubikkilometer</string>
+    <string name="volume_unit_cmm">Kubikmillimeter</string>
+    <string name="volume_unit_tspm">Teelöffel Metrisch</string>
+    <string name="volume_unit_tspuk">Teelöffel UK</string>
+    <string name="volume_unit_tbspm">Esslöffel Metrisch</string>
+    <string name="volume_unit_tbspuk">Esslöffel UK</string>
+    <string name="volume_unit_cmi">Kubikmeile</string>
+    <string name="volume_unit_cyd">Kubikyard</string>
+    <string name="volume_unit_cft">Kubikfuss</string>
+    <string name="volume_unit_cin">Kubikzoll</string>
+    <string name="volume_unit_galuk">Gallone UK</string>
+    <string name="volume_unit_quaruk">Quart UK</string>
+    <string name="volume_unit_piuk">Pint UK</string>
+    <string name="volume_unit_cupuk">Cup UK</string>
+    <string name="volume_unit_galus">Gallone US</string>
+    <string name="volume_unit_quarus">Quart US</string>
+    <string name="volume_unit_pius">Pint US</string>
+    <string name="volume_unit_cupus">Cup US</string>
+    <!-- Energy Names -->
+    <string name="energy_unit_j">Joule</string>
+    <string name="energy_unit_gwtth">Gigawatt-Stunde</string>
+    <string name="energy_unit_mwtth">Megawatt-Stunde</string>
+    <string name="energy_unit_wtth">Watt-Stunde</string>
+    <string name="energy_unit_kwtth">Kilowatt-Stunde</string>
+    <string name="energy_unit_kj">Kilojoule</string>
+    <string name="energy_unit_caln">Kalorie (Ernährung)</string>
+    <string name="energy_unit_hpm">Pferdestärke-Stunde (Metrisch)</string>
+    <string name="energy_unit_hpi">Pferdestärke-Stunde (Imperial)</string>
+    <string name="energy_unit_mj">Millijoule</string>
+    <!-- FuelEconomy Names -->
+    <string name="fuelcons_unit_km2l">Kilometer pro Liter</string>
+    <string name="fuelcons_unit_m2guk">Meilen pro Gallone (UK)</string>
+    <string name="fuelcons_unit_m2gus">Meilen pro Gallon (US)</string>
+    <string name="fuelcons_unit_km2gus">Kilometer pro Gallone (US)</string>
+    <string name="fuelcons_unit_km2guk">Kilometer pro Gallone (UK)</string>
+    <string name="fuelcons_unit_m2l">Meter pro Liter</string>
+    <!-- DataStorage Names -->
+    <string name="datastorage_unit_char">ASCII Zeichen</string>
+    <!-- Pressure Names -->
+    <string name="pressure_unit_pasc">Pascal</string>
+    <string name="pressure_unit_kpasc">Kilopascal</string>
+    <string name="pressure_unit_bar">Bar</string>
+    <string name="pressure_unit_psi">Pfund pro Quadratzoll</string>
+    <string name="pressure_unit_ksi">Kilopfund pro Quadratzoll</string>
+    <string name="pressure_unit_statm">Standard Atmosphäre</string>
+    <string name="pressure_unit_torr">Torr</string>
+    <string name="pressure_unit_cmwat">Centimeter wasser</string>
+    <!-- Area Names -->
+    <string name="area_unit_sqkm">Quadratkilometer</string>
+    <string name="area_unit_sqm">Quadratmeter</string>
+    <string name="area_unit_sqcm">Quadratcentimeter</string>
+    <string name="area_unit_sqmm">Quadratmillimeter</string>
+    <string name="area_unit_sqmicm">Quadratmikrometer</string>
+    <string name="area_unit_hec">Hektar</string>
+    <string name="area_unit_acre">Acker</string>
+    <string name="area_unit_sqmi">Quadratmeile</string>
+    <string name="area_unit_sqyd">Quadratyard</string>
+    <string name="area_unit_sqft">Quadratfuß</string>
+    <string name="area_unit_sqin">Quadratzoll</string>
+    <!-- Angle Names -->
+    <string name="angle_unit_rad">Bogenmaß</string>
+    <string name="angle_unit_deg">Grad</string>
+    <string name="angle_unit_gra">Gradian</string>
+    <string name="angle_unit_tur">Umdrehung</string>
+    <string name="angle_unit_min">Minute</string>
+    <string name="angle_unit_sec">Sekunde</string>
+    <string name="angle_unit_ra">Rechter Winkel</string>
+    <!-- Speed Names -->
+    <string name="speed_unit_m2s">Meter pro Sekunde</string>
+    <string name="speed_unit_km2hr">Kilometers pro Stunde</string>
+    <string name="speed_unit_ft2s">Fuß pro Sekunde</string>
+    <string name="speed_unit_mi2hr">Meilen pro Stunde</string>
+    <string name="speed_unit_knot">Knoten</string>
+    <string name="speed_unit_earth">Geschwindigkeit der Erde</string>
+    <string name="speed_unit_sound">Schallgeschwindigkeit (Mach 1 bei 20°C)</string>
+    <string name="speed_unit_light">Lichtgeschwindigkeit (im Vakuum)</string>
+    <!-- Force Names -->
+    <string name="force_unit_knw">Kilonewton</string>
+    <string name="force_unit_nw">Newton</string>
+    <string name="force_unit_jm">Joule pro Meter</string>
+    <string name="force_unit_jcm">Joule pro Centimeter</string>
+    <string name="force_unit_dyn">Dyne</string>
+    <string name="force_unit_pdl">Poundal</string>
+    <string name="force_unit_kgf">Kilopond</string>
+    <string name="force_unit_gf">Pond</string>
+
+</resources>

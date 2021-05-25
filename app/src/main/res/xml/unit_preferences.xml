@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory
+        app:summary="@string/pref_category_select_units_subtitle"
+        app:title="@string/pref_category_select_units">
+
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_distance_defaults"
+            android:entries="@array/pref_distance_titles"
+            android:entryValues="@array/pref_distance_values"
+            android:key="@string/preference_distance_hidden"
+            android:persistent="true"
+            android:title="@string/unit_type_name_distance" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_weight_defaults"
+            android:entries="@array/pref_weight_values"
+            android:entryValues="@array/pref_weight_titles"
+            android:key="@string/preference_weight_hidden"
+            android:persistent="true"
+            android:title="@string/unit_type_name_weight" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_temperature_defaults"
+            android:entries="@array/pref_temperature_values"
+            android:entryValues="@array/pref_temperature_titles"
+            android:key="@string/preference_temperature_hidden"
+            android:persistent="true"
+            android:title="@string/unit_type_name_temperature" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_time_defaults"
+            android:entries="@array/pref_time_values"
+            android:entryValues="@array/pref_time_titles"
+            android:key="@string/preference_time_hidden"
+            android:persistent="true"
+            android:title="@string/unit_type_name_time" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_shoesize_defaults"
+            android:entries="@array/pref_shoesize_values"
+            android:entryValues="@array/pref_shoesize_titles"
+            android:key="@string/preference_shoesize_hidden"
+            android:title="@string/unit_type_name_shoesize" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_numerative_defaults"
+            android:entries="@array/pref_numerative_values"
+            android:entryValues="@array/pref_numerative_titles"
+            android:key="@string/preference_numerative_hidden"
+            android:title="@string/unit_type_name_numerative" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_volume_defaults"
+            android:entries="@array/pref_volume_values"
+            android:entryValues="@array/pref_volume_titles"
+            android:key="@string/preference_volume_hidden"
+            android:title="@string/unit_type_name_volume" />
+
+    </com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory>
+
+</PreferenceScreen>

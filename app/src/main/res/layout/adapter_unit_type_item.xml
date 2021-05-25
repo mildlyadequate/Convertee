@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sbsc.convertee.tools.customlayouts.UnitTypeCustomView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/unit_type_item_background_selector"
+    android:clickable="true"
+    android:elevation="5dp"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/imgUnitIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@drawable/unit_type_item_text_selector"
+        android:contentDescription="@string/content_description_unittype_icon"
+        android:duplicateParentState="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textUnitTypeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:duplicateParentState="true"
+        android:textAppearance="@style/Theme.Convertee.TextAppearance.Large"
+        android:textColor="@drawable/unit_type_item_text_selector"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUnitIcon"
+        app:layout_constraintStart_toEndOf="@+id/imgUnitIcon"
+        app:layout_constraintTop_toTopOf="@+id/imgUnitIcon" />
+
+    <ImageView
+        android:id="@+id/ivStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/content_description_unittype_status"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</com.sbsc.convertee.tools.customlayouts.UnitTypeCustomView>

@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- LOCALE -->
+    <string-array name="pref_number_format_locales_titles">
+        <item>UK</item>
+        <item>DE</item>
+        <item>@string/pref_locale_none</item>
+    </string-array>
+    <string-array name="pref_number_format_locales_values">
+        <item>@string/preference_locale_default_UK</item>
+        <item>de-DE</item>
+        <item>none</item>
+    </string-array>
+
+    <!-- Hidden UnitTypes -->
+    <string-array name="pref_hidden_unit_types_values" />
+    <string-array name="pref_hidden_unit_types_titles" />
+    <string-array name="pref_hidden_unit_types_defaults" />
+    <!-- MULTI SELECT PREFERENCE ARRAYS -->
+    <!-- Distance -->
+    <string-array name="pref_distance_values" />
+    <string-array name="pref_distance_titles" />
+    <string-array name="pref_distance_defaults" />
+    <!-- Weight -->
+    <string-array name="pref_weight_values" />
+    <string-array name="pref_weight_titles" />
+    <string-array name="pref_weight_defaults" />
+    <!-- Temperature -->
+    <string-array name="pref_temperature_values" />
+    <string-array name="pref_temperature_titles" />
+    <string-array name="pref_temperature_defaults" />
+    <!-- Time -->
+    <string-array name="pref_time_values" />
+    <string-array name="pref_time_titles" />
+    <string-array name="pref_time_defaults" />
+    <!-- ShoeSize -->
+    <string-array name="pref_shoesize_values" />
+    <string-array name="pref_shoesize_titles" />
+    <string-array name="pref_shoesize_defaults" />
+    <!-- Number System -->
+    <string-array name="pref_numerative_values" />
+    <string-array name="pref_numerative_titles" />
+    <string-array name="pref_numerative_defaults" />
+    <!-- Volume -->
+    <string-array name="pref_volume_values" />
+    <string-array name="pref_volume_titles" />
+    <string-array name="pref_volume_defaults" />
+
+</resources>
