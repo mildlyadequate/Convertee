@@ -1,5 +1,5 @@
 # Convertee
- A lightweight and quick to use converter app. 
+ A lightweight and quick to use converter app.
  
  ## Features :toolbox:
  
@@ -17,6 +17,7 @@
  
  ## Requirements
  Minimum Android 5.1 Lollipop (API level 22)
+ NO Permissions needed at all
  
  ## Translation
  Currently only in English :uk: and German :de:
