@@ -12,6 +12,8 @@
     <string name="tutorial_screen2_description">Pick your favourite unit types, hide ones you\'re not interested in, and hide specific units for every type.</string>
     <string name="tutorial_screen3_title">Share</string>
     <string name="tutorial_screen3_description">Click a unit abbreviation to mark a row or hold press on the converted value to copy it. It\'s that easy to share your results!</string>
+    <string name="tutorial_screen4_title">Large selection</string>
+    <string name="tutorial_screen4_description">There are a lot of units available! Check the unit preferences as some less common units are hidden by default. Enjoy!</string>
 
     <!-- ACTIVITY -->
     <string name="bundle_selected_unittype" translatable="false">bundle_selected_unittype</string>
@@ -41,6 +43,10 @@
     <string name="adapter_clipboard_label">Value in</string>
     <string name="adapter_clipboard_toast">copied to clipboard</string>
     <string name="adapter_clipboard_toast_error">ERROR: copying to clipboard failed</string>
+
+    <!-- CURRENCY LAST UPDATE STRING -->
+    <string name="currency_last_update_title">Last update:</string>
+    <string name="currency_last_update_never">Never, check internet connection.</string>
 
     <!-- ADAPTER PREFERENCE FAVOURITES -->
     <string name="preference_favourite_unit_types" translatable="false">preference_favourite_unit_types</string>
@@ -114,6 +120,7 @@
     <string name="unit_type_name_angle">Angle</string>
     <string name="unit_type_name_speed">Speed</string>
     <string name="unit_type_name_force">Force</string>
+    <string name="unit_type_name_currency">Currency</string>
 
     <!-- PREF KEYS -->
     <!-- Distance -->
@@ -146,6 +153,8 @@
     <string name="preference_speed_hidden" translatable="false">preference_speed_hidden</string>
     <!-- Force -->
     <string name="preference_force_hidden" translatable="false">preference_force_hidden</string>
+    <!-- Currency -->
+    <string name="preference_currency_hidden" translatable="false">preference_currency_hidden</string>
 
     <!-- ACTUAL UNIT NAMES -->
 
@@ -475,5 +484,67 @@
     <string name="force_unit_jcm_short" translatable="false">J/cm</string>
     <string name="force_unit_dyn_short" translatable="false">dyn</string>
     <string name="force_unit_pdl_short" translatable="false">pdl</string>
+
+    <!-- Currency Names -->
+    <string name="currency_unit_gbp">Great British Pounds</string>
+    <string name="currency_unit_eur">Euro</string>
+    <string name="currency_unit_usd">United States Dollar</string>
+    <string name="currency_unit_sar">Saudi Riyal</string>
+    <string name="currency_unit_mxn">Mexican Peso</string>
+    <string name="currency_unit_krw">South Korean Won</string>
+    <string name="currency_unit_jpy">Japanese Yen</string>
+    <string name="currency_unit_cnh">Chinese Yuan (Offshore)</string>
+    <string name="currency_unit_cny">Chinese Yuan</string>
+    <string name="currency_unit_chf">Swiss Franc</string>
+    <string name="currency_unit_btc">Bitcoin</string>
+    <string name="currency_unit_aed">United Arab Emirates Dirham</string>
+    <string name="currency_unit_aud">Australian Dollar</string>
+    <string name="currency_unit_nzd">New Zealand Dollar</string>
+    <string name="currency_unit_php">Philippine Peso</string>
+    <string name="currency_unit_pln">Polish Zloty</string>
+    <string name="currency_unit_rub">Russian Ruble</string>
+    <string name="currency_unit_zar">South African Rand</string>
+    <string name="currency_unit_xag">Silver Ounce</string>
+    <string name="currency_unit_xau">Gold Ounce</string>
+    <string name="currency_unit_try">Turkish Lira</string>
+    <string name="currency_unit_bgn">Bulgarian Lev</string>
+    <string name="currency_unit_brl">Brazilian Real</string>
+    <string name="currency_unit_cad">Canadian Dollar</string>
+    <string name="currency_unit_cop">Colombian Peso</string>
+    <string name="currency_unit_czk">Czech Republic Koruna</string>
+    <string name="currency_unit_dzd">Algerian Dinar</string>
+    <string name="currency_unit_egp">Egyptian Pound</string>
+    <string name="currency_unit_dkk">Danish Krone</string>
+
+    <!-- Currency Shorts -->
+    <string name="currency_unit_gbp_short" translatable="false">GBP</string>
+    <string name="currency_unit_eur_short" translatable="false">EUR</string>
+    <string name="currency_unit_usd_short" translatable="false">USD</string>
+    <string name="currency_unit_sar_short" translatable="false">SAR</string>
+    <string name="currency_unit_mxn_short" translatable="false">MXN</string>
+    <string name="currency_unit_krw_short" translatable="false">KRW</string>
+    <string name="currency_unit_jpy_short" translatable="false">JPY</string>
+    <string name="currency_unit_cnh_short" translatable="false">CNH</string>
+    <string name="currency_unit_cny_short" translatable="false">CNY</string>
+    <string name="currency_unit_chf_short" translatable="false">CHF</string>
+    <string name="currency_unit_btc_short" translatable="false">BTC</string>
+    <string name="currency_unit_aed_short" translatable="false">AED</string>
+    <string name="currency_unit_aud_short" translatable="false">AUD</string>
+    <string name="currency_unit_nzd_short" translatable="false">NZD</string>
+    <string name="currency_unit_php_short" translatable="false">PHP</string>
+    <string name="currency_unit_pln_short" translatable="false">PLN</string>
+    <string name="currency_unit_rub_short" translatable="false">RUB</string>
+    <string name="currency_unit_zar_short" translatable="false">ZAR</string>
+    <string name="currency_unit_xag_short" translatable="false">XAG</string>
+    <string name="currency_unit_xau_short" translatable="false">XAU</string>
+    <string name="currency_unit_try_short" translatable="false">TRY</string>
+    <string name="currency_unit_bgn_short" translatable="false">BGN</string>
+    <string name="currency_unit_brl_short" translatable="false">BRL</string>
+    <string name="currency_unit_cad_short" translatable="false">CAD</string>
+    <string name="currency_unit_cop_short" translatable="false">COP</string>
+    <string name="currency_unit_czk_short" translatable="false">CZK</string>
+    <string name="currency_unit_dzd_short" translatable="false">DZD</string>
+    <string name="currency_unit_egp_short" translatable="false">EGP</string>
+    <string name="currency_unit_dkk_short" translatable="false">DKK</string>
 
 </resources>

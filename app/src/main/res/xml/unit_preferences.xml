@@ -52,6 +52,60 @@
             android:entryValues="@array/pref_volume_titles"
             android:key="@string/preference_volume_hidden"
             android:title="@string/unit_type_name_volume" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_energy_defaults"
+            android:entries="@array/pref_energy_values"
+            android:entryValues="@array/pref_energy_titles"
+            android:key="@string/preference_energy_hidden"
+            android:title="@string/unit_type_name_energy" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_fueleconomy_defaults"
+            android:entries="@array/pref_fueleconomy_values"
+            android:entryValues="@array/pref_fueleconomy_titles"
+            android:key="@string/preference_fueleconomy_hidden"
+            android:title="@string/unit_type_name_fueleconomy" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_datastorage_defaults"
+            android:entries="@array/pref_datastorage_values"
+            android:entryValues="@array/pref_datastorage_titles"
+            android:key="@string/preference_datastorage_hidden"
+            android:title="@string/unit_type_name_datastorage" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_pressure_defaults"
+            android:entries="@array/pref_pressure_values"
+            android:entryValues="@array/pref_pressure_titles"
+            android:key="@string/preference_pressure_hidden"
+            android:title="@string/unit_type_name_pressure" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_area_defaults"
+            android:entries="@array/pref_area_values"
+            android:entryValues="@array/pref_area_titles"
+            android:key="@string/preference_area_hidden"
+            android:title="@string/unit_type_name_area" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_angle_defaults"
+            android:entries="@array/pref_angle_values"
+            android:entryValues="@array/pref_angle_titles"
+            android:key="@string/preference_angle_hidden"
+            android:title="@string/unit_type_name_angle" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_speed_defaults"
+            android:entries="@array/pref_speed_values"
+            android:entryValues="@array/pref_speed_titles"
+            android:key="@string/preference_speed_hidden"
+            android:title="@string/unit_type_name_speed" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_force_defaults"
+            android:entries="@array/pref_force_values"
+            android:entryValues="@array/pref_force_titles"
+            android:key="@string/preference_force_hidden"
+            android:title="@string/unit_type_name_force" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_currency_defaults"
+            android:entries="@array/pref_currency_values"
+            android:entryValues="@array/pref_currency_titles"
+            android:key="@string/preference_currency_hidden"
+            android:title="@string/unit_type_name_currency" />
 
     </com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory>
 

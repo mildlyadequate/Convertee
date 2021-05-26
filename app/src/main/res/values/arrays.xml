@@ -16,6 +16,7 @@
     <string-array name="pref_hidden_unit_types_values" />
     <string-array name="pref_hidden_unit_types_titles" />
     <string-array name="pref_hidden_unit_types_defaults" />
+
     <!-- MULTI SELECT PREFERENCE ARRAYS -->
     <!-- Distance -->
     <string-array name="pref_distance_values" />
@@ -45,5 +46,41 @@
     <string-array name="pref_volume_values" />
     <string-array name="pref_volume_titles" />
     <string-array name="pref_volume_defaults" />
+    <!-- ENERGY -->
+    <string-array name="pref_energy_values" />
+    <string-array name="pref_energy_titles" />
+    <string-array name="pref_energy_defaults" />
+    <!-- FUEL -->
+    <string-array name="pref_fueleconomy_values" />
+    <string-array name="pref_fueleconomy_titles" />
+    <string-array name="pref_fueleconomy_defaults" />
+    <!-- DATASTORAGE -->
+    <string-array name="pref_datastorage_values" />
+    <string-array name="pref_datastorage_titles" />
+    <string-array name="pref_datastorage_defaults" />
+    <!-- PRESSURE -->
+    <string-array name="pref_pressure_values" />
+    <string-array name="pref_pressure_titles" />
+    <string-array name="pref_pressure_defaults" />
+    <!-- AREA -->
+    <string-array name="pref_area_values" />
+    <string-array name="pref_area_titles" />
+    <string-array name="pref_area_defaults" />
+    <!-- ANGLE -->
+    <string-array name="pref_angle_values" />
+    <string-array name="pref_angle_titles" />
+    <string-array name="pref_angle_defaults" />
+    <!-- SPEED -->
+    <string-array name="pref_speed_values" />
+    <string-array name="pref_speed_titles" />
+    <string-array name="pref_speed_defaults" />
+    <!-- FORCE -->
+    <string-array name="pref_force_values" />
+    <string-array name="pref_force_titles" />
+    <string-array name="pref_force_defaults" />
+    <!-- CURRENCY -->
+    <string-array name="pref_currency_values" />
+    <string-array name="pref_currency_titles" />
+    <string-array name="pref_currency_defaults" />
 
 </resources>

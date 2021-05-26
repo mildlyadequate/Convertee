@@ -1,7 +1,9 @@
 package com.sbsc.convertee.tools;
 
 import android.content.Context;
+import android.icu.util.Calendar;
 import android.os.Build;
+import android.text.format.Time;
 
 import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
@@ -17,6 +19,22 @@ public class CompatibilityHandler {
         } else {
             return ctx.getResources().getColor( id );
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    public static long getCurrentTime(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            return Calendar.getInstance().getTimeInMillis();
+
+        }else{
+            Time time = new Time();
+            time.setToNow();
+            return time.toMillis(false);
+        }
+    }
+
+    public static String formatDateTime( long millis ){
+        return null;
     }
 
 }

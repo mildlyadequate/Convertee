@@ -38,6 +38,13 @@ public class AppIntroActivity extends AppIntro2 {
                 CompatibilityHandler.getColor( this , R.color.themeTertiary )
         ));
 
+        addSlide(AppIntroFragment.newInstance(
+                getString(R.string.tutorial_screen4_title),
+                getString(R.string.tutorial_screen4_description),
+                R.drawable.intro_step4,
+                CompatibilityHandler.getColor( this , R.color.themePrimary )
+        ));
+
         setColorTransitionsEnabled(true);
 
     }

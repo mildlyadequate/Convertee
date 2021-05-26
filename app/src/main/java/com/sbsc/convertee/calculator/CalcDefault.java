@@ -52,7 +52,7 @@ public class CalcDefault {
      * @param type UnitType used as a parameter so it can be determined which UnitType (eg. Weight) is being calculated
      * @return BigDecimal value of originalValue converted into mainUnit
      */
-    private static BigDecimal getValueInMain(String value , String unitName , UnitType type ){
+    private static BigDecimal getValueInMain( String value , String unitName , UnitType type ){
         BigDecimal accurateVal = new BigDecimal(value);
         // If unit is mainUnit return value
         if(unitName.equals(type.getMainUnitName())){ return accurateVal; }

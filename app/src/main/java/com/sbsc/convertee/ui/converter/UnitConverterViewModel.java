@@ -21,6 +21,10 @@ public class UnitConverterViewModel extends ViewModel {
 
     private final boolean defaultProModeValue = false;
 
+    // Currency related
+    private final MutableLiveData<Boolean> currencyRatesUpdated;
+    private final MutableLiveData<Long> currencyRatesLastUpdated;
+
     public UnitConverterViewModel() {
         unitItemAdapter = new MutableLiveData<>( new CalculatedUnitItemAdapter(new ArrayList<>()) );
         selectedUnitIndex = new MutableLiveData<>(0);
@@ -29,6 +33,9 @@ public class UnitConverterViewModel extends ViewModel {
         localizedUnitsHash = new MutableLiveData<>(0);
 
         proModeActive = new MutableLiveData<>(defaultProModeValue);
+
+        currencyRatesUpdated = new MutableLiveData<>(false);
+        currencyRatesLastUpdated = new MutableLiveData<>(0L);
     }
 
     /*
@@ -52,20 +59,27 @@ public class UnitConverterViewModel extends ViewModel {
 
     public void setLocalizedUnitsHash(int localizedUnitsHash) { this.localizedUnitsHash.postValue(localizedUnitsHash); }
 
+    public void setCurrencyRatesUpdated(){
+        if( this.currencyRatesUpdated.getValue() != null )
+        this.currencyRatesUpdated.postValue(!currencyRatesUpdated.getValue());
+    }
+
+    public void setCurrencyRatesLastUpdated(long time){ this.currencyRatesLastUpdated.postValue(time); }
 
     /*
      * ==================================== GETTER FOR VALUES  =====================================
      * With null check if needed
      */
 
-    public int getLocalizedUnitsHashValue() { return localizedUnitsHash.getValue(); }
+    public int getLocalizedUnitsHashValue() {
+        if( this.localizedUnitsHash.getValue() != null )
+            return localizedUnitsHash.getValue();
+        else
+            return 0;
+    }
 
     public LocalizedUnit[] getLocalizedUnitsValue(){
         return localizedUnits.getValue();
-    }
-
-    public int getSelectedUnitValue(){
-        return selectedUnitIndex.getValue();
     }
 
     public CalculatedUnitItemAdapter getUnitItemAdapterValue() {
@@ -93,5 +107,9 @@ public class UnitConverterViewModel extends ViewModel {
     public LiveData<Integer> getSelectedUnitIndex() { return selectedUnitIndex; }
 
     public LiveData<Boolean> getProModeActive() { return proModeActive; }
+
+    public LiveData<Boolean> getCurrencyRatesUpdated() { return currencyRatesUpdated; }
+
+    public LiveData<Long> getCurrencyRatesLastUpdated() { return currencyRatesLastUpdated; }
 
 }

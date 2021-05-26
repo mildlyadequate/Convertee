@@ -3,6 +3,9 @@ package com.sbsc.convertee.ui.converter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.TimeZone;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -32,11 +35,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.adapter.CalculatedUnitItemAdapter;
+import com.sbsc.convertee.calculator.CalcCurrency;
 import com.sbsc.convertee.calculator.CalcShoeSize;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.calculator.CalcNumerative;
 import com.sbsc.convertee.calculator.Calculator;
+import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.Numerative;
 import com.sbsc.convertee.entities.unittypes.ShoeSize;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
@@ -47,8 +52,12 @@ import com.sbsc.convertee.UnitTypeContainer;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  *  Conversion Fragment offers UI and Utility to convert specific UnitType
@@ -86,6 +95,9 @@ public class UnitConverterFragment extends Fragment {
         // Initialize potentially needed classes
         if (unitType.getId().equals(ShoeSize.id)){
             CalcShoeSize.getInstance();
+        }else if(unitType.getId().equals(Currency.id)){
+            CalcCurrency.getInstance();
+            CalcCurrency.getInstance().updateCurrency( requireContext() , sharedPref , unitConverterViewModel );
         }
 
         // Initialize UI Views
@@ -95,7 +107,7 @@ public class UnitConverterFragment extends Fragment {
         initRecyclerViewCalcUnitList( root );
 
         // Observes handle UI changes
-        initViewModelObserves();
+        initViewModelObserves( root );
 
         return root;
     }
@@ -241,7 +253,34 @@ public class UnitConverterFragment extends Fragment {
      * ========================================= VIEW MODEL ========================================
      */
 
-    private void initViewModelObserves(){
+    private void initViewModelObserves( View root ){
+
+        // Only needed if the current unit is currency
+        if(unitType.getId().equals(Currency.id)){
+
+            // Listen to updates
+            unitConverterViewModel.getCurrencyRatesUpdated().observe(getViewLifecycleOwner(), bool -> {
+                updateCalculatedValues(etValue.getText().toString());
+            });
+
+            TextView tvLastUpdate = root.findViewById(R.id.tvLastCurrencyUpdate);
+            tvLastUpdate.setVisibility(View.VISIBLE);
+            unitConverterViewModel.getCurrencyRatesLastUpdated().observe(getViewLifecycleOwner(), timeInMillis -> {
+                String formatted = "";
+                Date date = new Date(timeInMillis);
+
+                if( timeInMillis == 0 ){
+                    formatted += getString( R.string.currency_last_update_never );
+                }else{
+                    formatted += android.text.format.DateFormat.getDateFormat( requireContext() ).format( date );
+                    formatted += " ";
+                    formatted += android.text.format.DateFormat.getTimeFormat( requireContext() ).format( date );
+                }
+                String tvLastUpdateContent = getString( R.string.currency_last_update_title ) + " " + formatted;
+                tvLastUpdate.setText(tvLastUpdateContent);
+            });
+            unitConverterViewModel.setCurrencyRatesLastUpdated(sharedPref.getLong("currency_rates_last_update", 0));
+        }
 
         // Observe UnitList in ViewModel for changes then update spinner and SeekBar
         unitConverterViewModel.getLocalizedUnits().observe(getViewLifecycleOwner(), distances -> {
@@ -373,6 +412,8 @@ public class UnitConverterFragment extends Fragment {
         // Remove potentially initialized needed classes
         if (unitType.getId().equals(ShoeSize.id)){
             CalcShoeSize.deleteInstance();
+        }else if(unitType.getId().equals(Currency.id)){
+            CalcCurrency.deleteInstance();
         }
 
     }

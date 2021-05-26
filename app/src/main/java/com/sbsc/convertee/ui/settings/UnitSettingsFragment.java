@@ -9,9 +9,18 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.google.android.material.snackbar.Snackbar;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
+import com.sbsc.convertee.entities.unittypes.Angle;
+import com.sbsc.convertee.entities.unittypes.Area;
+import com.sbsc.convertee.entities.unittypes.Currency;
+import com.sbsc.convertee.entities.unittypes.DataStorage;
 import com.sbsc.convertee.entities.unittypes.Distance;
+import com.sbsc.convertee.entities.unittypes.Energy;
+import com.sbsc.convertee.entities.unittypes.Force;
+import com.sbsc.convertee.entities.unittypes.FuelEconomy;
 import com.sbsc.convertee.entities.unittypes.Numerative;
+import com.sbsc.convertee.entities.unittypes.Pressure;
 import com.sbsc.convertee.entities.unittypes.ShoeSize;
+import com.sbsc.convertee.entities.unittypes.Speed;
 import com.sbsc.convertee.entities.unittypes.Temperature;
 import com.sbsc.convertee.entities.unittypes.Time;
 import com.sbsc.convertee.entities.unittypes.Volume;
@@ -49,6 +58,34 @@ public class UnitSettingsFragment extends PreferenceFragmentCompat {
         // VOLUME PREFERENCES
         MultiSelectListPreference prefVolumePicker = findPreference(getString(R.string.preference_volume_hidden));
         makeMultiSelectUnitPref( prefVolumePicker , Volume.getInstance() );
+        // ENERGY PREFERENCES
+        MultiSelectListPreference prefEnergyPicker = findPreference(getString(R.string.preference_energy_hidden));
+        makeMultiSelectUnitPref( prefEnergyPicker , Energy.getInstance() );
+        // FUEL PREFERENCES
+        MultiSelectListPreference prefFuelEconomyPicker = findPreference(getString(R.string.preference_fueleconomy_hidden));
+        makeMultiSelectUnitPref( prefFuelEconomyPicker , FuelEconomy.getInstance() );
+        // DATASTORAGE PREFERENCES
+        MultiSelectListPreference prefDataStoragePicker = findPreference(getString(R.string.preference_datastorage_hidden));
+        makeMultiSelectUnitPref( prefDataStoragePicker , DataStorage.getInstance() );
+        // PRESSURE PREFERENCES
+        MultiSelectListPreference prefPressurePicker = findPreference(getString(R.string.preference_pressure_hidden));
+        makeMultiSelectUnitPref( prefPressurePicker , Pressure.getInstance() );
+        // AREA PREFERENCES
+        MultiSelectListPreference prefAreaPicker = findPreference(getString(R.string.preference_area_hidden));
+        makeMultiSelectUnitPref( prefAreaPicker , Area.getInstance() );
+        // ANGLE PREFERENCES
+        MultiSelectListPreference prefAnglePicker = findPreference(getString(R.string.preference_angle_hidden));
+        makeMultiSelectUnitPref( prefAnglePicker , Angle.getInstance() );
+        // SPEED PREFERENCES
+        MultiSelectListPreference prefSpeedPicker = findPreference(getString(R.string.preference_speed_hidden));
+        makeMultiSelectUnitPref( prefSpeedPicker , Speed.getInstance() );
+        // FORCE PREFERENCES
+        MultiSelectListPreference prefForcePicker = findPreference(getString(R.string.preference_force_hidden));
+        makeMultiSelectUnitPref( prefForcePicker , Force.getInstance() );
+        // CURRENCY PREFERENCES
+        MultiSelectListPreference prefCurrencyPicker = findPreference(getString(R.string.preference_currency_hidden));
+        makeMultiSelectUnitPref( prefCurrencyPicker , Currency.getInstance() );
+
     }
 
     private void makeMultiSelectUnitPref(MultiSelectListPreference multiSelect , UnitType unitType){

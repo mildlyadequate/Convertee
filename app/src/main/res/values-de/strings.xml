@@ -13,6 +13,8 @@
     <string name="tutorial_screen2_description">Wähle deine meistbenutzten Einheiten als Favoriten, blende sowohl Einheiten als auch Einheitstypen die du nicht brauchst aus.</string>
     <string name="tutorial_screen3_title">Teilen</string>
     <string name="tutorial_screen3_description">Klicke auf die Abkürzung einer Einheit rechts um sie für Andere oder dich selbst zu markieren. Außerdem kannst du das Ergebnis in jeder Zeile lange klicken um es zu kopieren!</string>
+    <string name="tutorial_screen4_title">Große Auswahl</string>
+    <string name="tutorial_screen4_description">Es sind sehr viele Einheiten vorhanden! Schau dir die Einstellungen \'Einheiten selektieren\' an um selten benutzte anzeigen zu lassen die standardmäßig ausgeblendet sind. Viel Spass!</string>
 
     <!-- CONTENT DESCRIPTION -->
     <string name="content_description_unittype_icon">Bild für diese Einheit</string>
@@ -30,6 +32,10 @@
     <string name="unit_type_categories_science">Wissenschaft</string>
     <string name="unit_type_categories_maths">Mathematik</string>
     <string name="unit_type_categories_technology">Technologie</string>
+
+    <!-- CURRENCY LAST UPDATE STRING -->
+    <string name="currency_last_update_title">Letzte Aktualisierung:</string>
+    <string name="currency_last_update_never">Nie, Internetverbindung sicherstellen.</string>
 
     <!-- ADAPTER -->
     <string name="adapter_popup_favourite">Zu Favoriten hinzufügen</string>
@@ -96,6 +102,7 @@
     <string name="unit_type_name_angle">Winkel</string>
     <string name="unit_type_name_speed">Geschwindigkeit</string>
     <string name="unit_type_name_force">Kraft</string>
+    <string name="unit_type_name_currency">Währung</string>
 
     <!-- Distance Names -->
     <string name="distance_unit_km">Kilometer</string>
@@ -239,5 +246,35 @@
     <string name="force_unit_pdl">Poundal</string>
     <string name="force_unit_kgf">Kilopond</string>
     <string name="force_unit_gf">Pond</string>
+    <!-- Currency Names -->
+    <string name="currency_unit_gbp">Britischer Pfund</string>
+    <string name="currency_unit_eur">Euro</string>
+    <string name="currency_unit_usd">US Dollar</string>
+    <string name="currency_unit_sar">Saudi Riyal</string>
+    <string name="currency_unit_mxn">Mexikanischer Peso</string>
+    <string name="currency_unit_krw">Südkoreanischer Won</string>
+    <string name="currency_unit_jpy">Japanischer Yen</string>
+    <string name="currency_unit_cnh">Chinesischer Yuan (Offshore)</string>
+    <string name="currency_unit_cny">Chinesischer Yuan</string>
+    <string name="currency_unit_chf">Schweizer Franken</string>
+    <string name="currency_unit_btc">Bitcoin</string>
+    <string name="currency_unit_aed">Vereinigte Arabische Emirate Dirham</string>
+    <string name="currency_unit_aud">Australischer Dollar</string>
+    <string name="currency_unit_nzd">Neuseeland Dollar</string>
+    <string name="currency_unit_php">Philippinischer Peso</string>
+    <string name="currency_unit_pln">Polnischer Zloty</string>
+    <string name="currency_unit_rub">Russischer Rubel</string>
+    <string name="currency_unit_zar">Südafrikanischer Rand</string>
+    <string name="currency_unit_xag">Silber Unze</string>
+    <string name="currency_unit_xau">Gold Unze</string>
+    <string name="currency_unit_try">Türkische Lire</string>
+    <string name="currency_unit_bgn">Bulgarischer Lev</string>
+    <string name="currency_unit_brl">Brasilianischer Real</string>
+    <string name="currency_unit_cad">Kanadischer Dollar</string>
+    <string name="currency_unit_cop">Kolumbianischer Peso</string>
+    <string name="currency_unit_czk">Tschechische Republik Koruna</string>
+    <string name="currency_unit_dzd">Algerischer Dinar</string>
+    <string name="currency_unit_egp">Egyptischer Pfund</string>
+    <string name="currency_unit_dkk">Dänische Krone</string>
 
 </resources>
