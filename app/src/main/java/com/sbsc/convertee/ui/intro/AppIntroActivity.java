@@ -21,28 +21,28 @@ public class AppIntroActivity extends AppIntro2 {
                 getString(R.string.tutorial_screen1_title),
                 getString(R.string.tutorial_screen1_description),
                 R.drawable.intro_step1,
-                CompatibilityHandler.getColor( this , R.color.themePrimary )
+                CompatibilityHandler.getColor(this, R.color.themePrimary)
         ));
 
         addSlide(AppIntroFragment.newInstance(
                 getString(R.string.tutorial_screen2_title),
                 getString(R.string.tutorial_screen2_description),
                 R.drawable.intro_step2,
-                CompatibilityHandler.getColor( this , R.color.themeBackgroundDark )
+                CompatibilityHandler.getColor(this, R.color.themeBackgroundDark)
         ));
 
         addSlide(AppIntroFragment.newInstance(
                 getString(R.string.tutorial_screen3_title),
                 getString(R.string.tutorial_screen3_description),
                 R.drawable.intro_step3,
-                CompatibilityHandler.getColor( this , R.color.themeTertiary )
+                CompatibilityHandler.getColor(this, R.color.themeTertiary)
         ));
 
         addSlide(AppIntroFragment.newInstance(
                 getString(R.string.tutorial_screen4_title),
                 getString(R.string.tutorial_screen4_description),
                 R.drawable.intro_step4,
-                CompatibilityHandler.getColor( this , R.color.themePrimary )
+                CompatibilityHandler.getColor(this, R.color.themePrimary)
         ));
 
         setColorTransitionsEnabled(true);

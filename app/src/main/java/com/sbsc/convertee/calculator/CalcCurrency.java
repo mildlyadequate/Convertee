@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.text.format.Time;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -29,6 +30,7 @@ import java.util.Date;
 public class CalcCurrency {
 
     private SharedPreferences sharedPref;
+    private UnitConverterViewModel unitConverterViewModel;
 
     private final String baseCurrency = "usdollar";
     private JsonObject currencyRates;
@@ -49,8 +51,16 @@ public class CalcCurrency {
         return calcCurrency;
     }
 
-    public void updateCurrency(Context ctx, SharedPreferences sharedPref, UnitConverterViewModel unitConverterViewModel){
+    /**
+     *
+     * @param ctx Context
+     * @param view View for SnackBar
+     * @param sharedPref SharedPreferences
+     * @param unitConverterViewModel ConverterViewModel to listen to changes
+     */
+    public void initializeCurrency(Context ctx , View view , SharedPreferences sharedPref , UnitConverterViewModel unitConverterViewModel ){
         this.sharedPref = sharedPref;
+        this.unitConverterViewModel = unitConverterViewModel;
 
         // Check if last update has been > 1 day ago
         long lastUpdate = sharedPref.getLong("currency_rates_last_update", 0);
@@ -61,14 +71,21 @@ public class CalcCurrency {
         // Difference more than a day ( 86400000 millis )
         if( currentTime - lastUpdate > 86400000L || currencyRates == null ){
             RequestQueue queue = Volley.newRequestQueue(ctx);
-            CurrencyApiHandler.getUpdatedCurrencies(queue, sharedPref , unitConverterViewModel );
-            currencyRates = new Gson().fromJson( sharedPref.getString("currency_rates","") , JsonObject.class);
+            CurrencyApiHandler.getUpdatedCurrencies( queue, sharedPref , unitConverterViewModel , view , ctx );
+        }
+    }
 
-            // Check if data is actually available
-            if( currencyRates != null && currencyRates.get("USD") != null ){
-                sharedPref.edit().putLong("currency_rates_last_update",currentTime).apply();
-                unitConverterViewModel.setCurrencyRatesLastUpdated(currentTime);
-            }
+    /**
+     * Callback after the API update was finished
+     */
+    public void wasUpdated(){
+        currencyRates = new Gson().fromJson( sharedPref.getString("currency_rates","") , JsonObject.class);
+
+        // Check if data is actually available
+        if( currencyRates != null && currencyRates.get("USD") != null ){
+            long currentTime = CompatibilityHandler.getCurrentTime();
+            sharedPref.edit().putLong("currency_rates_last_update",currentTime).apply();
+            unitConverterViewModel.setCurrencyRatesLastUpdated(currentTime);
         }
     }
 

@@ -61,8 +61,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         MultiSelectListPreference prefHiddenUnitTypes = (MultiSelectListPreference) findPreference( getString(R.string.preference_hidden_unit_types) );
         makeMultiSelectUnitTypePref( prefHiddenUnitTypes );
 
-
-
         // ACTION RESET
         EditTextPreference prefActionReset = (EditTextPreference) findPreference(getString(R.string.preference_action_reset));
         if( prefActionReset != null ) makeResetButton( prefActionReset );
@@ -80,7 +78,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         roundValuePref.setOnBindEditTextListener(editText -> editText.setInputType(InputType.TYPE_CLASS_NUMBER));
         roundValuePref.setOnPreferenceChangeListener((preference, newValue) -> {
             if(Integer.parseInt((String)newValue) > 15 || Integer.parseInt((String)newValue) < 1){
-                Toast.makeText(getContext(),getString(R.string.pref_round_value_picker_error),Toast.LENGTH_SHORT).show();
+                Snackbar.make( requireView() , getString(R.string.pref_round_value_picker_error) , Snackbar.LENGTH_SHORT ).show();
                 return false;
             }
             Calculator.roundToDigits = Integer.parseInt((String) newValue);
@@ -136,13 +134,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         );
         resetButton.setOnPreferenceChangeListener((preference, newValue) -> {
             if( StringUtils.equalsIgnoreCase( (String)newValue , getString(R.string.pref_action_reset_targetword) ) ){
-                Toast.makeText( getContext() , getString(R.string.pref_action_reset_success) , Toast.LENGTH_SHORT ).show();
+                Snackbar.make( requireView() , getString(R.string.pref_action_reset_success) , Snackbar.LENGTH_SHORT ).show();
                 sharedPref.edit().clear().apply();
                 requireActivity().getIntent().setFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 requireActivity().getOnBackPressedDispatcher().onBackPressed();
                 return false;
             }
-            Toast.makeText( getContext() , getString(R.string.pref_action_reset_error) , Toast.LENGTH_SHORT ).show();
+            Snackbar.make( requireView() , getString(R.string.pref_action_reset_error) , Snackbar.LENGTH_SHORT ).show();
             return false;
         });
     }

@@ -85,9 +85,9 @@ public class UnitCategoriesFragment extends OverviewFragment {
         List<UnitTypeSectionedAdapter.Section> sections = new ArrayList<>();
         sections.add( new UnitTypeSectionedAdapter.Section(0, getString(R.string.unit_type_categories_basics) ));
         sections.add( new UnitTypeSectionedAdapter.Section( 4 , getString(R.string.unit_type_categories_living) ));
-        sections.add( new UnitTypeSectionedAdapter.Section( 8 , getString(R.string.unit_type_categories_science) ));
-        sections.add( new UnitTypeSectionedAdapter.Section( 12 , getString(R.string.unit_type_categories_maths) ));
-        sections.add( new UnitTypeSectionedAdapter.Section( 13 , getString(R.string.unit_type_categories_technology) ));
+        sections.add( new UnitTypeSectionedAdapter.Section( 9 , getString(R.string.unit_type_categories_science) ));
+        sections.add( new UnitTypeSectionedAdapter.Section( 13 , getString(R.string.unit_type_categories_maths) ));
+        sections.add( new UnitTypeSectionedAdapter.Section( 14 , getString(R.string.unit_type_categories_technology) ));
 
         UnitTypeSectionedAdapter.Section[] dummy = new UnitTypeSectionedAdapter.Section[sections.size()];
         rvUnitTypeSectionedAdapter = new UnitTypeSectionedAdapter( requireContext() , R.layout.adapter_section, R.id.section_text , rvUnitTypeAdapter );

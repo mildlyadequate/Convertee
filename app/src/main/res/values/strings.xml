@@ -47,6 +47,8 @@
     <!-- CURRENCY LAST UPDATE STRING -->
     <string name="currency_last_update_title">Last update:</string>
     <string name="currency_last_update_never">Never, check internet connection.</string>
+    <string name="currency_snackbar_update_finished">Currency rates were updated.</string>
+    <string name="currency_snackbar_update_error">ERROR: Currency rates not updated -</string>
 
     <!-- ADAPTER PREFERENCE FAVOURITES -->
     <string name="preference_favourite_unit_types" translatable="false">preference_favourite_unit_types</string>

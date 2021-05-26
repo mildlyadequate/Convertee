@@ -2,10 +2,6 @@ package com.sbsc.convertee.ui.converter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.TimeZone;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -24,7 +20,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.solver.widgets.Helper;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
@@ -46,18 +41,14 @@ import com.sbsc.convertee.entities.unittypes.Numerative;
 import com.sbsc.convertee.entities.unittypes.ShoeSize;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.entities.unittypes.generic.UnitTypeEntry;
-import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.HelperUtil;
 import com.sbsc.convertee.UnitTypeContainer;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
  *  Conversion Fragment offers UI and Utility to convert specific UnitType
@@ -97,7 +88,7 @@ public class UnitConverterFragment extends Fragment {
             CalcShoeSize.getInstance();
         }else if(unitType.getId().equals(Currency.id)){
             CalcCurrency.getInstance();
-            CalcCurrency.getInstance().updateCurrency( requireContext() , sharedPref , unitConverterViewModel );
+            CalcCurrency.getInstance().initializeCurrency( requireContext() , root , sharedPref , unitConverterViewModel );
         }
 
         // Initialize UI Views
@@ -265,6 +256,8 @@ public class UnitConverterFragment extends Fragment {
 
             TextView tvLastUpdate = root.findViewById(R.id.tvLastCurrencyUpdate);
             tvLastUpdate.setVisibility(View.VISIBLE);
+
+            // Listen to the Currency LastUpdateTime being changed
             unitConverterViewModel.getCurrencyRatesLastUpdated().observe(getViewLifecycleOwner(), timeInMillis -> {
                 String formatted = "";
                 Date date = new Date(timeInMillis);
@@ -275,6 +268,9 @@ public class UnitConverterFragment extends Fragment {
                     formatted += android.text.format.DateFormat.getDateFormat( requireContext() ).format( date );
                     formatted += " ";
                     formatted += android.text.format.DateFormat.getTimeFormat( requireContext() ).format( date );
+
+                    // When the last update time changes an update has happened, so we have to reload displayed UI data to refresh
+                    updateCalculatedValues(etValue.getText().toString());
                 }
                 String tvLastUpdateContent = getString( R.string.currency_last_update_title ) + " " + formatted;
                 tvLastUpdate.setText(tvLastUpdateContent);
