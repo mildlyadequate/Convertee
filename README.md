@@ -17,7 +17,7 @@
  
  ## Requirements
  - Minimum Android 5.1 Lollipop (API level 22)
- - NO Permissions needed at all
+ - Only requires Internet permission to access the Currency Conversion API (Everything else works fine without this permission)
  
  ## Translation
  Currently only in English :uk: and German :de:
