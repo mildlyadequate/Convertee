@@ -48,15 +48,34 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spDistanceUnit"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/spinner_outline"
-            android:foregroundTint="#F1E7E7" />
+            android:layout_marginEnd="32dp">
+
+            <Spinner
+                android:id="@+id/spDistanceUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/spinner_outline"
+                android:foregroundTint="#F1E7E7" />
+
+            <ImageButton
+                android:id="@+id/btnUnitInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:contentDescription="@string/unit_info_button_description"
+                android:scaleType="fitCenter"
+                android:src="@drawable/unit_info_icon_selector" />
+        </LinearLayout>
 
         <SeekBar
             android:id="@+id/sbDistanceUnit"

@@ -15,11 +15,13 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
@@ -29,20 +31,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.sbsc.convertee.R;
+import com.sbsc.convertee.UnitTypeContainer;
 import com.sbsc.convertee.adapter.CalculatedUnitItemAdapter;
 import com.sbsc.convertee.calculator.CalcCurrency;
+import com.sbsc.convertee.calculator.CalcNumerative;
 import com.sbsc.convertee.calculator.CalcShoeSize;
+import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
-import com.sbsc.convertee.calculator.CalcNumerative;
-import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.Numerative;
 import com.sbsc.convertee.entities.unittypes.ShoeSize;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.entities.unittypes.generic.UnitTypeEntry;
 import com.sbsc.convertee.tools.HelperUtil;
-import com.sbsc.convertee.UnitTypeContainer;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -65,6 +67,7 @@ public class UnitConverterFragment extends Fragment {
     private EditText etValue;
     private SeekBar sbUnitSelector;
     private SharedPreferences sharedPref;
+    private ImageButton btnUnitInfo;
 
     // UnitType
     private UnitType unitType;
@@ -96,6 +99,7 @@ public class UnitConverterFragment extends Fragment {
         initEditTextValue( root );
         initSeekBarUnitSelector( root );
         initRecyclerViewCalcUnitList( root );
+        initInfoButton( root );
 
         // Observes handle UI changes
         initViewModelObserves( root );
@@ -220,9 +224,64 @@ public class UnitConverterFragment extends Fragment {
 
     }
 
+    /**
+     * Info button shows information related to the active unit
+     * @param root View of inflated hierarchy of fragment
+     */
+    private void initInfoButton( View root ){
+        btnUnitInfo = root.findViewById(R.id.btnUnitInfo);
+        btnUnitInfo.setOnClickListener(view -> {
+
+            // Build info identifier for the selected unit ( format: "shoesize_eushoesize_info")
+            int identifier = getResources().getIdentifier(
+                    unitType.getId() + "_" + unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitName() + "_info" ,
+                    "string" ,
+                    requireContext().getPackageName()
+            );
+
+            // If there is no text info to this unit available, don't react to clicks
+            if( identifier != 0 ){
+                new AlertDialog.Builder( requireContext() )
+                        .setTitle( unitConverterViewModel.getSelectedLocalizedUnitValue().getLocalizedName() )
+                        .setMessage( getString(identifier) )
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> { })
+                        .setIcon(R.drawable.ic_info)
+                        .show();
+            }
+
+        });
+    }
+
     /*
      * =========================================== EVENTS ==========================================
      */
+
+    /**
+     * Change visibility of the InfoButton based on currently selected unit
+     */
+    private void setInfoButtonVisibility(){
+
+        // On launch the selection may be null
+        if(unitConverterViewModel.getSelectedLocalizedUnitValue() == null ){
+            btnUnitInfo.setVisibility(View.GONE);
+            return;
+        }
+
+        // Build info identifier for the selected unit
+        int identifier = getResources().getIdentifier(
+                unitType.getId() + "_" + unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitName() + "_info" ,
+                "string" ,
+                requireContext().getPackageName()
+        );
+
+        // If there is no text info to this unit available, remove the button
+        if( identifier != 0 ){
+            btnUnitInfo.setVisibility(View.VISIBLE);
+        }else{
+            btnUnitInfo.setVisibility(View.GONE);
+        }
+    }
+
 
     /**
      * Set selection by using the units short name, called from adapter when the visual button of
@@ -281,6 +340,9 @@ public class UnitConverterFragment extends Fragment {
         // Observe UnitList in ViewModel for changes then update spinner and SeekBar
         unitConverterViewModel.getLocalizedUnits().observe(getViewLifecycleOwner(), distances -> {
 
+            // Now that localized units are loaded, check if the selected one (most likely 0) has info to be displayed
+            setInfoButtonVisibility();
+
             // Change spinner
             ArrayAdapter<LocalizedUnit> adapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_list_item, distances);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -308,8 +370,12 @@ public class UnitConverterFragment extends Fragment {
                 }
             }
 
+            // Set SeekBar progress
             sbUnitSelector.setProgress(integer);
             spUnitSelector.setSelection(integer);
+
+            // Decide whether or not to show Info Button
+            setInfoButtonVisibility();
 
             // Update calculated values
             updateCalculatedValues(etValue.getText().toString());

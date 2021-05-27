@@ -36,6 +36,8 @@
     <!-- CURRENCY LAST UPDATE STRING -->
     <string name="currency_last_update_title">Letzte Aktualisierung:</string>
     <string name="currency_last_update_never">Nie, Internetverbindung sicherstellen.</string>
+    <string name="currency_snackbar_update_finished">Umtauschsätze wurden aktualisiert.</string>
+    <string name="currency_snackbar_update_error">ERROR: Umtauschsätze nicht aktualisiert -</string>
 
     <!-- ADAPTER -->
     <string name="adapter_popup_favourite">Zu Favoriten hinzufügen</string>

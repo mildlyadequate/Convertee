@@ -44,6 +44,9 @@
     <string name="adapter_clipboard_toast">copied to clipboard</string>
     <string name="adapter_clipboard_toast_error">ERROR: copying to clipboard failed</string>
 
+    <!-- UNIT INFO -->
+    <string name="unit_info_button_description">Button to show info on the currently selected unit</string>
+
     <!-- CURRENCY LAST UPDATE STRING -->
     <string name="currency_last_update_title">Last update:</string>
     <string name="currency_last_update_never">Never, check internet connection.</string>
@@ -256,6 +259,10 @@
     <string name="num_unit_hex_short" translatable="false">Hex</string>
     <string name="num_unit_dec_short" translatable="false">Dec</string>
     <string name="num_unit_bin_short" translatable="false">Bin</string>
+    <!-- Numerative Info -->
+    <string name="numerative_binary_info">A binary number is expressed in the base-2 numeral system which uses only two symbols: typically "0" and "1". Each digit is referred to as a bit, or binary digit. Because of its straightforward implementation, the binary system is used by almost all modern computers.</string>
+    <string name="numerative_octal_info">The octal numeral system, is the base-8 number system, and uses the digits 0 to 7.</string>
+    <string name="numerative_hex_info">The hexadecimal numeral system is the base-16 number system, it uses 16 distinct symbols, most often the symbols "0"–"9" to represent values 0 to 9, and "A"–"F" (or alternatively "a"–"f") to represent values 10 to 15. </string>
 
     <!-- Shoesize Names -->
     <string name="shoesize_unit_eu">EU</string>
@@ -269,6 +276,12 @@
     <string name="shoesize_unit_mon_short" translatable="false">Mon</string>
     <string name="shoesize_unit_usw_short" translatable="false">US W</string>
     <string name="shoesize_unit_usm_short" translatable="false">US M</string>
+    <!-- Shoesize Info -->
+    <string name="shoesize_eushoesize_info">European shoe sizes range from 34 to 50 and increase by 0.5 every size.</string>
+    <string name="shoesize_ukshoesize_info">UK shoe sizes range from 2 to 15 and increase by 1 every size.</string>
+    <string name="shoesize_mondoshoesize_info">Mondopoint ranges from 215 to 320 and increases by 5 every size up. It\'s widely used in the sports industry but was also adopted as the primary shoe sizing system in the Soviet Union, Russia, China, Japan, Taiwan, and South Korea. NATO and other military services also use it for consistent boot sizes. </string>
+    <string name="shoesize_usmshoesize_info">The traditional US system is similar to British sizes but start counting at one rather than zero, so equivalent sizes are one greater.</string>
+    <string name="shoesize_uswshoesize_info">Just like the men sizes in the traditional US system, the women sizes are similar to the British sizes, start counting at zero but are greater than men sizes by one.</string>
 
     <!-- Volume Names -->
     <string name="volume_unit_l">Liter</string>
