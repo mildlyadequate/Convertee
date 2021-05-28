@@ -97,7 +97,7 @@
     <!-- CREDITS -->
     <string name="pref_credits_title">Credits</string>
     <string name="pref_credits_subtitle">Made by Sebastian Schuler</string>
-    <string name="pref_credits_link">https://twitter.com/REALmildly</string>
+    <string name="pref_credits_link" translatable="false" >https://github.com/mildlyadequate/Convertee</string>
     <string name="preference_credits" translatable="false" />
 
     <!-- PREFERENCE VALUES -->

@@ -89,7 +89,6 @@
     <!-- CREDITS -->
     <string name="pref_credits_title">Credits</string>
     <string name="pref_credits_subtitle">Made by Sebastian Schuler</string>
-    <string name="pref_credits_link">https://twitter.com/REALmildly</string>
 
     <!-- ========================================= UNITS =========================================== -->
     <!-- Everything below here has to exist for EVERY SINGLE UNIT TYPE ! -->
