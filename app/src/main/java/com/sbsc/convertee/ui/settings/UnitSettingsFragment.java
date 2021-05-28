@@ -11,6 +11,7 @@ import com.sbsc.convertee.R;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.unittypes.Angle;
 import com.sbsc.convertee.entities.unittypes.Area;
+import com.sbsc.convertee.entities.unittypes.ColourCode;
 import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.DataStorage;
 import com.sbsc.convertee.entities.unittypes.Distance;
@@ -36,6 +37,8 @@ public class UnitSettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.unit_preferences, rootKey);
+
+        requireActivity().setTitle("Unit Preferences");
 
         // DISTANCE PREFERENCES
         MultiSelectListPreference prefDistancePicker = findPreference(getString(R.string.preference_distance_hidden));
@@ -85,6 +88,9 @@ public class UnitSettingsFragment extends PreferenceFragmentCompat {
         // CURRENCY PREFERENCES
         MultiSelectListPreference prefCurrencyPicker = findPreference(getString(R.string.preference_currency_hidden));
         makeMultiSelectUnitPref( prefCurrencyPicker , Currency.getInstance() );
+        // COLOUR PREFERENCES
+        MultiSelectListPreference prefColourPicker = findPreference(getString(R.string.preference_colour_hidden));
+        makeMultiSelectUnitPref( prefColourPicker , ColourCode.getInstance() );
 
     }
 

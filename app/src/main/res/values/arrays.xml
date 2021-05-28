@@ -82,5 +82,9 @@
     <string-array name="pref_currency_values" />
     <string-array name="pref_currency_titles" />
     <string-array name="pref_currency_defaults" />
+    <!-- Colour -->
+    <string-array name="pref_colour_values" />
+    <string-array name="pref_colour_titles" />
+    <string-array name="pref_colour_defaults" />
 
 </resources>

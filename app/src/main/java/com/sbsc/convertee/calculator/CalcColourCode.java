@@ -38,13 +38,13 @@ public class CalcColourCode {
 
     /**
      * ViewModel is needed for changing the displayed colour in it
-     * @param viewModel
+     * @param viewModel - UnitConverterViewModel
      */
     public void setViewModel( UnitConverterViewModel viewModel ) { this.viewModel = viewModel; }
 
     /**
      * Change colour in ViewModel
-     * @param colour
+     * @param colour - either RGB or HEX expected
      */
     private void setColourInViewModel( CColour colour ){
         if( colour == null ){

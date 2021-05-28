@@ -33,12 +33,6 @@
     <string name="unit_type_categories_maths">Mathematik</string>
     <string name="unit_type_categories_technology">Technologie</string>
 
-    <!-- CURRENCY LAST UPDATE STRING -->
-    <string name="currency_last_update_title">Letzte Aktualisierung:</string>
-    <string name="currency_last_update_never">Nie, Internetverbindung sicherstellen.</string>
-    <string name="currency_snackbar_update_finished">Umtauschsätze wurden aktualisiert.</string>
-    <string name="currency_snackbar_update_error">ERROR: Umtauschsätze nicht aktualisiert -</string>
-
     <!-- ADAPTER -->
     <string name="adapter_popup_favourite">Zu Favoriten hinzufügen</string>
     <string name="adapter_popup_unfavourite">Von Favoriten entfernen</string>
@@ -47,6 +41,19 @@
     <string name="adapter_clipboard_label">Wert in</string>
     <string name="adapter_clipboard_toast">in die Zwischenablage kopiert</string>
     <string name="adapter_clipboard_toast_error">ERROR: kopieren fehlgeschlagen</string>
+
+    <!-- UNIT INFO -->
+    <string name="unit_info_button_description">Button der Informationen zur aktuell selektierten Einheit zeigt.</string>
+
+    <!-- COLOUR DISPLAY TEXT -->
+    <string name="colour_display_text">Farbvorschau</string>
+
+    <!-- CURRENCY LAST UPDATE STRING -->
+    <string name="currency_last_update_title">Letzte Aktualisierung:</string>
+    <string name="currency_last_update_never">Nie, Internetverbindung sicherstellen.</string>
+    <string name="currency_snackbar_update_finished">Umtauschsätze wurden aktualisiert.</string>
+    <string name="currency_snackbar_update_error">ERROR: Umtauschsätze nicht aktualisiert -</string>
+
     <!-- Category: App Settings -->
     <string name="pref_category_app_settings">App Einstellungen</string>
     <!-- Setting: Round Value -->
@@ -105,6 +112,7 @@
     <string name="unit_type_name_speed">Geschwindigkeit</string>
     <string name="unit_type_name_force">Kraft</string>
     <string name="unit_type_name_currency">Währung</string>
+    <string name="unit_type_name_colour">Farbe</string>
 
     <!-- Distance Names -->
     <string name="distance_unit_km">Kilometer</string>
@@ -134,6 +142,10 @@
     <string name="temperature_unit_k">Kelvin</string>
     <string name="temperature_unit_f">Fahrenheit</string>
     <string name="temperature_unit_c">Celsius</string>
+    <!-- Temperature Info -->
+    <string name="temperature_kelvin_info">Die Kelvin-Skala beginnt bei dem absolutem Nullpunkt (0 K), reines Wasser gefriert bei 273,15 K und kocht bei 373,15 K.</string>
+    <string name="temperature_fahreinheit_info">Der absolute Nullpunkt in der Fahrenheit-Skala beträgt -459,67°F. Zwei wichtige Fixpunkte sind der Punkt, an dem reines Wassereis schmilzt (32°F) und der Siedepunkt von Wasser bei 212°F. </string>
+    <string name="temperature_celsius_info">In der Celsius-Skala ist der Gefrierpunkt für reines Wasser als 0°C und der Siedepunkt als 100°C definiert.</string>
     <!-- Time Names -->
     <string name="time_unit_c">Jahrhundert</string>
     <string name="time_unit_dec">Jahrzehnt</string>
@@ -147,17 +159,30 @@
     <string name="time_unit_ms">Millisekunde</string>
     <string name="time_unit_mics">Microsekunde</string>
     <string name="time_unit_ns">Nanosekunde</string>
+
     <!-- Numerative Names -->
     <string name="num_unit_oct">Oktal</string>
     <string name="num_unit_hex">Hexadezimal</string>
     <string name="num_unit_dec">Dezimal</string>
     <string name="num_unit_bin">Binär</string>
+    <!-- Numerative Info -->
+    <string name="numerative_binary_info">Eine Binärzahl wird im Basis-2-Zahlensystem ausgedrückt, das nur zwei Symbole verwendet:  üblicherweise "0" und "1". Jede Ziffer wird als Bit- oder Binärziffer bezeichnet. Aufgrund seiner einfachen Implementierung wird das Binärsystem von fast allen modernen Computern verwendet.</string>
+    <string name="numerative_octal_info">Das Oktalzahlensystem ist das Basis-8-Zahlensystem und verwendet die Ziffern 0 bis 7.</string>
+    <string name="numerative_hex_info">Das hexadezimale Zahlensystem ist das Basis-16-Zahlensystem. Es verwendet 16 verschiedene Symbole, meistens "0" - "9", um die Werte 0 bis 9 darzustellen, und "A" - "F" (oder alternativ "a" - "f") zur Darstellung der Werte 10 bis 15.</string>
+
     <!-- Shoesize Names -->
     <string name="shoesize_unit_eu">EU</string>
     <string name="shoesize_unit_uk">UK</string>
     <string name="shoesize_unit_mon">Mondopoint</string>
-    <string name="shoesize_unit_usm">US Men</string>
-    <string name="shoesize_unit_usw">US Women</string>
+    <string name="shoesize_unit_usm">US Männer</string>
+    <string name="shoesize_unit_usw">US Frauen</string>
+    <!-- Shoesize Info -->
+    <string name="shoesize_eushoesize_info">Europäische Schuhgrößen reichen von 34 bis 50 und erhöhen sich mit jeder Größe um 0,5.</string>
+    <string name="shoesize_ukshoesize_info">Britische Schuhgrößen reichen von 2 bis 15 und erhöhen sich mit jeder Größe um 1. </string>
+    <string name="shoesize_mondoshoesize_info">Mondopoint Größen reichen von 215 bis 320 und erhöhen sich mit jeder Größe um 5. Es ist in der Sportbranche weit verbreitet, wurde aber auch in der Sowjetunion, in Russland, China, Japan, Taiwan und Südkorea als primäres Schuhgrößen-System eingeführt. Die NATO und andere Militärdienste verwenden es auch für einheitliche Schuhgrößen.</string>
+    <string name="shoesize_usmshoesize_info">Das traditionelle US-System ähnelt dem Britischen, beginnt jedoch mit Eins statt mit Null, sodass äquivalente Größen um eins größer sind.</string>
+    <string name="shoesize_uswshoesize_info">Genau wie die Männergrößen im traditionellen US-System ähneln die Frauengrößen den britischen Größen, beginnen bei Null zu zählen, sind jedoch um eins größer als die Männergrößen. </string>
+
     <!-- Volume Names -->
     <string name="volume_unit_l">Liter</string>
     <string name="volume_unit_ml">Milliliter</string>
@@ -181,6 +206,7 @@
     <string name="volume_unit_quarus">Quart US</string>
     <string name="volume_unit_pius">Pint US</string>
     <string name="volume_unit_cupus">Cup US</string>
+
     <!-- Energy Names -->
     <string name="energy_unit_j">Joule</string>
     <string name="energy_unit_gwtth">Gigawatt-Stunde</string>
@@ -192,6 +218,7 @@
     <string name="energy_unit_hpm">Pferdestärke-Stunde (Metrisch)</string>
     <string name="energy_unit_hpi">Pferdestärke-Stunde (Imperial)</string>
     <string name="energy_unit_mj">Millijoule</string>
+
     <!-- FuelEconomy Names -->
     <string name="fuelcons_unit_km2l">Kilometer pro Liter</string>
     <string name="fuelcons_unit_m2guk">Meilen pro Gallone (UK)</string>
@@ -199,8 +226,10 @@
     <string name="fuelcons_unit_km2gus">Kilometer pro Gallone (US)</string>
     <string name="fuelcons_unit_km2guk">Kilometer pro Gallone (UK)</string>
     <string name="fuelcons_unit_m2l">Meter pro Liter</string>
+
     <!-- DataStorage Names -->
     <string name="datastorage_unit_char">ASCII Zeichen</string>
+
     <!-- Pressure Names -->
     <string name="pressure_unit_pasc">Pascal</string>
     <string name="pressure_unit_kpasc">Kilopascal</string>
@@ -210,6 +239,7 @@
     <string name="pressure_unit_statm">Standard Atmosphäre</string>
     <string name="pressure_unit_torr">Torr</string>
     <string name="pressure_unit_cmwat">Centimeter wasser</string>
+
     <!-- Area Names -->
     <string name="area_unit_sqkm">Quadratkilometer</string>
     <string name="area_unit_sqm">Quadratmeter</string>
@@ -222,6 +252,7 @@
     <string name="area_unit_sqyd">Quadratyard</string>
     <string name="area_unit_sqft">Quadratfuß</string>
     <string name="area_unit_sqin">Quadratzoll</string>
+
     <!-- Angle Names -->
     <string name="angle_unit_rad">Bogenmaß</string>
     <string name="angle_unit_deg">Grad</string>
@@ -230,6 +261,7 @@
     <string name="angle_unit_min">Minute</string>
     <string name="angle_unit_sec">Sekunde</string>
     <string name="angle_unit_ra">Rechter Winkel</string>
+
     <!-- Speed Names -->
     <string name="speed_unit_m2s">Meter pro Sekunde</string>
     <string name="speed_unit_km2hr">Kilometers pro Stunde</string>
@@ -239,6 +271,7 @@
     <string name="speed_unit_earth">Geschwindigkeit der Erde</string>
     <string name="speed_unit_sound">Schallgeschwindigkeit (Mach 1 bei 20°C)</string>
     <string name="speed_unit_light">Lichtgeschwindigkeit (im Vakuum)</string>
+
     <!-- Force Names -->
     <string name="force_unit_knw">Kilonewton</string>
     <string name="force_unit_nw">Newton</string>
@@ -248,6 +281,7 @@
     <string name="force_unit_pdl">Poundal</string>
     <string name="force_unit_kgf">Kilopond</string>
     <string name="force_unit_gf">Pond</string>
+
     <!-- Currency Names -->
     <string name="currency_unit_gbp">Britischer Pfund</string>
     <string name="currency_unit_eur">Euro</string>
@@ -278,5 +312,27 @@
     <string name="currency_unit_dzd">Algerischer Dinar</string>
     <string name="currency_unit_egp">Egyptischer Pfund</string>
     <string name="currency_unit_dkk">Dänische Krone</string>
+    <!-- Currency Info -->
+    <string name="currency_info">Währungskurse können nur alle 24 Stunden aktualisiert werden und müssen jedes Mal in USD umgerechnet werden, bevor sie jedes Mal in andere Einheiten umgerechnet werden.\nIch habe versucht, diesen Vorgang so genau wie möglich zu machen, kann aber keine 100% genauen Werte garantieren.</string>
+
+    <!-- Colour Names -->
+    <string name="colour_unit_name">Farb Name (ENG)</string>
+    <string name="colour_unit_rgb">RGB</string>
+    <string name="colour_unit_hex">Hexadezimal</string>
+    <string name="colour_unit_hsl">HSL</string>
+    <string name="colour_unit_hsv">HSV</string>
+    <string name="colour_unit_cmyk">CMYK</string>
+    <!-- Colour Info -->
+    <string name="colour_colourrgb_info">Ein RGB-Farbwert wird angegeben mit: rgb(rot,grün,blau), alternative unterstützt diese App auch \'rot,grün,blau\'. Dieser Farbstandard wird überwiegend von digitalen Bildschirmen verwendet.\n\nJeder Parameter (rot, grün und blau) definiert die Intensität der Farbe als Zahl zwischen 0 und 255.\n\nZum Beispiel ist rgb (0, 0, 255) blau, weil der blaue Parameter auf seinen höchsten Wert (255) und die anderen auf 0 gesetzt sind.
+    </string>
+    <string name="colour_colourhex_info">Eine hexadezimale Farbe wird angegeben mit: #RRGGBB, #RGB, RRGGBB oder RGB\n\nRR (rot), GG (grün) und BB (blau) sind Hexadezimalzahlen zwischen 00 (0) und FF (255), zum angeben der Intensität der Farbe.\n\n#0000FF wird beispielsweise als blau angezeigt, da die blauen Werte auf ihren höchsten Wert (FF) und die anderen auf 00 eingestellt sind.
+    </string>
+    <string name="colour_colourhsl_info">HSL steht für Farbton, Sättigung und relative Helligkeit(eng. lightness).\n\nHSL-Farbwerte werden angegeben mit: hsl(Farbton, Sättigung, relative Helligkeit).\n\nFARBTON ist ein Grad auf dem Farbkreis von 0 bis 360. 0 ist rot, 120 ist grün, 240 ist blau.\nSÄTTIGUNG ist ein Prozentwert; 0% bedeutet einen Grauton und 100% ist die volle Farbe.\nRELATIVE HELLIGKEIT ist auch ein Prozentsatz; 0% ist schwarz, 100% ist weiß.
+    </string>
+    <string name="colour_colourhsv_info">HSV steht für Farbton, Sättigung und Hellwert(eng. value).\n\nDer Unterschied zwischen HSL und HSV besteht darin, dass eine Farbe mit maximaler relativen Helligkeit in HSL reinweiß ist, aber eine Farbe mit maximalem HellWert in HSV, analog zum Leuchten eines weißen Lichts auf ein farbiges Objekt ist (Wenn du beispielsweise ein helles weißes Licht auf ein rotes Objekt richtest, erscheint das Objekt immer noch rot, nur heller und intensiver, während ein schwaches Licht auf ein rotes Objekt das Objekt dunkler und weniger hell erscheinen lässt).\n\nHSV-Farbwerte werden angegeben mit: hsv(Farbton,Sättigung,Hellwert)\n\nFARBTON ist ein Grad auf dem Farbkreis von 0 bis 360. 0 ist rot, 120 ist grün, 240 ist blau.\nSÄTTIGUNG ist ein Prozentwert; 0% bedeutet einen Grauton und 100% ist die volle Farbe.\nDer HELLWERT entspricht der Helligkeit und ist auch ein Prozentsatz. 0% ist dunkel, 100% ist hell.
+    </string>
+    <string name="colour_colourcmyk_info">CMYK-Farben sind eine Kombination aus Cyan, Magenta, Gelb und Schwarz. \n\nEs wird angegeben mit: cmyk(cyan,magenta,gelb,schwarz), alternativ unterstützt diese App auch \'cyan,magenta,gelb,schwarz\'.\n\nDieser Farbstandard wird überwiegend zum Drucken verwendet.
+    </string>
+    <string name="colour_colourname_info">Der Farbname ist derzeit nur in Englisch verfügbar.</string>
 
 </resources>

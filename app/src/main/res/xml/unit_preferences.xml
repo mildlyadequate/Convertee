@@ -106,6 +106,12 @@
             android:entryValues="@array/pref_currency_titles"
             android:key="@string/preference_currency_hidden"
             android:title="@string/unit_type_name_currency" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_colour_defaults"
+            android:entries="@array/pref_colour_values"
+            android:entryValues="@array/pref_colour_titles"
+            android:key="@string/preference_colour_hidden"
+            android:title="@string/unit_type_name_colour" />
 
     </com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory>
 
