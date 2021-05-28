@@ -3,6 +3,9 @@
  
  ## Features :toolbox:
  
+ ### - A LOT of units
+ Right now there are 17 unit types (eg. weight), and more than 170 units (eg. kg) available.
+ 
  ### - Intuitive controls
  Especially the slider bar allows a quick selection of a specific unit without having to scroll through a list in a popup (which is still an option if you prefer).
  
