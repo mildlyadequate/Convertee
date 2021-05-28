@@ -1,6 +1,7 @@
 package com.sbsc.convertee.calculator;
 
 import com.sbsc.convertee.entities.unittypes.Angle;
+import com.sbsc.convertee.entities.unittypes.ColourCode;
 import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.Force;
 import com.sbsc.convertee.entities.unittypes.Numerative;
@@ -18,7 +19,7 @@ import java.util.Arrays;
 
 public class CalcSpecial {
 
-    private static final String[] specialTypes = { Temperature.id , Time.id , Numerative.id , ShoeSize.id , Angle.id , Speed.id , Force.id , Currency.id };
+    private static final String[] specialTypes = { Temperature.id , Time.id , Numerative.id , ShoeSize.id , Angle.id , Speed.id , Force.id , Currency.id , ColourCode.id };
 
     /**
      * Check if the given unitType is special and requires a unique way of calculating values
@@ -43,11 +44,14 @@ public class CalcSpecial {
         // Case Numerative:
         if(type.getId().equals(Numerative.id)) return CalcNumerative.getResultFor( originalValue , originalUnitName , targetUnitName );
 
-        // Case Numerative:
+        // Case ShoeSize:
         if(type.getId().equals(ShoeSize.id)) return CalcShoeSize.getInstance().getResultFor( originalValue , originalUnitName , targetUnitName );
 
-        // Case Numerative:
+        // Case Currency:
         if(type.getId().equals(Currency.id)) return CalcCurrency.getInstance().getResultFor( originalValue , originalUnitName , targetUnitName );
+
+        // Case ColourCode:
+        if(type.getId().equals(ColourCode.id)) return CalcColourCode.getInstance().getResultFor( originalValue , originalUnitName , targetUnitName );
 
         // Default
         return getResultFromCalculation( originalValue , originalUnitName , targetUnitName , type );

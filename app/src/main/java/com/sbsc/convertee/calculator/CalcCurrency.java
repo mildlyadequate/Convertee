@@ -95,7 +95,7 @@ public class CalcCurrency {
     }
 
     /**
-     * Get shoe size with value, values original size, and target size
+     * Get currency with value, values original size, and target size
      * @param valueString String size value
      * @param originUnit String original size
      * @param targetUnit String target size

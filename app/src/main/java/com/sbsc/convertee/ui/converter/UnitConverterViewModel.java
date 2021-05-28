@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.sbsc.convertee.adapter.CalculatedUnitItemAdapter;
+import com.sbsc.convertee.calculator.CalcColourCode;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class UnitConverterViewModel extends ViewModel {
     private final MutableLiveData<Boolean> currencyRatesUpdated;
     private final MutableLiveData<Long> currencyRatesLastUpdated;
 
+    // Colour related
+    private final MutableLiveData<CalcColourCode.HEX> displayedColour;
+
     public UnitConverterViewModel() {
         unitItemAdapter = new MutableLiveData<>( new CalculatedUnitItemAdapter(new ArrayList<>()) );
         selectedUnitIndex = new MutableLiveData<>(0);
@@ -36,6 +40,8 @@ public class UnitConverterViewModel extends ViewModel {
 
         currencyRatesUpdated = new MutableLiveData<>(false);
         currencyRatesLastUpdated = new MutableLiveData<>(0L);
+
+        displayedColour = new MutableLiveData<>(new CalcColourCode.HEX("#fff"));
     }
 
     /*
@@ -65,6 +71,8 @@ public class UnitConverterViewModel extends ViewModel {
     }
 
     public void setCurrencyRatesLastUpdated(long time){ this.currencyRatesLastUpdated.postValue(time); }
+
+    public void setDisplayedColour( CalcColourCode.HEX hexColour ){ this.displayedColour.postValue(hexColour); }
 
     /*
      * ==================================== GETTER FOR VALUES  =====================================
@@ -111,5 +119,7 @@ public class UnitConverterViewModel extends ViewModel {
     public LiveData<Boolean> getCurrencyRatesUpdated() { return currencyRatesUpdated; }
 
     public LiveData<Long> getCurrencyRatesLastUpdated() { return currencyRatesLastUpdated; }
+
+    public LiveData<CalcColourCode.HEX> getDisplayedColour() { return displayedColour; }
 
 }

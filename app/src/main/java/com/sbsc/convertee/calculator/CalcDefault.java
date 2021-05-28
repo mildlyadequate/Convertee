@@ -30,7 +30,6 @@ public class CalcDefault {
         // If HighPrecision-Mode is active we use BigDecimal from now on
         BigDecimal value;
         value = getValueInMain( originalValue , originalUnitName , type );
-        Log.d("XDD", "getResultFor: "+value);
         value = getValueInTargetUnit( value , targetUnitName , type );
 
         // If the locale is null return a plain String of the result, if not format the number

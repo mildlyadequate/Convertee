@@ -2,6 +2,7 @@ package com.sbsc.convertee.ui.converter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,12 +35,15 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.UnitTypeContainer;
 import com.sbsc.convertee.adapter.CalculatedUnitItemAdapter;
+import com.sbsc.convertee.calculator.CalcColourCode;
 import com.sbsc.convertee.calculator.CalcCurrency;
 import com.sbsc.convertee.calculator.CalcNumerative;
 import com.sbsc.convertee.calculator.CalcShoeSize;
 import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
+import com.sbsc.convertee.entities.calc.CalculatedUnitItem;
+import com.sbsc.convertee.entities.unittypes.ColourCode;
 import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.Numerative;
 import com.sbsc.convertee.entities.unittypes.ShoeSize;
@@ -50,6 +55,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -68,6 +74,9 @@ public class UnitConverterFragment extends Fragment {
     private SeekBar sbUnitSelector;
     private SharedPreferences sharedPref;
     private ImageButton btnUnitInfo;
+
+    private LinearLayout colourDisplay;
+    private TextView colourDisplayText;
 
     // UnitType
     private UnitType unitType;
@@ -92,6 +101,8 @@ public class UnitConverterFragment extends Fragment {
         }else if(unitType.getId().equals(Currency.id)){
             CalcCurrency.getInstance();
             CalcCurrency.getInstance().initializeCurrency( requireContext() , root , sharedPref , unitConverterViewModel );
+        }else if (unitType.getId().equals(ColourCode.id)) {
+            CalcColourCode.getInstance().setViewModel( unitConverterViewModel );
         }
 
         // Initialize UI Views
@@ -100,9 +111,12 @@ public class UnitConverterFragment extends Fragment {
         initSeekBarUnitSelector( root );
         initRecyclerViewCalcUnitList( root );
         initInfoButton( root );
+        initColourDisplay( root );
 
         // Observes handle UI changes
         initViewModelObserves( root );
+
+        setInputMethod();
 
         return root;
     }
@@ -119,6 +133,15 @@ public class UnitConverterFragment extends Fragment {
         for(LocalizedUnitType localizedUnitType : unitTypes){
             if( localizedUnitType.getUnitTypeKey().equalsIgnoreCase( unitType.getId() ) )
                 requireActivity().setTitle( localizedUnitType.getUnitTypeName() );
+        }
+    }
+
+    /**
+     * Change the input method at the beginning of the fragment based on unittype
+     */
+    private void setInputMethod(){
+        if( unitType.getId().equals(ColourCode.id) ){
+            etValue.setInputType( InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS );
         }
     }
 
@@ -232,12 +255,22 @@ public class UnitConverterFragment extends Fragment {
         btnUnitInfo = root.findViewById(R.id.btnUnitInfo);
         btnUnitInfo.setOnClickListener(view -> {
 
-            // Build info identifier for the selected unit ( format: "shoesize_eushoesize_info")
-            int identifier = getResources().getIdentifier(
-                    unitType.getId() + "_" + unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitName() + "_info" ,
-                    "string" ,
-                    requireContext().getPackageName()
-            );
+            int identifier;
+
+            if( unitType.getId().equals(Currency.id) ){
+
+                identifier = R.string.currency_info;
+
+            }else{
+
+                // Build info identifier for the selected unit ( format: "shoesize_eushoesize_info")
+                identifier = getResources().getIdentifier(
+                        unitType.getId() + "_" + unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitName() + "_info" ,
+                        "string" ,
+                        requireContext().getPackageName()
+                );
+
+            }
 
             // If there is no text info to this unit available, don't react to clicks
             if( identifier != 0 ){
@@ -252,6 +285,17 @@ public class UnitConverterFragment extends Fragment {
         });
     }
 
+    /**
+     * This is only visible when the unit type is ColourCode; shows the currently entered colour as actual colour
+     * @param root View of inflated hierarchy of fragment
+     */
+    private void initColourDisplay( View root ){
+        if(!unitType.getId().equals(ColourCode.id)) return;
+        colourDisplay = root.findViewById( R.id.colourDisplay );
+        colourDisplay.setVisibility(View.GONE);
+        colourDisplayText = root.findViewById( R.id.tvColourDisplayText );
+    }
+
     /*
      * =========================================== EVENTS ==========================================
      */
@@ -264,6 +308,12 @@ public class UnitConverterFragment extends Fragment {
         // On launch the selection may be null
         if(unitConverterViewModel.getSelectedLocalizedUnitValue() == null ){
             btnUnitInfo.setVisibility(View.GONE);
+            return;
+        }
+
+        // Info button for currency is always displayed, always the same
+        if( unitType.getId().equals(Currency.id)){
+            btnUnitInfo.setVisibility(View.VISIBLE);
             return;
         }
 
@@ -309,9 +359,7 @@ public class UnitConverterFragment extends Fragment {
         if(unitType.getId().equals(Currency.id)){
 
             // Listen to updates
-            unitConverterViewModel.getCurrencyRatesUpdated().observe(getViewLifecycleOwner(), bool -> {
-                updateCalculatedValues(etValue.getText().toString());
-            });
+            unitConverterViewModel.getCurrencyRatesUpdated().observe(getViewLifecycleOwner(), bool -> updateCalculatedValues(etValue.getText().toString()));
 
             TextView tvLastUpdate = root.findViewById(R.id.tvLastCurrencyUpdate);
             tvLastUpdate.setVisibility(View.VISIBLE);
@@ -335,6 +383,28 @@ public class UnitConverterFragment extends Fragment {
                 tvLastUpdate.setText(tvLastUpdateContent);
             });
             unitConverterViewModel.setCurrencyRatesLastUpdated(sharedPref.getLong("currency_rates_last_update", 0));
+
+        // Only needed when ColourCode is unit type
+        }else if ( unitType.getId().equals(ColourCode.id) ){
+
+            // Listen to the colour to be displayed
+            unitConverterViewModel.getDisplayedColour().observe(getViewLifecycleOwner(), colour -> {
+
+                // If the colour is valid, display it in the colourDisplay, otherwise hide colourDisplay
+                if( colour == null || etValue.getText().toString().isEmpty() ){
+                    colourDisplay.setVisibility(View.GONE);
+                }else{
+                    colourDisplay.setVisibility(View.VISIBLE);
+                    colourDisplay.setBackgroundColor( Color.parseColor( colour.toString() ) );
+
+                    // Change text colour based on background for readability
+                    if ( (colour.getRed()*0.299 + colour.getGreen()*0.587 + colour.getBlue()*0.114) > 186 ){
+                        colourDisplayText.setTextColor(Color.BLACK);
+                    }else{
+                        colourDisplayText.setTextColor(Color.WHITE);
+                    }
+                }
+            });
         }
 
         // Observe UnitList in ViewModel for changes then update spinner and SeekBar
@@ -382,10 +452,7 @@ public class UnitConverterFragment extends Fragment {
         });
 
         // Observe boolean value whether ProMode is active or not
-        unitConverterViewModel.getProModeActive().observe(getViewLifecycleOwner(), bool -> {
-                    unitConverterViewModel.getUnitItemAdapterValue().setProModeActive(bool);
-                    
-            }
+        unitConverterViewModel.getProModeActive().observe(getViewLifecycleOwner(), bool -> unitConverterViewModel.getUnitItemAdapterValue().setProModeActive(bool)
         );
     }
 
@@ -400,9 +467,9 @@ public class UnitConverterFragment extends Fragment {
      */
     private void updateCalculatedValues( String currentValue ){
 
-        // If input is not a valid number
+        // If input is not a valid number // SETS THE VALUE TO 0.0 IF NOT CREATABLE AS NUMBER
         // Also check if its a numerative, as Hex Numbers require A-F
-        if( !NumberUtils.isCreatable(currentValue) && !unitType.getId().equals(Numerative.id)) currentValue = "0.0";
+        if( !NumberUtils.isCreatable(currentValue) && !unitType.getId().equals(Numerative.id) && !unitType.getId().equals(ColourCode.id)) currentValue = "0.0";
 
         // Get currently selected item in spinner, if null return without updating
         LocalizedUnit selectedUnit = (LocalizedUnit) spUnitSelector.getSelectedItem();
@@ -410,15 +477,14 @@ public class UnitConverterFragment extends Fragment {
 
         // Set adapter items
         CalculatedUnitItemAdapter adapter = unitConverterViewModel.getUnitItemAdapterValue();
-        adapter.setDistanceItems(
-                Calculator.getResultList(
-                        currentValue,
-                        selectedUnit.getUnitName(),
-                        unitConverterViewModel.getLocalizedUnitsValue(),
-                        unitType
-                ),
-                unitConverterViewModel.getProModeActiveValue()
+        List<CalculatedUnitItem> resultList = Calculator.getResultList(
+                currentValue,
+                selectedUnit.getUnitName(),
+                unitConverterViewModel.getLocalizedUnitsValue(),
+                unitType
         );
+        adapter.setDistanceItems( resultList , unitConverterViewModel.getProModeActiveValue() );
+
 
     }
 
@@ -476,6 +542,8 @@ public class UnitConverterFragment extends Fragment {
             CalcShoeSize.deleteInstance();
         }else if(unitType.getId().equals(Currency.id)){
             CalcCurrency.deleteInstance();
+        }else if(unitType.getId().equals(ColourCode.id)){
+            CalcColourCode.deleteInstance();
         }
 
     }

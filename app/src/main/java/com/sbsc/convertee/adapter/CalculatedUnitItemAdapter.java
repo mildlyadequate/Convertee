@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -230,8 +231,6 @@ public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUn
                     value = nf.parse(value).toString();
                 } catch (ParseException e) {
                     e.printStackTrace();
-                    Snackbar.make( v ,value+" " +ctx.getString(R.string.adapter_clipboard_toast_error) , Snackbar.LENGTH_SHORT ).show();
-                    return false;
                 }
             }
 

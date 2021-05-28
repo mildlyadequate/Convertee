@@ -8,6 +8,7 @@ import android.util.Log;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.entities.unittypes.Angle;
 import com.sbsc.convertee.entities.unittypes.Area;
+import com.sbsc.convertee.entities.unittypes.ColourCode;
 import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.DataStorage;
 import com.sbsc.convertee.entities.unittypes.Distance;
@@ -34,30 +35,31 @@ public class UnitTypeContainer {
     private static final String[][] unitTypeKeys = {
 
             // BASICS
-            {Distance.id, String.valueOf(R.drawable.ic_distance)},
-            {Weight.id, String.valueOf(R.drawable.ic_weight)},
             {Area.id, String.valueOf(R.drawable.ic_area)},
+            {Distance.id, String.valueOf(R.drawable.ic_distance)},
             {Volume.id, String.valueOf(R.drawable.ic_volume)},
+            {Weight.id, String.valueOf(R.drawable.ic_weight)},
 
             // LIVING
             {Currency.id, String.valueOf(R.drawable.ic_currency)},
+            {FuelEconomy.id, String.valueOf(R.drawable.ic_fueleconomy)},
+            {ShoeSize.id, String.valueOf(R.drawable.ic_shoe)},
             {Temperature.id, String.valueOf(R.drawable.ic_temperature)},
             {Time.id, String.valueOf(R.drawable.ic_time)},
-            {ShoeSize.id, String.valueOf(R.drawable.ic_shoe)},
-            {FuelEconomy.id, String.valueOf(R.drawable.ic_fueleconomy)},
 
             // SCIENCE
             {Energy.id, String.valueOf(R.drawable.ic_energy)},
+            {Force.id, String.valueOf(R.drawable.ic_force)},
             {Pressure.id, String.valueOf(R.drawable.ic_pressure)},
             {Speed.id, String.valueOf(R.drawable.ic__speed)},
-            {Force.id, String.valueOf(R.drawable.ic_force)},
 
             // MATHS
             {Angle.id, String.valueOf(R.drawable.ic_angle)},
 
             // TECHNOLOGY
-            {Numerative.id, String.valueOf(R.drawable.ic_numerative)},
+            {ColourCode.id, String.valueOf(R.drawable.ic_colour)},
             {DataStorage.id, String.valueOf(R.drawable.ic_datastorage)},
+            {Numerative.id, String.valueOf(R.drawable.ic_numerative)},
     };
 
     public static void getLocalizedUnitTypeArray(Activity activity){
@@ -120,6 +122,8 @@ public class UnitTypeContainer {
             unitType = Force.getInstance();
         }else if( StringUtils.equalsIgnoreCase( unitTypeId , Currency.id ) ){
             unitType = Currency.getInstance();
+        }else if( StringUtils.equalsIgnoreCase( unitTypeId , ColourCode.id ) ){
+            unitType = ColourCode.getInstance();
         }else{
             // Should technically never happen unless unitType IDs get messed up in either code or
             // Android resources
