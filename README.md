@@ -1,6 +1,10 @@
 # Convertee
  A lightweight and quick to use converter app.
  
+ ## Install
+ Not yet available on Play Store, download the APK from here: 
+ [Convertee v0.3.1](https://github.com/mildlyadequate/Convertee/releases/download/v0.3.1-alpha/convertee-alpha-031.apk "Github Releases")
+ 
  ## Features :toolbox:
  
  ### - A LOT of units
