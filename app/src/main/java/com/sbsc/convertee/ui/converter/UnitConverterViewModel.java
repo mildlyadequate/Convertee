@@ -30,6 +30,7 @@ public class UnitConverterViewModel extends ViewModel {
     private final MutableLiveData<CalcColourCode.HEX> displayedColour;
 
     public UnitConverterViewModel() {
+
         unitItemAdapter = new MutableLiveData<>( new CalculatedUnitItemAdapter(new ArrayList<>()) );
         selectedUnitIndex = new MutableLiveData<>(0);
 
@@ -48,7 +49,8 @@ public class UnitConverterViewModel extends ViewModel {
      * ========================================== SETTER ===========================================
      */
 
-    public void setLocalizedUnits(LocalizedUnit[] localizedUnit){ localizedUnits.postValue(localizedUnit); }
+    // Had to change post to set, post: add to queue; set: do it right away
+    public void setLocalizedUnits(LocalizedUnit[] localizedUnit){ localizedUnits.setValue(localizedUnit); }
 
     /**
      * Update the selected unit index, check for null, if the index didn't actually change, then
@@ -58,7 +60,7 @@ public class UnitConverterViewModel extends ViewModel {
     public void setSelectedUnitIndex(int selectedUnitIndex) {
         if( this.selectedUnitIndex.getValue() == null ) this.selectedUnitIndex.setValue(0);
         if( this.selectedUnitIndex.getValue() == selectedUnitIndex ) return;
-        this.selectedUnitIndex.postValue(selectedUnitIndex);
+        this.selectedUnitIndex.setValue(selectedUnitIndex);
     }
 
     public void setProModeActive(boolean proModeActive) { this.proModeActive.postValue(proModeActive); }

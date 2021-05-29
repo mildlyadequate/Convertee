@@ -33,8 +33,13 @@ public class CompatibilityHandler {
         }
     }
 
+    public static boolean isOldDevice(){
+        return !(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N);
+    }
+
     public static String formatDateTime( long millis ){
         return null;
     }
+
 
 }

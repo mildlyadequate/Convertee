@@ -25,6 +25,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -52,6 +53,7 @@ import com.sbsc.convertee.entities.unittypes.generic.UnitTypeEntry;
 import com.sbsc.convertee.tools.HelperUtil;
 
 import org.apache.commons.lang3.math.NumberUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -519,7 +521,30 @@ public class UnitConverterFragment extends Fragment {
                     getContext(),
                     UnitType.filterUnits( rawUnits , unitType )
             );
+            // Had to change post to set, post: add to queue; set: do it right away
             unitConverterViewModel.setLocalizedUnits(arr);
+        }
+
+        Bundle bundle = getArguments();
+        if( bundle != null ){
+            String previousValue = bundle.getString("activeUnitConverterTextValue");
+            if( previousValue != null && !previousValue.isEmpty() ){
+                etValue.setText(previousValue);
+            }
+            int previousSelected = bundle.getInt("activeUnitConverterSelectedIndex",-1);
+            if( previousSelected >= 0 )
+                unitConverterViewModel.setSelectedUnitIndex(previousSelected);
+            else{
+
+                LocalizedUnit[] arr = unitConverterViewModel.getLocalizedUnits().getValue();
+                if( arr != null )
+                    for( int i=0;i<arr.length;i++){
+                        if(arr[i].getUnitName().equals(unitType.getFirstSelectedUnit())){
+                            unitConverterViewModel.setSelectedUnitIndex( i );
+                            break;
+                        }
+                    }
+            }
         }
     }
 
@@ -546,6 +571,13 @@ public class UnitConverterFragment extends Fragment {
             CalcColourCode.deleteInstance();
         }
 
+    }
+
+    public String getCurrentTextValue(){
+        return etValue.getText().toString();
+    }
+    public int getCurrentSelectedUnitIndex(){
+        return spUnitSelector.getSelectedItemPosition();
     }
 
     public void log(Object text){

@@ -3,6 +3,7 @@ package com.sbsc.convertee;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -22,6 +23,8 @@ import com.sbsc.convertee.ui.intro.AppIntroActivity;
 import com.sbsc.convertee.ui.settings.SettingsFragment;
 import com.sbsc.convertee.ui.settings.UnitSettingsFragment;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
@@ -33,21 +36,25 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
       - (Add option to special formula calculation -> instead of VAR use VAR(-someunitname-) to convert through other units first)
     */
 
+    private String activeUnitConverterKey = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Load Shared Pref
+        SharedPreferences sharedPref = PreferenceManager
+                .getDefaultSharedPreferences(this);
+
         // Make sure application is NOT Re-Rendering for some reason eg. change of theme
         if( savedInstanceState == null ){
-
-            // Load Shared Pref
-            SharedPreferences sharedPref = PreferenceManager
-                    .getDefaultSharedPreferences(this);
 
             if( sharedPref.getBoolean( "showTutorialOnStart" ,true ) ){
                 sharedPref.edit().putBoolean( "showTutorialOnStart" , false ).apply();
                 Intent intent = new Intent(this, AppIntroActivity.class);
                 startActivity(intent);
+                finish();
+                return;
             }
 
             // Check if this is the first time the user starts the application
@@ -70,15 +77,63 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
             // Open Home Fragment as Default Starting Page
             // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UnitOverviewFragment()).commit();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment() , "mainFrag").commit();
+
+            /*
+            // This makes sure when activity is restarted due to savedInstanceState, it opens the unit that was opened previously
+            if( getIntent().hasExtra("activeUnitConverter") ){
+
+                activeUnitConverterKey = getIntent().getStringExtra("activeUnitConverter");
+
+                if( activeUnitConverterKey.equals("options_app_settings") ){
+                    changeFragment( new SettingsFragment() , null , "appsettings");
+                }else if( activeUnitConverterKey.equals("options_unit_settings") ){
+                    changeFragment( new UnitSettingsFragment() , null , "unitsettings");
+                }else{
+                    String savedTextValue = getIntent().getStringExtra("activeUnitConverterTextValue");
+                    int savedSelectedIndex = getIntent().getIntExtra("activeUnitConverterSelectedIndex", -1);
+                    if( activeUnitConverterKey != null && !activeUnitConverterKey.isEmpty() ){
+                        Bundle bundle = new Bundle();
+                        bundle.putString( "activeUnitConverterTextValue" , savedTextValue );
+                        bundle.putInt( "activeUnitConverterSelectedIndex" , savedSelectedIndex );
+                        openUnitConverterWith(activeUnitConverterKey,bundle);
+                    }
+                }
+            }*/
 
         }else{
+
+            // Get previously opened unit type from savedInstanceState
+            activeUnitConverterKey = savedInstanceState.getString("activeUnitConverter");
+
             // If application is Re-Rendering then restart itself and clear old stacks
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            intent.putExtra("activeUnitConverter",activeUnitConverterKey);
+            intent.putExtra("activeUnitConverterTextValue",savedInstanceState.getString("activeUnitConverterTextValue"));
+            intent.putExtra("activeUnitConverterSelectedIndex",savedInstanceState.getInt("activeUnitConverterSelectedIndex"));
+
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull @NotNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Save currently opened unit type
+        outState.putString("activeUnitConverter",activeUnitConverterKey);
+
+        UnitConverterFragment frag = (UnitConverterFragment) getSupportFragmentManager().findFragmentByTag("converter");
+        int selectedIndex = -1;
+        String textValue = "";
+        if(frag!=null) {
+            textValue = frag.getCurrentTextValue();
+            selectedIndex = frag.getCurrentSelectedUnitIndex();
+        }
+        outState.putString("activeUnitConverterTextValue", textValue );
+        outState.putInt( "activeUnitConverterSelectedIndex", selectedIndex );
     }
 
     @Override
@@ -93,6 +148,8 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         if (fragments == 0) {
             finish();
             return;
+        }else if( fragments == 1){
+            activeUnitConverterKey = "";
         }
         super.onBackPressed();
     }
@@ -107,8 +164,10 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if( item.getItemId() == R.id.app_settings){
+            activeUnitConverterKey = "options_app_settings";
             changeFragment( new SettingsFragment() , null , "appsettings");
         }else if( item.getItemId() == R.id.unit_settings){
+            activeUnitConverterKey = "options_unit_settings";
             changeFragment( new UnitSettingsFragment() , null , "unitsettings");
         }
         return super.onOptionsItemSelected(item);
@@ -132,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         getSupportFragmentManager().popBackStack( fragmentKey , FragmentManager.POP_BACK_STACK_INCLUSIVE );
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
+        transaction.replace(R.id.fragment_container, fragment, fragmentKey);
         transaction.addToBackStack( fragmentKey );
         transaction.commit();
     }
@@ -148,6 +207,13 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
     public void openUnitConverterWith( String unitTypeKey ){
         Bundle bundle = new Bundle();
         bundle.putString( getString(R.string.bundle_selected_unittype) , unitTypeKey );
+        activeUnitConverterKey = unitTypeKey;
+        changeFragment( new UnitConverterFragment() , bundle , "converter");
+    }
+
+    public void openUnitConverterWith( String unitTypeKey , Bundle bundle ){
+        bundle.putString( getString(R.string.bundle_selected_unittype) , unitTypeKey );
+        activeUnitConverterKey = unitTypeKey;
         changeFragment( new UnitConverterFragment() , bundle , "converter");
     }
 

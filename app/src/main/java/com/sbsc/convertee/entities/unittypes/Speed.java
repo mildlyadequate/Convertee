@@ -22,8 +22,8 @@ public class Speed  extends UnitType {
 
     // Private constructor
     private Speed(){
-        addMainUnit("meterpersecond","speed_unit_m2s"                                                       );
         addUnit("kilometerperhour","speed_unit_km2hr","VAL/3.6__FROM__TO__VAL*3.6");
+        addMainUnit("meterpersecond","speed_unit_m2s"                                                       );
         addUnit("milesperhour","speed_unit_mi2hr",           "VAL*0.44704__FROM__TO__VAL/0.44704");
         addUnit("footpersecond","speed_unit_ft2s",           "VAL*0.3048__FROM__TO__VAL/0.3048");
         addUnit("knot","speed_unit_knot",           "VAL/1.9438444924__FROM__TO__VAL*1.9438444924");

@@ -22,6 +22,7 @@ public class Distance extends UnitType {
 
     // Private constructor
     private Distance(){
+        setFirstSelectedUnit( "meter" );
         addUnit("kilometer","distance_unit_km",         "1000");
         addMainUnit("meter","distance_unit_m"                                  );
         addUnit("centimeter","distance_unit_cm",        "0.01");

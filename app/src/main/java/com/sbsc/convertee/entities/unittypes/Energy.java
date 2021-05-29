@@ -22,7 +22,7 @@ public class Energy extends UnitType {
 
     // Private constructor
     private Energy(){
-
+        setFirstSelectedUnit("watthour");
         addUnit("gigawatthour","energy_unit_gwtth",           "3600000000000");
         addUnit("megawatthour","energy_unit_mwtth",           "3600000000");
         addUnit("kilowatthour","energy_unit_kwtth",           "3600000");

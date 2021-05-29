@@ -22,6 +22,7 @@ public class Weight extends UnitType {
 
     // Private constructor
     private Weight(){
+        setFirstSelectedUnit("gram");
         addUnit("tonnemetric","weight_unit_tonnemetric",    "1000000");
         addUnit("kilogram","weight_unit_kg",             "1000");
         addMainUnit( "gram","weight_unit_g" );

@@ -39,6 +39,8 @@ public class UnitType{
      */
     public static String id = "unitType";
 
+    private String firstSelectedUnit = "";
+
     /**
      * Add normal unit to this type
      * @param key String of UnitName
@@ -169,4 +171,6 @@ public class UnitType{
      */
     public String getId(){ return id; }
 
+    public String getFirstSelectedUnit() { return firstSelectedUnit; }
+    public void setFirstSelectedUnit(String firstSelectedUnit) { this.firstSelectedUnit = firstSelectedUnit; }
 }

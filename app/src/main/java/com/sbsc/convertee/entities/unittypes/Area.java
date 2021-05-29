@@ -23,7 +23,7 @@ public class Area extends UnitType {
 
     // Private constructor
     private Area() {
-
+        setFirstSelectedUnit("squaremeter");
         addUnit("squarekilometer", "area_unit_sqkm", "1000000");
         addMainUnit("squaremeter", "area_unit_sqm");
         addUnit("squarecentimeter", "area_unit_sqcm", "0.0001");

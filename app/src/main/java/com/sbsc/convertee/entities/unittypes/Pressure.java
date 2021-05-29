@@ -23,8 +23,6 @@ public class Pressure extends UnitType {
 
     // Private constructor
     private Pressure() {
-
-
         addMainUnit("pascal", "pressure_unit_pasc");
         addUnit("kilopascal", "pressure_unit_kpasc", "1000");
         addUnit("bar", "pressure_unit_bar", "100000");
@@ -33,7 +31,6 @@ public class Pressure extends UnitType {
         addUnit("standardatmosphere", "pressure_unit_statm", "101325");
         addUnit("torr", "pressure_unit_torr", "133.32236842");
         addUnit("cmwater", "pressure_unit_cmwat", "98.0638");
-
     }
 
     /**

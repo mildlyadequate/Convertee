@@ -22,7 +22,6 @@ public class Force extends UnitType {
 
     // Private constructor
     private Force(){
-
         addMainUnit( "newton","force_unit_nw" );
         addUnit("kilonewton","force_unit_knw",           "VAL*1000__FROM__TO__VAL/1000");
         addUnit("joulemeter","force_unit_jm",           "VAL__FROM__TO__VAL");
