@@ -18,14 +18,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -53,7 +51,6 @@ import com.sbsc.convertee.entities.unittypes.generic.UnitTypeEntry;
 import com.sbsc.convertee.tools.HelperUtil;
 
 import org.apache.commons.lang3.math.NumberUtils;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -72,8 +69,8 @@ public class UnitConverterFragment extends Fragment {
 
     // Views
     private Spinner spUnitSelector;
+    private TextInputLayout etValueLayout;
     private EditText etValue;
-    private SeekBar sbUnitSelector;
     private SharedPreferences sharedPref;
     private ImageButton btnUnitInfo;
 
@@ -110,7 +107,6 @@ public class UnitConverterFragment extends Fragment {
         // Initialize UI Views
         initSpinnerUnitSelector( root );
         initEditTextValue( root );
-        initSeekBarUnitSelector( root );
         initRecyclerViewCalcUnitList( root );
         initInfoButton( root );
         initColourDisplay( root );
@@ -176,7 +172,7 @@ public class UnitConverterFragment extends Fragment {
         etValue = root.findViewById(R.id.etDistanceValue);
 
         // Change hint in the layout rather than the EditText, otherwise it will duplicate
-        TextInputLayout etValueLayout = root.findViewById(R.id.tilDistanceInput);
+        etValueLayout = root.findViewById(R.id.tilDistanceInput);
 
         etValue.addTextChangedListener(new TextWatcher() {
             @Override
@@ -193,7 +189,7 @@ public class UnitConverterFragment extends Fragment {
 
                 // Numerative block input if not allowed
                 if ( unitType.getId().equals( Numerative.id ) ){
-                    if( CalcNumerative.isNotAllowedInSystem( "" + s.charAt(length - 1), unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitName() ) ){
+                    if( CalcNumerative.isNotAllowedInSystem( "" + s.charAt(length - 1), unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitKey() ) ){
                         etValue.getText().delete(length - 1, length);
                     }
                 }
@@ -208,25 +204,6 @@ public class UnitConverterFragment extends Fragment {
                 return true;
             }
             return false;
-        });
-    }
-
-    /**
-     * Initialize the SeekBar view element which will be used alongside the Spinner to select a
-     * base unit. Changing selection in one will result in both, Spinner and SeekBar being changed.
-     * @param root View of inflated hierarchy of fragment
-     */
-    private void initSeekBarUnitSelector( View root ){
-        sbUnitSelector = root.findViewById(R.id.sbDistanceUnit);
-        sbUnitSelector.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(fromUser) unitConverterViewModel.setSelectedUnitIndex(progress);
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
     }
 
@@ -267,7 +244,7 @@ public class UnitConverterFragment extends Fragment {
 
                 // Build info identifier for the selected unit ( format: "shoesize_eushoesize_info")
                 identifier = getResources().getIdentifier(
-                        unitType.getId() + "_" + unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitName() + "_info" ,
+                        unitType.getId() + "_" + unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitKey() + "_info" ,
                         "string" ,
                         requireContext().getPackageName()
                 );
@@ -321,7 +298,7 @@ public class UnitConverterFragment extends Fragment {
 
         // Build info identifier for the selected unit
         int identifier = getResources().getIdentifier(
-                unitType.getId() + "_" + unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitName() + "_info" ,
+                unitType.getId() + "_" + unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitKey() + "_info" ,
                 "string" ,
                 requireContext().getPackageName()
         );
@@ -334,6 +311,22 @@ public class UnitConverterFragment extends Fragment {
         }
     }
 
+    /**
+     * Unit sample is the example value being shown as hint in the edit text layout
+     * and changes with every unit / unit type
+     */
+    private void showUnitSample(){
+       String unitSample = unitConverterViewModel.getSelectedLocalizedUnitValue().getSampleInput();
+       String unitTypeSample = unitType.getUnitTypeSampleInput();
+       if( !unitSample.isEmpty() ){
+           etValueLayout.setHint(getString(R.string.unit_type_value_text_hint)+" "+unitSample);
+       }else if( !unitTypeSample.isEmpty() ){
+           etValueLayout.setHint(getString(R.string.unit_type_value_text_hint)+" "+unitTypeSample);
+       }else{
+           etValueLayout.setHint(getString(R.string.unit_type_value_text_hint_short));
+       }
+    }
+
 
     /**
      * Set selection by using the units short name, called from adapter when the visual button of
@@ -343,7 +336,7 @@ public class UnitConverterFragment extends Fragment {
     public void selectUnitByName( String name ){
         Adapter adapter = spUnitSelector.getAdapter();
         for (int i = 0; i < adapter.getCount(); i++) {
-            String itemName = ((LocalizedUnit)adapter.getItem(i)).getUnitName();
+            String itemName = ((LocalizedUnit)adapter.getItem(i)).getUnitKey();
             if( name.equalsIgnoreCase(itemName)) {
                 spUnitSelector.setSelection(i);
                 break;
@@ -419,20 +412,16 @@ public class UnitConverterFragment extends Fragment {
             ArrayAdapter<LocalizedUnit> adapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_list_item, distances);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spUnitSelector.setAdapter(adapter);
-
-            // Change SeekBar
-            sbUnitSelector.setMax(distances.length-1);
-            sbUnitSelector.setProgress(spUnitSelector.getSelectedItemPosition());
         });
 
-        // Observe integer representing selected unit then update selected item in spinner and SeekBar
+        // Observe integer representing selected unit then update selected item in spinner
         unitConverterViewModel.getSelectedUnitIndex().observe(getViewLifecycleOwner(), integer -> {
 
             // Change input method based on selected unit
             if( unitType.getId().equals(Numerative.id) ){
                 LocalizedUnit unit = unitConverterViewModel.getSelectedLocalizedUnitValue();
                 if( unit != null ){
-                    if( unit.getUnitName().equals("hex") ){
+                    if( unit.getUnitKey().equals("hex") ){
                         etValue.setInputType( InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS );
                     }else{
                         etValue.setInputType( InputType.TYPE_CLASS_NUMBER );
@@ -442,12 +431,14 @@ public class UnitConverterFragment extends Fragment {
                 }
             }
 
-            // Set SeekBar progress
-            sbUnitSelector.setProgress(integer);
-            spUnitSelector.setSelection(integer);
+            // Set progress
+            if(spUnitSelector.getSelectedItemPosition() != integer) spUnitSelector.setSelection(integer);
 
             // Decide whether or not to show Info Button
             setInfoButtonVisibility();
+
+            // Unit sample shows an example value to type in as a hint in the edit text
+            showUnitSample();
 
             // Update calculated values
             updateCalculatedValues(etValue.getText().toString());
@@ -481,7 +472,7 @@ public class UnitConverterFragment extends Fragment {
         CalculatedUnitItemAdapter adapter = unitConverterViewModel.getUnitItemAdapterValue();
         List<CalculatedUnitItem> resultList = Calculator.getResultList(
                 currentValue,
-                selectedUnit.getUnitName(),
+                selectedUnit.getUnitKey(),
                 unitConverterViewModel.getLocalizedUnitsValue(),
                 unitType
         );
@@ -539,7 +530,7 @@ public class UnitConverterFragment extends Fragment {
                 LocalizedUnit[] arr = unitConverterViewModel.getLocalizedUnits().getValue();
                 if( arr != null )
                     for( int i=0;i<arr.length;i++){
-                        if(arr[i].getUnitName().equals(unitType.getFirstSelectedUnit())){
+                        if(arr[i].getUnitKey().equals(unitType.getFirstSelectedUnit())){
                             unitConverterViewModel.setSelectedUnitIndex( i );
                             break;
                         }

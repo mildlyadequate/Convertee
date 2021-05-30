@@ -23,7 +23,7 @@ public class Angle extends UnitType {
 
     // Private constructor
     private Angle() {
-
+        setUnitTypeSampleInput("180");
         addMainUnit("degree", "angle_unit_deg");
         addUnit("radian", "angle_unit_rad", "VAL*57.295779513__FROM__TO__VAL/57.295779513");
         addUnit("grad", "angle_unit_gra", "VAL*0.9__FROM__TO__VAL/0.9");
@@ -31,7 +31,6 @@ public class Angle extends UnitType {
         addUnit("minute", "angle_unit_min", "VAL/60__FROM__TO__VAL*60");
         addUnit("second", "angle_unit_sec", "VAL/3600__FROM__TO__VAL*3600");
         addUnit("rightangle", "angle_unit_ra", "VAL*90__FROM__TO__VAL/90");
-
     }
 
     /**

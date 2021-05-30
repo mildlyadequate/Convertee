@@ -99,7 +99,7 @@ public class UnitSettingsFragment extends PreferenceFragmentCompat {
         String[] values = new String[locDistances.length];
         String[] entries = new String[locDistances.length];
         for( int i=0; i<locDistances.length;i++){
-            values[i] = ""+locDistances[i].getUnitName();
+            values[i] = ""+locDistances[i].getUnitKey();
             entries[i] = locDistances[i].getLocalizedName();
         }
         multiSelect.setEntries(entries);

@@ -22,7 +22,7 @@ public class FuelEconomy extends UnitType {
 
     // Private constructor
     private FuelEconomy(){
-
+        setUnitTypeSampleInput("1");
         addMainUnit( "kilometerperliter","fuelcons_unit_km2l" );
         addUnit("meterperliter","fuelcons_unit_m2l",           "0.001");
         addUnit("milepergallonuk","fuelcons_unit_m2guk",           "0.35400619");

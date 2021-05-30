@@ -60,7 +60,7 @@ public class Calculator {
         for(LocalizedUnit unit : filteredUnits){
 
             // Make sure the unit being looked at right now is NOT the original one
-            if( !unit.getUnitName().equalsIgnoreCase(originalUnitName)){
+            if( !unit.getUnitKey().equalsIgnoreCase(originalUnitName)){
 
                 // Check for special units such as temperature
                 if( !isSpecial ){
@@ -69,7 +69,7 @@ public class Calculator {
                     String result = CalcDefault.getResultFor(
                             originalValue,
                             originalUnitName,
-                            unit.getUnitName(),
+                            unit.getUnitKey(),
                             type
                     );
                     CalculatedUnitItem calcItem = new CalculatedUnitItem( result , unit );
@@ -79,7 +79,7 @@ public class Calculator {
 
                 }else{
 
-                    String result = CalcSpecial.getResultFor( originalValue , originalUnitName , unit.getUnitName() , type );
+                    String result = CalcSpecial.getResultFor( originalValue , originalUnitName , unit.getUnitKey() , type );
                     CalculatedUnitItem calcItem = new CalculatedUnitItem( result , unit );
                     list.add( calcItem );
 

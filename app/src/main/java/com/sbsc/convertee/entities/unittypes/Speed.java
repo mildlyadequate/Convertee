@@ -22,6 +22,7 @@ public class Speed  extends UnitType {
 
     // Private constructor
     private Speed(){
+        setUnitTypeSampleInput("100");
         addUnit("kilometerperhour","speed_unit_km2hr","VAL/3.6__FROM__TO__VAL*3.6");
         addMainUnit("meterpersecond","speed_unit_m2s"                                                       );
         addUnit("milesperhour","speed_unit_mi2hr",           "VAL*0.44704__FROM__TO__VAL/0.44704");

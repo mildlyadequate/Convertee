@@ -22,7 +22,7 @@ public class Currency extends UnitType {
 
     // Private constructor
     private Currency(){
-
+        setUnitTypeSampleInput("1");
         addUnit("euro","currency_unit_eur",                         "EUR");
         addUnit("britishpound","currency_unit_gbp",                 "GBP");
         addUnit("usdollar","currency_unit_usd",                     "USD");

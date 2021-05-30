@@ -18,6 +18,7 @@
         <item name="windowNoTitle">true</item>
 
         <item name="colorControlActivated">@color/themePrimary</item>
+        <item name="colorControlNormal">@color/themeDayLightText</item>
 
         <item name="android:itemTextAppearance">@style/MenuItemTextAppearance</item>
     </style>
@@ -35,16 +36,16 @@
         <item name="android:textColor">@color/themeDayDarkText</item>
     </style>
     <style name="Theme.Convertee.TextAppearance.UnitValue.Selected" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/themeBackground</item>
+        <item name="android:textColor">@color/themeDayLightText</item>
     </style>
     <style name="Theme.Convertee.TextAppearance.UnitNameSmall" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/themeDayDarkText</item>
     </style>
     <style name="Theme.Convertee.TextAppearance.UnitNameSmall.Selected" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">@color/themeBackground</item>
+        <item name="android:textColor">@color/themeDayLightText</item>
     </style>
     <style name="Theme.Convertee.textAppearanceListItemSmall" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">@color/themeBackground</item>
+        <item name="android:textColor">@color/themeDayLightText</item>
     </style>
 
     <style name="Theme.Convertee.NoActionBar" >

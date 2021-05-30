@@ -8,6 +8,7 @@ import android.util.Log;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.entities.unittypes.Angle;
 import com.sbsc.convertee.entities.unittypes.Area;
+import com.sbsc.convertee.entities.unittypes.BraSize;
 import com.sbsc.convertee.entities.unittypes.ColourCode;
 import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.DataStorage;
@@ -41,6 +42,7 @@ public class UnitTypeContainer {
             {Weight.id, String.valueOf(R.drawable.ic_weight)},
 
             // LIVING
+            {BraSize.id, String.valueOf(R.drawable.ic_time)},
             {Currency.id, String.valueOf(R.drawable.ic_currency)},
             {FuelEconomy.id, String.valueOf(R.drawable.ic_fueleconomy)},
             {ShoeSize.id, String.valueOf(R.drawable.ic_shoe)},
@@ -124,6 +126,8 @@ public class UnitTypeContainer {
             unitType = Currency.getInstance();
         }else if( StringUtils.equalsIgnoreCase( unitTypeId , ColourCode.id ) ){
             unitType = ColourCode.getInstance();
+        }else if( StringUtils.equalsIgnoreCase( unitTypeId , BraSize.id ) ){
+            unitType = BraSize.getInstance();
         }else{
             // Should technically never happen unless unitType IDs get messed up in either code or
             // Android resources

@@ -1,0 +1,39 @@
+package com.sbsc.convertee.entities.unittypes;
+
+import com.sbsc.convertee.entities.unittypes.generic.UnitType;
+
+public class BraSize extends UnitType {
+
+    // SINGLETON
+    private static BraSize unitTypeInstance;
+
+    public static String id = "brasize";
+
+    /**
+     * Lazy initialization singleton
+     * @return instance of UnitType
+     */
+    public static UnitType getInstance(){
+        if (unitTypeInstance == null){
+            unitTypeInstance = new BraSize();
+        }
+        return unitTypeInstance;
+    }
+
+    // Private constructor
+    private BraSize(){
+        addUnit("eubrasize","brasize_unit_eu",         "0");
+        addUnit("usbrasize","brasize_unit_us",        "1");
+        addUnit("ukbrasize","brasize_unit_uk",        "2");
+        addUnit("frspbrasize","brasize_unit_frsp",      "3");
+        addUnit("jpbrasize","brasize_unit_jp",         "4");
+        addUnit("aubrasize","brasize_unit_au",         "4");
+    }
+
+    /**
+     * Simple getter to reach ID in a non static way
+     * @return String
+     */
+    public String getId(){ return id; }
+
+}

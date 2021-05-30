@@ -110,7 +110,8 @@
 
     <!-- ========================================= UNITS =========================================== -->
     <!-- Everything below here has to exist for EVERY SINGLE UNIT TYPE ! -->
-    <string name="unit_type_value_text_hint">Value</string>
+    <string name="unit_type_value_text_hint">Enter value e.g.</string>
+    <string name="unit_type_value_text_hint_short">Enter value</string>
 
     <!-- MENUS / UNIT TYPE NAMES -->
     <string name="unit_type_name_distance">Length / Distance</string>
@@ -130,6 +131,7 @@
     <string name="unit_type_name_force">Force</string>
     <string name="unit_type_name_currency">Currency</string>
     <string name="unit_type_name_colour">Colour</string>
+    <string name="unit_type_name_brasize">Bra Size</string>
 
     <!-- PREF KEYS -->
     <!-- Distance -->
@@ -166,6 +168,8 @@
     <string name="preference_currency_hidden" translatable="false">preference_currency_hidden</string>
     <!-- Colour -->
     <string name="preference_colour_hidden" translatable="false">preference_colour_hidden</string>
+    <!-- BraSize -->
+    <string name="preference_brasize_hidden" translatable="false">preference_brasize_hidden</string>
 
     <!-- ACTUAL UNIT NAMES -->
 
@@ -598,5 +602,20 @@
     <string name="colour_colourcmyk_info">CMYK colors is a combination of cyan, magenta, yellow , and black.\n\nIt\'s specified with: cmyk(cyan,magenta,yellow,black), alternatively this app supports \'cyan,magenta,yellow,black\' as well.\n\nThis colour standard is predominantly used for printing.
     </string>
     <string name="colour_colourname_info">The colour name is currently only available in english.</string>
+
+    <!-- Bra Size Names -->
+    <string name="brasize_unit_eu">Europe / International</string>
+    <string name="brasize_unit_us">USA</string>
+    <string name="brasize_unit_uk">UK</string>
+    <string name="brasize_unit_frsp">France/Spain</string>
+    <string name="brasize_unit_jp">Japan</string>
+    <string name="brasize_unit_au">Australia</string>
+    <!-- Bra Size Shorts -->
+    <string name="brasize_unit_eu_short" translatable="false">EU</string>
+    <string name="brasize_unit_us_short" translatable="false">USA</string>
+    <string name="brasize_unit_uk_short" translatable="false">UK</string>
+    <string name="brasize_unit_frsp_short" translatable="false">FR/SP</string>
+    <string name="brasize_unit_jp_short" translatable="false">JP</string>
+    <string name="brasize_unit_au_short" translatable="false">AU</string>
 
 </resources>

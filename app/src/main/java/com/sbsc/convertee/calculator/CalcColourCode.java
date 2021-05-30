@@ -1,13 +1,11 @@
 package com.sbsc.convertee.calculator;
 
 import android.graphics.Color;
-import android.util.Log;
 
 import com.sbsc.convertee.ui.converter.UnitConverterViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

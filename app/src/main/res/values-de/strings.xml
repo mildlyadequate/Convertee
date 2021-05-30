@@ -92,7 +92,8 @@
 
     <!-- ========================================= UNITS =========================================== -->
     <!-- Everything below here has to exist for EVERY SINGLE UNIT TYPE ! -->
-    <string name="unit_type_value_text_hint">Wert</string>
+    <string name="unit_type_value_text_hint">Wert eingeben z.B.</string>
+    <string name="unit_type_value_text_hint_short">Wert eingeben</string>
 
     <!-- MENUS / UNIT TYPE NAMES -->
     <string name="unit_type_name_distance">Länge / Distanz</string>
@@ -112,6 +113,7 @@
     <string name="unit_type_name_force">Kraft</string>
     <string name="unit_type_name_currency">Währung</string>
     <string name="unit_type_name_colour">Farbe</string>
+    <string name="unit_type_name_brasize">BH-Größe</string>
 
     <!-- Distance Names -->
     <string name="distance_unit_km">Kilometer</string>
@@ -333,5 +335,13 @@
     <string name="colour_colourcmyk_info">CMYK-Farben sind eine Kombination aus Cyan, Magenta, Gelb und Schwarz. \n\nEs wird angegeben mit: cmyk(cyan,magenta,gelb,schwarz), alternativ unterstützt diese App auch \'cyan,magenta,gelb,schwarz\'.\n\nDieser Farbstandard wird überwiegend zum Drucken verwendet.
     </string>
     <string name="colour_colourname_info">Der Farbname ist derzeit nur in Englisch verfügbar.</string>
+
+    <!-- Bra Size Names -->
+    <string name="brasize_unit_eu">Europa / International</string>
+    <string name="brasize_unit_us">USA</string>
+    <string name="brasize_unit_uk">UK</string>
+    <string name="brasize_unit_frsp">Frankreich/Spanien</string>
+    <string name="brasize_unit_jp">Japan</string>
+    <string name="brasize_unit_au">Australien</string>
 
 </resources>

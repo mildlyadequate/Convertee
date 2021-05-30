@@ -22,12 +22,12 @@ public class ColourCode extends UnitType {
 
     // Private constructor
     private ColourCode(){
-        addUnit("colourrgb","colour_unit_rgb",           "");
-        addUnit("colourhex","colour_unit_hex",           "");
-        addUnit("colourhsl","colour_unit_hsl",           "");
-        addUnit("colourhsv","colour_unit_hsv",           "");
-        addUnit("colourcmyk","colour_unit_cmyk",           "");
-        addUnit("colourname","colour_unit_name",           "");
+        addUnit("colourrgb","colour_unit_rgb",           "", "255,255,255");
+        addUnit("colourhex","colour_unit_hex",           "", "#FFFFFF");
+        addUnit("colourhsl","colour_unit_hsl",           "", "360,100,100");
+        addUnit("colourhsv","colour_unit_hsv",           "", "360,100,100");
+        addUnit("colourcmyk","colour_unit_cmyk",           "", "100,100,100,100");
+        addUnit("colourname","colour_unit_name",           "", "lime green");
     }
 
     /**

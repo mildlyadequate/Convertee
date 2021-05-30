@@ -22,10 +22,10 @@ public class Numerative extends UnitType {
 
     // Private constructor
     private Numerative(){
-        addMainUnit( "decimal","num_unit_dec" );
-        addUnit("binary","num_unit_bin","");
-        addUnit("octal","num_unit_oct","");
-        addUnit("hex","num_unit_hex","");
+        addMainUnit( "decimal","num_unit_dec", "125");
+        addUnit("binary","num_unit_bin","", "1111101");
+        addUnit("octal","num_unit_oct","", "175");
+        addUnit("hex","num_unit_hex","", "7D");
     }
 
     /**

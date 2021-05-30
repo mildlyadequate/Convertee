@@ -23,6 +23,7 @@ public class DataStorage extends UnitType {
     // Private constructor
     private DataStorage(){
 
+        setUnitTypeSampleInput("1024");
         setFirstSelectedUnit("megabyte");
 
         addUnit("exabyte","datastorage_unit_ebyte",           "1099511627776");

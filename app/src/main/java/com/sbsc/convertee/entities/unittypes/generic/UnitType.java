@@ -1,11 +1,10 @@
 package com.sbsc.convertee.entities.unittypes.generic;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -14,15 +13,8 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public class UnitType{
 
-    /**
-        Map contains units of a specific type
-     */
-    private final Map<String, String> unitList = new LinkedHashMap<>();
-    /**
-        Map contains double values of the units factor into the mainUnit (doesn't contain
-        the main unit as there is no need for a factor)
-     */
-    private final Map<String, String> unitFactorList = new HashMap<>();
+    private final Map<String, RawUnit> rawUnitList = new LinkedHashMap<>();
+
     /**
      * unitName of the mainUnit which the calculator converts everything into which the unitFactors
      * are relevant to
@@ -39,7 +31,16 @@ public class UnitType{
      */
     public static String id = "unitType";
 
+    /**
+     * First selected unit is the default selected when opening a unit type
+     */
     private String firstSelectedUnit = "";
+
+    /**
+     * This is meant as a replacement for sample input in all raw units of this unit type, in case
+     * individual sample inputs are not needed
+     */
+    private String unitTypeSampleInput = "";
 
     /**
      * Add normal unit to this type
@@ -47,41 +48,26 @@ public class UnitType{
      * @param value String of Android String resource
      * @param factor double used for calculation of the MainUnit, from/to this one
      */
-    protected void addUnit( String key , String value , String factor){
-        unitList.put(key,value);
-        unitFactorList.put(key,factor);
+    protected void addUnit( String key , String value , String factor , String sampleInput ){
+        rawUnitList.put( key , new RawUnit( key , value , factor , sampleInput) );
     }
+    protected void addUnit( String key , String value , String factor ){
+        rawUnitList.put( key , new RawUnit( key , value , factor , "") );
+    }
+
 
     /**
      * Add Main Unit to this type (no factor needed)
      * @param key String of UnitName
      * @param value String of Android String resource
      */
-    protected void addMainUnit( String key , String value){
-        unitList.put(key,value);
+    protected void addMainUnit( String key , String value , String sampleInput ){
+        addUnit( key , value , "" , sampleInput );
         mainUnitName = key;
     }
-
-    /**
-     * @return an array of all values of this UnitType
-     */
-    public String[] values(){
-        return unitList.values().toArray(new String[0]);
-    }
-
-    /**
-     * @return an array of all names of this UnitType
-     */
-    public String[] names(){
-        return unitList.keySet().toArray(new String[0]);
-    }
-
-    /**
-     *  Returns the entire unitList as set
-     * @return entrySet of Strings
-     */
-    public Set<Entry<String, String>> entrySet(){
-        return unitList.entrySet();
+    protected void addMainUnit( String key , String value ){
+        addUnit( key , value , "" , "" );
+        mainUnitName = key;
     }
 
     /**
@@ -90,43 +76,17 @@ public class UnitType{
      */
     public UnitTypeEntry[] entrySetAsArray(){
         List<UnitTypeEntry> list = new ArrayList<>();
-        for( Map.Entry<String,String> e : unitList.entrySet()){
-            list.add( new UnitTypeEntry( e.getKey() , e.getValue() ) );
+        for( RawUnit e : rawUnitList.values()){
+            list.add( new UnitTypeEntry( e.getKey() , e.getResourceId() , e.getSampleInput() ) );
         }
-        return list.toArray( new UnitTypeEntry[unitList.size()] );
-    }
-
-    /**
-     * Get a specific Entry by its name
-     * @param name as a String
-     * @return Entry containing value and name
-     */
-    public UnitTypeEntry getEntryByName( String name ) {
-        final UnitTypeEntry result = new UnitTypeEntry();
-        for( Map.Entry<String,String> e : unitList.entrySet()){
-            if(e.getKey().equals(name)) result.setContent(e.getKey(),e.getValue());
-        }
-        return null;
-    }
-
-    /**
-     * Get a specific Entry by its value
-     * @param value as a String
-     * @return Entry containing value and name
-     */
-    public UnitTypeEntry getEntryByValue( String value ) {
-        final UnitTypeEntry result = new UnitTypeEntry();
-        for( Map.Entry<String,String> e : unitList.entrySet()){
-            if(e.getValue().equals(value)) result.setContent(e.getKey(),e.getValue());
-        }
-        return null;
+        return list.toArray( new UnitTypeEntry[rawUnitList.size()] );
     }
 
     /**
      * @return the amount of units of this type as int
      */
     public int getSize(){
-        return unitList.size();
+        return rawUnitList.size();
     }
 
     /**
@@ -137,10 +97,13 @@ public class UnitType{
 
     /**
      * UnitFactorList is a list using unitNames to store their factors into the mainUnit
-     * @param unitName Which unit to look up
+     * @param unitKey Which unit to look up
      * @return factor as double
      */
-    public String getUnitFactor( String unitName ){ return unitFactorList.get( unitName ); }
+    public String getUnitFactor( String unitKey ){
+        RawUnit rawUnit = rawUnitList.get( unitKey );
+        return ( rawUnit != null ) ? rawUnit.getFactor() : "";
+    }
 
     /**
      * Filter units using all available units and the given filter
@@ -149,13 +112,12 @@ public class UnitType{
      */
     public static UnitTypeEntry[] filterUnits( Set<String> filter , UnitType unitType){
         // This should be the only time Length.getInstance().entrySet() is called, to save performance
-        Set<Map.Entry<String, String>> arr = unitType.entrySet();
         ArrayList<UnitTypeEntry> filteredList = new ArrayList<>();
 
         // Iterate Set containing all values, if value is NOT inside filter, add it to filteredList
-        for( Map.Entry<String,String> e : arr){
-            if ( !filter.contains( e.getKey() ) ){
-                filteredList.add( new UnitTypeEntry( e.getKey(),e.getValue() ) );
+        for( RawUnit rawUnit : unitType.getRawUnitList() ){
+            if ( !filter.contains( rawUnit.getKey() ) ){
+                filteredList.add( new UnitTypeEntry( rawUnit.getKey() , rawUnit.getResourceId() , rawUnit.getSampleInput() ) );
             }
         }
 
@@ -171,6 +133,20 @@ public class UnitType{
      */
     public String getId(){ return id; }
 
+    /**
+     * First selected unit is the default selected when opening a unit type
+     * @return unit key
+     */
     public String getFirstSelectedUnit() { return firstSelectedUnit; }
     public void setFirstSelectedUnit(String firstSelectedUnit) { this.firstSelectedUnit = firstSelectedUnit; }
+
+    /**
+     * This is meant as a replacement for sample input in all raw units of this unit type, in case
+     * individual sample inputs are not needed
+     * @return String of example input for this type
+     */
+    public String getUnitTypeSampleInput() { return unitTypeSampleInput; }
+    public void setUnitTypeSampleInput(String unitTypeSampleInput) { this.unitTypeSampleInput = unitTypeSampleInput; }
+
+    public Collection<RawUnit> getRawUnitList() { return rawUnitList.values(); }
 }

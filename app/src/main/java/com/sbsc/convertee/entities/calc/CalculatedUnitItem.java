@@ -10,7 +10,7 @@ public class CalculatedUnitItem {
     private final String unitShort;
 
     public CalculatedUnitItem(String value, LocalizedUnit localizedUnitName) {
-        this.unitKey = localizedUnitName.getUnitName();
+        this.unitKey = localizedUnitName.getUnitKey();
         this.value = value;
         this.localizedUnitName = localizedUnitName.getLocalizedName();
         this.unitShort = localizedUnitName.getNameShort();

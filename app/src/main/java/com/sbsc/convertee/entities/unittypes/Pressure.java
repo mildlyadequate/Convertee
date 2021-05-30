@@ -23,6 +23,7 @@ public class Pressure extends UnitType {
 
     // Private constructor
     private Pressure() {
+        setUnitTypeSampleInput("10");
         addMainUnit("pascal", "pressure_unit_pasc");
         addUnit("kilopascal", "pressure_unit_kpasc", "1000");
         addUnit("bar", "pressure_unit_bar", "100000");

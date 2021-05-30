@@ -22,6 +22,7 @@ public class Volume extends UnitType {
 
     // Private constructor
     private Volume(){
+        setUnitTypeSampleInput("5");
         addMainUnit( "liter","volume_unit_l" );
         addUnit("milliliter","volume_unit_ml",          "0.001");
         addUnit("cubickilometer","volume_unit_ckm", "1000000000000");

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
@@ -17,7 +17,11 @@
 
     <color name="themeDayBlackText">@color/black</color>
     <color name="themeDayDarkText">@color/themeSecondaryDark</color>
-    <color name="themeDayLightText">@color/themeBackground</color>
-    <color name="mtrl_textinput_default_box_stroke_color">@color/themeBackground</color>
+    <color name="themeDayLightText">#fff</color>
+    <color name="themeDaySoftLightText">#80FFFFFF</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color">@color/themePrimary</color>
+
+
 
 </resources>

@@ -22,9 +22,9 @@ public class Temperature extends UnitType {
 
     // Private constructor
     private Temperature(){
-        addMainUnit( "celsius","temperature_unit_c" );
-        addUnit("kelvin","temperature_unit_k",          "VAL-273.15__FROM__TO__VAL+273.15");
-        addUnit("fahreinheit","temperature_unit_f", "((VAL-32)*5)/9__FROM__TO__9*VAL/5+32");
+        addMainUnit( "celsius","temperature_unit_c", "20");
+        addUnit("kelvin","temperature_unit_k",          "VAL-273.15__FROM__TO__VAL+273.15", "293");
+        addUnit("fahreinheit","temperature_unit_f", "((VAL-32)*5)/9__FROM__TO__9*VAL/5+32", "68");
     }
 
     /**

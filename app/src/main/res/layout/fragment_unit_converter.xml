@@ -24,12 +24,12 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:textColorHint="@color/themeBackground"
+            android:textColorHint="@color/themeDaySoftLightText"
             app:boxBackgroundMode="filled"
             app:boxStrokeColor="@color/themePrimary"
             app:endIconMode="clear_text"
-            app:endIconTint="@color/themeBackground"
-            app:hintTextColor="@color/themeBackground">
+            app:endIconTint="@color/themeDayLightText"
+            app:hintTextColor="@color/themeDaySoftLightText">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDistanceValue"
@@ -40,7 +40,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="numberSigned|number|numberDecimal"
                 android:maxLength="20"
-                android:textColor="@color/themeBackground"
+                android:textColor="@color/themeDayLightText"
                 android:textColorHighlight="@color/themePrimary"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,8 +60,9 @@
                 android:id="@+id/spDistanceUnit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/spinner_outline"
+                android:background="@drawable/bg_spinner"
                 android:foregroundTint="#F1E7E7" />
 
             <ImageButton
@@ -76,23 +77,6 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/unit_info_icon_selector" />
         </LinearLayout>
-
-        <SeekBar
-            android:id="@+id/sbDistanceUnit"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:max="10"
-            android:maxHeight="2dp"
-            android:minHeight="2dp"
-            android:progress="3"
-            android:progressDrawable="@drawable/seekbar_style"
-            android:progressTint="@android:color/transparent"
-            android:thumbTint="@color/themePrimary"
-            app:tickMarkTint="@color/themePrimary" />
 
         <TextView
             android:id="@+id/tvLastCurrencyUpdate"

@@ -1,6 +1,7 @@
 package com.sbsc.convertee.calculator;
 
 import com.sbsc.convertee.entities.unittypes.Angle;
+import com.sbsc.convertee.entities.unittypes.BraSize;
 import com.sbsc.convertee.entities.unittypes.ColourCode;
 import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.Force;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 
 public class CalcSpecial {
 
-    private static final String[] specialTypes = { Temperature.id , Time.id , Numerative.id , ShoeSize.id , Angle.id , Speed.id , Force.id , Currency.id , ColourCode.id };
+    private static final String[] specialTypes = { Temperature.id , Time.id , Numerative.id , ShoeSize.id , Angle.id , Speed.id , Force.id , Currency.id , ColourCode.id , BraSize.id };
 
     /**
      * Check if the given unitType is special and requires a unique way of calculating values
@@ -52,6 +53,9 @@ public class CalcSpecial {
 
         // Case ColourCode:
         if(type.getId().equals(ColourCode.id)) return CalcColourCode.getInstance().getResultFor( originalValue , originalUnitName , targetUnitName );
+
+        // Case BraSize:
+        if(type.getId().equals(BraSize.id)) return CalcBraSize.getInstance().getResultFor( originalValue , originalUnitName , targetUnitName );
 
         // Default
         return getResultFromCalculation( originalValue , originalUnitName , targetUnitName , type );
