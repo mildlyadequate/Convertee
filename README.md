@@ -3,7 +3,7 @@
  
  ## Install
  Not yet available on Google Play Store, download the APK from here: 
- [Convertee v0.3.1](https://github.com/mildlyadequate/Convertee/releases/download/v0.3.2-alpha/convertee-alpha-032.apk "Github Releases")
+ [Convertee v0.3.2](https://github.com/mildlyadequate/Convertee/releases/download/v0.3.2-alpha/convertee-alpha-032.apk "Github Releases")
  
  ## Features :toolbox:
  
