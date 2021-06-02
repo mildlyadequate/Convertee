@@ -23,7 +23,6 @@ public class OverviewFragment extends Fragment {
     protected boolean wasPaused = false;
 
     // Preference lists
-    protected Set<String> hiddenUnitTypes;
     protected Set<String> favouriteUnitTypes;
 
     // RecyclerViewAdapters
@@ -33,10 +32,6 @@ public class OverviewFragment extends Fragment {
     public void favouriteUnitType( String unitTypeKey ){ }
 
     public void unfavouriteUnitType( String unitTypeKey ){ }
-
-    public void hideUnitType( String unitTypeName , int position){ }
-
-    public void showUnitType( String unitTypeName , int position){ }
 
     public UnitTypeSectionedAdapter getRvUnitTypeSectionedAdapter() { return null; }
 

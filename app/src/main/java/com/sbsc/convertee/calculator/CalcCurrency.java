@@ -18,6 +18,7 @@ import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.CurrencyApiHandler;
 import com.sbsc.convertee.tools.HelperUtil;
 import com.sbsc.convertee.ui.converter.UnitConverterViewModel;
+import com.sbsc.convertee.ui.quickconverter.QuickConverterViewModel;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -52,7 +53,6 @@ public class CalcCurrency {
     }
 
     /**
-     *
      * @param ctx Context
      * @param view View for SnackBar
      * @param sharedPref SharedPreferences
@@ -72,6 +72,28 @@ public class CalcCurrency {
         if( currentTime - lastUpdate > 86400000L || currencyRates == null ){
             RequestQueue queue = Volley.newRequestQueue(ctx);
             CurrencyApiHandler.getUpdatedCurrencies( queue, sharedPref , unitConverterViewModel , view , ctx );
+        }
+    }
+
+    /**
+     * @param ctx Context
+     * @param view View for SnackBar
+     * @param sharedPref SharedPreferences
+     * @param quickConverterViewModel ConverterViewModel to listen to changes
+     */
+    public void initializeCurrency(Context ctx , View view , SharedPreferences sharedPref , QuickConverterViewModel quickConverterViewModel ){
+        this.sharedPref = sharedPref;
+
+        // Check if last update has been > 1 day ago
+        long lastUpdate = sharedPref.getLong("currency_rates_last_update", 0);
+        long currentTime = CompatibilityHandler.getCurrentTime();
+
+        currencyRates = new Gson().fromJson( sharedPref.getString("currency_rates","") , JsonObject.class);
+
+        // Difference more than a day ( 86400000 millis )
+        if( currentTime - lastUpdate > 86400000L || currencyRates == null ){
+            RequestQueue queue = Volley.newRequestQueue(ctx);
+            CurrencyApiHandler.getUpdatedCurrencies( queue, sharedPref , quickConverterViewModel , view , ctx );
         }
     }
 

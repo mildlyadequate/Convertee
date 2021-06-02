@@ -45,7 +45,6 @@ public class Volume extends UnitType {
         addUnit("quartus","volume_unit_quarus", "0.946352946");
         addUnit("pintus","volume_unit_pius", "0.473176473");
         addUnit("cupus","volume_unit_cupus", "0.2365882365");
-        //TODO replace formula with default -> only value so its quicker calc
     }
 
     /**

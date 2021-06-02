@@ -45,6 +45,7 @@ public class CalcColourCode {
      * @param colour - either RGB or HEX expected
      */
     private void setColourInViewModel( CColour colour ){
+        if( viewModel == null ) return;
         if( colour == null ){
             viewModel.setDisplayedColour( null );
         }else if( colour instanceof HEX )
@@ -479,7 +480,8 @@ public class CalcColourCode {
             new ColourName( "dark slate gray" , 47,79,79 ),
             new ColourName( "teal" , 0,128,128 ),
             new ColourName( "dark cyan" , 0,139,139 ),
-            new ColourName( "aqua / cyan" , 0,255,255 ),
+            new ColourName( "aqua" , 0,255,255 ),
+            new ColourName( "cyan" , 0,255,255 ),
             new ColourName( "light cyan" , 224,255,255 ),
             new ColourName( "dark turquoise" , 0,206,209 ),
             new ColourName( "turquoise" , 64,224,208 ),
@@ -515,7 +517,8 @@ public class CalcColourCode {
             new ColourName( "thistle" , 216,191,216 ),
             new ColourName( "plum" , 221,160,221 ),
             new ColourName( "violet" , 238,130,238 ),
-            new ColourName( "magenta / fuchsia" , 255,0,255 ),
+            new ColourName( "magenta" , 255,0,255 ),
+            new ColourName( "fuchsia" , 255,0,255 ),
             new ColourName( "orchid" , 218,112,214 ),
             new ColourName( "medium violet red" , 199,21,133 ),
             new ColourName( "pale violet red" , 219,112,147 ),

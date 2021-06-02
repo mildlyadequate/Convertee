@@ -4,7 +4,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.entities.calc.CalculatedUnitItem;
 import com.sbsc.convertee.calculator.Calculator;
+import com.sbsc.convertee.entities.calc.CalculatedUnitItem;
 import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.customlayouts.ClickableCustomTextView;
 import com.sbsc.convertee.ui.converter.UnitConverterFragment;
@@ -80,21 +79,6 @@ public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUn
         this.calculatedUnitItems.clear();
         this.calculatedUnitItems.addAll(calculatedUnitItems);
 
-        this.notifyDataSetChanged();
-    }
-
-    //TODO ORDER
-    public void orderByAlphabet(boolean desc){
-        //calculatedUnitItems.sort((CalculatedUnitItem s1, CalculatedUnitItem s2)->s1.getLocalizedUnitName().compareTo(s2.getLocalizedUnitName()));
-        if(desc) Collections.reverse(calculatedUnitItems);
-        this.notifyDataSetChanged();
-    }
-
-    //TODO ORDER
-    public void orderByDefault(boolean byMetric){
-        calculatedUnitItems.clear();
-        // calculatedUnitItems.addAll(defaultOrderCalculatedUnitItems);
-        if(!byMetric) Collections.reverse(calculatedUnitItems);
         this.notifyDataSetChanged();
     }
 
@@ -228,7 +212,8 @@ public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUn
                 NumberFormat nf = NumberFormat.getInstance(Calculator.locale);
                 nf.setMaximumFractionDigits(3);
                 try {
-                    value = nf.parse(value).toString();
+                    Number number = nf.parse(value);
+                    if(number!=null) value = number.toString();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

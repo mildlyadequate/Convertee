@@ -27,7 +27,7 @@ public class BraSize extends UnitType {
         addUnit("ukbrasize","brasize_unit_uk",        "2");
         addUnit("frspbrasize","brasize_unit_frsp",      "3");
         addUnit("jpbrasize","brasize_unit_jp",         "4");
-        addUnit("aubrasize","brasize_unit_au",         "4");
+        addUnit("aubrasize","brasize_unit_au",         "5");
     }
 
     /**

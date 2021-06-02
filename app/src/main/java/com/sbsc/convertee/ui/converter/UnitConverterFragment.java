@@ -42,6 +42,7 @@ import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.entities.calc.CalculatedUnitItem;
+import com.sbsc.convertee.entities.unittypes.BraSize;
 import com.sbsc.convertee.entities.unittypes.ColourCode;
 import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.Numerative;
@@ -87,7 +88,13 @@ public class UnitConverterFragment extends Fragment {
         unitConverterViewModel.getUnitItemAdapterValue().setFragment(this);
         View root = inflater.inflate(R.layout.fragment_unit_converter, container, false);
 
-        unitType = UnitTypeContainer.initializeUnitType( getArguments() , requireContext() );
+        // Get unit type object
+        String unitTypeId = HelperUtil.getBundleString(
+                requireArguments() ,
+                requireActivity().getString(R.string.bundle_selected_unittype),
+                UnitType.id
+        );
+        unitType = UnitTypeContainer.getUnitType( unitTypeId );
         updateTitle();
 
         // Initialize preferences
@@ -138,7 +145,7 @@ public class UnitConverterFragment extends Fragment {
      * Change the input method at the beginning of the fragment based on unittype
      */
     private void setInputMethod(){
-        if( unitType.getId().equals(ColourCode.id) ){
+        if( unitType.getId().equals(ColourCode.id) || unitType.getId().equals(BraSize.id) ){
             etValue.setInputType( InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS );
         }
     }
@@ -462,7 +469,11 @@ public class UnitConverterFragment extends Fragment {
 
         // If input is not a valid number // SETS THE VALUE TO 0.0 IF NOT CREATABLE AS NUMBER
         // Also check if its a numerative, as Hex Numbers require A-F
-        if( !NumberUtils.isCreatable(currentValue) && !unitType.getId().equals(Numerative.id) && !unitType.getId().equals(ColourCode.id)) currentValue = "0.0";
+        if( !NumberUtils.isCreatable(currentValue) &&
+                !unitType.getId().equals(Numerative.id) &&
+                !unitType.getId().equals(ColourCode.id) &&
+                !unitType.getId().equals(BraSize.id)
+        ) currentValue = "0.0";
 
         // Get currently selected item in spinner, if null return without updating
         LocalizedUnit selectedUnit = (LocalizedUnit) spUnitSelector.getSelectedItem();
@@ -502,15 +513,15 @@ public class UnitConverterFragment extends Fragment {
         // SETTINGS
 
         // Get string set of hidden units of this type from preferences
-        Set<String> rawUnits = sharedPref.getStringSet(("preference_"+ unitType.getId() +"_hidden"), new HashSet<>());
+        Set<String> hiddenUnits = sharedPref.getStringSet(("preference_"+ unitType.getId() +"_hidden"), new HashSet<>());
         // If LocalizedUnitsValue = null (list hasn't been loaded at all yet) OR if the hashCodes of the current and saved hiddenUnits lists are different
-        if( unitConverterViewModel.getLocalizedUnitsValue() == null || rawUnits.hashCode() != unitConverterViewModel.getLocalizedUnitsHashValue() ){
+        if( unitConverterViewModel.getLocalizedUnitsValue() == null || hiddenUnits.hashCode() != unitConverterViewModel.getLocalizedUnitsHashValue() ){
             // Update HashCode
-            unitConverterViewModel.setLocalizedUnitsHash( rawUnits.hashCode() );
-            // Process rawUnits to localize them
+            unitConverterViewModel.setLocalizedUnitsHash( hiddenUnits.hashCode() );
+            // Process hiddenUnits to localize them
             LocalizedUnit[] arr = UnitConverterFragment.loadLocalizedUnitNames(
                     getContext(),
-                    UnitType.filterUnits( rawUnits , unitType )
+                    UnitType.filterUnits( hiddenUnits , unitType )
             );
             // Had to change post to set, post: add to queue; set: do it right away
             unitConverterViewModel.setLocalizedUnits(arr);

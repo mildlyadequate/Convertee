@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.sbsc.convertee.ui.overview.UnitCategoriesFragment;
 import com.sbsc.convertee.ui.overview.UnitOverviewFragment;
+import com.sbsc.convertee.ui.quickconverter.QuickConverterFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -81,7 +82,8 @@ public class MainFragment extends Fragment {
         public Fragment createFragment(int position) {
             switch (position){
                 case 0:
-                    return new UnitOverviewFragment();
+                    return new QuickConverterFragment();
+                    // return new UnitOverviewFragment();
                 case 1:
                     return new UnitCategoriesFragment();
             }

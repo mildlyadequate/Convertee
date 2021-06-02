@@ -23,8 +23,8 @@
     <string name="content_description_unittype_status">Shows this unit types current status eg. Favourite, Hidden</string>
 
     <!-- TABBED PANE TABS -->
-    <string name="tabbed_pane_tab_customized">Customized</string>
-    <string name="tabbed_pane_tab_categories">Categories</string>
+    <string name="tabbed_pane_tab_customized">Favourites</string>
+    <string name="tabbed_pane_tab_categories">All</string>
 
     <!-- CATEGORIES -->
     <string name="unit_type_categories_favourites">Favourites</string>
@@ -97,7 +97,7 @@
     <!-- CREDITS -->
     <string name="pref_credits_title">Credits</string>
     <string name="pref_credits_subtitle">Made by Sebastian Schuler</string>
-    <string name="pref_credits_link" translatable="false" >https://github.com/mildlyadequate/Convertee</string>
+    <string name="pref_credits_link" translatable="false">https://github.com/mildlyadequate/Convertee</string>
     <string name="preference_credits" translatable="false" />
 
     <!-- PREFERENCE VALUES -->
@@ -110,7 +110,7 @@
 
     <!-- ========================================= UNITS =========================================== -->
     <!-- Everything below here has to exist for EVERY SINGLE UNIT TYPE ! -->
-    <string name="unit_type_value_text_hint">Enter value e.g.</string>
+    <string name="unit_type_value_text_hint">Value e.g.</string>
     <string name="unit_type_value_text_hint_short">Enter value</string>
 
     <!-- MENUS / UNIT TYPE NAMES -->
@@ -617,5 +617,7 @@
     <string name="brasize_unit_frsp_short" translatable="false">FR/SP</string>
     <string name="brasize_unit_jp_short" translatable="false">JP</string>
     <string name="brasize_unit_au_short" translatable="false">AU</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

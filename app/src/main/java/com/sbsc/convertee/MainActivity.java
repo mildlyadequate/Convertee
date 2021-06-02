@@ -17,9 +17,12 @@ import androidx.preference.PreferenceManager;
 
 import com.github.appintro.AppIntro;
 import com.sbsc.convertee.calculator.Calculator;
+import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
 import com.sbsc.convertee.tools.DefaultHiddenUnits;
 import com.sbsc.convertee.ui.converter.UnitConverterFragment;
 import com.sbsc.convertee.ui.intro.AppIntroActivity;
+import com.sbsc.convertee.ui.quickconverter.QuickConvertEditorFragment;
+import com.sbsc.convertee.ui.quickconverter.QuickConverterFragment;
 import com.sbsc.convertee.ui.settings.SettingsFragment;
 import com.sbsc.convertee.ui.settings.UnitSettingsFragment;
 
@@ -204,17 +207,24 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
      * Open the unit converter of given unit type key
      * @param unitTypeKey converter type to open
      */
-    public void openUnitConverterWith( String unitTypeKey ){
+    public void openUnitConverter(String unitTypeKey ){
         Bundle bundle = new Bundle();
         bundle.putString( getString(R.string.bundle_selected_unittype) , unitTypeKey );
         activeUnitConverterKey = unitTypeKey;
         changeFragment( new UnitConverterFragment() , bundle , "converter");
     }
 
-    public void openUnitConverterWith( String unitTypeKey , Bundle bundle ){
+    public void openUnitConverter(String unitTypeKey , Bundle bundle ){
         bundle.putString( getString(R.string.bundle_selected_unittype) , unitTypeKey );
         activeUnitConverterKey = unitTypeKey;
         changeFragment( new UnitConverterFragment() , bundle , "converter");
+    }
+
+    public void openQuickConvertEditor( QuickConvertUnit quickConvertUnit ){
+        Bundle bundle = new Bundle();
+        if ( quickConvertUnit!= null )
+            bundle.putString( "QuickConvertEditorItem" , quickConvertUnit.getUnitTypeId()+"::"+quickConvertUnit.getIdUnitFrom()+"::"+quickConvertUnit.getIdUnitTo() );
+        changeFragment( new QuickConvertEditorFragment() , bundle , "quickConverterEditor");
     }
 
     /*

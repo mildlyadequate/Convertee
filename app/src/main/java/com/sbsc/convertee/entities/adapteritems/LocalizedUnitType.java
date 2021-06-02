@@ -8,14 +8,12 @@ public class LocalizedUnitType implements Comparable<LocalizedUnitType>{
     private String unitTypeName;
     private int iconId;
     private boolean favourite;
-    private boolean hidden;
 
     public LocalizedUnitType(String unitTypeKey, String unitTypeName, int iconId) {
         this.unitTypeKey = unitTypeKey;
         this.unitTypeName = unitTypeName;
         this.iconId = iconId;
         this.favourite = false;
-        this.hidden = false;
     }
 
     public LocalizedUnitType() {
@@ -35,19 +33,17 @@ public class LocalizedUnitType implements Comparable<LocalizedUnitType>{
         return iconId;
     }
     public boolean isFavourite() { return favourite; }
-    public boolean isHidden() { return hidden; }
 
     // Setter
     public void setUnitTypeKey(String unitTypeKey) { this.unitTypeKey = unitTypeKey; }
     public void setUnitTypeName(String unitTypeName) { this.unitTypeName = unitTypeName; }
     public void setIconId(int iconId) { this.iconId = iconId; }
     public void setFavourite(boolean favourite) { this.favourite = favourite; }
-    public void setHidden(boolean hidden) { this.hidden = hidden; }
 
     @NonNull
     @Override
     public String toString() {
-        return ( "["+unitTypeKey+"] "+ unitTypeName + " | ImageId: "+iconId);
+        return unitTypeName;
     }
 
     @Override

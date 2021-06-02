@@ -1,6 +1,5 @@
 package com.sbsc.convertee.ui.overview;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,7 +44,6 @@ public class UnitOverviewFragment extends OverviewFragment {
         // Get preferences
         sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(requireContext());
-        hiddenUnitTypes = sharedPreferences.getStringSet( getString(R.string.preference_hidden_unit_types) , new HashSet<>());
         favouriteUnitTypes = sharedPreferences.getStringSet( getString(R.string.preference_favourite_unit_types) , new HashSet<>());
 
         View root = inflater.inflate(R.layout.fragment_unit_overview, container, false);
@@ -68,18 +66,15 @@ public class UnitOverviewFragment extends OverviewFragment {
         // Iterate list of all existing unit types
         for (Iterator<LocalizedUnitType> iterator = tempList.iterator(); iterator.hasNext(); ) {
             LocalizedUnitType unitType = iterator.next();
-            // If current unit type is hidden
-            if( hiddenUnitTypes.contains( unitType.getUnitTypeKey() )){
-                iterator.remove();
+
+            // If the current unit type is favourite
+            if( favouriteUnitTypes.contains(unitType.getUnitTypeKey()) ){
+                unitType.setFavourite( true );
+                favouriteItemCountOnLoad++;
             }else{
-                // If the current unit type is favourite
-                if( favouriteUnitTypes.contains(unitType.getUnitTypeKey()) ){
-                    unitType.setFavourite( true );
-                    favouriteItemCountOnLoad++;
-                }else{
-                    unitType.setFavourite( false );
-                }
+                unitType.setFavourite( false );
             }
+
         }
         return tempList;
     }
@@ -139,15 +134,6 @@ public class UnitOverviewFragment extends OverviewFragment {
         sharedPreferences.edit().putStringSet( getString(R.string.preference_favourite_unit_types) , favouriteUnitTypes ).apply();
     }
 
-    @Override
-    public void hideUnitType( String unitTypeName , int position){
-        rvUnitTypeAdapter.removeItemAt( position );
-        hiddenUnitTypes.add(unitTypeName);
-        // Remove before we add the new list, otherwise it doesn't write
-        sharedPreferences.edit().remove(getString(R.string.preference_hidden_unit_types)).apply();
-        sharedPreferences.edit().putStringSet( getString(R.string.preference_hidden_unit_types) , hiddenUnitTypes ).apply();
-    }
-
     /**
      * Handle click on a unit type -> Open that unit type in converter
      * @param unitTypeKey String
@@ -155,7 +141,7 @@ public class UnitOverviewFragment extends OverviewFragment {
     @Override
     public void handleUnitTypeClick(String unitTypeKey ){
         MainActivity mainActivity = (MainActivity) requireActivity();
-        mainActivity.openUnitConverterWith( unitTypeKey );
+        mainActivity.openUnitConverter( unitTypeKey );
     }
 
     @Override
@@ -169,8 +155,7 @@ public class UnitOverviewFragment extends OverviewFragment {
             Set<String> tempHidden = sharedPreferences.getStringSet( getString(R.string.preference_hidden_unit_types) , new HashSet<>());
             Set<String> tempFave = sharedPreferences.getStringSet( getString(R.string.preference_favourite_unit_types) , new HashSet<>());
 
-            if( tempFave != favouriteUnitTypes || tempHidden != hiddenUnitTypes ){
-                hiddenUnitTypes = tempHidden;
+            if( tempFave != favouriteUnitTypes ){
                 favouriteUnitTypes = tempFave;
 
                 // initRecyclerViewCalcUnitList();

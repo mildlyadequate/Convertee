@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="24dp">
+
+    <ImageView
+        android:id="@+id/ivQuickConvertIcon"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="8dp"
+        app:tint="@color/themeDayDarkText"
+        app:layout_constraintBottom_toBottomOf="@+id/tvQuickConvertTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvQuickConvertTitle"
+        app:srcCompat="@drawable/ic_colour" />
+
+    <TextView
+        android:id="@+id/tvQuickConvertTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Title"
+        android:textColor="@color/themeDayDarkText"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/ivQuickConvertIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnQuickConvertEdit"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toStartOf="@+id/btnQuickConvertDelete"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_menu_settings" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/themeDayDarkText"
+        app:layout_constraintBottom_toBottomOf="@+id/btnQuickConvertEdit"
+        app:layout_constraintEnd_toStartOf="@+id/btnQuickConvertDelete"
+        app:layout_constraintStart_toEndOf="@+id/btnQuickConvertEdit"
+        app:layout_constraintTop_toTopOf="@+id/btnQuickConvertEdit" />
+
+    <ImageButton
+        android:id="@+id/btnQuickConvertDelete"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_menu_delete" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilQuickConvertInput"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/themeDayDarkText"
+        app:layout_constraintEnd_toStartOf="@+id/spQuickConvertFrom"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuickConvertTitle">
+        <!--android:theme="@style/TextInputLayoutAppearance"-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etQuickConvertInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:hint="@string/unit_type_value_text_hint"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLength="20"
+            android:textColor="@color/themeDayDarkText"
+            android:textColorHighlight="@color/themePrimary" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/spQuickConvertFrom"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_spinner_light"
+        app:layout_constraintBottom_toBottomOf="@+id/tilQuickConvertInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/tilQuickConvertInput"
+        app:layout_constraintTop_toTopOf="@+id/tilQuickConvertInput" />
+
+    <TextView
+        android:id="@+id/tvQuickConvertResult"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_box_light"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="1dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/spQuickConvertTo"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilQuickConvertInput" />
+
+    <Spinner
+        android:id="@+id/spQuickConvertTo"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_spinner_light"
+        app:layout_constraintBottom_toBottomOf="@+id/tvQuickConvertResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/tvQuickConvertResult"
+        app:layout_constraintTop_toTopOf="@+id/tvQuickConvertResult" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

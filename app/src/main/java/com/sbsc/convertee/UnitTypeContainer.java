@@ -1,8 +1,6 @@
 package com.sbsc.convertee;
 
 import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
 
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
@@ -42,7 +40,7 @@ public class UnitTypeContainer {
             {Weight.id, String.valueOf(R.drawable.ic_weight)},
 
             // LIVING
-            {BraSize.id, String.valueOf(R.drawable.ic_time)},
+            {BraSize.id, String.valueOf(R.drawable.ic_brasize)},
             {Currency.id, String.valueOf(R.drawable.ic_currency)},
             {FuelEconomy.id, String.valueOf(R.drawable.ic_fueleconomy)},
             {ShoeSize.id, String.valueOf(R.drawable.ic_shoe)},
@@ -53,7 +51,7 @@ public class UnitTypeContainer {
             {Energy.id, String.valueOf(R.drawable.ic_energy)},
             {Force.id, String.valueOf(R.drawable.ic_force)},
             {Pressure.id, String.valueOf(R.drawable.ic_pressure)},
-            {Speed.id, String.valueOf(R.drawable.ic__speed)},
+            {Speed.id, String.valueOf(R.drawable.ic_speed)},
 
             // MATHS
             {Angle.id, String.valueOf(R.drawable.ic_angle)},
@@ -78,18 +76,18 @@ public class UnitTypeContainer {
         localizedUnitTypes = localizedArr;
     }
 
+    public static LocalizedUnitType getLocalizedUnitType( String id ){
+        for( LocalizedUnitType unitType : localizedUnitTypes ) if( unitType.getUnitTypeKey().equals(id) ) return unitType;
+        return null;
+    }
+
     /**
      * Sets the unitType for this instance of the Fragment from the bundle sent when it was called
      * by the activity
      */
-    public static UnitType initializeUnitType( Bundle bundle , Context ctx){
+    public static UnitType getUnitType(String unitTypeId ){
 
         UnitType unitType = null;
-        String unitTypeId = HelperUtil.getBundleString(
-                bundle ,
-                ctx.getString(R.string.bundle_selected_unittype),
-                UnitType.id
-        );
 
         // Find out which UnitType the ID belongs to
         if( StringUtils.equalsIgnoreCase( unitTypeId , Distance.id ) ){

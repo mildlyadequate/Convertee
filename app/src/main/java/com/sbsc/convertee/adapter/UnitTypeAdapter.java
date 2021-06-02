@@ -67,9 +67,7 @@ public class UnitTypeAdapter extends RecyclerView.Adapter<UnitTypeAdapter.ViewHo
         // Only show status if this list is inside the category tab
         if( isCategoryTab ){
             Drawable statusIcon = null;
-            if( item.isHidden() ){
-                statusIcon = ContextCompat.getDrawable(context,R.drawable.ic_visibility_off);
-            }else if( item.isFavourite() ){
+            if( item.isFavourite() ){
                 statusIcon = ContextCompat.getDrawable(context,R.drawable.ic_favourite);
             }
             holder.getStatusIcon().setImageDrawable( statusIcon );
@@ -94,45 +92,10 @@ public class UnitTypeAdapter extends RecyclerView.Adapter<UnitTypeAdapter.ViewHo
                 popup.getMenu().getItem(0).setIcon( ContextCompat.getDrawable(context , R.drawable.ic_favourite) );
             }
 
-            // Change MenuItem text to show if it already is hidden
-            if( item.isHidden() ){
-                popup.getMenu().getItem(1).setTitle( context.getString(R.string.adapter_popup_show) );
-                popup.getMenu().getItem(1).setIcon( ContextCompat.getDrawable(context , R.drawable.ic_visibility_on) );
-            }else{
-                popup.getMenu().getItem(1).setIcon( ContextCompat.getDrawable(context , R.drawable.ic_visibility_off) );
-            }
-
             //adding click listener
             popup.setOnMenuItemClickListener( selectedItem -> {
 
-                // Hide an item
-                if (selectedItem.getItemId() == R.id.mni_unit_type_hide){
-
-                    // If it already is favourite
-                    if( item.isHidden() ) {
-                        item.setHidden(false);
-                        unitOverviewFragment.showUnitType(holder.getUnitTypeKey(), holder.getAdapterPosition());
-
-                    }else{  // IF IT SHOULD BE HIDDEN
-
-                        if (unitTypes.size() - 1 <= 0) {
-                            Snackbar.make(unitOverviewFragment.requireView(), context.getString(R.string.pref_hidden_unit_types_error), Snackbar.LENGTH_SHORT).show();
-                            return true;
-                        }
-                        unitOverviewFragment.hideUnitType(holder.getUnitTypeKey(), holder.getAdapterPosition());
-                        item.setHidden(true);
-
-                        // Hiding an item also removes it from favourites
-                        if (item.isFavourite()) {
-                            item.setFavourite(false);
-                            unitOverviewFragment.unfavouriteUnitType(item.getUnitTypeKey());
-                        }
-
-                    }
-                    notifyDataSetChanged();
-
-                // Toggle an item favourite
-                }else if (selectedItem.getItemId() == R.id.mni_unit_type_favourite) {
+            if (selectedItem.getItemId() == R.id.mni_unit_type_favourite) {
 
                     // If it already is favourite
                     if( item.isFavourite() ){
@@ -152,12 +115,6 @@ public class UnitTypeAdapter extends RecyclerView.Adapter<UnitTypeAdapter.ViewHo
                     // If its not favourite
                     }else{
                         item.setFavourite( true );
-
-                        // Show if hidden and then set favourite
-                        if(item.isHidden()){
-                            item.setHidden(false);
-                            unitOverviewFragment.showUnitType(holder.getUnitTypeKey(), holder.getAdapterPosition());
-                        }
 
                         // Favourites are not applied in category view
                         if( !isCategoryTab ) {

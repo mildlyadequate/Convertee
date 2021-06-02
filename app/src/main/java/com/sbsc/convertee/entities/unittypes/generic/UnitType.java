@@ -1,5 +1,7 @@
 package com.sbsc.convertee.entities.unittypes.generic;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -123,6 +125,17 @@ public class UnitType{
 
         // Turn filteredList into an Array of Entry as its not going to be changed anymore
         return filteredList.toArray(new UnitTypeEntry[0]);
+    }
+
+    /**
+     * Localized name of this unit type
+     * @param ctx Context
+     * @return String of localized name
+     */
+    public String getUnitTypeLocalizedName( Context ctx ){
+        return ctx.getResources().getString(
+                ctx.getResources().getIdentifier( "unit_type_name_"+getId() , "string", ctx.getPackageName() )
+        );
     }
 
     /**

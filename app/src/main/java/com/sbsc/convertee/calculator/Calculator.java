@@ -21,7 +21,7 @@ public class Calculator {
      */
     public static Locale locale = Locale.US;
     /**
-     TODO ACTUALLY USE THIS VALUE AND SET IT SO WE SAVE PARAMETERS
+        Digits to round to
      */
     public static int roundToDigits = 0;
 
@@ -51,7 +51,7 @@ public class Calculator {
      * @param type UnitType used as a parameter so it can be determined which UnitType (eg. Weight) is being calculated
      * @return List of calculated items
      */
-    public static List<CalculatedUnitItem> getResultList(String originalValue , String originalUnitName , LocalizedUnit[] filteredUnits , UnitType type ){
+    public static List<CalculatedUnitItem> getResultList( String originalValue , String originalUnitName , LocalizedUnit[] filteredUnits , UnitType type ){
 
         List<CalculatedUnitItem> list = new ArrayList<>();
         boolean isSpecial = CalcSpecial.isSpecial( type );
@@ -62,31 +62,40 @@ public class Calculator {
             // Make sure the unit being looked at right now is NOT the original one
             if( !unit.getUnitKey().equalsIgnoreCase(originalUnitName)){
 
-                // Check for special units such as temperature
-                if( !isSpecial ){
+                list.add( getSingleResult( originalValue , originalUnitName , unit , type , isSpecial ) );
 
-                    // If not a special unit
-                    String result = CalcDefault.getResultFor(
-                            originalValue,
-                            originalUnitName,
-                            unit.getUnitKey(),
-                            type
-                    );
-                    CalculatedUnitItem calcItem = new CalculatedUnitItem( result , unit );
-
-                    // If it isn't, get a CalculatedUnitItem from the result of the calculation function getResultFor() and the current unit
-                    list.add( calcItem );
-
-                }else{
-
-                    String result = CalcSpecial.getResultFor( originalValue , originalUnitName , unit.getUnitKey() , type );
-                    CalculatedUnitItem calcItem = new CalculatedUnitItem( result , unit );
-                    list.add( calcItem );
-
-                } // isSpecial
             } // Check main unit
         } // loop
         return list;
+    }
+
+    public static CalculatedUnitItem getSingleResult( String originalValue , String originalUnitName , LocalizedUnit targetUnit , UnitType unitType , boolean isSpecial ){
+
+        CalculatedUnitItem calcItem;
+
+        // Check for special units such as temperature
+        if( !isSpecial ){
+
+            // If not a special unit
+            String result = CalcDefault.getResultFor(
+                    originalValue,
+                    originalUnitName,
+                    targetUnit.getUnitKey(),
+                    unitType
+            );
+            calcItem = new CalculatedUnitItem( result , targetUnit );
+
+        }else{
+
+            String result = CalcSpecial.getResultFor( originalValue , originalUnitName , targetUnit.getUnitKey() , unitType );
+            calcItem = new CalculatedUnitItem( result , targetUnit );
+
+        } // isSpecial
+        return calcItem;
+    }
+
+    public static CalculatedUnitItem getSingleResult( String originalValue , String originalUnitName , LocalizedUnit targetUnit , UnitType unitType ){
+        return getSingleResult( originalValue , originalUnitName , targetUnit , unitType , CalcSpecial.isSpecial( unitType ) );
     }
 
 }

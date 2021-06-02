@@ -23,6 +23,27 @@
         <item name="android:itemTextAppearance">@style/MenuItemTextAppearance</item>
     </style>
 
+    <style name="ErrorText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/themeRed</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="HintText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/themeDaySoftDarkText</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <!-- reference our hint & error styles -->
+        <item name="hintTextAppearance">@style/HintText</item>
+        <item name="errorTextAppearance">@style/ErrorText</item>
+        <item name="android:textColor">@color/themeDayDarkText</item>
+        <item name="android:textColorHint">@color/themeDaySoftDarkText</item>
+        <item name="colorControlNormal">@color/black</item>
+        <item name="colorControlActivated">@color/themePrimary</item>
+        <item name="colorControlHighlight">@color/themePrimary</item>
+    </style>
+
     <style name="MenuItemTextAppearance">
         <item name="android:textColor">@color/themeDayBlackText</item>
     </style>
