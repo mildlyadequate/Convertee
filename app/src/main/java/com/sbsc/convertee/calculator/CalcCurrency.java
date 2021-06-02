@@ -2,18 +2,13 @@ package com.sbsc.convertee.calculator;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.icu.util.Calendar;
-import android.text.format.Time;
-import android.util.Log;
 import android.view.View;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.sbsc.convertee.entities.unittypes.Currency;
-import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.CurrencyApiHandler;
 import com.sbsc.convertee.tools.HelperUtil;
@@ -23,7 +18,6 @@ import com.sbsc.convertee.ui.quickconverter.QuickConverterViewModel;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.util.Date;
 
 /**
  * Helper Class to look up shoe sizes in array
@@ -107,7 +101,7 @@ public class CalcCurrency {
         if( currencyRates != null && currencyRates.get("USD") != null ){
             long currentTime = CompatibilityHandler.getCurrentTime();
             sharedPref.edit().putLong("currency_rates_last_update",currentTime).apply();
-            unitConverterViewModel.setCurrencyRatesLastUpdated(currentTime);
+            if( unitConverterViewModel != null ) unitConverterViewModel.setCurrencyRatesLastUpdated(currentTime);
         }
     }
 

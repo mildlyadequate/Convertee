@@ -3,7 +3,6 @@ package com.sbsc.convertee;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,14 +14,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
-import com.github.appintro.AppIntro;
 import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
 import com.sbsc.convertee.tools.DefaultHiddenUnits;
 import com.sbsc.convertee.ui.converter.UnitConverterFragment;
 import com.sbsc.convertee.ui.intro.AppIntroActivity;
 import com.sbsc.convertee.ui.quickconverter.QuickConvertEditorFragment;
-import com.sbsc.convertee.ui.quickconverter.QuickConverterFragment;
 import com.sbsc.convertee.ui.settings.SettingsFragment;
 import com.sbsc.convertee.ui.settings.UnitSettingsFragment;
 
@@ -223,7 +220,10 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
     public void openQuickConvertEditor( QuickConvertUnit quickConvertUnit ){
         Bundle bundle = new Bundle();
         if ( quickConvertUnit!= null )
-            bundle.putString( "QuickConvertEditorItem" , quickConvertUnit.getUnitTypeId()+"::"+quickConvertUnit.getIdUnitFrom()+"::"+quickConvertUnit.getIdUnitTo() );
+            bundle.putString(
+                    "QuickConvertEditorItem" ,
+                    quickConvertUnit.getUnitTypeId()+"::"+quickConvertUnit.getIdUnitFrom()+"::"+quickConvertUnit.getIdUnitTo()+"::"+quickConvertUnit.getDefaultValue()
+            );
         changeFragment( new QuickConvertEditorFragment() , bundle , "quickConverterEditor");
     }
 

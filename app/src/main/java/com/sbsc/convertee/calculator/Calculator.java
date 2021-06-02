@@ -74,23 +74,24 @@ public class Calculator {
         CalculatedUnitItem calcItem;
 
         // Check for special units such as temperature
+        String result;
         if( !isSpecial ){
 
             // If not a special unit
-            String result = CalcDefault.getResultFor(
+            result = CalcDefault.getResultFor(
                     originalValue,
                     originalUnitName,
                     targetUnit.getUnitKey(),
                     unitType
             );
-            calcItem = new CalculatedUnitItem( result , targetUnit );
 
         }else{
 
-            String result = CalcSpecial.getResultFor( originalValue , originalUnitName , targetUnit.getUnitKey() , unitType );
-            calcItem = new CalculatedUnitItem( result , targetUnit );
+            result = CalcSpecial.getResultFor(originalValue, originalUnitName, targetUnit.getUnitKey(), unitType);
 
         } // isSpecial
+
+        calcItem = new CalculatedUnitItem( result , targetUnit );
         return calcItem;
     }
 

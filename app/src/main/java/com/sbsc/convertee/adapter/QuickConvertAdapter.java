@@ -1,7 +1,6 @@
 package com.sbsc.convertee.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,7 +72,13 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         UnitType unitType = UnitTypeContainer.getUnitType( item.getUnitTypeId() );
 
         // Title
-        holder.getTvQuickConvertTitle().setText( unitType.getUnitTypeLocalizedName( context ) );
+        String localizedUnitTypeName = unitType.getUnitTypeLocalizedName( context );
+        holder.getTvQuickConvertTitle().setText( localizedUnitTypeName );
+
+        holder.getTilQuickConvertInput().setHintAnimationEnabled(false);
+        // Edit Text Input Default
+        holder.getEtQuickConvertInput().setText( item.getDefaultValue() );
+        holder.getTilQuickConvertInput().setHintAnimationEnabled(true);
 
         // Icon
         LocalizedUnitType localizedUnitType = UnitTypeContainer.getLocalizedUnitType( unitType.getId() );
@@ -98,10 +103,14 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
-                final TextView t = (TextView)v.findViewById(android.R.id.text1);
-                t.setText(units[position].getNameShort());
-                return v;
+                if( convertView == null ){
+                    final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
+                    final TextView t = v.findViewById(android.R.id.text1);
+                    t.setText(units[position].getNameShort());
+                    return v;
+                }else{
+                    return convertView;
+                }
             }
         };
         adapterFrom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -110,10 +119,15 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
-                final TextView t = (TextView)v.findViewById(android.R.id.text1);
-                t.setText(units[position].getNameShort());
-                return v;
+                if( convertView == null ){
+                    final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
+                    final TextView t = v.findViewById(android.R.id.text1);
+                    t.setText(units[position].getNameShort());
+                    return v;
+                }else{
+                    return convertView;
+                }
+
             }
         };
         adapterTo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -172,15 +186,31 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
 
         // ------------------------------------ Buttons  -------------------------------------------
 
+        // Delete
         holder.getBtnQuickConvertDelete().setOnClickListener(view -> {
-            quickConvertUnits.remove( item );
-            notifyItemRemoved( position );
-            quickConverterFragment.removeQuickConvertUnit( item );
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(context);
+            alert.setTitle("Delete favourite");
+            alert.setMessage("Are you sure you want to delete '"+localizedUnitTypeName+"'?");
+            alert.setPositiveButton("Yes", (dialog, which) -> {
+                quickConvertUnits.remove( item );
+                notifyItemRemoved( position );
+                notifyItemRangeChanged(position,getItemCount()-position);
+                // notifyDataSetChanged();
+                quickConverterFragment.removeQuickConvertUnit( item );
+            });
+
+            alert.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
+
+            alert.show();
+
         });
 
-        holder.getBtnQuickConvertEdit().setOnClickListener(view -> {
-            quickConverterFragment.startEditingQuickConvertUnit( item );
-        });
+        // Edit
+        holder.getBtnQuickConvertEdit().setOnClickListener(view -> quickConverterFragment.startEditingQuickConvertUnit( item ));
+
+        // Open
+        holder.getBtnQuickConvertOpen().setOnClickListener(view -> quickConverterFragment.openUnitTypeExtended( item.getUnitTypeId() ));
 
     }
 
@@ -216,7 +246,7 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
                 !item.getUnitTypeId().equals(ColourCode.id) &&
                 !item.getUnitTypeId().equals(BraSize.id)
         ){
-            return "";
+            return "...";
         }
 
         if( unitType.getId().equals(Currency.id) ){
@@ -258,7 +288,7 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
 
         private final ImageButton btnQuickConvertEdit;
         private final ImageButton btnQuickConvertDelete;
-
+        private final ImageButton btnQuickConvertOpen;
 
         public ViewHolder(View view) {
             super(view);
@@ -272,6 +302,7 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
             tvQuickConvertResult = view.findViewById( R.id.tvQuickConvertResult );
             btnQuickConvertEdit = view.findViewById( R.id.btnQuickConvertEdit );
             btnQuickConvertDelete = view.findViewById( R.id.btnQuickConvertDelete );
+            btnQuickConvertOpen = view.findViewById( R.id.btnQuickConvertOpen );
 
         }
 
@@ -289,5 +320,6 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         public TextView getTvQuickConvertResult() { return tvQuickConvertResult; }
         public ImageButton getBtnQuickConvertEdit() { return btnQuickConvertEdit; }
         public ImageButton getBtnQuickConvertDelete() { return btnQuickConvertDelete; }
+        public ImageButton getBtnQuickConvertOpen() { return btnQuickConvertOpen; }
     }
 }

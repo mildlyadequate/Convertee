@@ -1,16 +1,14 @@
 package com.sbsc.convertee.tools;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
-import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
+
+import org.jetbrains.annotations.NotNull;
 
 public class HighlightArrayAdapter extends ArrayAdapter<Object> {
 
@@ -27,11 +25,11 @@ public class HighlightArrayAdapter extends ArrayAdapter<Object> {
 
 
     @Override
-    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+    public View getDropDownView(int position, View convertView, @NotNull ViewGroup parent) {
         View itemView =  super.getDropDownView(position, convertView, parent);
 
         if (position == mSelectedIndex) {
-            itemView.setBackgroundColor(CompatibilityHandler.getColor( getContext() , R.color.themePrimaryLight ));
+            itemView.setBackgroundColor(CompatibilityHandler.getColor( getContext() , R.color.themeDaySoftPrimary ));
         } else {
             itemView.setBackgroundColor(Color.TRANSPARENT);
         }

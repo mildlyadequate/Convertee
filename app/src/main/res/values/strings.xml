@@ -21,6 +21,10 @@
     <!-- CONTENT DESCRIPTION -->
     <string name="content_description_unittype_icon">Icon for this unit type</string>
     <string name="content_description_unittype_status">Shows this unit types current status eg. Favourite, Hidden</string>
+    <string name="content_description_fab_quickconverter_add">Button to add a favourite from unit types</string>
+    <string name="content_description_quickconvert_item_icon">Icon of this unit type</string>
+    <string name="content_description_quickconvert_item_edit">Button to edit this favourite unit type</string>
+    <string name="content_description_quickconvert_item_delete">Button to delete this favourite unit type</string>
 
     <!-- TABBED PANE TABS -->
     <string name="tabbed_pane_tab_customized">Favourites</string>
@@ -73,13 +77,12 @@
     <string name="pref_pro_mode_select_subtitle">Hide full unit names. Recommended if you know the abbreviations well enough.</string>
     <!-- Setting: Locale -->
     <string name="pref_locale_title">Number Formatting</string>
-    <string name="pref_locale_subtitle">Currently formatting as</string>
+    <string name="pref_locale_subtitle">Currently as</string>
     <string name="pref_locale_none">None</string>
-    <string name="preference_locale_default_UK" translatable="false">en-GB</string>
-    <!-- Category: Select UnitTypes to hide -->
-    <string name="pref_hidden_unit_types_title">Hide/Show unit types</string>
-    <string name="pref_hidden_unit_types_subtitle">unit types on start screen.</string>
-    <string name="pref_hidden_unit_types_error">Not saved: At least one unit must be visible</string>
+    <string name="preference_locale_default_UK">en-GB</string>
+    <string name="locale_uk_desc">UK: e.g. 100.000,5</string>
+    <string name="locale_de_desc">DE: e.g. 100,000.5</string>
+
     <!-- Category: Select Units to hide -->
     <string name="pref_category_select_units">Units</string>
     <string name="pref_category_select_units_subtitle">Choose the units you want to hide.</string>
@@ -105,12 +108,20 @@
     <string name="preference_round_value" translatable="false">preference_round_value</string>
     <string name="preference_pro_mode" translatable="false">preference_pro_mode</string>
     <string name="preference_locale" translatable="false">preference_locale</string>
-    <string name="preference_hidden_unit_types" translatable="false">preference_app_hidden_unit_types</string>
     <string name="preference_action_reset" translatable="false">preference_action_reset</string>
+
+    <!-- QUICK CONVERT EDITOR -->
+    <string name="quickconvert_editor_error_hint">Wrong input for this unit type!</string>
+    <string name="quickconvert_editor_label_unittype">Unit Type</string>
+    <string name="quickconvert_editor_default_unit">Default Unit</string>
+    <string name="quickconvert_editor_default_value">Default Value</string>
+    <string name="quickconvert_editor_header_from">From</string>
+    <string name="quickconvert_editor_header_to">To</string>
+    <string name="quickconvert_editor_button_save">Save</string>
 
     <!-- ========================================= UNITS =========================================== -->
     <!-- Everything below here has to exist for EVERY SINGLE UNIT TYPE ! -->
-    <string name="unit_type_value_text_hint">Value e.g.</string>
+    <string name="unit_type_value_text_hint">Value: e.g.</string>
     <string name="unit_type_value_text_hint_short">Enter value</string>
 
     <!-- MENUS / UNIT TYPE NAMES -->
@@ -595,9 +606,9 @@
     </string>
     <string name="colour_colourhex_info">A hexadecimal color is specified with: #RRGGBB, #RGB, RRGGBB, or RGB\n\nRR (red), GG (green) and BB (blue) are hexadecimal numbers between 00 (0) and FF (255) specifying the intensity of the color.\n\nFor example, #0000FF is displayed as blue, because the blue component is set to its highest value (FF) and the others are set to 00.
     </string>
-    <string name="colour_colourhsl_info">HSL stands for hue, saturation, and lightness.\n\nHSL color values are specified with: hsl(hue, saturation, lightness).\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nLIGHTNESS is also a percentage; 0% is black, 100% is white.
+    <string name="colour_colourhsl_info" formatted="false">HSL stands for hue, saturation, and lightness.\n\nHSL color values are specified with: hsl(hue, saturation, lightness).\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nLIGHTNESS is also a percentage; 0% is black, 100% is white.
     </string>
-    <string name="colour_colourhsv_info">HSV stands for hue, saturation, and value.\n\nThe difference between HSL and HSV is that a color with maximum lightness in HSL is pure white, but a color with maximum value/brightness in HSV is analogous to shining a white light on a colored object (e.g. shining a bright white light on a red object causes the object to still appear red, just brighter and more intense, while shining a dim light on a red object causes the object to appear darker and less bright).\n\nHSV color values are specified with: hsv(hue, saturation, value)\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nVALUE equals brightness and is also a percentage; 0% is dark, 100% is bright.
+    <string name="colour_colourhsv_info" formatted="false">HSV stands for hue, saturation, and value.\n\nThe difference between HSL and HSV is that a color with maximum lightness in HSL is pure white, but a color with maximum value/brightness in HSV is analogous to shining a white light on a colored object (e.g. shining a bright white light on a red object causes the object to still appear red, just brighter and more intense, while shining a dim light on a red object causes the object to appear darker and less bright).\n\nHSV color values are specified with: hsv(hue, saturation, value)\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nVALUE equals brightness and is also a percentage; 0% is dark, 100% is bright.
     </string>
     <string name="colour_colourcmyk_info">CMYK colors is a combination of cyan, magenta, yellow , and black.\n\nIt\'s specified with: cmyk(cyan,magenta,yellow,black), alternatively this app supports \'cyan,magenta,yellow,black\' as well.\n\nThis colour standard is predominantly used for printing.
     </string>

@@ -1,7 +1,5 @@
 package com.sbsc.convertee.calculator;
 
-import android.util.Log;
-
 import com.sbsc.convertee.entities.unittypes.BraSize;
 
 import java.util.regex.Matcher;
@@ -9,35 +7,28 @@ import java.util.regex.Pattern;
 
 public class CalcBraSize {
 
-    // Index used in ShoeSize as factor
-    private static final int euSize = 0;
-    private static final int usSize = 1;
-    private static final int ukSize = 2;
-    private static final int frSize = 3;
-    private static final int jpSize = 4;
-    private static final int auSize = 5;
-
     // SINGLETON
-    private static CalcBraSize calcShoeSize;
+    private static CalcBraSize calcBraSize;
 
     /**
      * Lazy initialization singleton
      * @return instance of UnitType
      */
     public static CalcBraSize getInstance(){
-        if (calcShoeSize == null){ //if there is no instance available... create new one
-            calcShoeSize = new CalcBraSize();
+        if (calcBraSize == null){ //if there is no instance available... create new one
+            calcBraSize = new CalcBraSize();
         }
-        return calcShoeSize;
+        return calcBraSize;
     }
 
     // Delete singleton instance
     public static void deleteInstance(){
-        calcShoeSize = null;
+        calcBraSize = null;
     }
 
     public String getResultFor( String valueString , String originUnit , String targetUnit){
 
+        if( valueString.trim().isEmpty() ) return "...";
         if( !valueString.matches("\\d+[a-zA-Z]+") ) return getWrongInputReturn();
 
         // Get BandSize from String

@@ -1,7 +1,5 @@
 package com.sbsc.convertee.tools;
 
-import android.util.Log;
-
 import java.math.BigDecimal;
 import java.math.MathContext;
 

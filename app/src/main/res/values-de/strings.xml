@@ -68,10 +68,6 @@
     <string name="pref_locale_title">Zahlenformatierung</string>
     <string name="pref_locale_subtitle">Aktuell formatiert als </string>
     <string name="pref_locale_none">None</string>
-    <!-- Category: Select UnitTypes to hide -->
-    <string name="pref_hidden_unit_types_title">Einheitstypen ein-/ausblenden</string>
-    <string name="pref_hidden_unit_types_subtitle">Vom Startbildschirm.</string>
-    <string name="pref_hidden_unit_types_error">Nicht gespeichert: Mindestens ein Typ muss sichtbar sein</string>
     <!-- Category: Select Units to hide -->
     <string name="pref_category_select_units">Einheiten</string>
     <string name="pref_category_select_units_subtitle">Bestimmte auswählen um sie auszublenden</string>
@@ -328,9 +324,9 @@
     </string>
     <string name="colour_colourhex_info">Eine hexadezimale Farbe wird angegeben mit: #RRGGBB, #RGB, RRGGBB oder RGB\n\nRR (rot), GG (grün) und BB (blau) sind Hexadezimalzahlen zwischen 00 (0) und FF (255), zum angeben der Intensität der Farbe.\n\n#0000FF wird beispielsweise als blau angezeigt, da die blauen Werte auf ihren höchsten Wert (FF) und die anderen auf 00 eingestellt sind.
     </string>
-    <string name="colour_colourhsl_info">HSL steht für Farbton, Sättigung und relative Helligkeit(eng. lightness).\n\nHSL-Farbwerte werden angegeben mit: hsl(Farbton, Sättigung, relative Helligkeit).\n\nFARBTON ist ein Grad auf dem Farbkreis von 0 bis 360. 0 ist rot, 120 ist grün, 240 ist blau.\nSÄTTIGUNG ist ein Prozentwert; 0% bedeutet einen Grauton und 100% ist die volle Farbe.\nRELATIVE HELLIGKEIT ist auch ein Prozentsatz; 0% ist schwarz, 100% ist weiß.
+    <string name="colour_colourhsl_info" formatted="false">HSL steht für Farbton, Sättigung und relative Helligkeit(eng. lightness).\n\nHSL-Farbwerte werden angegeben mit: hsl(Farbton, Sättigung, relative Helligkeit).\n\nFARBTON ist ein Grad auf dem Farbkreis von 0 bis 360. 0 ist rot, 120 ist grün, 240 ist blau.\nSÄTTIGUNG ist ein Prozentwert; 0% bedeutet einen Grauton und 100% ist die volle Farbe.\nRELATIVE HELLIGKEIT ist auch ein Prozentsatz; 0% ist schwarz, 100% ist weiß.
     </string>
-    <string name="colour_colourhsv_info">HSV steht für Farbton, Sättigung und Hellwert(eng. value).\n\nDer Unterschied zwischen HSL und HSV besteht darin, dass eine Farbe mit maximaler relativen Helligkeit in HSL reinweiß ist, aber eine Farbe mit maximalem HellWert in HSV, analog zum Leuchten eines weißen Lichts auf ein farbiges Objekt ist (Wenn du beispielsweise ein helles weißes Licht auf ein rotes Objekt richtest, erscheint das Objekt immer noch rot, nur heller und intensiver, während ein schwaches Licht auf ein rotes Objekt das Objekt dunkler und weniger hell erscheinen lässt).\n\nHSV-Farbwerte werden angegeben mit: hsv(Farbton,Sättigung,Hellwert)\n\nFARBTON ist ein Grad auf dem Farbkreis von 0 bis 360. 0 ist rot, 120 ist grün, 240 ist blau.\nSÄTTIGUNG ist ein Prozentwert; 0% bedeutet einen Grauton und 100% ist die volle Farbe.\nDer HELLWERT entspricht der Helligkeit und ist auch ein Prozentsatz. 0% ist dunkel, 100% ist hell.
+    <string name="colour_colourhsv_info" formatted="false">HSV steht für Farbton, Sättigung und Hellwert(eng. value).\n\nDer Unterschied zwischen HSL und HSV besteht darin, dass eine Farbe mit maximaler relativen Helligkeit in HSL reinweiß ist, aber eine Farbe mit maximalem HellWert in HSV, analog zum Leuchten eines weißen Lichts auf ein farbiges Objekt ist (Wenn du beispielsweise ein helles weißes Licht auf ein rotes Objekt richtest, erscheint das Objekt immer noch rot, nur heller und intensiver, während ein schwaches Licht auf ein rotes Objekt das Objekt dunkler und weniger hell erscheinen lässt).\n\nHSV-Farbwerte werden angegeben mit: hsv(Farbton,Sättigung,Hellwert)\n\nFARBTON ist ein Grad auf dem Farbkreis von 0 bis 360. 0 ist rot, 120 ist grün, 240 ist blau.\nSÄTTIGUNG ist ein Prozentwert; 0% bedeutet einen Grauton und 100% ist die volle Farbe.\nDer HELLWERT entspricht der Helligkeit und ist auch ein Prozentsatz. 0% ist dunkel, 100% ist hell.
     </string>
     <string name="colour_colourcmyk_info">CMYK-Farben sind eine Kombination aus Cyan, Magenta, Gelb und Schwarz. \n\nEs wird angegeben mit: cmyk(cyan,magenta,gelb,schwarz), alternativ unterstützt diese App auch \'cyan,magenta,gelb,schwarz\'.\n\nDieser Farbstandard wird überwiegend zum Drucken verwendet.
     </string>

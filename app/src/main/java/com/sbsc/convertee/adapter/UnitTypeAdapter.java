@@ -16,7 +16,6 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.tools.customlayouts.UnitTypeCustomView;
@@ -32,7 +31,7 @@ public class UnitTypeAdapter extends RecyclerView.Adapter<UnitTypeAdapter.ViewHo
     // References
     private final OverviewFragment unitOverviewFragment;
     private final Context context;
-    private boolean isCategoryTab = false;
+    private final boolean isCategoryTab;
 
     public UnitTypeAdapter(List<LocalizedUnitType> unitTypes , OverviewFragment unitOverviewFragment, boolean isCategoryTab , Context ctx ){
         this.unitTypes = unitTypes;

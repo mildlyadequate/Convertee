@@ -2,20 +2,15 @@
 
     <!-- LOCALE -->
     <string-array name="pref_number_format_locales_titles">
-        <item>UK</item>
-        <item>DE</item>
+        <item>@string/locale_uk_desc</item>
+        <item>@string/locale_de_desc</item>
         <item>@string/pref_locale_none</item>
     </string-array>
     <string-array name="pref_number_format_locales_values">
-        <item>@string/preference_locale_default_UK</item>
+        <item>en-GB</item>
         <item>de-DE</item>
         <item>none</item>
     </string-array>
-
-    <!-- Hidden UnitTypes -->
-    <string-array name="pref_hidden_unit_types_values" />
-    <string-array name="pref_hidden_unit_types_titles" />
-    <string-array name="pref_hidden_unit_types_defaults" />
 
     <!-- MULTI SELECT PREFERENCE ARRAYS -->
     <!-- Distance -->

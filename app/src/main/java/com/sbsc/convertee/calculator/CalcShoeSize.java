@@ -2,6 +2,8 @@ package com.sbsc.convertee.calculator;
 
 import com.sbsc.convertee.entities.unittypes.ShoeSize;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Helper Class to look up shoe sizes in array
  */
@@ -149,12 +151,10 @@ public class CalcShoeSize {
             return 0;
         }
 
-        public double getEu() { return eu; }
-        public double getUk() { return uk; }
-        public double getMondo() { return mondo; }
         public double getUSM() { return uk+1; }
         public double getUSW() { return uk+2; }
 
+        @NotNull
         @Override
         public String toString() {
             return "ShoeSize{" +

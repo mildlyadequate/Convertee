@@ -8,9 +8,6 @@ import android.text.format.Time;
 import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
 
-import java.util.Objects;
-import java.util.function.Consumer;
-
 public class CompatibilityHandler {
 
     public static int getColor(Context ctx , @ColorRes int id){
@@ -36,10 +33,4 @@ public class CompatibilityHandler {
     public static boolean isOldDevice(){
         return !(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N);
     }
-
-    public static String formatDateTime( long millis ){
-        return null;
-    }
-
-
 }

@@ -21,7 +21,9 @@
     <color name="themeDaySoftLightText">#80FFFFFF</color>
     <color name="themeDaySoftDarkText">#36FFFFFF</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color">@color/themePrimary</color>
+    <color name="themeDaySoftPrimary">#F8DDE7</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color">@color/themeDayDarkText</color>
 
 
 

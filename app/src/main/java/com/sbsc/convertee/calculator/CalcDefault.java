@@ -1,7 +1,5 @@
 package com.sbsc.convertee.calculator;
 
-import android.util.Log;
-
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.tools.HelperUtil;
 

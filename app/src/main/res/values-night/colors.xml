@@ -11,4 +11,6 @@
 
     <color name="themeDayDarkText">#edf2f4</color>
     <color name="themeDayBlackText">@color/white</color>
+
+    <color name="themeDaySoftPrimary">#292929</color>
 </resources>

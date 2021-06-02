@@ -1,7 +1,6 @@
 package com.sbsc.convertee.ui.quickconverter;
 
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +24,6 @@ import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.ui.converter.UnitConverterFragment;
-import com.sbsc.convertee.ui.converter.UnitConverterViewModel;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -104,14 +102,14 @@ public class QuickConverterFragment extends Fragment {
         quickConverterItems = sharedPref.getStringSet( "QuickConvertItems" , new HashSet<>() );
         for ( String s : quickConverterItems ) {
             String[] values = s.split("::");
-            addQuickConvertUnit( values[0] , values[1] , values[2] );
+            String defaultVal = "";
+            if(values.length>=4) defaultVal = values[3];
+            addQuickConvertUnit( s , values[0] , values[1] , values[2] , defaultVal );
         }
     }
 
     private void setupViewModelBindings(){
-        quickConverterViewModel.getCurrencyRatesUpdated().observe( getViewLifecycleOwner() , aBoolean -> {
-            rvQuickConvertAdapter.refreshCurrency();
-        });
+        quickConverterViewModel.getCurrencyRatesUpdated().observe( getViewLifecycleOwner() , aBoolean -> rvQuickConvertAdapter.refreshCurrency());
     }
 
     /**
@@ -120,27 +118,16 @@ public class QuickConverterFragment extends Fragment {
      * @param unitFromId unit ID to convert from
      * @param unitToId unit ID to convert to
      */
-    private void addQuickConvertUnit( String unitTypeId , String unitFromId , String unitToId ){
-        QuickConvertUnit newItem = new QuickConvertUnit( unitTypeId , unitFromId , unitToId , loadUnitTypeUnits(UnitTypeContainer.getUnitType( unitTypeId )) );
+    private void addQuickConvertUnit( String packagedString , String unitTypeId , String unitFromId , String unitToId , String fromValue ){
+        QuickConvertUnit newItem = new QuickConvertUnit( unitTypeId , fromValue , unitFromId , unitToId , loadUnitTypeUnits(UnitTypeContainer.getUnitType( unitTypeId )) );
         rvQuickConvertAdapter.addItem( newItem );
-        quickConverterItems.add( unitTypeId + "::" + unitFromId + "::" + unitToId );
+        quickConverterItems.add( packagedString );
         commitQuickConvertItems();
     }
 
     public void startEditingQuickConvertUnit( QuickConvertUnit quickConvertUnit ){
         MainActivity mainActivity = (MainActivity) requireActivity();
         mainActivity.openQuickConvertEditor( quickConvertUnit );
-    }
-
-    // TODO not finished
-    public void editQuickConvertUnit( QuickConvertUnit quickConvertUnit ){
-        for ( String s : quickConverterItems ) {
-            if( s.startsWith(quickConvertUnit.getUnitTypeId()) ){
-                s = "";
-                commitQuickConvertItems();
-                return;
-            }
-        }
     }
 
     /**
@@ -179,6 +166,11 @@ public class QuickConverterFragment extends Fragment {
                 getContext(),
                 UnitType.filterUnits( hiddenUnits , unitType )
         );
+    }
+
+    public void openUnitTypeExtended( String unitTypeKey ){
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.openUnitConverter( unitTypeKey );
     }
 
     public SharedPreferences getSharedPref() { return sharedPref; }

@@ -1,5 +1,7 @@
 package com.sbsc.convertee.entities.adapteritems;
 
+import org.jetbrains.annotations.NotNull;
+
 public class LocalizedUnit {
 
     private final String unitKey;
@@ -23,6 +25,7 @@ public class LocalizedUnit {
     }
     public String getSampleInput() { return sampleInput; }
 
+    @NotNull
     @Override
     public String toString() {
         return localizedName;

@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
@@ -53,6 +54,7 @@ import com.sbsc.convertee.tools.HelperUtil;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -180,6 +182,15 @@ public class UnitConverterFragment extends Fragment {
 
         // Change hint in the layout rather than the EditText, otherwise it will duplicate
         etValueLayout = root.findViewById(R.id.tilDistanceInput);
+
+        try {
+            Field field = TextInputLayout.class.getDeclaredField("defaultStrokeColor");
+            field.setAccessible(true);
+            field.set(etValueLayout, ContextCompat.getColor( requireContext() , R.color.white));
+        }
+        catch (NoSuchFieldException | IllegalAccessException e) {
+            Log.e("TAG", "Failed to change box color, item might look wrong");
+        }
 
         etValue.addTextChangedListener(new TextWatcher() {
             @Override

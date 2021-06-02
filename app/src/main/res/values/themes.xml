@@ -33,6 +33,20 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="TextInputLayoutStyle"
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/themeDayDarkText</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">@color/themeDayDarkText</item>
+    </style>
+
+    <style name="TextInputLayoutStyleLight"
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/themePrimary</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">@color/themeDayDarkText</item>
+    </style>
+
     <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
         <!-- reference our hint & error styles -->
         <item name="hintTextAppearance">@style/HintText</item>

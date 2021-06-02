@@ -152,7 +152,6 @@ public class UnitOverviewFragment extends OverviewFragment {
         if(wasPaused){
             wasPaused = false;
 
-            Set<String> tempHidden = sharedPreferences.getStringSet( getString(R.string.preference_hidden_unit_types) , new HashSet<>());
             Set<String> tempFave = sharedPreferences.getStringSet( getString(R.string.preference_favourite_unit_types) , new HashSet<>());
 
             if( tempFave != favouriteUnitTypes ){

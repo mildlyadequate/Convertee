@@ -5,41 +5,27 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
-import android.widget.Toast;
+import android.util.Log;
 
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
-import androidx.preference.MultiSelectListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.UnitTypeContainer;
 import com.sbsc.convertee.calculator.Calculator;
-import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
-import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
-import com.sbsc.convertee.entities.unittypes.Distance;
-import com.sbsc.convertee.entities.unittypes.Numerative;
-import com.sbsc.convertee.entities.unittypes.ShoeSize;
-import com.sbsc.convertee.entities.unittypes.Temperature;
-import com.sbsc.convertee.entities.unittypes.Time;
-import com.sbsc.convertee.entities.unittypes.Volume;
-import com.sbsc.convertee.entities.unittypes.Weight;
-import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.tools.HelperUtil;
-import com.sbsc.convertee.ui.converter.UnitConverterFragment;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Set;
+import java.util.Arrays;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     private SharedPreferences sharedPref;
 
-    @SuppressWarnings("unchecked")
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.app_preferences, rootKey);
@@ -57,16 +43,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ListPreference prefNumberLocale = findPreference(getString(R.string.preference_locale));
         if( prefNumberLocale != null ) makeNumberLocalePref( prefNumberLocale );
 
-        // HIDDEN UNIT TYPES PREFERENCE
-        MultiSelectListPreference prefHiddenUnitTypes = (MultiSelectListPreference) findPreference( getString(R.string.preference_hidden_unit_types) );
-        makeMultiSelectUnitTypePref( prefHiddenUnitTypes );
-
         // ACTION RESET
-        EditTextPreference prefActionReset = (EditTextPreference) findPreference(getString(R.string.preference_action_reset));
+        EditTextPreference prefActionReset = findPreference(getString(R.string.preference_action_reset));
         if( prefActionReset != null ) makeResetButton( prefActionReset );
 
         // CREDITS
-        Preference prefCredits = (Preference) findPreference(getString(R.string.preference_credits));
+        Preference prefCredits = findPreference(getString(R.string.preference_credits));
         if( prefCredits != null ) makeCredits( prefCredits );
     }
 
@@ -92,37 +74,22 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         numberLocalePref.setOnPreferenceChangeListener((preference, newValue) -> {
             String selection = (String) newValue;
             Calculator.setLocale( selection , requireContext() );
-            updateNumberLocalePickerSummary( selection , preference );
-            return true;
-        });
-        updateNumberLocalePickerSummary( numberLocalePref.getValue() , numberLocalePref );
-    }
-
-    private void makeMultiSelectUnitTypePref( MultiSelectListPreference multiSelect ){
-        LocalizedUnitType[] unitTypes = UnitTypeContainer.localizedUnitTypes;
-        String[] values = new String[unitTypes.length];
-        String[] entries = new String[unitTypes.length];
-        for( int i=0; i<unitTypes.length;i++){
-            values[i] = ""+unitTypes[i].getUnitTypeKey();
-            entries[i] = unitTypes[i].getUnitTypeName();
-        }
-        multiSelect.setEntries(entries);
-        multiSelect.setEntryValues(values);
-        multiSelect.setOnPreferenceChangeListener((preference, newValue) -> {
-            final int maxSelected = unitTypes.length;
-            int itemSelectedCount = maxSelected;
-            if( newValue instanceof Set<?>) itemSelectedCount = ((Set<?>) newValue).size();
-
-            // At least 2 units must be available
-            if( itemSelectedCount >= maxSelected){
-                Snackbar.make( requireView() , getString(R.string.pref_hidden_unit_types_error) , Snackbar.LENGTH_SHORT).show();
-                return false;
+            int index = 0;
+            for( int i=0; i<numberLocalePref.getEntryValues().length;i++ ){
+                if( numberLocalePref.getEntryValues()[i].equals(newValue) ){
+                    index = i; break;
+                }
             }
-
-            updateUnitTypeHiddenPickerSummary( itemSelectedCount , preference );
+            updateNumberLocalePickerSummary( numberLocalePref.getEntries()[index].toString(), preference );
             return true;
         });
-        updateUnitTypeHiddenPickerSummary( multiSelect.getValues().size() , multiSelect );
+        int index = 0;
+        for( int i=0; i<numberLocalePref.getEntryValues().length;i++ ){
+            if( numberLocalePref.getEntryValues()[i].equals(numberLocalePref.getValue()) ){
+                index = i; break;
+            }
+        }
+        updateNumberLocalePickerSummary( numberLocalePref.getEntries()[index].toString(), numberLocalePref );
     }
 
     private void makeResetButton( EditTextPreference resetButton ){
@@ -173,14 +140,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
      */
     private void updateNumberLocalePickerSummary( String newValue , Preference pref ){
         pref.setSummary(getString(R.string.pref_locale_subtitle) + " " + newValue);
-    }
-
-    /**
-     * Update Summary of DistancePicker
-     * @param newValue - amount of hidden units
-     */
-    private void updateUnitTypeHiddenPickerSummary( int newValue , Preference pref ){
-        pref.setSummary( newValue+" "+getString(R.string.pref_hidden_unit_types_subtitle));
     }
 
     @Override

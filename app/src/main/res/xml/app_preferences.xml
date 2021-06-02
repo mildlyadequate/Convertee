@@ -22,13 +22,6 @@
             android:key="@string/preference_pro_mode"
             android:title="@string/pref_pro_mode_select_title"
             app:summary="@string/pref_pro_mode_select_subtitle" />
-        <MultiSelectListPreference
-            android:defaultValue="@array/pref_hidden_unit_types_defaults"
-            android:entries="@array/pref_hidden_unit_types_values"
-            android:entryValues="@array/pref_hidden_unit_types_titles"
-            android:key="@string/preference_hidden_unit_types"
-            android:title="@string/pref_hidden_unit_types_title"
-            app:summary="@string/pref_hidden_unit_types_subtitle" />
     </com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory>
 
     <com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory android:title="@string/pref_category_other">

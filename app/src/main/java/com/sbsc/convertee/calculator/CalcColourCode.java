@@ -1,6 +1,7 @@
 package com.sbsc.convertee.calculator;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.sbsc.convertee.ui.converter.UnitConverterViewModel;
 
@@ -171,7 +172,7 @@ public class CalcColourCode {
      * @param unitName colour name
      * @return new ColourObject of type CColour
      */
-    private CColour getValueAsObject(String value , String unitName ){
+    private CColour getValueAsObject( String value , String unitName ){
 
         value = value.replaceAll("\\s","");
 
@@ -239,6 +240,13 @@ public class CalcColourCode {
         }
 
         return null;
+    }
+
+    public boolean isCorrectInput( String value , String unitKey ){
+        if( getValueAsObject( value , unitKey ) == null )
+            return false;
+        else
+            return true;
     }
 
     /**
