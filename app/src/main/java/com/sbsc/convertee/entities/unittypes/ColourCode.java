@@ -28,6 +28,7 @@ public class ColourCode extends UnitType {
         addUnit("colourhsv","colour_unit_hsv",           "", "360,100,100");
         addUnit("colourcmyk","colour_unit_cmyk",           "", "100,100,100,100");
         addUnit("colourname","colour_unit_name",           "", "lime green");
+        addUnit("colourral","colour_unit_ral",           "", "6018");
     }
 
     /**

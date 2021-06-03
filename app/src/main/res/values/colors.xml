@@ -23,6 +23,9 @@
 
     <color name="themeDaySoftPrimary">#F8DDE7</color>
 
+    <color name="themeDayWhiteBackground">#FFF</color>
+    <color name="themeDayDarkBackground">#F5F5F5</color>
+
     <color name="mtrl_textinput_default_box_stroke_color">@color/themeDayDarkText</color>
 
 

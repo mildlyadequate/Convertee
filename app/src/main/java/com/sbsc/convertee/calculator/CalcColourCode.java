@@ -75,10 +75,16 @@ public class CalcColourCode {
             setColourInViewModel(rgbColour);
         }
 
-        if(value!=null)
+        if(value!=null){
+            if(targetUnit.equals("colourral")){
+                String result = ((ColourName)value).toRalString();
+                if( result != null ) return result;
+                else return "N/A";
+            }
             return value.toString();
-        else
+        }else{
             return "N/A";
+        }
     }
 
     /**
@@ -114,9 +120,7 @@ public class CalcColourCode {
         }else if( value instanceof ColourName ){
             ColourName tempName = (ColourName) value;
             if(tempName.equals(colourNames[0])) return null;
-            for( ColourName colName : colourNames ){
-                if(colName.name.equalsIgnoreCase(tempName.name)) return colName.colourCode;
-            }
+            return tempName.colourCode;
         }
 
         return null;
@@ -153,6 +157,7 @@ public class CalcColourCode {
                 int[] cmykArr = CalcColourHelper.rgbToCmyk( value.red , value.green , value.blue );
                 return new CMYK( cmykArr[0] , cmykArr[1] , cmykArr[2] , cmykArr[3] );
 
+            case "colourral":
             case "colourname":
                 for( ColourName colName : colourNames ){
                     if( colName.colourCode.red == value.red &&
@@ -161,6 +166,7 @@ public class CalcColourCode {
                     ) return colName;
                 }
                 return colourNames[0];
+
         }
 
         return null;
@@ -237,6 +243,19 @@ public class CalcColourCode {
                 }
                 // First entry says "No name"
                 return colourNames[0];
+
+            case "colourral":
+
+                if(value.matches("(?i)(ral)?[1-9][0-9]{3}")){
+                    Matcher matcher = Pattern.compile("[1-9][0-9]{3}").matcher( value );
+                    if( matcher.find() ){
+                        int ralVal = Integer.parseInt(matcher.group());
+                        for( int i=colourNames.length-1; i>=0; i-- ){
+                            if( colourNames[i].ral == ralVal ) return colourNames[i];
+                        }
+                    }
+                }
+                break;
         }
 
         return null;
@@ -419,12 +438,24 @@ public class CalcColourCode {
     private static class ColourName extends CColour{
         String name;
         RGB colourCode;
+        int ral;
+
+        ColourName( String text , int red , int green , int blue , int ral){
+            this.name = text;
+            this.colourCode = new RGB( red , green , blue );
+            this.ral = ral;
+        }
 
         ColourName( String text , int red , int green , int blue ){
             this.name = text;
             this.colourCode = new RGB( red , green , blue );
+            this.ral = -1;
         }
 
+        public String toRalString() {
+            if( ral == -1 ) return null;
+            return "RAL "+ral;
+        }
         @NotNull
         @Override
         public String toString() {
@@ -432,12 +463,12 @@ public class CalcColourCode {
         }
     }
 
-
     /**
      * Pre-defined colour names from set values
      * Source: https://flaviocopes.com/rgb-color-codes/
      */
     private final ColourName[] colourNames = {
+
             new ColourName( "No name" , -1 , -1 , -1 ),
             new ColourName( "Black" , 0 , 0 , 0 ),
             new ColourName( "White" , 255 , 255 , 255 ),
@@ -579,5 +610,29 @@ public class CalcColourCode {
             new ColourName( "light gray" , 211,211,211 ),
             new ColourName( "gainsboro" , 220,220,220 ),
             new ColourName( "white smoke" , 245,245,245 ),
+
+            // TODO add more names
+
+            // RAL
+            new ColourName( "RAL green beige" , 205, 186, 136 , 1000 ),
+            new ColourName( "RAL beige" , 205, 186, 136 , 1001 ),
+            new ColourName( "RAL sand yellow" , 210, 170, 109 , 1002 ),
+            new ColourName( "RAL signal yellow" , 249, 168, 0 , 1003 ),
+            new ColourName( "RAL golden yellow" , 228, 158, 0 , 1004 ),
+            new ColourName( "RAL honey yellow" , 203, 142, 0 , 1005 ),
+            new ColourName( "RAL maize yellow" , 226, 144, 0 , 1006 ),
+            new ColourName( "RAL daffodil yellow" , 232, 140, 0 , 1007 ),
+            new ColourName( "RAL brown beige" , 175, 128, 79 , 1011 ),
+            new ColourName( "RAL lemon yellow" , 221, 175, 39 , 1012 ),
+            new ColourName( "RAL oyster white" , 227, 217, 198 , 1013 ),
+            new ColourName( "RAL ivory" , 221, 196, 154 , 1014 ),
+            new ColourName( "RAL light ivory" , 230, 210, 181 , 1015 ),
+            new ColourName( "RAL sulfur yellow" , 241, 221, 56 , 1016 ),
+            new ColourName( "RAL saffron yellow" , 246, 169, 80 , 1017 ),
+            new ColourName( "RAL zinc yellow" , 250, 202, 48 , 1018 ),
+            new ColourName( "RAL grey beige" , 164, 143, 122 , 1019 ),
+            new ColourName( "RAL olive yellow" , 160, 143, 101 , 1020 ),
+
+            // TODO add more RAL Sources https://rgb.to/ral/page/1
     };
 }

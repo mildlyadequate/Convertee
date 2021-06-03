@@ -4,8 +4,4 @@
         android:id="@+id/mni_unit_type_favourite"
         android:icon="@drawable/ic_unfavourite"
         android:title="@string/adapter_popup_favourite" />
-    <item
-        android:id="@+id/mni_unit_type_hide"
-        android:icon="@drawable/ic_visibility_off"
-        android:title="@string/adapter_popup_hide" />
 </menu>

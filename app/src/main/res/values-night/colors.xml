@@ -13,4 +13,7 @@
     <color name="themeDayBlackText">@color/white</color>
 
     <color name="themeDaySoftPrimary">#292929</color>
+
+    <color name="themeDayWhiteBackground">@color/themeBackground</color>
+    <color name="themeDayDarkBackground">#000</color>
 </resources>

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -79,6 +80,14 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         // Edit Text Input Default
         holder.getEtQuickConvertInput().setText( item.getDefaultValue() );
         holder.getTilQuickConvertInput().setHintAnimationEnabled(true);
+
+        if(position % 2 == 0) {
+            //holder.rootView.setBackgroundColor(Color.BLACK);
+            holder.getClRoot().setBackgroundResource(R.color.themeDayDarkBackground);
+        } else {
+            //holder.rootView.setBackgroundColor(Color.WHITE);
+            holder.getClRoot().setBackgroundResource(R.color.themeDayWhiteBackground);
+        }
 
         // Icon
         LocalizedUnitType localizedUnitType = UnitTypeContainer.getLocalizedUnitType( unitType.getId() );
@@ -278,6 +287,8 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        private final ConstraintLayout clRoot;
+
         private final ImageView ivQuickConvertIcon;
         private final TextView tvQuickConvertTitle;
         private final Spinner spQuickConvertFrom;
@@ -293,6 +304,7 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         public ViewHolder(View view) {
             super(view);
 
+            clRoot = view.findViewById( R.id.clQuickConvertRoot );
             ivQuickConvertIcon = view.findViewById( R.id.ivQuickConvertIcon );
             tvQuickConvertTitle = view.findViewById( R.id.tvQuickConvertTitle );
             spQuickConvertFrom = view.findViewById( R.id.spQuickConvertFrom );
@@ -311,6 +323,7 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
 
         }
 
+        public ConstraintLayout getClRoot() { return clRoot; }
         public ImageView getIvQuickConvertIcon() { return ivQuickConvertIcon; }
         public TextView getTvQuickConvertTitle() { return tvQuickConvertTitle; }
         public Spinner getSpQuickConvertFrom() { return spQuickConvertFrom; }

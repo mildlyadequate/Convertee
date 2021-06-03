@@ -594,6 +594,7 @@
     <string name="colour_unit_hsl">HSL</string>
     <string name="colour_unit_hsv">HSV</string>
     <string name="colour_unit_cmyk">CMYK</string>
+    <string name="colour_unit_ral">RAL</string>
     <!-- Colour Shorts -->
     <string name="colour_unit_name_short" translatable="false">NAME</string>
     <string name="colour_unit_rgb_short" translatable="false">RGB</string>
@@ -601,6 +602,7 @@
     <string name="colour_unit_hsl_short" translatable="false">HSL</string>
     <string name="colour_unit_hsv_short" translatable="false">HSV</string>
     <string name="colour_unit_cmyk_short" translatable="false">CMYK</string>
+    <string name="colour_unit_ral_short" translatable="false">RAL</string>
     <!-- Colour Info -->
     <string name="colour_colourrgb_info">An RGB color value is specified with: rgb(red, green, blue), alternatively this app supports \'red,green,blue\' as well. This colour standard is predominantly used by digital screens.\n\nEach parameter (red, green, and blue) defines the intensity of the color as number between 0 and 255.\n\nFor example, rgb(0, 0, 255) is blue, because the blue parameter is set to its highest value (255) and the others are set to 0.
     </string>
@@ -628,7 +630,5 @@
     <string name="brasize_unit_frsp_short" translatable="false">FR/SP</string>
     <string name="brasize_unit_jp_short" translatable="false">JP</string>
     <string name="brasize_unit_au_short" translatable="false">AU</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
