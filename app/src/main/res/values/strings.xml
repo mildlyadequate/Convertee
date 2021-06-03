@@ -133,8 +133,8 @@
     <string name="unit_type_value_text_hint_short">Enter value</string>
 
     <!-- MENUS / UNIT TYPE NAMES -->
-    <string name="unit_type_name_distance">Length / Distance</string>
-    <string name="unit_type_name_weight">Weight / Mass</string>
+    <string name="unit_type_name_distance">Length</string>
+    <string name="unit_type_name_weight">Weight</string>
     <string name="unit_type_name_temperature">Temperature</string>
     <string name="unit_type_name_time">Time</string>
     <string name="unit_type_name_numerative">Number System</string>

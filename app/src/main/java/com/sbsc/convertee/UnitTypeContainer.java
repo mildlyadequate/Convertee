@@ -34,32 +34,32 @@ public class UnitTypeContainer {
     private static final String[][] unitTypeKeys = {
 
             // BASICS
-            {Area.id, String.valueOf(R.drawable.ic_area)},
-            {Distance.id, String.valueOf(R.drawable.ic_distance)},
-            {Volume.id, String.valueOf(R.drawable.ic_volume)},
-            {Weight.id, String.valueOf(R.drawable.ic_weight)},
+            {Area.id, String.valueOf(R.drawable.ic_ut_area)},
+            {Distance.id, String.valueOf(R.drawable.ic_ut_distance)},
+            {Volume.id, String.valueOf(R.drawable.ic_ut_volume)},
+            {Weight.id, String.valueOf(R.drawable.ic_ut_weight)},
 
             // LIVING
-            {BraSize.id, String.valueOf(R.drawable.ic_brasize)},
-            {Currency.id, String.valueOf(R.drawable.ic_currency)},
-            {FuelEconomy.id, String.valueOf(R.drawable.ic_fueleconomy)},
-            {ShoeSize.id, String.valueOf(R.drawable.ic_shoe)},
-            {Temperature.id, String.valueOf(R.drawable.ic_temperature)},
-            {Time.id, String.valueOf(R.drawable.ic_time)},
+            {BraSize.id, String.valueOf(R.drawable.ic_ut_brasize)},
+            {Currency.id, String.valueOf(R.drawable.ic_ut_currency)},
+            {FuelEconomy.id, String.valueOf(R.drawable.ic_ut_fueleconomy)},
+            {ShoeSize.id, String.valueOf(R.drawable.ic_ut_shoesize)},
+            {Temperature.id, String.valueOf(R.drawable.ic_ut_temperature)},
+            {Time.id, String.valueOf(R.drawable.ic_ut_time)},
 
             // SCIENCE
-            {Energy.id, String.valueOf(R.drawable.ic_energy)},
-            {Force.id, String.valueOf(R.drawable.ic_force)},
-            {Pressure.id, String.valueOf(R.drawable.ic_pressure)},
-            {Speed.id, String.valueOf(R.drawable.ic_speed)},
+            {Energy.id, String.valueOf(R.drawable.ic_ut_energy)},
+            {Force.id, String.valueOf(R.drawable.ic_ut_force)},
+            {Pressure.id, String.valueOf(R.drawable.ic_ut_pressure)},
+            {Speed.id, String.valueOf(R.drawable.ic_ut_speed)},
 
             // MATHS
-            {Angle.id, String.valueOf(R.drawable.ic_angle)},
+            {Angle.id, String.valueOf(R.drawable.ic_ut_angle)},
 
             // TECHNOLOGY
-            {ColourCode.id, String.valueOf(R.drawable.ic_colour)},
-            {DataStorage.id, String.valueOf(R.drawable.ic_datastorage)},
-            {Numerative.id, String.valueOf(R.drawable.ic_numerative)},
+            {ColourCode.id, String.valueOf(R.drawable.ic_ut_colour)},
+            {DataStorage.id, String.valueOf(R.drawable.ic_ut_datastorage)},
+            {Numerative.id, String.valueOf(R.drawable.ic_ut_numerative)},
     };
 
     public static void getLocalizedUnitTypeArray(Activity activity){

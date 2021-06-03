@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvQuickConvertTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvQuickConvertTitle"
-        app:srcCompat="@drawable/ic_colour"
+        app:srcCompat="@drawable/ic_ut_colour"
         app:tint="@color/themeDayDarkText" />
 
     <ImageButton

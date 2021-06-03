@@ -114,8 +114,8 @@
     <string name="unit_type_value_text_hint_short">Wert eingeben</string>
 
     <!-- MENUS / UNIT TYPE NAMES -->
-    <string name="unit_type_name_distance">Länge / Distanz</string>
-    <string name="unit_type_name_weight">Gewicht / Masse</string>
+    <string name="unit_type_name_distance">Länge</string>
+    <string name="unit_type_name_weight">Gewicht</string>
     <string name="unit_type_name_temperature">Temperatur</string>
     <string name="unit_type_name_time">Zeit</string>
     <string name="unit_type_name_numerative">Zahlensystem</string>

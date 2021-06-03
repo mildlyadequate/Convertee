@@ -3,7 +3,6 @@ package com.sbsc.convertee;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -27,16 +26,10 @@ import com.sbsc.convertee.ui.settings.UnitSettingsFragment;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
-
-    /**TODO LIST
-      - (Search through unit types)
-      - Add two / more input edit texts for pixel to cm converter / color codes / Brasize eg. https://www.pixelto.net/px-to-cm-converter
-      - Make more Unit Types (Next: Brasize,Color codes,ElectricityCurrent/Charge)
-      - (Add option to special formula calculation -> instead of VAR use VAR(-someunitname-) to convert through other units first)
-    */
 
     private String activeUnitConverterKey = "";
 
@@ -49,9 +42,12 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                 .getDefaultSharedPreferences(this);
 
         // Set language to preference
+        if( CompatibilityHandler.defaultLocale == null ) CompatibilityHandler.defaultLocale = Locale.getDefault();
         String language = sharedPref.getString( getString(R.string.preference_language) , "system");
-        Log.d("XD", "onCreate: "+language);
-        if( !language.equals("system") ) CompatibilityHandler.setLocale( this , language );
+        if( language.equals("system") )
+            CompatibilityHandler.setLocaleDefault( this );
+        else
+            CompatibilityHandler.setLocale( this , language );
 
         // Make sure application is NOT Re-Rendering for some reason eg. change of theme
         if( savedInstanceState == null ){

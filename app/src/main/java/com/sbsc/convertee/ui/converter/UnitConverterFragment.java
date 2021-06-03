@@ -275,7 +275,7 @@ public class UnitConverterFragment extends Fragment {
                         .setTitle( unitConverterViewModel.getSelectedLocalizedUnitValue().getLocalizedName() )
                         .setMessage( getString(identifier) )
                         .setPositiveButton(android.R.string.ok, (dialog, which) -> { })
-                        .setIcon(R.drawable.ic_info)
+                        .setIcon(R.drawable.ic_menu_info)
                         .show();
             }
 

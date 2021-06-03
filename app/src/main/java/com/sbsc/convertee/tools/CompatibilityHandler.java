@@ -15,12 +15,23 @@ import java.util.Locale;
 
 public class CompatibilityHandler {
 
+    public static Locale defaultLocale;
+
     public static void setLocale(Activity activity, String languageCode) {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
         Resources resources = activity.getResources();
         Configuration config = resources.getConfiguration();
         config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
+    public static void setLocaleDefault( Activity activity ) {
+        if( defaultLocale == null ) return;
+        Locale.setDefault(defaultLocale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(defaultLocale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 

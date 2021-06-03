@@ -71,7 +71,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:adjustViewBounds="true"
-                android:background="@null"
+                android:background="?android:selectableItemBackground"
                 android:contentDescription="@string/unit_info_button_description"
                 android:scaleType="fitCenter"
                 android:src="@drawable/unit_info_icon_selector" />
