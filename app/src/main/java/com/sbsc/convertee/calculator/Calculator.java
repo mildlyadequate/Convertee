@@ -36,7 +36,7 @@ public class Calculator {
      * @param context required
      */
     public static void setLocale(String localeText , Context context){
-        if(localeText.equalsIgnoreCase(context.getString(R.string.pref_locale_none))){
+        if(localeText.equalsIgnoreCase(context.getString(R.string.pref_number_locale_none))){
             Calculator.locale = null;
         }else{
             Calculator.locale = Locale.forLanguageTag(localeText);

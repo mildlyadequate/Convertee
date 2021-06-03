@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
@@ -14,13 +13,13 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.tools.HelperUtil;
+import com.sbsc.convertee.ui.intro.AppIntroActivity;
 
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.Arrays;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -38,6 +37,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         // ROUND VALUE PREFERENCE
         EditTextPreference prefRoundValue = findPreference(getString(R.string.preference_round_value));
         if( prefRoundValue != null ) makeRoundValuePref( prefRoundValue );
+
+        // LANGUAGE PREFERENCE
+        ListPreference prefLanguage = findPreference(getString(R.string.preference_language));
+        if( prefLanguage != null ) makeLanguagePref( prefLanguage );
 
         // NUMBER LOCALE PREFERENCE
         ListPreference prefNumberLocale = findPreference(getString(R.string.preference_locale));
@@ -70,7 +73,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         updateRoundValueSummary( roundValuePref.getText() , roundValuePref);
     }
 
-    private void makeNumberLocalePref(ListPreference numberLocalePref ){
+    private void makeLanguagePref( ListPreference languagePref ){
+        languagePref.setOnPreferenceChangeListener((preference, newValue) -> {
+            Intent intent = new Intent(requireContext(), MainActivity.class);
+            startActivity(intent);
+            requireActivity().finish();
+            return true;
+        });
+        int index = 0;
+        for( int i=0; i<languagePref.getEntryValues().length;i++ ){
+            if( languagePref.getEntryValues()[i].equals(languagePref.getValue()) ){
+                index = i; break;
+            }
+        }
+        languagePref.setSummary( getString(R.string.pref_language_subtitle)+" "+languagePref.getEntries()[index].toString());
+    }
+
+    private void makeNumberLocalePref( ListPreference numberLocalePref ){
         numberLocalePref.setOnPreferenceChangeListener((preference, newValue) -> {
             String selection = (String) newValue;
             Calculator.setLocale( selection , requireContext() );
@@ -139,7 +158,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
      * @param newValue - amount of hidden units
      */
     private void updateNumberLocalePickerSummary( String newValue , Preference pref ){
-        pref.setSummary(getString(R.string.pref_locale_subtitle) + " " + newValue);
+        pref.setSummary(getString(R.string.pref_number_locale_subtitle) + " " + newValue);
     }
 
     @Override

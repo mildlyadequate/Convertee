@@ -7,7 +7,9 @@ import android.util.Log;
 import androidx.fragment.app.Fragment;
 
 import com.github.appintro.AppIntro2;
+import com.github.appintro.AppIntroCustomLayoutFragment;
 import com.github.appintro.AppIntroFragment;
+import com.sbsc.convertee.AppSetupActivity;
 import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.tools.CompatibilityHandler;
@@ -65,6 +67,8 @@ public class AppIntroActivity extends AppIntro2 {
     protected void onSkipPressed(@Nullable Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        // TODO add AppSetup here
+        // Intent i = new Intent(getApplicationContext(), AppSetupActivity.class);
         startActivity(i);
         finish();
     }
@@ -72,6 +76,7 @@ public class AppIntroActivity extends AppIntro2 {
     @Override
     protected void onDonePressed(@Nullable Fragment currentFragment) {
         super.onDonePressed(currentFragment);
+        // TODO add AppSetup here
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
         finish();

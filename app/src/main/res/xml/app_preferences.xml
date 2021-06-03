@@ -11,12 +11,19 @@
             android:singleLine="true"
             android:title="@string/pref_round_value_picker_title" />
         <ListPreference
+            android:entries="@array/pref_language_titles"
+            android:entryValues="@array/pref_language_values"
+            android:key="@string/preference_language"
+            android:title="@string/pref_language_title"
+            app:defaultValue="@string/preference_language_default"
+            app:summary="@string/pref_language_subtitle" />
+        <ListPreference
             android:entries="@array/pref_number_format_locales_titles"
             android:entryValues="@array/pref_number_format_locales_values"
             android:key="@string/preference_locale"
-            android:title="@string/pref_locale_title"
-            app:defaultValue="@string/preference_locale_default_UK"
-            app:summary="@string/pref_locale_subtitle" />
+            android:title="@string/pref_number_locale_title"
+            app:defaultValue="@string/preference_number_locale_default_UK"
+            app:summary="@string/pref_number_locale_subtitle" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="@string/preference_pro_mode"

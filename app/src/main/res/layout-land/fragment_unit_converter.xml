@@ -77,23 +77,6 @@
                 android:src="@drawable/unit_info_icon_selector" />
         </LinearLayout>
 
-        <SeekBar
-            android:id="@+id/sbDistanceUnit"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:max="10"
-            android:maxHeight="2dp"
-            android:minHeight="2dp"
-            android:progress="3"
-            android:progressDrawable="@drawable/seekbar_style"
-            android:progressTint="@android:color/transparent"
-            android:thumbTint="@color/themePrimary"
-            app:tickMarkTint="@color/themePrimary" />
-
         <TextView
             android:id="@+id/tvLastCurrencyUpdate"
             android:layout_width="wrap_content"

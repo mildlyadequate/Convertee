@@ -33,15 +33,13 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="TextInputLayoutStyle"
-        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/themeDayDarkText</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="hintTextColor">@color/themeDayDarkText</item>
     </style>
 
-    <style name="TextInputLayoutStyleLight"
-        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="TextInputLayoutStyleLight" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/themePrimary</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="hintTextColor">@color/themeDayDarkText</item>
@@ -70,26 +68,29 @@
     <style name="Theme.Convertee.TextAppearance.UnitValue" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/themeDayDarkText</item>
     </style>
+
     <style name="Theme.Convertee.TextAppearance.UnitValue.Selected" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/themeDayLightText</item>
     </style>
+
     <style name="Theme.Convertee.TextAppearance.UnitNameSmall" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/themeDayDarkText</item>
     </style>
+
     <style name="Theme.Convertee.TextAppearance.UnitNameSmall.Selected" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/themeDayLightText</item>
     </style>
+
     <style name="Theme.Convertee.textAppearanceListItemSmall" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/themeDayLightText</item>
     </style>
 
-    <style name="Theme.Convertee.NoActionBar" >
+    <style name="Theme.Convertee.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Convertee.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
-    </style>
+    <style name="Theme.Convertee.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"></style>
 
     <style name="Theme.Convertee.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

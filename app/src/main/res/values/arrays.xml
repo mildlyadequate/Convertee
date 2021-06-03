@@ -2,14 +2,26 @@
 
     <!-- LOCALE -->
     <string-array name="pref_number_format_locales_titles">
-        <item>@string/locale_uk_desc</item>
-        <item>@string/locale_de_desc</item>
-        <item>@string/pref_locale_none</item>
+        <item>@string/locale_number_uk_desc</item>
+        <item>@string/locale_number_de_desc</item>
+        <item>@string/pref_number_locale_none</item>
     </string-array>
     <string-array name="pref_number_format_locales_values">
         <item>en-GB</item>
         <item>de-DE</item>
         <item>none</item>
+    </string-array>
+
+    <!-- LANGUAGE -->
+    <string-array name="pref_language_titles">
+        <item>@string/language_en_desc</item>
+        <item>@string/language_de_desc</item>
+        <item>@string/language_system_desc</item>
+    </string-array>
+    <string-array name="pref_language_values">
+        <item>en</item>
+        <item>de</item>
+        <item>system</item>
     </string-array>
 
     <!-- MULTI SELECT PREFERENCE ARRAYS -->

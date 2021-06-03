@@ -19,6 +19,10 @@
     <!-- CONTENT DESCRIPTION -->
     <string name="content_description_unittype_icon">Bild für diese Einheit</string>
     <string name="content_description_unittype_status">Zeigt den aktuellen status der Einheit zB. Favorit, Versteckt</string>
+    <string name="content_description_fab_quickconverter_add">Button um einen der Einheitstypen als Favorit hinzuzufügen</string>
+    <string name="content_description_quickconvert_item_icon">Bild dieses Einheitstyps</string>
+    <string name="content_description_quickconvert_item_edit">Button um den favorisierten Einheitstyp zu editieren</string>
+    <string name="content_description_quickconvert_item_delete">Button um den favorisierten Einheitstypen zu entfernen</string>
 
     <!-- TABBED PANE TABS -->
     <string name="tabbed_pane_tab_customized">Angepasst</string>
@@ -64,10 +68,19 @@
     <!-- Setting: Pro Mode -->
     <string name="pref_pro_mode_select_title">Einheits-Pro-Modus</string>
     <string name="pref_pro_mode_select_subtitle">Versteckt ganze Einheitsnamen. Empfholen wenn dir die Abkürzungen ausreichen.</string>
+    <!-- Setting: Language -->
+    <string name="pref_language_title">Sprache</string>
+    <string name="pref_language_subtitle">Aktuell:</string>
+    <string name="language_system_desc">System Sprache</string>
+    <string name="language_en_desc">Englisch</string>
+    <string name="language_de_desc">Deutsch</string>
     <!-- Setting: Locale -->
-    <string name="pref_locale_title">Zahlenformatierung</string>
-    <string name="pref_locale_subtitle">Aktuell formatiert als </string>
-    <string name="pref_locale_none">None</string>
+    <string name="pref_number_locale_title">Zahlenformatierung</string>
+    <string name="pref_number_locale_subtitle">Aktuell formatiert als </string>
+    <string name="pref_number_locale_none">None</string>
+    <string name="locale_number_uk_desc">UK: z.B. 100.000,5</string>
+    <string name="locale_number_de_desc">DE: z.B. 100,000.5</string>
+
     <!-- Category: Select Units to hide -->
     <string name="pref_category_select_units">Einheiten</string>
     <string name="pref_category_select_units_subtitle">Bestimmte auswählen um sie auszublenden</string>
@@ -85,6 +98,15 @@
     <!-- CREDITS -->
     <string name="pref_credits_title">Credits</string>
     <string name="pref_credits_subtitle">Made by Sebastian Schuler</string>
+
+    <!-- QUICK CONVERT EDITOR -->
+    <string name="quickconvert_editor_error_hint">Falsche Eingabe für diese Einheit!</string>
+    <string name="quickconvert_editor_label_unittype">Einheitstyp</string>
+    <string name="quickconvert_editor_default_unit">Standardeinheit</string>
+    <string name="quickconvert_editor_default_value">Standardwert</string>
+    <string name="quickconvert_editor_header_from">Von</string>
+    <string name="quickconvert_editor_header_to">Zu</string>
+    <string name="quickconvert_editor_button_save">Speichern</string>
 
     <!-- ========================================= UNITS =========================================== -->
     <!-- Everything below here has to exist for EVERY SINGLE UNIT TYPE ! -->
@@ -319,6 +341,7 @@
     <string name="colour_unit_hsl">HSL</string>
     <string name="colour_unit_hsv">HSV</string>
     <string name="colour_unit_cmyk">CMYK</string>
+    <string name="colour_unit_ral">RAL</string>
     <!-- Colour Info -->
     <string name="colour_colourrgb_info">Ein RGB-Farbwert wird angegeben mit: rgb(rot,grün,blau), alternative unterstützt diese App auch \'rot,grün,blau\'. Dieser Farbstandard wird überwiegend von digitalen Bildschirmen verwendet.\n\nJeder Parameter (rot, grün und blau) definiert die Intensität der Farbe als Zahl zwischen 0 und 255.\n\nZum Beispiel ist rgb (0, 0, 255) blau, weil der blaue Parameter auf seinen höchsten Wert (255) und die anderen auf 0 gesetzt sind.
     </string>

@@ -3,6 +3,7 @@ package com.sbsc.convertee;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,6 +17,7 @@ import androidx.preference.PreferenceManager;
 
 import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
+import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.DefaultHiddenUnits;
 import com.sbsc.convertee.ui.converter.UnitConverterFragment;
 import com.sbsc.convertee.ui.intro.AppIntroActivity;
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         SharedPreferences sharedPref = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
+        // Set language to preference
+        String language = sharedPref.getString( getString(R.string.preference_language) , "system");
+        Log.d("XD", "onCreate: "+language);
+        if( !language.equals("system") ) CompatibilityHandler.setLocale( this , language );
+
         // Make sure application is NOT Re-Rendering for some reason eg. change of theme
         if( savedInstanceState == null ){
 
@@ -70,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
             // Load preferences
             Calculator.roundToDigits = Integer.parseInt(sharedPref.getString( getString(R.string.preference_round_value) , "4"));
-            Calculator.setLocale( sharedPref.getString( getString(R.string.preference_locale) , getString(R.string.preference_locale_default_UK)),this );
+            Calculator.setLocale( sharedPref.getString( getString(R.string.preference_locale) , getString(R.string.preference_number_locale_default_UK)),this );
 
             // Load unit types with localization
             UnitTypeContainer.getLocalizedUnitTypeArray( this );

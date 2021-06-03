@@ -75,13 +75,20 @@
     <!-- Setting: Pro Mode -->
     <string name="pref_pro_mode_select_title">Unit Pro-Mode</string>
     <string name="pref_pro_mode_select_subtitle">Hide full unit names. Recommended if you know the abbreviations well enough.</string>
+    <!-- Setting: Language -->
+    <string name="pref_language_title">Language</string>
+    <string name="pref_language_subtitle">Currently: </string>
+    <string name="preference_language_default" translatable="false">system</string>
+    <string name="language_system_desc">System language</string>
+    <string name="language_en_desc">English</string>
+    <string name="language_de_desc">German</string>
     <!-- Setting: Locale -->
-    <string name="pref_locale_title">Number Formatting</string>
-    <string name="pref_locale_subtitle">Currently as</string>
-    <string name="pref_locale_none">None</string>
-    <string name="preference_locale_default_UK">en-GB</string>
-    <string name="locale_uk_desc">UK: e.g. 100.000,5</string>
-    <string name="locale_de_desc">DE: e.g. 100,000.5</string>
+    <string name="pref_number_locale_title">Number Formatting</string>
+    <string name="pref_number_locale_subtitle">Currently as</string>
+    <string name="pref_number_locale_none">None</string>
+    <string name="preference_number_locale_default_UK" translatable="false">en-GB</string>
+    <string name="locale_number_uk_desc">UK: e.g. 100.000,5</string>
+    <string name="locale_number_de_desc">DE: e.g. 100,000.5</string>
 
     <!-- Category: Select Units to hide -->
     <string name="pref_category_select_units">Units</string>
@@ -107,6 +114,7 @@
     <string name="preference_first_start" translatable="false">preference_first_start</string>
     <string name="preference_round_value" translatable="false">preference_round_value</string>
     <string name="preference_pro_mode" translatable="false">preference_pro_mode</string>
+    <string name="preference_language" translatable="false">preference_language</string>
     <string name="preference_locale" translatable="false">preference_locale</string>
     <string name="preference_action_reset" translatable="false">preference_action_reset</string>
 
@@ -630,5 +638,11 @@
     <string name="brasize_unit_frsp_short" translatable="false">FR/SP</string>
     <string name="brasize_unit_jp_short" translatable="false">JP</string>
     <string name="brasize_unit_au_short" translatable="false">AU</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_app_setup">AppSetupActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 
 </resources>
