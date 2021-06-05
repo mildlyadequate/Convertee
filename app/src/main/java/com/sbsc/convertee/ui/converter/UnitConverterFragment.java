@@ -5,13 +5,13 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -33,11 +35,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.UnitTypeContainer;
-import com.sbsc.convertee.adapter.CalculatedUnitItemAdapter;
+import com.sbsc.convertee.entities.UnitTypeContainer;
+import com.sbsc.convertee.tools.keyboards.CustomKeyboard;
+import com.sbsc.convertee.tools.keyboards.KeyboardHandler;
+import com.sbsc.convertee.ui.adapter.CalculatedUnitItemAdapter;
 import com.sbsc.convertee.calculator.CalcColourCode;
 import com.sbsc.convertee.calculator.CalcCurrency;
-import com.sbsc.convertee.calculator.CalcNumerative;
 import com.sbsc.convertee.calculator.CalcShoeSize;
 import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
@@ -50,6 +53,7 @@ import com.sbsc.convertee.entities.unittypes.Numerative;
 import com.sbsc.convertee.entities.unittypes.ShoeSize;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.entities.unittypes.generic.UnitTypeEntry;
+import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.HelperUtil;
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -58,6 +62,7 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -76,12 +81,16 @@ public class UnitConverterFragment extends Fragment {
     private EditText etValue;
     private SharedPreferences sharedPref;
     private ImageButton btnUnitInfo;
-
     private LinearLayout colourDisplay;
     private TextView colourDisplayText;
+    private RecyclerView rvCalculatedUnitList;
+    private ConstraintLayout rootLayout;
 
     // UnitType
     private UnitType unitType;
+
+    // Keyboard
+    private CustomKeyboard currentKeyboard;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -113,6 +122,9 @@ public class UnitConverterFragment extends Fragment {
             CalcColourCode.getInstance().setViewModel( unitConverterViewModel );
         }
 
+        // Set root view
+        rootLayout = root.findViewById(R.id.clUnitConverter);
+
         // Initialize UI Views
         initSpinnerUnitSelector( root );
         initEditTextValue( root );
@@ -120,10 +132,12 @@ public class UnitConverterFragment extends Fragment {
         initInfoButton( root );
         initColourDisplay( root );
 
+        initCustomKeyboard( "" );
+
         // Observes handle UI changes
         initViewModelObserves( root );
 
-        setInputMethod();
+        // CompatibilityHandler.setInputMethod( unitType , etValue );
 
         return root;
     }
@@ -143,15 +157,6 @@ public class UnitConverterFragment extends Fragment {
         }
     }
 
-    /**
-     * Change the input method at the beginning of the fragment based on unittype
-     */
-    private void setInputMethod(){
-        if( unitType.getId().equals(ColourCode.id) || unitType.getId().equals(BraSize.id) ){
-            etValue.setInputType( InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS );
-        }
-    }
-
     /*
      * ======================================== UI ELEMENTS ========================================
      */
@@ -162,7 +167,7 @@ public class UnitConverterFragment extends Fragment {
      * @param root View of inflated hierarchy of fragment
      */
     private void initSpinnerUnitSelector( View root ){
-        spUnitSelector = root.findViewById(R.id.spDistanceUnit);
+        spUnitSelector = root.findViewById(R.id.spUnit);
         spUnitSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -178,10 +183,18 @@ public class UnitConverterFragment extends Fragment {
      * @param root View of inflated hierarchy of fragment
      */
     private void initEditTextValue( View root ){
-        etValue = root.findViewById(R.id.etDistanceValue);
+        etValue = root.findViewById(R.id.etValue);
+        etValue.setShowSoftInputOnFocus(false);
+        etValue.setTextIsSelectable(true);
+        etValue.requestFocus();
+
+        etValue.setOnClickListener(view -> {
+            LocalizedUnit unit = unitConverterViewModel.getSelectedLocalizedUnitValue();
+            initCustomKeyboard( unit.getUnitKey() );
+        });
 
         // Change hint in the layout rather than the EditText, otherwise it will duplicate
-        etValueLayout = root.findViewById(R.id.tilDistanceInput);
+        etValueLayout = root.findViewById(R.id.tilInput);
 
         try {
             Field field = TextInputLayout.class.getDeclaredField("defaultStrokeColor");
@@ -201,27 +214,7 @@ public class UnitConverterFragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override
-            public void afterTextChanged(Editable s) {
-                int length = s.length();
-                if( length == 0 ) return;
-
-                // Numerative block input if not allowed
-                if ( unitType.getId().equals( Numerative.id ) ){
-                    if( CalcNumerative.isNotAllowedInSystem( "" + s.charAt(length - 1), unitConverterViewModel.getSelectedLocalizedUnitValue().getUnitKey() ) ){
-                        etValue.getText().delete(length - 1, length);
-                    }
-                }
-            }
-        });
-        // Close keyboard when pressing enter/done and make TextView lose focus
-        etValue.setOnEditorActionListener((view, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                HelperUtil.hideKeyboard(requireActivity());
-                etValue.clearFocus();
-                spUnitSelector.requestFocus();
-                return true;
-            }
-            return false;
+            public void afterTextChanged(Editable s) { }
         });
     }
 
@@ -237,7 +230,7 @@ public class UnitConverterFragment extends Fragment {
         rvListLayoutManager.setReverseLayout(true);
 
         // RecyclerView
-        RecyclerView rvCalculatedUnitList = root.findViewById(R.id.rvDistanceItems);
+        rvCalculatedUnitList = root.findViewById(R.id.rvUnitItems);
         rvCalculatedUnitList.setAdapter(unitConverterViewModel.getUnitItemAdapterValue());
         rvCalculatedUnitList.setLayoutManager(rvListLayoutManager);
         rvCalculatedUnitList.addItemDecoration(new DividerItemDecoration(requireContext() ,LinearLayoutManager.VERTICAL));
@@ -291,6 +284,33 @@ public class UnitConverterFragment extends Fragment {
         colourDisplay = root.findViewById( R.id.colourDisplay );
         colourDisplay.setVisibility(View.GONE);
         colourDisplayText = root.findViewById( R.id.tvColourDisplayText );
+    }
+
+    private void initCustomKeyboard( String unitKey ){
+
+        if( currentKeyboard != null ){
+            rootLayout.removeView( currentKeyboard );
+        }
+
+        InputConnection ic = etValue.onCreateInputConnection(new EditorInfo());
+        currentKeyboard = KeyboardHandler.getKeyboardByType( unitType , unitKey , ic , requireContext() );
+
+        if( currentKeyboard == null ){
+            etValue.setShowSoftInputOnFocus(false);
+            return;
+        }
+
+        rootLayout.addView( currentKeyboard );
+
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(rootLayout);
+        constraintSet.connect(currentKeyboard.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
+        constraintSet.connect(currentKeyboard.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0);
+        constraintSet.connect(currentKeyboard.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0);
+
+        constraintSet.connect(rvCalculatedUnitList.getId(), ConstraintSet.BOTTOM, currentKeyboard.getId(), ConstraintSet.TOP, 0);
+        constraintSet.applyTo(rootLayout);
+
     }
 
     /*
@@ -437,16 +457,13 @@ public class UnitConverterFragment extends Fragment {
 
             // Change input method based on selected unit
             if( unitType.getId().equals(Numerative.id) ){
+
                 LocalizedUnit unit = unitConverterViewModel.getSelectedLocalizedUnitValue();
-                if( unit != null ){
-                    if( unit.getUnitKey().equals("hex") ){
-                        etValue.setInputType( InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS );
-                    }else{
-                        etValue.setInputType( InputType.TYPE_CLASS_NUMBER );
-                    }
-                    etValue.setText("");
-                    etValue.setSelection(etValue.getText().length());
-                }
+                initCustomKeyboard( unit.getUnitKey() );
+
+                etValue.setText("");
+                etValue.setSelection(etValue.getText().length());
+
             }
 
             // Set progress
@@ -480,11 +497,12 @@ public class UnitConverterFragment extends Fragment {
 
         // If input is not a valid number // SETS THE VALUE TO 0.0 IF NOT CREATABLE AS NUMBER
         // Also check if its a numerative, as Hex Numbers require A-F
-        if( !NumberUtils.isCreatable(currentValue) &&
-                !unitType.getId().equals(Numerative.id) &&
-                !unitType.getId().equals(ColourCode.id) &&
-                !unitType.getId().equals(BraSize.id)
-        ) currentValue = "0.0";
+        if(!unitType.getId().equals(Numerative.id) && !unitType.getId().equals(ColourCode.id) && !unitType.getId().equals(BraSize.id) ){
+
+            if( Calculator.locale == Locale.GERMANY ) currentValue = CompatibilityHandler.convertNumberFormatDEtoSystem( currentValue );
+            if( !NumberUtils.isCreatable(currentValue) ) currentValue = "0.0";
+
+        }
 
         // Get currently selected item in spinner, if null return without updating
         LocalizedUnit selectedUnit = (LocalizedUnit) spUnitSelector.getSelectedItem();

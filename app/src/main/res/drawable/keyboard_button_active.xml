@@ -3,7 +3,4 @@
 
     <solid android:color="@color/themePrimary" />
 
-    <corners
-        android:radius="@dimen/button_round_radius"
-        />
 </shape>

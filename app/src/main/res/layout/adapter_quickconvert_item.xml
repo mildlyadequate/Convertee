@@ -96,12 +96,14 @@
             android:id="@+id/etQuickConvertInput"
             android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:focusableInTouchMode="true"
             android:hint="@string/unit_type_value_text_hint"
             android:imeOptions="actionDone"
-            android:inputType="text"
+            android:inputType="none"
             android:maxLength="20"
             android:textColor="@color/themeDayDarkText"
-            android:textColorHighlight="@color/themePrimary" />
+            android:textColorHighlight="@color/themePrimary"
+            android:textIsSelectable="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

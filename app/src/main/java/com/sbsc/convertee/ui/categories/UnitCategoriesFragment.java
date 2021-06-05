@@ -1,12 +1,13 @@
-package com.sbsc.convertee.ui.overview;
+package com.sbsc.convertee.ui.categories;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.UnitTypeContainer;
-import com.sbsc.convertee.adapter.UnitTypeAdapter;
-import com.sbsc.convertee.adapter.UnitTypeSectionedAdapter;
+import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.tools.HelperUtil;
+import com.sbsc.convertee.ui.adapter.UnitTypeAdapter;
+import com.sbsc.convertee.ui.adapter.UnitTypeSectionedAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +27,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class UnitCategoriesFragment extends OverviewFragment {
+public class UnitCategoriesFragment extends Fragment {
+
+    // Preferences
+    private SharedPreferences sharedPreferences;
+
+    // Whether the tab has already been initialized, was paused, and is now opened again
+    private boolean wasPaused = false;
+
+    // RecyclerViewAdapters
+    private UnitTypeAdapter rvUnitTypeAdapter;
+    private UnitTypeSectionedAdapter rvUnitTypeSectionedAdapter;
+
+    private List<String> favouriteUnitTypeKeys;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,9 +49,11 @@ public class UnitCategoriesFragment extends OverviewFragment {
         // Get preferences
         sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(requireContext());
-        favouriteUnitTypes = sharedPreferences.getStringSet( getString(R.string.preference_favourite_unit_types) , new HashSet<>());
 
-        View root = inflater.inflate(R.layout.fragment_unit_overview, container, false);
+        // Load favourites
+        favouriteUnitTypeKeys = new ArrayList<>();
+
+        View root = inflater.inflate(R.layout.fragment_unit_categories, container, false);
 
         initRecyclerViewCalcUnitList( root );
 
@@ -51,15 +66,29 @@ public class UnitCategoriesFragment extends OverviewFragment {
      */
     private List<LocalizedUnitType> getFilteredUnitTypes(){
         List<LocalizedUnitType> tempList = new ArrayList<>(Arrays.asList(UnitTypeContainer.localizedUnitTypes));
+        loadFavouriteUnitTypes();
 
         // Iterate list of all existing unit types
         for (LocalizedUnitType unitType : tempList) {
 
             // If the current unit type is favourite
-            unitType.setFavourite(favouriteUnitTypes.contains(unitType.getUnitTypeKey()));
+            unitType.setFavourite(favouriteUnitTypeKeys.contains(unitType.getUnitTypeKey()));
 
         }
         return tempList;
+    }
+
+    /**
+     * Get all quick convert units as favourites
+     */
+    private void loadFavouriteUnitTypes(){
+        Set<String> quickConverterItems = sharedPreferences.getStringSet( "QuickConvertItems" , new HashSet<>() );
+        favouriteUnitTypeKeys.clear();
+
+        for ( String s : quickConverterItems ) {
+            String[] values = s.split("::");
+            favouriteUnitTypeKeys.add(values[0]);
+        }
     }
 
     /*
@@ -98,36 +127,9 @@ public class UnitCategoriesFragment extends OverviewFragment {
      */
 
     /**
-     * Set a unit type to favourites
-     * @param unitTypeKey String
-     */
-    @Override
-    public void favouriteUnitType( String unitTypeKey ){
-        favouriteUnitTypes.add(unitTypeKey);
-        // rvUnitTypeSectionedAdapter.addFavourite();
-        // Remove before we add the new list, otherwise it doesn't write
-        sharedPreferences.edit().remove(getString(R.string.preference_favourite_unit_types)).apply();
-        sharedPreferences.edit().putStringSet( getString(R.string.preference_favourite_unit_types) , favouriteUnitTypes ).apply();
-    }
-
-    /**
-     * Remove a unit type from favourites
-     * @param unitTypeKey String
-     */
-    @Override
-    public void unfavouriteUnitType( String unitTypeKey ){
-        favouriteUnitTypes.remove(unitTypeKey);
-        // rvUnitTypeSectionedAdapter.removeFavourite();
-        // Remove before we add the new list, otherwise it doesn't write
-        sharedPreferences.edit().remove(getString(R.string.preference_favourite_unit_types)).apply();
-        sharedPreferences.edit().putStringSet( getString(R.string.preference_favourite_unit_types) , favouriteUnitTypes ).apply();
-    }
-
-    /**
      * Handle click on a unit type -> Open that unit type in converter
      * @param unitTypeKey String
      */
-    @Override
     public void handleUnitTypeClick(String unitTypeKey ){
         MainActivity mainActivity = (MainActivity) requireActivity();
         mainActivity.openUnitConverter( unitTypeKey );
@@ -140,15 +142,7 @@ public class UnitCategoriesFragment extends OverviewFragment {
 
         if(wasPaused){
             wasPaused = false;
-
-            Set<String> tempFave = sharedPreferences.getStringSet( getString(R.string.preference_favourite_unit_types) , new HashSet<>());
-
-            if( tempFave != favouriteUnitTypes ){
-                favouriteUnitTypes = tempFave;
-
-                // initRecyclerViewCalcUnitList();
-                rvUnitTypeAdapter.setUnitTypes( getFilteredUnitTypes() );
-            }
+            rvUnitTypeAdapter.setUnitTypes( getFilteredUnitTypes() );
         }
     }
 
@@ -158,11 +152,4 @@ public class UnitCategoriesFragment extends OverviewFragment {
         wasPaused = true;
     }
 
-    public void log(Object text){
-        Log.d("Log:HomeFragment",""+text);
-    }
-
-    // Getter
-    @Override
-    public UnitTypeSectionedAdapter getRvUnitTypeSectionedAdapter() { return rvUnitTypeSectionedAdapter; }
 }

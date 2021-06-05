@@ -19,7 +19,7 @@ public class Calculator {
     /**
         The Locale decides how the number will be formatted using comma, dot, ...
      */
-    public static Locale locale = Locale.US;
+    public static Locale locale = null;
     /**
         Digits to round to
      */

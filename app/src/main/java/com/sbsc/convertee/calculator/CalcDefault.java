@@ -1,11 +1,15 @@
 package com.sbsc.convertee.calculator;
 
+import android.util.Log;
+
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
+import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.HelperUtil;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.Locale;
 
 public class CalcDefault {
 

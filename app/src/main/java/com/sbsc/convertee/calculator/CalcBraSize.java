@@ -51,7 +51,7 @@ public class CalcBraSize {
         int originBandSizeIndex = getBandSizeOriginalIndex( bandSize , originUnitId );
         int originCupSizeIndex =  getCupSizeOriginalIndex( cupSize , originUnitId );
 
-        if( originBandSizeIndex == 1 || originCupSizeIndex == -1 ||
+        if( originBandSizeIndex == -1 || originCupSizeIndex == -1 ||
                 bandSizes.length <= targetUnitId || cupSizes.length <= targetUnitId ||
                 bandSizes[targetUnitId].length <= originBandSizeIndex ||
                 cupSizes[targetUnitId].length <= originCupSizeIndex

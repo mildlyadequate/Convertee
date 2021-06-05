@@ -1,4 +1,4 @@
-package com.sbsc.convertee.adapter;
+package com.sbsc.convertee.ui.adapter;
 
 import android.content.Context;
 import android.util.SparseArray;

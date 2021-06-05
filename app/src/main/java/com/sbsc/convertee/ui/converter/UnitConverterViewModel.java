@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.sbsc.convertee.adapter.CalculatedUnitItemAdapter;
+import com.sbsc.convertee.ui.adapter.CalculatedUnitItemAdapter;
 import com.sbsc.convertee.calculator.CalcColourCode;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 

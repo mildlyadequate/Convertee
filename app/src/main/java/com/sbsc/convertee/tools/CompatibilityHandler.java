@@ -43,6 +43,11 @@ public class CompatibilityHandler {
         }
     }
 
+    public static String convertNumberFormatDEtoSystem( String input ){
+        input = input.replaceAll("\\.","");
+        return input.replace(",",".");
+    }
+
     @SuppressWarnings("deprecation")
     public static long getCurrentTime(){
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -58,4 +63,5 @@ public class CompatibilityHandler {
     public static boolean isOldDevice(){
         return !(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N);
     }
+
 }

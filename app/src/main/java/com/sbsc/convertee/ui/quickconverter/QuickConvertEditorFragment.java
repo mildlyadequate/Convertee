@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.UnitTypeContainer;
+import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.calculator.CalcColourCode;
 import com.sbsc.convertee.calculator.CalcNumerative;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;

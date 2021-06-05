@@ -1,4 +1,4 @@
-package com.sbsc.convertee.adapter;
+package com.sbsc.convertee.ui.adapter;
 
 import android.content.Context;
 import android.text.Editable;
@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.UnitTypeContainer;
+import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.calculator.CalcCurrency;
 import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
@@ -33,6 +33,7 @@ import com.sbsc.convertee.entities.unittypes.ColourCode;
 import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.Numerative;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
+import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.HighlightArrayAdapter;
 import com.sbsc.convertee.ui.quickconverter.QuickConverterFragment;
 
@@ -40,6 +41,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Locale;
 
 public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapter.ViewHolder> {
 
@@ -71,15 +73,28 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         // Get current unit item
         QuickConvertUnit item = quickConvertUnits.get(position);
         UnitType unitType = UnitTypeContainer.getUnitType( item.getUnitTypeId() );
+        Spinner spQuickConvertFrom = holder.getSpQuickConvertFrom();
+        Spinner spQuickConvertTo = holder.getSpQuickConvertTo();
 
         // Title
         String localizedUnitTypeName = unitType.getUnitTypeLocalizedName( context );
         holder.getTvQuickConvertTitle().setText( localizedUnitTypeName );
-
         holder.getTilQuickConvertInput().setHintAnimationEnabled(false);
         // Edit Text Input Default
-        holder.getEtQuickConvertInput().setText( item.getDefaultValue() );
+        EditText etInput = holder.getEtQuickConvertInput();
+        etInput.setText( item.getDefaultValue() );
         holder.getTilQuickConvertInput().setHintAnimationEnabled(true);
+        etInput.setShowSoftInputOnFocus(false);
+        etInput.setOnFocusChangeListener((view, b) -> {
+            if( b ){
+                LocalizedUnit currentUnit = (LocalizedUnit) spQuickConvertFrom.getSelectedItem();
+                quickConverterFragment.initCustomKeyboard( unitType , currentUnit.getUnitKey() , etInput );
+            }
+        });
+        etInput.setOnClickListener(view -> {
+            LocalizedUnit currentUnit = (LocalizedUnit) spQuickConvertFrom.getSelectedItem();
+            quickConverterFragment.initCustomKeyboard( unitType , currentUnit.getUnitKey() , etInput );
+        });
 
         if(position % 2 == 0) {
             //holder.rootView.setBackgroundColor(Color.BLACK);
@@ -104,9 +119,6 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
             if( units[i].getUnitKey().equals(item.getIdUnitTo()) ) indexTo = i;
             if( indexFrom != -1 && indexTo != -1 ) break;
         }
-
-        Spinner spQuickConvertFrom = holder.getSpQuickConvertFrom();
-        Spinner spQuickConvertTo = holder.getSpQuickConvertTo();
 
         HighlightArrayAdapter adapterFrom = new HighlightArrayAdapter( context , android.R.layout.simple_spinner_item , units){
             @Override
@@ -144,19 +156,27 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         spQuickConvertFrom.setAdapter( adapterFrom );
         spQuickConvertTo.setAdapter( adapterTo );
 
-        if( indexFrom >= 0 ) spQuickConvertFrom.setSelection( indexFrom );
-        if( indexTo >= 0 ) spQuickConvertTo.setSelection( indexTo );
+        if( indexFrom >= 0 ) spQuickConvertFrom.setSelection( indexFrom , false );
+        if( indexTo >= 0 ) spQuickConvertTo.setSelection( indexTo , false );
 
         // -------------------------------- Convert values -----------------------------------------
-        EditText etQuickConvert = holder.getEtQuickConvertInput();
         TextView tvQuickConvertResult = holder.getTvQuickConvertResult();
 
         spQuickConvertFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tvQuickConvertResult.setText( getResultValue( etQuickConvert.getText().toString() , item , holder , unitType ) );
+                tvQuickConvertResult.setText( getResultValue( etInput.getText().toString() , holder , unitType ) );
                 adapterFrom.setSelection( position );
                 setTextInputHint( holder , unitType );
+
+                // Change input method based on selected unit
+                if( unitType.getId().equals(Numerative.id) ){
+                    LocalizedUnit currentUnit = (LocalizedUnit) spQuickConvertFrom.getSelectedItem();
+                    quickConverterFragment.initCustomKeyboard( unitType , currentUnit.getUnitKey() , etInput );
+                    etInput.setText("");
+                    etInput.setSelection(etInput.getText().length());
+                    etInput.requestFocus();
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
@@ -166,17 +186,17 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 adapterTo.setSelection( position );
-                tvQuickConvertResult.setText( getResultValue( etQuickConvert.getText().toString() , item , holder , unitType ) );
+                tvQuickConvertResult.setText( getResultValue( etInput.getText().toString() , holder , unitType ) );
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
 
-        etQuickConvert.addTextChangedListener(new TextWatcher() {
+        etInput.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tvQuickConvertResult.setText( getResultValue( s.toString() , item , holder , unitType ) );
+                tvQuickConvertResult.setText( getResultValue( s.toString() , holder , unitType ) );
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -184,8 +204,8 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
             public void afterTextChanged(Editable editable) { }
         });
         //Clear focus here from edittext
-        etQuickConvert.setOnEditorActionListener((v, actionId, event) -> {
-            if(actionId== EditorInfo.IME_ACTION_DONE) etQuickConvert.clearFocus();
+        etInput.setOnEditorActionListener((v, actionId, event) -> {
+            if(actionId== EditorInfo.IME_ACTION_DONE) etInput.clearFocus();
             return false;
         });
 
@@ -205,7 +225,6 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
                 quickConvertUnits.remove( item );
                 notifyItemRemoved( position );
                 notifyItemRangeChanged(position,getItemCount()-position);
-                // notifyDataSetChanged();
                 quickConverterFragment.removeQuickConvertUnit( item );
             });
 
@@ -243,19 +262,18 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
     /**
      * Calculate result based on parameters
      * @param input value
-     * @param item QuickConvertItem containing Unit information
      * @param holder ViewHolder
      * @param unitType UnitType
      * @return String result
      */
-    private String getResultValue( String input , QuickConvertUnit item , ViewHolder holder , UnitType unitType){
+    private String getResultValue( String input , ViewHolder holder , UnitType unitType){
         input = input.trim();
-        if( !NumberUtils.isCreatable(input) &&
-                !item.getUnitTypeId().equals(Numerative.id) &&
-                !item.getUnitTypeId().equals(ColourCode.id) &&
-                !item.getUnitTypeId().equals(BraSize.id)
-        ){
-            return "...";
+
+        if(!unitType.getId().equals(Numerative.id) && !unitType.getId().equals(ColourCode.id) && !unitType.getId().equals(BraSize.id) ){
+
+            if( Calculator.locale == Locale.GERMANY ) input = CompatibilityHandler.convertNumberFormatDEtoSystem( input );
+            if( !NumberUtils.isCreatable(input) ) return "...";
+
         }
 
         if( unitType.getId().equals(Currency.id) ){

@@ -1,8 +1,9 @@
-package com.sbsc.convertee;
+package com.sbsc.convertee.entities;
 
 import android.app.Activity;
 import android.util.Log;
 
+import com.sbsc.convertee.R;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.entities.unittypes.Angle;
 import com.sbsc.convertee.entities.unittypes.Area;

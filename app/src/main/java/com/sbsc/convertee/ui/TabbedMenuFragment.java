@@ -1,6 +1,9 @@
-package com.sbsc.convertee;
+package com.sbsc.convertee.ui;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -10,22 +13,18 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.sbsc.convertee.ui.overview.UnitCategoriesFragment;
-import com.sbsc.convertee.ui.overview.UnitOverviewFragment;
+import com.sbsc.convertee.R;
+import com.sbsc.convertee.ui.categories.UnitCategoriesFragment;
 import com.sbsc.convertee.ui.quickconverter.QuickConverterFragment;
 
 import org.jetbrains.annotations.NotNull;
 
 
-public class MainFragment extends Fragment {
+public class TabbedMenuFragment extends Fragment {
 
-    public MainFragment() {
+    public TabbedMenuFragment() {
         // Required empty public constructor
     }
 
@@ -77,7 +76,6 @@ public class MainFragment extends Fragment {
         }
 
         @NonNull
-        @NotNull
         @Override
         public Fragment createFragment(int position) {
             switch (position){

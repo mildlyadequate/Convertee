@@ -15,11 +15,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
 import com.sbsc.convertee.calculator.Calculator;
+import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
 import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.DefaultHiddenUnits;
 import com.sbsc.convertee.ui.converter.UnitConverterFragment;
 import com.sbsc.convertee.ui.intro.AppIntroActivity;
+import com.sbsc.convertee.ui.TabbedMenuFragment;
 import com.sbsc.convertee.ui.quickconverter.QuickConvertEditorFragment;
 import com.sbsc.convertee.ui.settings.SettingsFragment;
 import com.sbsc.convertee.ui.settings.UnitSettingsFragment;
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
             // Open Home Fragment as Default Starting Page
             // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UnitOverviewFragment()).commit();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment() , "mainFrag").commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TabbedMenuFragment() , "mainFrag").commit();
 
             /*
             // This makes sure when activity is restarted due to savedInstanceState, it opens the unit that was opened previously
