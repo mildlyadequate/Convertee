@@ -2,9 +2,6 @@ package com.sbsc.convertee.ui.quickconverter;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +28,7 @@ import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
+import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.keyboards.CustomKeyboard;
 import com.sbsc.convertee.tools.keyboards.KeyboardHandler;
 import com.sbsc.convertee.ui.adapter.QuickConvertAdapter;
@@ -48,8 +46,6 @@ public class QuickConverterFragment extends Fragment {
     // Shared Preferences
     private SharedPreferences sharedPref;
 
-    // QuickConversion
-    private RecyclerView rvQuickConvert;
     protected QuickConvertAdapter rvQuickConvertAdapter;
     private Set<String> quickConverterItems;
 
@@ -89,7 +85,8 @@ public class QuickConverterFragment extends Fragment {
      * Initialize recycler view
      */
     private void initRecyclerViewQuickConvertList( View root ){
-        rvQuickConvert = root.findViewById(R.id.rvQuickConvert);
+        // QuickConversion
+        RecyclerView rvQuickConvert = root.findViewById(R.id.rvQuickConvert);
 
         // LayoutManager
         LinearLayoutManager rvListLayoutManager = new LinearLayoutManager( getContext() );
@@ -128,16 +125,8 @@ public class QuickConverterFragment extends Fragment {
         }
 
         // Get required keyboard from KeyboardHandler based on unittype and unit
-        EditorInfo editorInfo = new EditorInfo();
-        editorInfo.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_CLASS_TEXT;
-        editorInfo.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI | EditorInfo.IME_FLAG_NO_FULLSCREEN;
-        editorInfo.initialSelStart=0;
-        editorInfo.initialSelEnd=0;
-        editorInfo.initialCapsMode= TextUtils.CAP_MODE_WORDS;
-        // TODO handle on sdk < N
         InputConnection ic = inputSource.onCreateInputConnection(new EditorInfo());
-        Log.d("XD", "initCustomKeyboard: "+ic);
-        CustomKeyboard newKeyboard = KeyboardHandler.getKeyboardByType( unitType , unitKey , ic , requireContext() );
+        CustomKeyboard newKeyboard = KeyboardHandler.getKeyboardByType( unitType.getId() , unitKey , ic , requireContext() );
 
         // Return if keyboard stayed the same
         if( newKeyboard == currentKeyboard ) return; else currentKeyboard = newKeyboard;
@@ -268,14 +257,18 @@ public class QuickConverterFragment extends Fragment {
      * Shift away to root, remove keyboard from root
      */
     private void hideCustomKeyboard(){
-        rlQuickConverterRoot.requestFocus();
-        if( currentKeyboard != null ){
-            rlQuickConverterRoot.removeView( currentKeyboard );
-            ConstraintSet constraintSet = new ConstraintSet();
-            constraintSet.clone(rlQuickConverterRoot);
-            constraintSet.connect(btnQuickConvertAdd.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 40);
-            constraintSet.applyTo(rlQuickConverterRoot);
+
+        if( CompatibilityHandler.shouldUseCustomKeyboard() ){
+            rlQuickConverterRoot.requestFocus();
+            if( currentKeyboard != null ){
+                rlQuickConverterRoot.removeView( currentKeyboard );
+                ConstraintSet constraintSet = new ConstraintSet();
+                constraintSet.clone(rlQuickConverterRoot);
+                constraintSet.connect(btnQuickConvertAdd.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 40);
+                constraintSet.applyTo(rlQuickConverterRoot);
+            }
         }
+
     }
 
     public SharedPreferences getSharedPref() { return sharedPref; }

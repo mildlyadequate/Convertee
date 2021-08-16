@@ -7,7 +7,7 @@ public class ShoeSize extends UnitType {
     // SINGLETON
     private static ShoeSize unitTypeInstance;
 
-    public static String id = "shoesize";
+    public static final String id = "shoesize";
 
     /**
      * Lazy initialization singleton

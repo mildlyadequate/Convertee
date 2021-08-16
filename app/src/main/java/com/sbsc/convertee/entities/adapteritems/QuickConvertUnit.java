@@ -1,14 +1,16 @@
 package com.sbsc.convertee.entities.adapteritems;
 
 
+import androidx.annotation.NonNull;
+
 public class QuickConvertUnit {
 
     private final String unitTypeId;
 
-    private final String defaultValue;
+    private String defaultValue;
 
-    private final String idUnitFrom;
-    private final String idUnitTo;
+    private String idUnitFrom;
+    private String idUnitTo;
 
     private final LocalizedUnit[] arrayUnitType;
 
@@ -39,10 +41,20 @@ public class QuickConvertUnit {
         this.arrayUnitType = arrayUnitType;
     }
 
+    public void setDefaultValue(String defaultValue) { this.defaultValue = defaultValue; }
+    public void setIdUnitFrom(String idUnitFrom) { this.idUnitFrom = idUnitFrom; }
+    public void setIdUnitTo(String idUnitTo) { this.idUnitTo = idUnitTo; }
+
     public String getUnitTypeId() { return unitTypeId; }
     public String getIdUnitFrom() { return idUnitFrom; }
     public String getIdUnitTo() { return idUnitTo; }
     public String getDefaultValue() { return defaultValue; }
 
     public LocalizedUnit[] getArrayUnitType() { return arrayUnitType; }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return unitTypeId+"::"+idUnitFrom+"::"+idUnitTo+"::"+defaultValue;
+    }
 }

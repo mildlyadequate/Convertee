@@ -7,7 +7,7 @@ public class Force extends UnitType {
     // SINGLETON
     private static Force unitTypeInstance;
 
-    public static String id = "force";
+    public static final String id = "force";
 
     /**
      * Lazy initialization singleton

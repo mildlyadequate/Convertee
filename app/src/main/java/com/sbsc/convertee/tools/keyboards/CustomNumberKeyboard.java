@@ -3,7 +3,6 @@ package com.sbsc.convertee.tools.keyboards;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,48 +28,33 @@ public class CustomNumberKeyboard extends CustomKeyboard implements View.OnClick
 
     public CustomNumberKeyboard(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
+        init( context );
         handleKeyboardButtonClose();
     }
-
-    // keyboard keys (buttons)
-    private Button mButton1;
-    private Button mButton2;
-    private Button mButton3;
-    private Button mButton4;
-    private Button mButton5;
-    private Button mButton6;
-    private Button mButton7;
-    private Button mButton8;
-    private Button mButton9;
-    private Button mButton0;
-    private ImageButton mButtonDelete;
-    private Button mButtonComma;
-    private Button mButtonPeriod;
-    private Button mButtonMinus;
 
     // This will map the button resource id to the String value that we want to
     // input when that button is clicked.
     SparseArray<String> keyValues = new SparseArray<>();
 
-    private void init(Context context, AttributeSet attrs) {
+    private void init( Context context ) {
 
         // initialize buttons
         LayoutInflater.from(context).inflate(R.layout.keyboard_number, this, true);
-        mButton1 = (Button) findViewById(R.id.button_1);
-        mButton2 = (Button) findViewById(R.id.button_2);
-        mButton3 = (Button) findViewById(R.id.button_3);
-        mButton4 = (Button) findViewById(R.id.button_4);
-        mButton5 = (Button) findViewById(R.id.button_5);
-        mButton6 = (Button) findViewById(R.id.button_6);
-        mButton7 = (Button) findViewById(R.id.button_7);
-        mButton8 = (Button) findViewById(R.id.button_8);
-        mButton9 = (Button) findViewById(R.id.button_9);
-        mButton0 = (Button) findViewById(R.id.button_0);
-        mButtonDelete = (ImageButton) findViewById(R.id.button_delete);
-        mButtonComma = (Button) findViewById(R.id.button_comma);
-        mButtonPeriod = (Button) findViewById(R.id.button_period);
-        mButtonMinus = (Button) findViewById(R.id.button_minus);
+        // keyboard keys (buttons)
+        Button mButton1 = findViewById(R.id.button_1);
+        Button mButton2 = findViewById(R.id.button_2);
+        Button mButton3 = findViewById(R.id.button_3);
+        Button mButton4 = findViewById(R.id.button_4);
+        Button mButton5 = findViewById(R.id.button_5);
+        Button mButton6 = findViewById(R.id.button_6);
+        Button mButton7 = findViewById(R.id.button_7);
+        Button mButton8 = findViewById(R.id.button_8);
+        Button mButton9 = findViewById(R.id.button_9);
+        Button mButton0 = findViewById(R.id.button_0);
+        ImageButton mButtonDelete = findViewById(R.id.button_delete);
+        Button mButtonComma = findViewById(R.id.button_comma);
+        Button mButtonPeriod = findViewById(R.id.button_period);
+        Button mButtonMinus = findViewById(R.id.button_minus);
 
         // set button click listeners
         mButton1.setOnClickListener(this);

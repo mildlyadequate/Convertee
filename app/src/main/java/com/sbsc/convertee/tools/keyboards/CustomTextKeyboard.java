@@ -25,72 +25,64 @@ public class CustomTextKeyboard extends CustomKeyboard implements View.OnClickLi
 
     public CustomTextKeyboard(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
+        init( context );
         handleKeyboardButtonClose();
     }
-
-    // keyboard keys (buttons)
-    private Button mButton1, mButton2, mButton3, mButton4, mButton5, mButton6, mButton7, mButton8, mButton9, mButton0;
-    private Button mButtonQ, mButtonW, mButtonE, mButtonR, mButtonT, mButtonZ, mButtonU, mButtonI, mButtonO, mButtonP;
-    private Button mButtonA, mButtonS, mButtonD, mButtonF, mButtonG, mButtonH, mButtonJ, mButtonK, mButtonL;
-    private Button mButtonY, mButtonX, mButtonC, mButtonV, mButtonB, mButtonN, mButtonM;
-
-    private ImageButton mButtonDelete;
-    private Button mButtonComma, mButtonPeriod, mButtonMinus, mButtonSpace;
 
     // This will map the button resource id to the String value that we want to
     // input when that button is clicked.
     SparseArray<String> keyValues = new SparseArray<>();
 
-    private void init(Context context, AttributeSet attrs) {
+    private void init( Context context ) {
 
         // initialize buttons
         LayoutInflater.from(context).inflate(R.layout.keyboard_text, this, true);
-        mButton1 = (Button) findViewById(R.id.button_1);
-        mButton2 = (Button) findViewById(R.id.button_2);
-        mButton3 = (Button) findViewById(R.id.button_3);
-        mButton4 = (Button) findViewById(R.id.button_4);
-        mButton5 = (Button) findViewById(R.id.button_5);
-        mButton6 = (Button) findViewById(R.id.button_6);
-        mButton7 = (Button) findViewById(R.id.button_7);
-        mButton8 = (Button) findViewById(R.id.button_8);
-        mButton9 = (Button) findViewById(R.id.button_9);
-        mButton0 = (Button) findViewById(R.id.button_0);
+        // keyboard keys (buttons)
+        Button mButton1 = findViewById(R.id.button_1);
+        Button mButton2 = findViewById(R.id.button_2);
+        Button mButton3 = findViewById(R.id.button_3);
+        Button mButton4 = findViewById(R.id.button_4);
+        Button mButton5 = findViewById(R.id.button_5);
+        Button mButton6 = findViewById(R.id.button_6);
+        Button mButton7 = findViewById(R.id.button_7);
+        Button mButton8 = findViewById(R.id.button_8);
+        Button mButton9 = findViewById(R.id.button_9);
+        Button mButton0 = findViewById(R.id.button_0);
 
-        mButtonQ = (Button) findViewById(R.id.button_q);
-        mButtonW = (Button) findViewById(R.id.button_w);
-        mButtonE = (Button) findViewById(R.id.button_e);
-        mButtonR = (Button) findViewById(R.id.button_r);
-        mButtonT = (Button) findViewById(R.id.button_t);
-        mButtonZ = (Button) findViewById(R.id.button_z);
-        mButtonU = (Button) findViewById(R.id.button_u);
-        mButtonI = (Button) findViewById(R.id.button_i);
-        mButtonO = (Button) findViewById(R.id.button_o);
-        mButtonP = (Button) findViewById(R.id.button_p);
+        Button mButtonQ = findViewById(R.id.button_q);
+        Button mButtonW = findViewById(R.id.button_w);
+        Button mButtonE = findViewById(R.id.button_e);
+        Button mButtonR = findViewById(R.id.button_r);
+        Button mButtonT = findViewById(R.id.button_t);
+        Button mButtonZ = findViewById(R.id.button_z);
+        Button mButtonU = findViewById(R.id.button_u);
+        Button mButtonI = findViewById(R.id.button_i);
+        Button mButtonO = findViewById(R.id.button_o);
+        Button mButtonP = findViewById(R.id.button_p);
 
-        mButtonA = (Button) findViewById(R.id.button_a);
-        mButtonS = (Button) findViewById(R.id.button_s);
-        mButtonD = (Button) findViewById(R.id.button_d);
-        mButtonF = (Button) findViewById(R.id.button_f);
-        mButtonG = (Button) findViewById(R.id.button_g);
-        mButtonH = (Button) findViewById(R.id.button_h);
-        mButtonJ = (Button) findViewById(R.id.button_j);
-        mButtonK = (Button) findViewById(R.id.button_k);
-        mButtonL = (Button) findViewById(R.id.button_l);
+        Button mButtonA = findViewById(R.id.button_a);
+        Button mButtonS = findViewById(R.id.button_s);
+        Button mButtonD = findViewById(R.id.button_d);
+        Button mButtonF = findViewById(R.id.button_f);
+        Button mButtonG = findViewById(R.id.button_g);
+        Button mButtonH = findViewById(R.id.button_h);
+        Button mButtonJ = findViewById(R.id.button_j);
+        Button mButtonK = findViewById(R.id.button_k);
+        Button mButtonL = findViewById(R.id.button_l);
 
-        mButtonY = (Button) findViewById(R.id.button_y);
-        mButtonX = (Button) findViewById(R.id.button_x);
-        mButtonC = (Button) findViewById(R.id.button_c);
-        mButtonV = (Button) findViewById(R.id.button_v);
-        mButtonB = (Button) findViewById(R.id.button_b);
-        mButtonN = (Button) findViewById(R.id.button_n);
-        mButtonM = (Button) findViewById(R.id.button_m);
+        Button mButtonY = findViewById(R.id.button_y);
+        Button mButtonX = findViewById(R.id.button_x);
+        Button mButtonC = findViewById(R.id.button_c);
+        Button mButtonV = findViewById(R.id.button_v);
+        Button mButtonB = findViewById(R.id.button_b);
+        Button mButtonN = findViewById(R.id.button_n);
+        Button mButtonM = findViewById(R.id.button_m);
 
-        mButtonDelete = (ImageButton) findViewById(R.id.button_delete);
-        mButtonComma = (Button) findViewById(R.id.button_comma);
-        mButtonPeriod = (Button) findViewById(R.id.button_period);
-        mButtonMinus = (Button) findViewById(R.id.button_minus);
-        mButtonSpace = (Button) findViewById(R.id.button_space);
+        ImageButton mButtonDelete = findViewById(R.id.button_delete);
+        Button mButtonComma = findViewById(R.id.button_comma);
+        Button mButtonPeriod = findViewById(R.id.button_period);
+        Button mButtonMinus = findViewById(R.id.button_minus);
+        Button mButtonSpace = findViewById(R.id.button_space);
 
         // set button click listeners
         mButton1.setOnClickListener(this);

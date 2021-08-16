@@ -1,6 +1,7 @@
 package com.sbsc.convertee.ui.adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -21,14 +23,12 @@ public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.
     private boolean mValid = true;
     private final int mSectionResourceId;
     private final int mTextResourceId;
-    private LayoutInflater mLayoutInflater;
     private final UnitTypeAdapter mBaseAdapter;
     private final SparseArray<Section> mSections = new SparseArray<>();
 
     public UnitTypeSectionedAdapter(Context context, int sectionResourceId, int textResourceId,
                                     UnitTypeAdapter baseAdapter) {
 
-        mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mSectionResourceId = sectionResourceId;
         mTextResourceId = textResourceId;
         mBaseAdapter = baseAdapter;
@@ -38,7 +38,7 @@ public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.
             @Override
             public void onChanged() {
                 mValid = mBaseAdapter.getItemCount()>0;
-                notifyDataSetChanged();
+                // notifyDataSetChanged();
             }
 
             @Override
@@ -68,7 +68,7 @@ public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.
 
         public SectionViewHolder(View view, int mTextResourceId) {
             super(view);
-            title = (TextView) view.findViewById(mTextResourceId);
+            title = view.findViewById(mTextResourceId);
         }
     }
 
@@ -110,15 +110,16 @@ public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.
             this.firstPosition = firstPosition;
             this.title = title;
         }
-        public CharSequence getTitle() { return title; }
-        public int getFirstPosition() { return firstPosition; }
-        public int getSectionedPosition() { return sectionedPosition; }
     }
 
     public void setSections(Section[] sections) {
         mSections.clear();
 
-        Arrays.sort(sections, (o, o1) -> Integer.compare(o.firstPosition, o1.firstPosition));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            Arrays.sort(sections, Comparator.comparingInt(o -> o.firstPosition));
+        else
+            Arrays.sort(sections, (o, o1) -> Integer.compare(o.firstPosition, o1.firstPosition));
+
 
         int offset = 0; // offset positions for the headers we're adding
         for (Section section : sections) {
@@ -126,10 +127,10 @@ public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.
             mSections.append(section.sectionedPosition, section);
             ++offset;
         }
-
-        notifyDataSetChanged();
+        notifyItemRangeInserted(0,sections.length);
     }
 
+    /*
     public int positionToSectionedPosition(int position) {
         int offset = 0;
         for (int i = 0; i < mSections.size(); i++) {
@@ -140,6 +141,7 @@ public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.
         }
         return position + offset;
     }
+    */
 
     public int sectionedPositionToPosition(int sectionedPosition) {
         if (isSectionHeaderPosition(sectionedPosition)) {
@@ -173,26 +175,5 @@ public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.
         return (mValid ? mBaseAdapter.getItemCount() + mSections.size() : 0);
     }
 
-    public Section getSectionAt(int id ){
-        return mSections.get(mSections.keyAt( id ));
-    }
-
-    public void addFavourite() {
-        Section section = getSectionAt(1);
-        section.sectionedPosition++;
-        section.firstPosition++;
-        mSections.removeAt(1);
-        mSections.append( section.sectionedPosition , section );
-        notifyDataSetChanged();
-    }
-
-    public void removeFavourite() {
-        Section section = getSectionAt(1);
-        section.sectionedPosition--;
-        section.firstPosition--;
-        mSections.removeAt(1);
-        mSections.append( section.sectionedPosition , section );
-        notifyDataSetChanged();
-    }
 }
 

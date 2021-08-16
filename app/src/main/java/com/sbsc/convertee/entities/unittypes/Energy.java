@@ -7,7 +7,7 @@ public class Energy extends UnitType {
     // SINGLETON
     private static Energy unitTypeInstance;
 
-    public static String id = "energy";
+    public static final String id = "energy";
 
     /**
      * Lazy initialization singleton

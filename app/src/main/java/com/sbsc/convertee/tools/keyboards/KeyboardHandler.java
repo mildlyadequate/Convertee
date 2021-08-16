@@ -9,38 +9,46 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.sbsc.convertee.entities.unittypes.BraSize;
 import com.sbsc.convertee.entities.unittypes.ColourCode;
 import com.sbsc.convertee.entities.unittypes.Numerative;
-import com.sbsc.convertee.entities.unittypes.ShoeSize;
-import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 
 public class KeyboardHandler {
 
-    private enum KeyboardType { NUMBER , NUMBER_BINARY , NUMBER_HEX , NUMBER_OCTAL , TEXT };
+    private enum KeyboardType { NUMBER , NUMBER_BINARY , NUMBER_HEX , NUMBER_OCTAL , TEXT }
 
+    public static int KeyboardId = 0;
 
-    public static CustomKeyboard getKeyboardByType( UnitType unitType , String unitKey , InputConnection inputConnection , Context context ) {
+    public static CustomKeyboard getKeyboardByType( String unitTypeKey , String unitKey , InputConnection inputConnection , Context context ) {
 
-        if( unitType.getId().equals(Numerative.id) ){
+        CustomKeyboard customKeyboard = null;
 
-            if( unitKey.equals("decimal") ){
-                return getKeyboardByType( KeyboardType.NUMBER , inputConnection , context );
-            }else if( unitKey.equals("hex") ){
-                return getKeyboardByType( KeyboardType.NUMBER_HEX , inputConnection , context );
-            }else if( unitKey.equals("octal") ){
-                return getKeyboardByType( KeyboardType.NUMBER_OCTAL , inputConnection , context );
-            }else if( unitKey.equals("binary") ){
-                return getKeyboardByType( KeyboardType.NUMBER_BINARY , inputConnection , context );
+        if( unitTypeKey.equals(Numerative.id) ){
+
+            switch (unitKey) {
+                case "decimal":
+                    customKeyboard = getKeyboardByType(KeyboardType.NUMBER, inputConnection, context);
+                    break;
+                case "hex":
+                    customKeyboard = getKeyboardByType(KeyboardType.NUMBER_HEX, inputConnection, context);
+                    break;
+                case "octal":
+                    customKeyboard = getKeyboardByType(KeyboardType.NUMBER_OCTAL, inputConnection, context);
+                    break;
+                case "binary":
+                    customKeyboard = getKeyboardByType(KeyboardType.NUMBER_BINARY, inputConnection, context);
+                    break;
             }
 
-        }else if (
-                unitType.getId().equals(ColourCode.id) ||
-                unitType.getId().equals(BraSize.id)
-        ){
-            return getKeyboardByType( KeyboardType.TEXT , inputConnection , context );
+
+        }else if ( unitTypeKey.equals(ColourCode.id) ||
+                   unitTypeKey.equals(BraSize.id) ){
+
+            customKeyboard = getKeyboardByType( KeyboardType.TEXT , inputConnection , context );
         }else{
-            return getKeyboardByType( KeyboardType.NUMBER , inputConnection , context );
+            customKeyboard = getKeyboardByType( KeyboardType.NUMBER , inputConnection , context );
         }
 
-        return null;
+        CustomKeyboard.isOpen = true;
+
+        return customKeyboard;
     }
 
     private static CustomKeyboard getKeyboardByType( KeyboardType type , InputConnection inputConnection , Context context ){
@@ -67,13 +75,14 @@ public class KeyboardHandler {
                 throw new IllegalStateException("Unexpected value: " + type);
         }
 
-        keyboard.setId(View.generateViewId());
+        keyboard.setId( View.generateViewId() );
         keyboard.setLayoutParams( new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT )
         );
 
         keyboard.setInputConnection(inputConnection);
+        KeyboardId = keyboard.getId();
 
         return keyboard;
     }

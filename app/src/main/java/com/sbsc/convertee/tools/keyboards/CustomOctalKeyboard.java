@@ -11,9 +11,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.calculator.Calculator;
-
-import java.util.Locale;
 
 public class CustomOctalKeyboard extends CustomKeyboard implements View.OnClickListener, View.OnLongClickListener {
 
@@ -28,38 +25,28 @@ public class CustomOctalKeyboard extends CustomKeyboard implements View.OnClickL
 
     public CustomOctalKeyboard(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
+        init( context );
         handleKeyboardButtonClose();
     }
-
-    // keyboard keys (buttons)
-    private Button mButton1;
-    private Button mButton2;
-    private Button mButton3;
-    private Button mButton4;
-    private Button mButton5;
-    private Button mButton6;
-    private Button mButton7;
-    private Button mButton0;
-    private ImageButton mButtonDelete;
 
     // This will map the button resource id to the String value that we want to
     // input when that button is clicked.
     SparseArray<String> keyValues = new SparseArray<>();
 
-    private void init(Context context, AttributeSet attrs) {
+    private void init( Context context ) {
 
         // initialize buttons
         LayoutInflater.from(context).inflate(R.layout.keyboard_octal, this, true);
-        mButton1 = (Button) findViewById(R.id.button_1);
-        mButton2 = (Button) findViewById(R.id.button_2);
-        mButton3 = (Button) findViewById(R.id.button_3);
-        mButton4 = (Button) findViewById(R.id.button_4);
-        mButton5 = (Button) findViewById(R.id.button_5);
-        mButton6 = (Button) findViewById(R.id.button_6);
-        mButton7 = (Button) findViewById(R.id.button_7);
-        mButton0 = (Button) findViewById(R.id.button_0);
-        mButtonDelete = (ImageButton) findViewById(R.id.button_delete);
+        // keyboard keys (buttons)
+        Button mButton1 = findViewById(R.id.button_1);
+        Button mButton2 = findViewById(R.id.button_2);
+        Button mButton3 = findViewById(R.id.button_3);
+        Button mButton4 = findViewById(R.id.button_4);
+        Button mButton5 = findViewById(R.id.button_5);
+        Button mButton6 = findViewById(R.id.button_6);
+        Button mButton7 = findViewById(R.id.button_7);
+        Button mButton0 = findViewById(R.id.button_0);
+        ImageButton mButtonDelete = findViewById(R.id.button_delete);
 
         // set button click listeners
         mButton1.setOnClickListener(this);

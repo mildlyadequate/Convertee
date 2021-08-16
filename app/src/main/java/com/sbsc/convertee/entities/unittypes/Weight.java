@@ -7,7 +7,7 @@ public class Weight extends UnitType {
     // SINGLETON
     private static Weight unitTypeInstance;
 
-    public static String id = "weight";
+    public static final String id = "weight";
 
     /**
      * Lazy initialization singleton

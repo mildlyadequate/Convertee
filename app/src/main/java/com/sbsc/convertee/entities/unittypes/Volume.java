@@ -7,7 +7,7 @@ public class Volume extends UnitType {
     // SINGLETON
     private static Volume unitTypeInstance;
 
-    public static String id = "volume";
+    public static final String id = "volume";
 
     /**
      * Lazy initialization singleton

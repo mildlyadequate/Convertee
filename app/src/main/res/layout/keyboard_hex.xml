@@ -180,7 +180,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/keyboard_button_selector"
-                app:srcCompat="@android:drawable/ic_input_delete" />
+                app:srcCompat="@android:drawable/ic_input_delete"
+                android:contentDescription="@string/content_desc_keyboard_delete" />
 
         </LinearLayout>
 
@@ -237,7 +238,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/keyboard_button_selector"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/keyboard_button_close" />
+                app:srcCompat="@drawable/keyboard_button_close"
+                android:contentDescription="@string/content_desc_keyboard_close" />
 
         </LinearLayout>
     </LinearLayout>

@@ -34,6 +34,7 @@ public class UnitTypeEntry{
      * @return LocalizedUnit object of this Entry
      */
     public LocalizedUnit localize( Context context ){
+
         // Get Name from string.xml using value of unit as key
         String localizedName = context.getResources().getString(
                 context.getResources().getIdentifier(resourceId,"string", context.getPackageName() )

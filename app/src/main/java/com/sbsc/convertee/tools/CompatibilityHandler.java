@@ -6,13 +6,14 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.icu.util.Calendar;
 import android.os.Build;
-import android.text.format.Time;
+import android.widget.TextView;
 
 import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
 
 import java.util.Locale;
 
+@SuppressWarnings("deprecation")
 public class CompatibilityHandler {
 
     public static Locale defaultLocale;
@@ -35,6 +36,10 @@ public class CompatibilityHandler {
         resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 
+    public static boolean shouldUseCustomKeyboard(){
+        return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M);
+    }
+
     public static int getColor(Context ctx , @ColorRes int id){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return ContextCompat.getColor( ctx , id );
@@ -54,7 +59,7 @@ public class CompatibilityHandler {
             return Calendar.getInstance().getTimeInMillis();
 
         }else{
-            Time time = new Time();
+            android.text.format.Time time = new android.text.format.Time();
             time.setToNow();
             return time.toMillis(false);
         }
@@ -62,6 +67,14 @@ public class CompatibilityHandler {
 
     public static boolean isOldDevice(){
         return !(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N);
+    }
+
+    public static void setTextViewAppearance( TextView textView , Context context , int resId ) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            textView.setTextAppearance( context , resId );
+        } else {
+            textView.setTextAppearance( resId );
+        }
     }
 
 }

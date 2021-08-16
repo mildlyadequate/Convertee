@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clSetupQuickConvertRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="24dp">
+
+    <ImageView
+        android:id="@+id/ivSetupQuickConvertIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="18dp"
+        android:contentDescription="@string/content_description_quickconvert_item_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSetupQuickConvertTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvSetupQuickConvertTitle"
+        app:srcCompat="@drawable/ic_ut_colour"
+        app:tint="@color/themeDayDarkText" />
+
+    <TextView
+        android:id="@+id/tvSetupQuickConvertTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/themeDayDarkText"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/ivSetupQuickConvertIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSetupQuickConvertInput"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        app:boxCornerRadiusBottomEnd="0dp"
+        app:boxCornerRadiusTopEnd="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSetupQuickConvertIcon">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSetupQuickConvertInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:focusableInTouchMode="true"
+            android:hint="@string/unit_type_value_text_hint"
+            android:imeOptions="actionDone"
+            android:inputType="textNoSuggestions|text"
+            android:maxLength="20"
+            android:textColor="@color/themeDayDarkText"
+            android:textColorHighlight="@color/themePrimary"
+            android:textIsSelectable="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/tilSetupQuickConvertInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tilSetupQuickConvertInput"
+        app:layout_constraintTop_toTopOf="@+id/tilSetupQuickConvertInput">
+
+        <TextView
+            android:id="@+id/tvSetupFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginBottom="2dp"
+            android:labelFor="@id/spSetupQuickConvertFrom"
+            android:text="@string/quickconvert_editor_header_from" />
+
+        <Spinner
+            android:id="@+id/spSetupQuickConvertFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_spinner_light"
+            android:minHeight="48dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="0dp"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+        <TextView
+            android:id="@+id/tvSetupTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginBottom="2dp"
+            android:labelFor="@id/spSetupQuickConvertTo"
+            android:text="@string/quickconvert_editor_header_to" />
+
+        <Spinner
+            android:id="@+id/spSetupQuickConvertTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_spinner_light"
+            android:minHeight="48dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="0dp"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

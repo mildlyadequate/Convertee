@@ -17,7 +17,6 @@ import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.calculator.Calculator;
 import com.sbsc.convertee.tools.HelperUtil;
-import com.sbsc.convertee.ui.intro.AppIntroActivity;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -158,6 +157,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
      * @param newValue - amount of hidden units
      */
     private void updateNumberLocalePickerSummary( String newValue , Preference pref ){
+        if( newValue.equals( getString(R.string.pref_number_locale_none) ) ) newValue = getString(R.string.pref_number_locale_none_localized);
         pref.setSummary(getString(R.string.pref_number_locale_subtitle) + " " + newValue);
     }
 

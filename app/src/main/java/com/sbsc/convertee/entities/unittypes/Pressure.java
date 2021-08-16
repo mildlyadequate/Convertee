@@ -7,7 +7,7 @@ public class Pressure extends UnitType {
     // SINGLETON
     private static Pressure unitTypeInstance;
 
-    public static String id = "pressure";
+    public static final String id = "pressure";
 
     /**
      * Lazy initialization singleton

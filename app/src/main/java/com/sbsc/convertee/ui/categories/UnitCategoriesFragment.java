@@ -37,7 +37,6 @@ public class UnitCategoriesFragment extends Fragment {
 
     // RecyclerViewAdapters
     private UnitTypeAdapter rvUnitTypeAdapter;
-    private UnitTypeSectionedAdapter rvUnitTypeSectionedAdapter;
 
     private List<String> favouriteUnitTypeKeys;
 
@@ -116,10 +115,10 @@ public class UnitCategoriesFragment extends Fragment {
         sections.add( new UnitTypeSectionedAdapter.Section( 15 , getString(R.string.unit_type_categories_technology) ));
 
         UnitTypeSectionedAdapter.Section[] dummy = new UnitTypeSectionedAdapter.Section[sections.size()];
-        rvUnitTypeSectionedAdapter = new UnitTypeSectionedAdapter( requireContext() , R.layout.adapter_section, R.id.section_text , rvUnitTypeAdapter );
+        UnitTypeSectionedAdapter rvUnitTypeSectionedAdapter = new UnitTypeSectionedAdapter(requireContext(), R.layout.adapter_section, R.id.section_text, rvUnitTypeAdapter);
         rvUnitTypeSectionedAdapter.setSections(sections.toArray(dummy));
 
-        rvCalculatedUnitList.setAdapter( rvUnitTypeSectionedAdapter );
+        rvCalculatedUnitList.setAdapter(rvUnitTypeSectionedAdapter);
     }
 
     /*

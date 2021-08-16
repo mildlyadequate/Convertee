@@ -7,7 +7,7 @@ public class Angle extends UnitType {
     // SINGLETON
     private static Angle unitTypeInstance;
 
-    public static String id = "angle";
+    public static final String id = "angle";
 
     /**
      * Lazy initialization singleton

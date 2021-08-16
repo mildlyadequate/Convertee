@@ -1,9 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="UnusedResources">
 
     <!-- APP -->
     <string name="app_name">Convertee</string>
     <string name="app_settings">Application Settings</string>
     <string name="unit_settings">Unit Preferences</string>
+    <string name="confirmation_dialog_confirm">Confirm</string>
+    <string name="confirmation_dialog_cancel">Cancel</string>
 
     <!-- TUTORIAL -->
     <string name="tutorial_screen1_title">Hi there!</string>
@@ -14,6 +17,29 @@
     <string name="tutorial_screen3_description">Click a unit abbreviation to mark a row or hold press on the converted value to copy it. It\'s that easy to share your results!</string>
     <string name="tutorial_screen4_title">Large selection</string>
     <string name="tutorial_screen4_description">There are a lot of units available! Check the unit preferences as some less common units are hidden by default. Enjoy!</string>
+
+    <!-- SETUP -->
+    <string name="setup_btn_next">Next</string>
+    <string name="setup_btn_finish">Finish</string>
+    <string name="setup_btn_back">Back</string>
+    <string name="setup_btn_skip">Skip Setup</string>
+    <string name="setup_skip_title">Skip initial setup?</string>
+    <string name="setup_skip_message">Are you sure you want to use default settings to start with?</string>
+    <string name="setup_label_title">Initial Setup:</string>
+    <string name="setup_label_select_language">Language</string>
+    <string name="setup_label_select_format">Number Format</string>
+    <string name="setup_format_promode_desc">Shorten unit names</string>
+    <string name="setup_label_select_units">Favourite Units</string>
+    <string name="setup_label_select_unit_details">Edit Favourites</string>
+    <string name="setup_format_entry_none">None</string>
+    <string name="setup_format_entry_ukus">UK/US</string>
+    <string name="setup_format_entry_de">DE</string>
+    <string name="setup_format_previewlabel">Preview</string>
+    <string name="setup_format_preview_none" translatable="false">10300.5</string>
+    <string name="setup_format_preview_ukus" translatable="false">10,300.5</string>
+    <string name="setup_format_preview_de" translatable="false">10.300,5</string>
+    <string name="setup_units_favourites_label">Favourites (You can still add more later)</string>
+    <string name="setup_favourite_details_info">Default values are just for convenience, they are displayed when the app launches and can always be changed.</string>
 
     <!-- ACTIVITY -->
     <string name="bundle_selected_unittype" translatable="false">bundle_selected_unittype</string>
@@ -31,8 +57,8 @@
     <string name="tabbed_pane_tab_categories">All</string>
 
     <!-- CATEGORIES -->
-    <string name="unit_type_categories_favourites">Favourites</string>
-    <string name="unit_type_categories_all">Others</string>
+    <string name="unit_type_categories_favourites" >Favourites</string>
+    <string name="unit_type_categories_all" >Others</string>
     <string name="unit_type_categories_basics">Basics</string>
     <string name="unit_type_categories_living">Living</string>
     <string name="unit_type_categories_science">Science</string>
@@ -40,13 +66,13 @@
     <string name="unit_type_categories_technology">Technology</string>
 
     <!-- ADAPTER -->
-    <string name="adapter_popup_favourite">Favourite</string>
-    <string name="adapter_popup_unfavourite">Unfavourite</string>
-    <string name="adapter_popup_hide">Hide</string>
-    <string name="adapter_popup_show">Show</string>
+    <string name="adapter_popup_favourite" >Favourite</string>
+    <string name="adapter_popup_unfavourite" >Unfavourite</string>
+    <string name="adapter_popup_hide" >Hide</string>
+    <string name="adapter_popup_show" >Show</string>
     <string name="adapter_clipboard_label">Value in</string>
     <string name="adapter_clipboard_toast">copied to clipboard</string>
-    <string name="adapter_clipboard_toast_error">ERROR: copying to clipboard failed</string>
+    <string name="adapter_clipboard_toast_error" >ERROR: copying to clipboard failed</string>
 
     <!-- UNIT INFO -->
     <string name="unit_info_button_description">Button to show info on the currently selected unit</string>
@@ -61,10 +87,10 @@
     <string name="colour_display_text">Colour Preview</string>
 
     <!-- ADAPTER PREFERENCE FAVOURITES -->
-    <string name="preference_favourite_unit_types" translatable="false">preference_favourite_unit_types</string>
+    <string name="preference_favourite_unit_types" translatable="false" >preference_favourite_unit_types</string>
 
     <!-- PREFERENCES -->
-    <string name="pref_static_field_key" translatable="false" />
+    <string name="pref_static_field_key" translatable="false"  />
     <!-- Category: App Settings -->
     <string name="pref_category_app_settings">App Settings</string>
     <!-- Setting: Round Value -->
@@ -85,10 +111,11 @@
     <!-- Setting: Locale -->
     <string name="pref_number_locale_title">Number Formatting</string>
     <string name="pref_number_locale_subtitle">Currently as</string>
-    <string name="pref_number_locale_none">None</string>
+    <string name="pref_number_locale_none" translatable="false">None</string>
+    <string name="pref_number_locale_none_localized">None</string>
     <string name="preference_number_locale_default_UK" translatable="false">en-GB</string>
-    <string name="locale_number_uk_desc">UK: e.g. 100.000,5</string>
-    <string name="locale_number_de_desc">DE: e.g. 100,000.5</string>
+    <string name="locale_number_uk_desc">UK/US: e.g. 100.000,5</string>
+    <string name="locale_number_de_desc">DE: Bsp. 100,000.5</string>
 
     <!-- Category: Select Units to hide -->
     <string name="pref_category_select_units">Units</string>
@@ -127,6 +154,10 @@
     <string name="quickconvert_editor_header_to">To</string>
     <string name="quickconvert_editor_button_save">Save</string>
 
+    <!-- ACCESSIBILITY : contentDescription -->
+    <string name="content_desc_keyboard_delete">Delete key</string>
+    <string name="content_desc_keyboard_close">Close key</string>
+
     <!-- ========================================= UNITS =========================================== -->
     <!-- Everything below here has to exist for EVERY SINGLE UNIT TYPE ! -->
     <string name="unit_type_value_text_hint">Value: e.g.</string>
@@ -150,7 +181,7 @@
     <string name="unit_type_name_force">Force</string>
     <string name="unit_type_name_currency">Currency</string>
     <string name="unit_type_name_colour">Colour</string>
-    <string name="unit_type_name_brasize">Bra Size</string>
+    <string name="unit_type_name_brasize" >Bra Size</string>
 
     <!-- PREF KEYS -->
     <!-- Distance -->
@@ -188,202 +219,202 @@
     <!-- Colour -->
     <string name="preference_colour_hidden" translatable="false">preference_colour_hidden</string>
     <!-- BraSize -->
-    <string name="preference_brasize_hidden" translatable="false">preference_brasize_hidden</string>
+    <string name="preference_brasize_hidden" translatable="false" >preference_brasize_hidden</string>
 
     <!-- ACTUAL UNIT NAMES -->
 
     <!-- Distance Names -->
     <string name="distance_unit_km">Kilometer</string>
-    <string name="distance_unit_m">Meter</string>
-    <string name="distance_unit_cm">Centimeter</string>
-    <string name="distance_unit_mm">Millimeter</string>
-    <string name="distance_unit_micm">Micrometer</string>
-    <string name="distance_unit_nm">Nanometer</string>
-    <string name="distance_unit_mi">Mile</string>
-    <string name="distance_unit_yd">Yard</string>
-    <string name="distance_unit_in">Inch</string>
-    <string name="distance_unit_ft">Foot</string>
+    <string name="distance_unit_m" >Meter</string>
+    <string name="distance_unit_cm" >Centimeter</string>
+    <string name="distance_unit_mm" >Millimeter</string>
+    <string name="distance_unit_micm" >Micrometer</string>
+    <string name="distance_unit_nm" >Nanometer</string>
+    <string name="distance_unit_mi" >Mile</string>
+    <string name="distance_unit_yd" >Yard</string>
+    <string name="distance_unit_in" >Inch</string>
+    <string name="distance_unit_ft" >Foot</string>
     <!-- Distance Shorts -->
     <string name="distance_unit_km_short" translatable="false">km</string>
-    <string name="distance_unit_m_short" translatable="false">m</string>
-    <string name="distance_unit_cm_short" translatable="false">cm</string>
-    <string name="distance_unit_mm_short" translatable="false">mm</string>
-    <string name="distance_unit_micm_short" translatable="false">μm</string>
-    <string name="distance_unit_nm_short" translatable="false">nm</string>
-    <string name="distance_unit_mi_short" translatable="false">mi</string>
-    <string name="distance_unit_yd_short" translatable="false">yd</string>
-    <string name="distance_unit_in_short" translatable="false">in</string>
-    <string name="distance_unit_ft_short" translatable="false">ft</string>
+    <string name="distance_unit_m_short" translatable="false" >m</string>
+    <string name="distance_unit_cm_short" translatable="false" >cm</string>
+    <string name="distance_unit_mm_short" translatable="false" >mm</string>
+    <string name="distance_unit_micm_short" translatable="false" >μm</string>
+    <string name="distance_unit_nm_short" translatable="false" >nm</string>
+    <string name="distance_unit_mi_short" translatable="false" >mi</string>
+    <string name="distance_unit_yd_short" translatable="false" >yd</string>
+    <string name="distance_unit_in_short" translatable="false" >in</string>
+    <string name="distance_unit_ft_short" translatable="false" >ft</string>
 
     <!-- Weight Names -->
-    <string name="weight_unit_tonnemetric">Tonne (Metric)</string>
-    <string name="weight_unit_kg">Kilogram</string>
-    <string name="weight_unit_cg">Centigram</string>
-    <string name="weight_unit_g">Gram</string>
-    <string name="weight_unit_mg">Milligram</string>
-    <string name="weight_unit_micg">Microgram</string>
-    <string name="weight_unit_st">Stone</string>
-    <string name="weight_unit_lbs">Pound</string>
-    <string name="weight_unit_oz">Ounce</string>
-    <string name="weight_unit_ct">Carat</string>
-    <string name="weight_unit_longton">Long Ton (UK)</string>
-    <string name="weight_unit_shortton">Short Ton (US)</string>
+    <string name="weight_unit_tonnemetric" >Tonne (Metric)</string>
+    <string name="weight_unit_kg" >Kilogram</string>
+    <string name="weight_unit_cg" >Centigram</string>
+    <string name="weight_unit_g" >Gram</string>
+    <string name="weight_unit_mg" >Milligram</string>
+    <string name="weight_unit_micg" >Microgram</string>
+    <string name="weight_unit_st" >Stone</string>
+    <string name="weight_unit_lbs" >Pound</string>
+    <string name="weight_unit_oz" >Ounce</string>
+    <string name="weight_unit_ct" >Carat</string>
+    <string name="weight_unit_longton" >Long Ton (UK)</string>
+    <string name="weight_unit_shortton" >Short Ton (US)</string>
     <!-- Weight Shorts -->
-    <string name="weight_unit_tonnemetric_short" translatable="false">tM</string>
-    <string name="weight_unit_kg_short" translatable="false">kg</string>
-    <string name="weight_unit_cg_short" translatable="false">cg</string>
-    <string name="weight_unit_g_short" translatable="false">g</string>
-    <string name="weight_unit_mg_short" translatable="false">mg</string>
-    <string name="weight_unit_micg_short" translatable="false">μg</string>
-    <string name="weight_unit_st_short" translatable="false">st</string>
-    <string name="weight_unit_lbs_short" translatable="false">lb</string>
-    <string name="weight_unit_oz_short" translatable="false">oz</string>
-    <string name="weight_unit_ct_short" translatable="false">ct</string>
-    <string name="weight_unit_longton_short" translatable="false">lt</string>
-    <string name="weight_unit_shortton_short" translatable="false">st</string>
+    <string name="weight_unit_tonnemetric_short" translatable="false" >tM</string>
+    <string name="weight_unit_kg_short" translatable="false" >kg</string>
+    <string name="weight_unit_cg_short" translatable="false" >cg</string>
+    <string name="weight_unit_g_short" translatable="false" >g</string>
+    <string name="weight_unit_mg_short" translatable="false" >mg</string>
+    <string name="weight_unit_micg_short" translatable="false" >μg</string>
+    <string name="weight_unit_st_short" translatable="false" >st</string>
+    <string name="weight_unit_lbs_short" translatable="false" >lb</string>
+    <string name="weight_unit_oz_short" translatable="false" >oz</string>
+    <string name="weight_unit_ct_short" translatable="false" >ct</string>
+    <string name="weight_unit_longton_short" translatable="false" >lt</string>
+    <string name="weight_unit_shortton_short" translatable="false" >st</string>
 
     <!-- Temperature Names -->
-    <string name="temperature_unit_k">Kelvin</string>
-    <string name="temperature_unit_f">Fahrenheit</string>
-    <string name="temperature_unit_c">Celsius</string>
+    <string name="temperature_unit_k" >Kelvin</string>
+    <string name="temperature_unit_f" >Fahrenheit</string>
+    <string name="temperature_unit_c" >Celsius</string>
     <!-- Temperature Shorts -->
-    <string name="temperature_unit_k_short" translatable="false">K</string>
-    <string name="temperature_unit_f_short" translatable="false">°F</string>
-    <string name="temperature_unit_c_short" translatable="false">°C</string>
-    <string name="temperature_kelvin_info">The Kelvin scale starts at absolute zero (0K), pure water freezes at 273.15K, and it boils at 373.15K.</string>
-    <string name="temperature_fahreinheit_info">Absolute zero in the Fahreinheit scale is -459.67°F. Two important fixed points are the point at which pure water ice melts which is 32°F and the boiling point of water at 212°F.</string>
-    <string name="temperature_celsius_info">In the celsius scale the freezing point is defined as 0°C for pure water and the boiling point as 100°C.</string>
+    <string name="temperature_unit_k_short" translatable="false" >K</string>
+    <string name="temperature_unit_f_short" translatable="false" >°F</string>
+    <string name="temperature_unit_c_short" translatable="false" >°C</string>
+    <string name="temperature_kelvin_info" >The Kelvin scale starts at absolute zero (0K), pure water freezes at 273.15K, and it boils at 373.15K.</string>
+    <string name="temperature_fahreinheit_info" >Absolute zero in the Fahreinheit scale is -459.67°F. Two important fixed points are the point at which pure water ice melts which is 32°F and the boiling point of water at 212°F.</string>
+    <string name="temperature_celsius_info" >In the celsius scale the freezing point is defined as 0°C for pure water and the boiling point as 100°C.</string>
 
     <!-- Time Names -->
-    <string name="time_unit_c">Century</string>
-    <string name="time_unit_dec">Decade</string>
-    <string name="time_unit_y">Year</string>
-    <string name="time_unit_mon">Month</string>
-    <string name="time_unit_w">Week</string>
-    <string name="time_unit_d">Day</string>
-    <string name="time_unit_h">Hour</string>
-    <string name="time_unit_min">Minute</string>
-    <string name="time_unit_s">Second</string>
-    <string name="time_unit_ms">Millisecond</string>
-    <string name="time_unit_mics">Microsecond</string>
-    <string name="time_unit_ns">Nanosecond</string>
+    <string name="time_unit_c" >Century</string>
+    <string name="time_unit_dec" >Decade</string>
+    <string name="time_unit_y" >Year</string>
+    <string name="time_unit_mon" >Month</string>
+    <string name="time_unit_w" >Week</string>
+    <string name="time_unit_d" >Day</string>
+    <string name="time_unit_h" >Hour</string>
+    <string name="time_unit_min" >Minute</string>
+    <string name="time_unit_s" >Second</string>
+    <string name="time_unit_ms" >Millisecond</string>
+    <string name="time_unit_mics" >Microsecond</string>
+    <string name="time_unit_ns" >Nanosecond</string>
     <!-- Time Shorts -->
-    <string name="time_unit_c_short" translatable="false">C</string>
-    <string name="time_unit_dec_short" translatable="false">Dec</string>
-    <string name="time_unit_y_short" translatable="false">Y</string>
-    <string name="time_unit_mon_short" translatable="false">M</string>
-    <string name="time_unit_w_short" translatable="false">W</string>
-    <string name="time_unit_d_short" translatable="false">D</string>
-    <string name="time_unit_h_short" translatable="false">Hr</string>
-    <string name="time_unit_min_short" translatable="false">m</string>
-    <string name="time_unit_s_short" translatable="false">s</string>
-    <string name="time_unit_ms_short" translatable="false">ms</string>
-    <string name="time_unit_mics_short" translatable="false">μs</string>
-    <string name="time_unit_ns_short" translatable="false">ns</string>
+    <string name="time_unit_c_short" translatable="false" >C</string>
+    <string name="time_unit_dec_short" translatable="false" >Dec</string>
+    <string name="time_unit_y_short" translatable="false" >Y</string>
+    <string name="time_unit_mon_short" translatable="false" >M</string>
+    <string name="time_unit_w_short" translatable="false" >W</string>
+    <string name="time_unit_d_short" translatable="false" >D</string>
+    <string name="time_unit_h_short" translatable="false" >Hr</string>
+    <string name="time_unit_min_short" translatable="false" >m</string>
+    <string name="time_unit_s_short" translatable="false" >s</string>
+    <string name="time_unit_ms_short" translatable="false" >ms</string>
+    <string name="time_unit_mics_short" translatable="false" >μs</string>
+    <string name="time_unit_ns_short" translatable="false" >ns</string>
 
     <!-- Numerative Names -->
-    <string name="num_unit_oct">Octal</string>
-    <string name="num_unit_hex">Hexadecimal</string>
-    <string name="num_unit_dec">Decimal</string>
-    <string name="num_unit_bin">Binary</string>
+    <string name="num_unit_oct" >Octal</string>
+    <string name="num_unit_hex" >Hexadecimal</string>
+    <string name="num_unit_dec" >Decimal</string>
+    <string name="num_unit_bin" >Binary</string>
     <!-- Numerative Shorts -->
-    <string name="num_unit_oct_short" translatable="false">Oct</string>
-    <string name="num_unit_hex_short" translatable="false">Hex</string>
-    <string name="num_unit_dec_short" translatable="false">Dec</string>
-    <string name="num_unit_bin_short" translatable="false">Bin</string>
+    <string name="num_unit_oct_short" translatable="false" >Oct</string>
+    <string name="num_unit_hex_short" translatable="false" >Hex</string>
+    <string name="num_unit_dec_short" translatable="false" >Dec</string>
+    <string name="num_unit_bin_short" translatable="false" >Bin</string>
     <!-- Numerative Info -->
-    <string name="numerative_binary_info">A binary number is expressed in the base-2 numeral system which uses only two symbols: typically "0" and "1". Each digit is referred to as a bit, or binary digit. Because of its straightforward implementation, the binary system is used by almost all modern computers.</string>
-    <string name="numerative_octal_info">The octal numeral system, is the base-8 number system, and uses the digits 0 to 7.</string>
-    <string name="numerative_hex_info">The hexadecimal numeral system is the base-16 number system, it uses 16 distinct symbols, most often the symbols "0"–"9" to represent values 0 to 9, and "A"–"F" (or alternatively "a"–"f") to represent values 10 to 15. </string>
+    <string name="numerative_binary_info" >A binary number is expressed in the base-2 numeral system which uses only two symbols: typically "0" and "1". Each digit is referred to as a bit, or binary digit. Because of its straightforward implementation, the binary system is used by almost all modern computers.</string>
+    <string name="numerative_octal_info" >The octal numeral system, is the base-8 number system, and uses the digits 0 to 7.</string>
+    <string name="numerative_hex_info" >The hexadecimal numeral system is the base-16 number system, it uses 16 distinct symbols, most often the symbols "0"–"9" to represent values 0 to 9, and "A"–"F" (or alternatively "a"–"f") to represent values 10 to 15. </string>
 
     <!-- Shoesize Names -->
-    <string name="shoesize_unit_eu">EU</string>
-    <string name="shoesize_unit_uk">UK</string>
-    <string name="shoesize_unit_mon">Mondopoint</string>
-    <string name="shoesize_unit_usm">US Men</string>
-    <string name="shoesize_unit_usw">US Women</string>
+    <string name="shoesize_unit_eu" >EU</string>
+    <string name="shoesize_unit_uk" >UK</string>
+    <string name="shoesize_unit_mon" >Mondopoint</string>
+    <string name="shoesize_unit_usm" >US Men</string>
+    <string name="shoesize_unit_usw" >US Women</string>
     <!-- Shoesize Shorts -->
-    <string name="shoesize_unit_eu_short" translatable="false">EU</string>
-    <string name="shoesize_unit_uk_short" translatable="false">UK</string>
-    <string name="shoesize_unit_mon_short" translatable="false">Mon</string>
-    <string name="shoesize_unit_usw_short" translatable="false">US W</string>
-    <string name="shoesize_unit_usm_short" translatable="false">US M</string>
+    <string name="shoesize_unit_eu_short" translatable="false" >EU</string>
+    <string name="shoesize_unit_uk_short" translatable="false" >UK</string>
+    <string name="shoesize_unit_mon_short" translatable="false" >Mon</string>
+    <string name="shoesize_unit_usw_short" translatable="false" >US W</string>
+    <string name="shoesize_unit_usm_short" translatable="false" >US M</string>
     <!-- Shoesize Info -->
-    <string name="shoesize_eushoesize_info">European shoe sizes range from 34 to 50 and increase by 0.5 every size.</string>
-    <string name="shoesize_ukshoesize_info">UK shoe sizes range from 2 to 15 and increase by 1 every size.</string>
-    <string name="shoesize_mondoshoesize_info">Mondopoint ranges from 215 to 320 and increases by 5 every size up. It\'s widely used in the sports industry but was also adopted as the primary shoe sizing system in the Soviet Union, Russia, China, Japan, Taiwan, and South Korea. NATO and other military services also use it for consistent boot sizes. </string>
-    <string name="shoesize_usmshoesize_info">The traditional US system is similar to British sizes but start counting at one rather than zero, so equivalent sizes are one greater.</string>
-    <string name="shoesize_uswshoesize_info">Just like the men sizes in the traditional US system, the women sizes are similar to the British sizes, start counting at zero but are greater than men sizes by one.</string>
+    <string name="shoesize_eushoesize_info" >European shoe sizes range from 34 to 50 and increase by 0.5 every size.</string>
+    <string name="shoesize_ukshoesize_info" >UK shoe sizes range from 2 to 15 and increase by 1 every size.</string>
+    <string name="shoesize_mondoshoesize_info" >Mondopoint ranges from 215 to 320 and increases by 5 every size up. It\'s widely used in the sports industry but was also adopted as the primary shoe sizing system in the Soviet Union, Russia, China, Japan, Taiwan, and South Korea. NATO and other military services also use it for consistent boot sizes. </string>
+    <string name="shoesize_usmshoesize_info" >The traditional US system is similar to British sizes but start counting at one rather than zero, so equivalent sizes are one greater.</string>
+    <string name="shoesize_uswshoesize_info" >Just like the men sizes in the traditional US system, the women sizes are similar to the British sizes, start counting at zero but are greater than men sizes by one.</string>
 
     <!-- Volume Names -->
-    <string name="volume_unit_l">Liter</string>
-    <string name="volume_unit_ml">Milliliter</string>
-    <string name="volume_unit_cm">Cubic Meter</string>
-    <string name="volume_unit_ccm">Cubic Centimeter</string>
-    <string name="volume_unit_ckm">Cubic Kilometer</string>
-    <string name="volume_unit_cmm">Cubic Millimeter</string>
-    <string name="volume_unit_tspm">Teaspoon Metric</string>
-    <string name="volume_unit_tspuk">Teaspoon UK</string>
-    <string name="volume_unit_tbspm">Tablespoon Metric</string>
-    <string name="volume_unit_tbspuk">Tablespoon UK</string>
-    <string name="volume_unit_cmi">Cubic Mile</string>
-    <string name="volume_unit_cyd">Cubic Yard</string>
-    <string name="volume_unit_cft">Cubic Foot</string>
-    <string name="volume_unit_cin">Cubic Inch</string>
-    <string name="volume_unit_galuk">Gallon UK</string>
-    <string name="volume_unit_quaruk">Quart UK</string>
-    <string name="volume_unit_piuk">Pint UK</string>
-    <string name="volume_unit_cupuk">Cup UK</string>
-    <string name="volume_unit_galus">Gallon US</string>
-    <string name="volume_unit_quarus">Quart US</string>
-    <string name="volume_unit_pius">Pint US</string>
-    <string name="volume_unit_cupus">Cup US</string>
+    <string name="volume_unit_l" >Liter</string>
+    <string name="volume_unit_ml" >Milliliter</string>
+    <string name="volume_unit_cm" >Cubic Meter</string>
+    <string name="volume_unit_ccm" >Cubic Centimeter</string>
+    <string name="volume_unit_ckm" >Cubic Kilometer</string>
+    <string name="volume_unit_cmm" >Cubic Millimeter</string>
+    <string name="volume_unit_tspm" >Teaspoon Metric</string>
+    <string name="volume_unit_tspuk" >Teaspoon UK</string>
+    <string name="volume_unit_tbspm" >Tablespoon Metric</string>
+    <string name="volume_unit_tbspuk" >Tablespoon UK</string>
+    <string name="volume_unit_cmi" >Cubic Mile</string>
+    <string name="volume_unit_cyd" >Cubic Yard</string>
+    <string name="volume_unit_cft" >Cubic Foot</string>
+    <string name="volume_unit_cin" >Cubic Inch</string>
+    <string name="volume_unit_galuk" >Gallon UK</string>
+    <string name="volume_unit_quaruk" >Quart UK</string>
+    <string name="volume_unit_piuk" >Pint UK</string>
+    <string name="volume_unit_cupuk" >Cup UK</string>
+    <string name="volume_unit_galus" >Gallon US</string>
+    <string name="volume_unit_quarus" >Quart US</string>
+    <string name="volume_unit_pius" >Pint US</string>
+    <string name="volume_unit_cupus" >Cup US</string>
     <!-- Volume Shorts -->
-    <string name="volume_unit_l_short" translatable="false">L</string>
-    <string name="volume_unit_ml_short" translatable="false">mL</string>
-    <string name="volume_unit_cm_short" translatable="false">m³</string>
-    <string name="volume_unit_ccm_short" translatable="false">cm³</string>
-    <string name="volume_unit_ckm_short" translatable="false">km³</string>
-    <string name="volume_unit_cmm_short" translatable="false">mm³</string>
-    <string name="volume_unit_tspm_short" translatable="false">Tsp(M)</string>
-    <string name="volume_unit_tspuk_short" translatable="false">Tsp(UK)</string>
-    <string name="volume_unit_tbspm_short" translatable="false">Tbsp(M)</string>
-    <string name="volume_unit_tbspuk_short" translatable="false">Tbsp(UK)</string>
-    <string name="volume_unit_cmi_short" translatable="false">mi³</string>
-    <string name="volume_unit_cyd_short" translatable="false">yd³</string>
-    <string name="volume_unit_cft_short" translatable="false">ft³</string>
-    <string name="volume_unit_cin_short" translatable="false">in³</string>
-    <string name="volume_unit_galuk_short" translatable="false">gal(UK)</string>
-    <string name="volume_unit_quaruk_short" translatable="false">qt(UK)</string>
-    <string name="volume_unit_piuk_short" translatable="false">pt(UK)</string>
-    <string name="volume_unit_cupuk_short" translatable="false">cup(UK)</string>
-    <string name="volume_unit_galus_short" translatable="false">gal(US)</string>
-    <string name="volume_unit_quarus_short" translatable="false">qt(US)</string>
-    <string name="volume_unit_pius_short" translatable="false">pt(US)</string>
-    <string name="volume_unit_cupus_short" translatable="false">cup(US)</string>
+    <string name="volume_unit_l_short" translatable="false" >L</string>
+    <string name="volume_unit_ml_short" translatable="false" >mL</string>
+    <string name="volume_unit_cm_short" translatable="false" >m³</string>
+    <string name="volume_unit_ccm_short" translatable="false" >cm³</string>
+    <string name="volume_unit_ckm_short" translatable="false" >km³</string>
+    <string name="volume_unit_cmm_short" translatable="false" >mm³</string>
+    <string name="volume_unit_tspm_short" translatable="false" >Tsp(M)</string>
+    <string name="volume_unit_tspuk_short" translatable="false" >Tsp(UK)</string>
+    <string name="volume_unit_tbspm_short" translatable="false" >Tbsp(M)</string>
+    <string name="volume_unit_tbspuk_short" translatable="false" >Tbsp(UK)</string>
+    <string name="volume_unit_cmi_short" translatable="false" >mi³</string>
+    <string name="volume_unit_cyd_short" translatable="false" >yd³</string>
+    <string name="volume_unit_cft_short" translatable="false" >ft³</string>
+    <string name="volume_unit_cin_short" translatable="false" >in³</string>
+    <string name="volume_unit_galuk_short" translatable="false" >gal(UK)</string>
+    <string name="volume_unit_quaruk_short" translatable="false" >qt(UK)</string>
+    <string name="volume_unit_piuk_short" translatable="false" >pt(UK)</string>
+    <string name="volume_unit_cupuk_short" translatable="false" >cup(UK)</string>
+    <string name="volume_unit_galus_short" translatable="false" >gal(US)</string>
+    <string name="volume_unit_quarus_short" translatable="false" >qt(US)</string>
+    <string name="volume_unit_pius_short" translatable="false" >pt(US)</string>
+    <string name="volume_unit_cupus_short" translatable="false" >cup(US)</string>
 
     <!-- Energy Names -->
-    <string name="energy_unit_j">Joule</string>
-    <string name="energy_unit_gwtth">Gigawatt-Hour</string>
-    <string name="energy_unit_mwtth">Megawatt-Hour</string>
-    <string name="energy_unit_wtth">Watt-Hour</string>
-    <string name="energy_unit_kwtth">Kilowatt-Hour</string>
-    <string name="energy_unit_kj">Kilojoule</string>
-    <string name="energy_unit_caln">Calorie (Nutrional)</string>
-    <string name="energy_unit_hpm">Horsepower-Hour (Metric)</string>
-    <string name="energy_unit_hpi">Horsepower-Hour (Imperial)</string>
-    <string name="energy_unit_mj">Millijoule</string>
+    <string name="energy_unit_j" >Joule</string>
+    <string name="energy_unit_gwtth" >Gigawatt-Hour</string>
+    <string name="energy_unit_mwtth" >Megawatt-Hour</string>
+    <string name="energy_unit_wtth" >Watt-Hour</string>
+    <string name="energy_unit_kwtth" >Kilowatt-Hour</string>
+    <string name="energy_unit_kj" >Kilojoule</string>
+    <string name="energy_unit_caln" >Calorie (Nutrional)</string>
+    <string name="energy_unit_hpm" >Horsepower-Hour (Metric)</string>
+    <string name="energy_unit_hpi" >Horsepower-Hour (Imperial)</string>
+    <string name="energy_unit_mj" >Millijoule</string>
     <!-- Energy Shorts -->
-    <string name="energy_unit_j_short" translatable="false">J</string>
-    <string name="energy_unit_wtth_short" translatable="false">W*h</string>
-    <string name="energy_unit_kwtth_short" translatable="false">kW*h</string>
-    <string name="energy_unit_kj_short" translatable="false">kJ</string>
-    <string name="energy_unit_caln_short" translatable="false">Cal(Nu)</string>
-    <string name="energy_unit_hpm_short" translatable="false">Hp*h(M)</string>
-    <string name="energy_unit_gwtth_short" translatable="false">GW*h</string>
-    <string name="energy_unit_mwtth_short" translatable="false">MW*h</string>
-    <string name="energy_unit_hpi_short" translatable="false">Hp*h(I)</string>
-    <string name="energy_unit_mj_short" translatable="false">mJ</string>
+    <string name="energy_unit_j_short" translatable="false" >J</string>
+    <string name="energy_unit_wtth_short" translatable="false" >W*h</string>
+    <string name="energy_unit_kwtth_short" translatable="false" >kW*h</string>
+    <string name="energy_unit_kj_short" translatable="false" >kJ</string>
+    <string name="energy_unit_caln_short" translatable="false" >Cal(Nu)</string>
+    <string name="energy_unit_hpm_short" translatable="false" >Hp*h(M)</string>
+    <string name="energy_unit_gwtth_short" translatable="false" >GW*h</string>
+    <string name="energy_unit_mwtth_short" translatable="false" >MW*h</string>
+    <string name="energy_unit_hpi_short" translatable="false" >Hp*h(I)</string>
+    <string name="energy_unit_mj_short" translatable="false" >mJ</string>
 
     <!-- FuelEconomy Names -->
     <string name="fuelcons_unit_km2l">Kilometer per liter</string>
@@ -401,98 +432,98 @@
     <string name="fuelcons_unit_m2l_short" translatable="false">m/L</string>
 
     <!-- DataStorage Names -->
-    <string name="datastorage_unit_ebyte" translatable="false">Exabyte</string>
-    <string name="datastorage_unit_ebit" translatable="false">Exabit</string>
-    <string name="datastorage_unit_pbyte" translatable="false">Petabyte</string>
-    <string name="datastorage_unit_pbit" translatable="false">Petabit</string>
-    <string name="datastorage_unit_tbyte" translatable="false">Terabyte</string>
-    <string name="datastorage_unit_tbit" translatable="false">Terabit</string>
-    <string name="datastorage_unit_gbyte" translatable="false">Gigabyte</string>
-    <string name="datastorage_unit_gbit" translatable="false">Gigabit</string>
-    <string name="datastorage_unit_mbyte" translatable="false">Megabyte</string>
-    <string name="datastorage_unit_mbit" translatable="false">Megabit</string>
-    <string name="datastorage_unit_kbyte" translatable="false">Kilobyte</string>
-    <string name="datastorage_unit_kbit" translatable="false">Kilobit</string>
-    <string name="datastorage_unit_byte" translatable="false">Byte</string>
-    <string name="datastorage_unit_bit" translatable="false">Bit</string>
-    <string name="datastorage_unit_char">ASCII Character</string>
+    <string name="datastorage_unit_ebyte" translatable="false" >Exabyte</string>
+    <string name="datastorage_unit_ebit" translatable="false" >Exabit</string>
+    <string name="datastorage_unit_pbyte" translatable="false" >Petabyte</string>
+    <string name="datastorage_unit_pbit" translatable="false" >Petabit</string>
+    <string name="datastorage_unit_tbyte" translatable="false" >Terabyte</string>
+    <string name="datastorage_unit_tbit" translatable="false" >Terabit</string>
+    <string name="datastorage_unit_gbyte" translatable="false" >Gigabyte</string>
+    <string name="datastorage_unit_gbit" translatable="false" >Gigabit</string>
+    <string name="datastorage_unit_mbyte" translatable="false" >Megabyte</string>
+    <string name="datastorage_unit_mbit" translatable="false" >Megabit</string>
+    <string name="datastorage_unit_kbyte" translatable="false" >Kilobyte</string>
+    <string name="datastorage_unit_kbit" translatable="false" >Kilobit</string>
+    <string name="datastorage_unit_byte" translatable="false" >Byte</string>
+    <string name="datastorage_unit_bit" translatable="false" >Bit</string>
+    <string name="datastorage_unit_char" >ASCII Character</string>
     <!-- DataStorage Shorts -->
-    <string name="datastorage_unit_ebyte_short" translatable="false">EB</string>
-    <string name="datastorage_unit_ebit_short" translatable="false">Eb</string>
-    <string name="datastorage_unit_pbyte_short" translatable="false">PB</string>
-    <string name="datastorage_unit_pbit_short" translatable="false">Pb</string>
-    <string name="datastorage_unit_tbyte_short" translatable="false">TB</string>
-    <string name="datastorage_unit_tbit_short" translatable="false">Tb</string>
-    <string name="datastorage_unit_gbyte_short" translatable="false">GB</string>
-    <string name="datastorage_unit_gbit_short" translatable="false">Gb</string>
-    <string name="datastorage_unit_mbyte_short" translatable="false">MB</string>
-    <string name="datastorage_unit_mbit_short" translatable="false">Mb</string>
-    <string name="datastorage_unit_kbyte_short" translatable="false">KB</string>
-    <string name="datastorage_unit_kbit_short" translatable="false">Kb</string>
-    <string name="datastorage_unit_byte_short" translatable="false">B</string>
-    <string name="datastorage_unit_bit_short" translatable="false">b</string>
-    <string name="datastorage_unit_char_short" translatable="false">char</string>
+    <string name="datastorage_unit_ebyte_short" translatable="false" >EB</string>
+    <string name="datastorage_unit_ebit_short" translatable="false" >Eb</string>
+    <string name="datastorage_unit_pbyte_short" translatable="false" >PB</string>
+    <string name="datastorage_unit_pbit_short" translatable="false" >Pb</string>
+    <string name="datastorage_unit_tbyte_short" translatable="false" >TB</string>
+    <string name="datastorage_unit_tbit_short" translatable="false" >Tb</string>
+    <string name="datastorage_unit_gbyte_short" translatable="false" >GB</string>
+    <string name="datastorage_unit_gbit_short" translatable="false" >Gb</string>
+    <string name="datastorage_unit_mbyte_short" translatable="false" >MB</string>
+    <string name="datastorage_unit_mbit_short" translatable="false" >Mb</string>
+    <string name="datastorage_unit_kbyte_short" translatable="false" >KB</string>
+    <string name="datastorage_unit_kbit_short" translatable="false" >Kb</string>
+    <string name="datastorage_unit_byte_short" translatable="false" >B</string>
+    <string name="datastorage_unit_bit_short" translatable="false" >b</string>
+    <string name="datastorage_unit_char_short" translatable="false" >char</string>
 
     <!-- Pressure Names -->
-    <string name="pressure_unit_pasc">Pascal</string>
-    <string name="pressure_unit_kpasc">Kilopascal</string>
-    <string name="pressure_unit_bar">Bar</string>
-    <string name="pressure_unit_psi">Pound per square inch</string>
-    <string name="pressure_unit_ksi">Kilopound per square inch</string>
-    <string name="pressure_unit_statm">Standard atmosphere</string>
-    <string name="pressure_unit_torr">Torr</string>
-    <string name="pressure_unit_cmwat">Centimeter water</string>
+    <string name="pressure_unit_pasc" >Pascal</string>
+    <string name="pressure_unit_kpasc" >Kilopascal</string>
+    <string name="pressure_unit_bar" >Bar</string>
+    <string name="pressure_unit_psi" >Pound per square inch</string>
+    <string name="pressure_unit_ksi" >Kilopound per square inch</string>
+    <string name="pressure_unit_statm" >Standard atmosphere</string>
+    <string name="pressure_unit_torr" >Torr</string>
+    <string name="pressure_unit_cmwat" >Centimeter water</string>
     <!-- Pressure Shorts -->
-    <string name="pressure_unit_pasc_short" translatable="false">Pa</string>
-    <string name="pressure_unit_kpasc_short" translatable="false">kPa</string>
-    <string name="pressure_unit_bar_short" translatable="false">bar</string>
-    <string name="pressure_unit_psi_short" translatable="false">psi</string>
-    <string name="pressure_unit_ksi_short" translatable="false">ksi</string>
-    <string name="pressure_unit_statm_short" translatable="false">atm</string>
-    <string name="pressure_unit_torr_short" translatable="false">Torr</string>
-    <string name="pressure_unit_cmwat_short" translatable="false">cm/H²O</string>
+    <string name="pressure_unit_pasc_short" translatable="false" >Pa</string>
+    <string name="pressure_unit_kpasc_short" translatable="false" >kPa</string>
+    <string name="pressure_unit_bar_short" translatable="false" >bar</string>
+    <string name="pressure_unit_psi_short" translatable="false" >psi</string>
+    <string name="pressure_unit_ksi_short" translatable="false" >ksi</string>
+    <string name="pressure_unit_statm_short" translatable="false" >atm</string>
+    <string name="pressure_unit_torr_short" translatable="false" >Torr</string>
+    <string name="pressure_unit_cmwat_short" translatable="false" >cm/H²O</string>
 
     <!-- Area Names -->
-    <string name="area_unit_sqkm">Square kilometer</string>
-    <string name="area_unit_sqm">Square meter</string>
-    <string name="area_unit_sqcm">Square centimeter</string>
-    <string name="area_unit_sqmm">Square millimeter</string>
-    <string name="area_unit_sqmicm">Square micrometer</string>
-    <string name="area_unit_hec">Hectare</string>
-    <string name="area_unit_acre">Acre</string>
-    <string name="area_unit_sqmi">Square mile</string>
-    <string name="area_unit_sqyd">Square yard</string>
-    <string name="area_unit_sqft">Square foot</string>
-    <string name="area_unit_sqin">Square inch</string>
+    <string name="area_unit_sqkm" >Square kilometer</string>
+    <string name="area_unit_sqm" >Square meter</string>
+    <string name="area_unit_sqcm" >Square centimeter</string>
+    <string name="area_unit_sqmm" >Square millimeter</string>
+    <string name="area_unit_sqmicm" >Square micrometer</string>
+    <string name="area_unit_hec" >Hectare</string>
+    <string name="area_unit_acre" >Acre</string>
+    <string name="area_unit_sqmi" >Square mile</string>
+    <string name="area_unit_sqyd" >Square yard</string>
+    <string name="area_unit_sqft" >Square foot</string>
+    <string name="area_unit_sqin" >Square inch</string>
     <!-- Area Shorts -->
-    <string name="area_unit_sqkm_short" translatable="false">km²</string>
-    <string name="area_unit_sqm_short" translatable="false">m²</string>
-    <string name="area_unit_sqcm_short" translatable="false">cm²</string>
-    <string name="area_unit_sqmm_short" translatable="false">mm²</string>
-    <string name="area_unit_sqmicm_short" translatable="false">μm²</string>
-    <string name="area_unit_hec_short" translatable="false">ha</string>
-    <string name="area_unit_acre_short" translatable="false">ac</string>
-    <string name="area_unit_sqmi_short" translatable="false">mi²</string>
-    <string name="area_unit_sqyd_short" translatable="false">yd²</string>
-    <string name="area_unit_sqft_short" translatable="false">ft²</string>
-    <string name="area_unit_sqin_short" translatable="false">in²</string>
+    <string name="area_unit_sqkm_short" translatable="false" >km²</string>
+    <string name="area_unit_sqm_short" translatable="false" >m²</string>
+    <string name="area_unit_sqcm_short" translatable="false" >cm²</string>
+    <string name="area_unit_sqmm_short" translatable="false" >mm²</string>
+    <string name="area_unit_sqmicm_short" translatable="false" >μm²</string>
+    <string name="area_unit_hec_short" translatable="false" >ha</string>
+    <string name="area_unit_acre_short" translatable="false" >ac</string>
+    <string name="area_unit_sqmi_short" translatable="false" >mi²</string>
+    <string name="area_unit_sqyd_short" translatable="false" >yd²</string>
+    <string name="area_unit_sqft_short" translatable="false" >ft²</string>
+    <string name="area_unit_sqin_short" translatable="false" >in²</string>
 
     <!-- Angle Names -->
-    <string name="angle_unit_rad">Radian</string>
-    <string name="angle_unit_deg">Degree</string>
-    <string name="angle_unit_gra">Gradian</string>
-    <string name="angle_unit_tur">Turn</string>
-    <string name="angle_unit_min">Minute</string>
-    <string name="angle_unit_sec">Second</string>
-    <string name="angle_unit_ra">Right Angle</string>
+    <string name="angle_unit_rad" >Radian</string>
+    <string name="angle_unit_deg" >Degree</string>
+    <string name="angle_unit_gra" >Gradian</string>
+    <string name="angle_unit_tur" >Turn</string>
+    <string name="angle_unit_min" >Minute</string>
+    <string name="angle_unit_sec" >Second</string>
+    <string name="angle_unit_ra" >Right Angle</string>
     <!-- Angle Shorts -->
-    <string name="angle_unit_rad_short" translatable="false">rad</string>
-    <string name="angle_unit_deg_short" translatable="false">°</string>
-    <string name="angle_unit_gra_short" translatable="false">gon</string>
-    <string name="angle_unit_tur_short" translatable="false">Trn</string>
-    <string name="angle_unit_min_short" translatable="false">Min</string>
-    <string name="angle_unit_sec_short" translatable="false">Sec</string>
-    <string name="angle_unit_ra_short" translatable="false">rA</string>
+    <string name="angle_unit_rad_short" translatable="false" >rad</string>
+    <string name="angle_unit_deg_short" translatable="false" >°</string>
+    <string name="angle_unit_gra_short" translatable="false" >gon</string>
+    <string name="angle_unit_tur_short" translatable="false" >Trn</string>
+    <string name="angle_unit_min_short" translatable="false" >Min</string>
+    <string name="angle_unit_sec_short" translatable="false" >Sec</string>
+    <string name="angle_unit_ra_short" translatable="false" >rA</string>
 
     <!-- Speed Names -->
     <string name="speed_unit_m2s">Meters per second</string>
@@ -514,135 +545,132 @@
     <string name="speed_unit_light_short" translatable="false">c</string>
 
     <!-- Force Names -->
-    <string name="force_unit_knw">Kilonewton</string>
-    <string name="force_unit_nw">Newton</string>
-    <string name="force_unit_kgf">Kilogram-force</string>
-    <string name="force_unit_gf">Gram-force</string>
-    <string name="force_unit_jm">Joule per meter</string>
-    <string name="force_unit_jcm">Joule per centimeter</string>
-    <string name="force_unit_dyn">Dyne</string>
-    <string name="force_unit_pdl">Poundal</string>
+    <string name="force_unit_knw" >Kilonewton</string>
+    <string name="force_unit_nw" >Newton</string>
+    <string name="force_unit_kgf" >Kilogram-force</string>
+    <string name="force_unit_gf" >Gram-force</string>
+    <string name="force_unit_jm" >Joule per meter</string>
+    <string name="force_unit_jcm" >Joule per centimeter</string>
+    <string name="force_unit_dyn" >Dyne</string>
+    <string name="force_unit_pdl" >Poundal</string>
     <!-- Force Shorts -->
-    <string name="force_unit_knw_short" translatable="false">kN</string>
-    <string name="force_unit_nw_short" translatable="false">N</string>
-    <string name="force_unit_kgf_short" translatable="false">kgf</string>
-    <string name="force_unit_gf_short" translatable="false">gf</string>
-    <string name="force_unit_jm_short" translatable="false">J/m</string>
-    <string name="force_unit_jcm_short" translatable="false">J/cm</string>
-    <string name="force_unit_dyn_short" translatable="false">dyn</string>
-    <string name="force_unit_pdl_short" translatable="false">pdl</string>
+    <string name="force_unit_knw_short" translatable="false" >kN</string>
+    <string name="force_unit_nw_short" translatable="false" >N</string>
+    <string name="force_unit_kgf_short" translatable="false" >kgf</string>
+    <string name="force_unit_gf_short" translatable="false" >gf</string>
+    <string name="force_unit_jm_short" translatable="false" >J/m</string>
+    <string name="force_unit_jcm_short" translatable="false" >J/cm</string>
+    <string name="force_unit_dyn_short" translatable="false" >dyn</string>
+    <string name="force_unit_pdl_short" translatable="false" >pdl</string>
 
     <!-- Currency Names -->
-    <string name="currency_unit_gbp">Great British Pounds</string>
-    <string name="currency_unit_eur">Euro</string>
-    <string name="currency_unit_usd">United States Dollar</string>
-    <string name="currency_unit_sar">Saudi Riyal</string>
-    <string name="currency_unit_mxn">Mexican Peso</string>
-    <string name="currency_unit_krw">South Korean Won</string>
-    <string name="currency_unit_jpy">Japanese Yen</string>
-    <string name="currency_unit_cnh">Chinese Yuan (Offshore)</string>
-    <string name="currency_unit_cny">Chinese Yuan</string>
-    <string name="currency_unit_chf">Swiss Franc</string>
-    <string name="currency_unit_btc">Bitcoin</string>
-    <string name="currency_unit_aed">United Arab Emirates Dirham</string>
-    <string name="currency_unit_aud">Australian Dollar</string>
-    <string name="currency_unit_nzd">New Zealand Dollar</string>
-    <string name="currency_unit_php">Philippine Peso</string>
-    <string name="currency_unit_pln">Polish Zloty</string>
-    <string name="currency_unit_rub">Russian Ruble</string>
-    <string name="currency_unit_zar">South African Rand</string>
-    <string name="currency_unit_xag">Silver Ounce</string>
-    <string name="currency_unit_xau">Gold Ounce</string>
-    <string name="currency_unit_try">Turkish Lira</string>
-    <string name="currency_unit_bgn">Bulgarian Lev</string>
-    <string name="currency_unit_brl">Brazilian Real</string>
-    <string name="currency_unit_cad">Canadian Dollar</string>
-    <string name="currency_unit_cop">Colombian Peso</string>
-    <string name="currency_unit_czk">Czech Republic Koruna</string>
-    <string name="currency_unit_dzd">Algerian Dinar</string>
-    <string name="currency_unit_egp">Egyptian Pound</string>
-    <string name="currency_unit_dkk">Danish Krone</string>
+    <string name="currency_unit_gbp" >Great British Pounds</string>
+    <string name="currency_unit_eur" >Euro</string>
+    <string name="currency_unit_usd" >United States Dollar</string>
+    <string name="currency_unit_sar" >Saudi Riyal</string>
+    <string name="currency_unit_mxn" >Mexican Peso</string>
+    <string name="currency_unit_krw" >South Korean Won</string>
+    <string name="currency_unit_jpy" >Japanese Yen</string>
+    <string name="currency_unit_cnh" >Chinese Yuan (Offshore)</string>
+    <string name="currency_unit_cny" >Chinese Yuan</string>
+    <string name="currency_unit_chf" >Swiss Franc</string>
+    <string name="currency_unit_btc" >Bitcoin</string>
+    <string name="currency_unit_aed" >United Arab Emirates Dirham</string>
+    <string name="currency_unit_aud" >Australian Dollar</string>
+    <string name="currency_unit_nzd" >New Zealand Dollar</string>
+    <string name="currency_unit_php" >Philippine Peso</string>
+    <string name="currency_unit_pln" >Polish Zloty</string>
+    <string name="currency_unit_rub" >Russian Ruble</string>
+    <string name="currency_unit_zar" >South African Rand</string>
+    <string name="currency_unit_xag" >Silver Ounce</string>
+    <string name="currency_unit_xau" >Gold Ounce</string>
+    <string name="currency_unit_try" >Turkish Lira</string>
+    <string name="currency_unit_bgn" >Bulgarian Lev</string>
+    <string name="currency_unit_brl" >Brazilian Real</string>
+    <string name="currency_unit_cad" >Canadian Dollar</string>
+    <string name="currency_unit_cop" >Colombian Peso</string>
+    <string name="currency_unit_czk" >Czech Republic Koruna</string>
+    <string name="currency_unit_dzd" >Algerian Dinar</string>
+    <string name="currency_unit_egp" >Egyptian Pound</string>
+    <string name="currency_unit_dkk" >Danish Krone</string>
     <!-- Currency Shorts -->
-    <string name="currency_unit_gbp_short" translatable="false">GBP</string>
-    <string name="currency_unit_eur_short" translatable="false">EUR</string>
-    <string name="currency_unit_usd_short" translatable="false">USD</string>
-    <string name="currency_unit_sar_short" translatable="false">SAR</string>
-    <string name="currency_unit_mxn_short" translatable="false">MXN</string>
-    <string name="currency_unit_krw_short" translatable="false">KRW</string>
-    <string name="currency_unit_jpy_short" translatable="false">JPY</string>
-    <string name="currency_unit_cnh_short" translatable="false">CNH</string>
-    <string name="currency_unit_cny_short" translatable="false">CNY</string>
-    <string name="currency_unit_chf_short" translatable="false">CHF</string>
-    <string name="currency_unit_btc_short" translatable="false">BTC</string>
-    <string name="currency_unit_aed_short" translatable="false">AED</string>
-    <string name="currency_unit_aud_short" translatable="false">AUD</string>
-    <string name="currency_unit_nzd_short" translatable="false">NZD</string>
-    <string name="currency_unit_php_short" translatable="false">PHP</string>
-    <string name="currency_unit_pln_short" translatable="false">PLN</string>
-    <string name="currency_unit_rub_short" translatable="false">RUB</string>
-    <string name="currency_unit_zar_short" translatable="false">ZAR</string>
-    <string name="currency_unit_xag_short" translatable="false">XAG</string>
-    <string name="currency_unit_xau_short" translatable="false">XAU</string>
-    <string name="currency_unit_try_short" translatable="false">TRY</string>
-    <string name="currency_unit_bgn_short" translatable="false">BGN</string>
-    <string name="currency_unit_brl_short" translatable="false">BRL</string>
-    <string name="currency_unit_cad_short" translatable="false">CAD</string>
-    <string name="currency_unit_cop_short" translatable="false">COP</string>
-    <string name="currency_unit_czk_short" translatable="false">CZK</string>
-    <string name="currency_unit_dzd_short" translatable="false">DZD</string>
-    <string name="currency_unit_egp_short" translatable="false">EGP</string>
-    <string name="currency_unit_dkk_short" translatable="false">DKK</string>
+    <string name="currency_unit_gbp_short" translatable="false" >GBP</string>
+    <string name="currency_unit_eur_short" translatable="false" >EUR</string>
+    <string name="currency_unit_usd_short" translatable="false" >USD</string>
+    <string name="currency_unit_sar_short" translatable="false" >SAR</string>
+    <string name="currency_unit_mxn_short" translatable="false" >MXN</string>
+    <string name="currency_unit_krw_short" translatable="false" >KRW</string>
+    <string name="currency_unit_jpy_short" translatable="false" >JPY</string>
+    <string name="currency_unit_cnh_short" translatable="false" >CNH</string>
+    <string name="currency_unit_cny_short" translatable="false" >CNY</string>
+    <string name="currency_unit_chf_short" translatable="false" >CHF</string>
+    <string name="currency_unit_btc_short" translatable="false" >BTC</string>
+    <string name="currency_unit_aed_short" translatable="false" >AED</string>
+    <string name="currency_unit_aud_short" translatable="false" >AUD</string>
+    <string name="currency_unit_nzd_short" translatable="false" >NZD</string>
+    <string name="currency_unit_php_short" translatable="false" >PHP</string>
+    <string name="currency_unit_pln_short" translatable="false" >PLN</string>
+    <string name="currency_unit_rub_short" translatable="false" >RUB</string>
+    <string name="currency_unit_zar_short" translatable="false" >ZAR</string>
+    <string name="currency_unit_xag_short" translatable="false" >XAG</string>
+    <string name="currency_unit_xau_short" translatable="false" >XAU</string>
+    <string name="currency_unit_try_short" translatable="false" >TRY</string>
+    <string name="currency_unit_bgn_short" translatable="false" >BGN</string>
+    <string name="currency_unit_brl_short" translatable="false" >BRL</string>
+    <string name="currency_unit_cad_short" translatable="false" >CAD</string>
+    <string name="currency_unit_cop_short" translatable="false" >COP</string>
+    <string name="currency_unit_czk_short" translatable="false" >CZK</string>
+    <string name="currency_unit_dzd_short" translatable="false" >DZD</string>
+    <string name="currency_unit_egp_short" translatable="false" >EGP</string>
+    <string name="currency_unit_dkk_short" translatable="false" >DKK</string>
     <!-- Currency Info -->
-    <string name="currency_info">Currency rates can only be updated once every 24 hours and have to be converted to USD before converting to other units every time.\nI tried to make this process as accurate as possible, but cannot guarantee 100% accurate values.</string>
+    <string name="currency_info">Currency rates can only be updated once every 24 hours and have to be converted to USD before converting to other units every time.\nI tried to make this process as accurate as possible, but cannot guarantee 100%% accurate values.</string>
 
     <!-- Colour Names -->
-    <string name="colour_unit_name">Colour name (ENG)</string>
-    <string name="colour_unit_rgb">RGB</string>
-    <string name="colour_unit_hex">Hexadecimal</string>
-    <string name="colour_unit_hsl">HSL</string>
-    <string name="colour_unit_hsv">HSV</string>
-    <string name="colour_unit_cmyk">CMYK</string>
-    <string name="colour_unit_ral">RAL</string>
+    <string name="colour_unit_name" >Colour name (ENG)</string>
+    <string name="colour_unit_rgb" >RGB</string>
+    <string name="colour_unit_hex" >Hexadecimal</string>
+    <string name="colour_unit_hsl" >HSL</string>
+    <string name="colour_unit_hsv" >HSV</string>
+    <string name="colour_unit_cmyk" >CMYK</string>
+    <string name="colour_unit_ral" >RAL</string>
     <!-- Colour Shorts -->
-    <string name="colour_unit_name_short" translatable="false">NAME</string>
-    <string name="colour_unit_rgb_short" translatable="false">RGB</string>
-    <string name="colour_unit_hex_short" translatable="false">HEX</string>
-    <string name="colour_unit_hsl_short" translatable="false">HSL</string>
-    <string name="colour_unit_hsv_short" translatable="false">HSV</string>
-    <string name="colour_unit_cmyk_short" translatable="false">CMYK</string>
-    <string name="colour_unit_ral_short" translatable="false">RAL</string>
+    <string name="colour_unit_name_short" translatable="false" >NAME</string>
+    <string name="colour_unit_rgb_short" translatable="false" >RGB</string>
+    <string name="colour_unit_hex_short" translatable="false" >HEX</string>
+    <string name="colour_unit_hsl_short" translatable="false" >HSL</string>
+    <string name="colour_unit_hsv_short" translatable="false" >HSV</string>
+    <string name="colour_unit_cmyk_short" translatable="false" >CMYK</string>
+    <string name="colour_unit_ral_short" translatable="false" >RAL</string>
     <!-- Colour Info -->
-    <string name="colour_colourrgb_info">An RGB color value is specified with: rgb(red, green, blue), alternatively this app supports \'red,green,blue\' as well. This colour standard is predominantly used by digital screens.\n\nEach parameter (red, green, and blue) defines the intensity of the color as number between 0 and 255.\n\nFor example, rgb(0, 0, 255) is blue, because the blue parameter is set to its highest value (255) and the others are set to 0.
+    <string name="colour_colourrgb_info" >An RGB color value is specified with: rgb(red, green, blue), alternatively this app supports \'red,green,blue\' as well. This colour standard is predominantly used by digital screens.\n\nEach parameter (red, green, and blue) defines the intensity of the color as number between 0 and 255.\n\nFor example, rgb(0, 0, 255) is blue, because the blue parameter is set to its highest value (255) and the others are set to 0.
     </string>
-    <string name="colour_colourhex_info">A hexadecimal color is specified with: #RRGGBB, #RGB, RRGGBB, or RGB\n\nRR (red), GG (green) and BB (blue) are hexadecimal numbers between 00 (0) and FF (255) specifying the intensity of the color.\n\nFor example, #0000FF is displayed as blue, because the blue component is set to its highest value (FF) and the others are set to 00.
+    <string name="colour_colourhex_info" >A hexadecimal color is specified with: #RRGGBB, #RGB, RRGGBB, or RGB\n\nRR (red), GG (green) and BB (blue) are hexadecimal numbers between 00 (0) and FF (255) specifying the intensity of the color.\n\nFor example, #0000FF is displayed as blue, because the blue component is set to its highest value (FF) and the others are set to 00.
     </string>
-    <string name="colour_colourhsl_info" formatted="false">HSL stands for hue, saturation, and lightness.\n\nHSL color values are specified with: hsl(hue, saturation, lightness).\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nLIGHTNESS is also a percentage; 0% is black, 100% is white.
+    <string name="colour_colourhsl_info" formatted="false" >HSL stands for hue, saturation, and lightness.\n\nHSL color values are specified with: hsl(hue, saturation, lightness).\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nLIGHTNESS is also a percentage; 0% is black, 100% is white.
     </string>
-    <string name="colour_colourhsv_info" formatted="false">HSV stands for hue, saturation, and value.\n\nThe difference between HSL and HSV is that a color with maximum lightness in HSL is pure white, but a color with maximum value/brightness in HSV is analogous to shining a white light on a colored object (e.g. shining a bright white light on a red object causes the object to still appear red, just brighter and more intense, while shining a dim light on a red object causes the object to appear darker and less bright).\n\nHSV color values are specified with: hsv(hue, saturation, value)\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nVALUE equals brightness and is also a percentage; 0% is dark, 100% is bright.
+    <string name="colour_colourhsv_info" formatted="false" >HSV stands for hue, saturation, and value.\n\nThe difference between HSL and HSV is that a color with maximum lightness in HSL is pure white, but a color with maximum value/brightness in HSV is analogous to shining a white light on a colored object (e.g. shining a bright white light on a red object causes the object to still appear red, just brighter and more intense, while shining a dim light on a red object causes the object to appear darker and less bright).\n\nHSV color values are specified with: hsv(hue, saturation, value)\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nVALUE equals brightness and is also a percentage; 0% is dark, 100% is bright.
     </string>
-    <string name="colour_colourcmyk_info">CMYK colors is a combination of cyan, magenta, yellow , and black.\n\nIt\'s specified with: cmyk(cyan,magenta,yellow,black), alternatively this app supports \'cyan,magenta,yellow,black\' as well.\n\nThis colour standard is predominantly used for printing.
+    <string name="colour_colourcmyk_info" >CMYK colors is a combination of cyan, magenta, yellow , and black.\n\nIt\'s specified with: cmyk(cyan,magenta,yellow,black), alternatively this app supports \'cyan,magenta,yellow,black\' as well.\n\nThis colour standard is predominantly used for printing.
     </string>
-    <string name="colour_colourname_info">The colour name is currently only available in english.</string>
+    <string name="colour_colourname_info" >The colour name is currently only available in english.</string>
 
     <!-- Bra Size Names -->
-    <string name="brasize_unit_eu">Europe / International</string>
-    <string name="brasize_unit_us">USA</string>
-    <string name="brasize_unit_uk">UK</string>
-    <string name="brasize_unit_frsp">France/Spain</string>
-    <string name="brasize_unit_jp">Japan</string>
-    <string name="brasize_unit_au">Australia</string>
+    <string name="brasize_unit_eu" >Europe / International</string>
+    <string name="brasize_unit_us" >USA</string>
+    <string name="brasize_unit_uk" >UK</string>
+    <string name="brasize_unit_frsp" >France/Spain</string>
+    <string name="brasize_unit_jp" >Japan</string>
+    <string name="brasize_unit_au" >Australia</string>
     <!-- Bra Size Shorts -->
-    <string name="brasize_unit_eu_short" translatable="false">EU</string>
-    <string name="brasize_unit_us_short" translatable="false">USA</string>
-    <string name="brasize_unit_uk_short" translatable="false">UK</string>
-    <string name="brasize_unit_frsp_short" translatable="false">FR/SP</string>
-    <string name="brasize_unit_jp_short" translatable="false">JP</string>
+    <string name="brasize_unit_eu_short" translatable="false" >EU</string>
+    <string name="brasize_unit_us_short" translatable="false" >USA</string>
+    <string name="brasize_unit_uk_short" translatable="false" >UK</string>
+    <string name="brasize_unit_frsp_short" translatable="false" >FR/SP</string>
+    <string name="brasize_unit_jp_short" translatable="false" >JP</string>
     <string name="brasize_unit_au_short" translatable="false">AU</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_app_setup">AppSetupActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="dialog_quickconvert_delete_title">Delete favourite</string>
+    <string name="dialog_quickconvert_delete_message1">Are you sure you want to delete \'</string>
+    <string name="dialog_quickconvert_delete_message2">\'?</string>
 
 </resources>

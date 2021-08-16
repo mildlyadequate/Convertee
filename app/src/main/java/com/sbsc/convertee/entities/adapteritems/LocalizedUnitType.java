@@ -2,6 +2,9 @@ package com.sbsc.convertee.entities.adapteritems;
 
 import androidx.annotation.NonNull;
 
+import com.sbsc.convertee.entities.UnitTypeContainer;
+import com.sbsc.convertee.entities.unittypes.generic.UnitType;
+
 public class LocalizedUnitType implements Comparable<LocalizedUnitType>{
 
     private String unitTypeKey;
@@ -54,5 +57,9 @@ public class LocalizedUnitType implements Comparable<LocalizedUnitType>{
             return unitTypeName.compareTo( o.getUnitTypeName() );
         }
         return faveCompare;
+    }
+
+    public UnitType getUnitTypeObject(){
+        return UnitTypeContainer.getUnitType(unitTypeKey);
     }
 }

@@ -25,26 +25,22 @@ public class CustomBinaryKeyboard extends CustomKeyboard implements View.OnClick
 
     public CustomBinaryKeyboard(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
+        init( context );
         handleKeyboardButtonClose();
     }
-
-    // keyboard keys (buttons)
-    private Button mButton1;
-    private Button mButton0;
-    private ImageButton mButtonDelete;
 
     // This will map the button resource id to the String value that we want to
     // input when that button is clicked.
     SparseArray<String> keyValues = new SparseArray<>();
 
-    private void init(Context context, AttributeSet attrs) {
+    private void init( Context context ) {
 
         // initialize buttons
         LayoutInflater.from(context).inflate(R.layout.keyboard_binary, this, true);
-        mButton1 = (Button) findViewById(R.id.button_1);
-        mButton0 = (Button) findViewById(R.id.button_0);
-        mButtonDelete = (ImageButton) findViewById(R.id.button_delete);
+        // keyboard keys (buttons)
+        Button mButton1 = findViewById(R.id.button_1);
+        Button mButton0 = findViewById(R.id.button_0);
+        ImageButton mButtonDelete = findViewById(R.id.button_delete);
 
         // set button click listeners
         mButton1.setOnClickListener(this);

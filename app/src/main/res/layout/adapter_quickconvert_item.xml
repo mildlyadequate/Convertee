@@ -99,7 +99,7 @@
             android:focusableInTouchMode="true"
             android:hint="@string/unit_type_value_text_hint"
             android:imeOptions="actionDone"
-            android:inputType="none"
+            android:inputType="textNoSuggestions|text"
             android:maxLength="20"
             android:textColor="@color/themeDayDarkText"
             android:textColorHighlight="@color/themePrimary"
@@ -123,7 +123,7 @@
         app:layout_constraintTop_toTopOf="@+id/tilQuickConvertInput" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvFrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"

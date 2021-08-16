@@ -7,9 +7,7 @@ import android.util.Log;
 import androidx.fragment.app.Fragment;
 
 import com.github.appintro.AppIntro2;
-import com.github.appintro.AppIntroCustomLayoutFragment;
 import com.github.appintro.AppIntroFragment;
-import com.sbsc.convertee.AppSetupActivity;
 import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.tools.CompatibilityHandler;

@@ -13,8 +13,12 @@ import java.util.List;
 
 public class CustomKeyboard extends LinearLayout {
 
+    public static boolean isOpen = false;
+
     protected InputConnection inputConnection;
     private final List<CustomKeyboardCloseListener> eventCloseListeners;
+
+    private ImageButton btnClose;
 
     public CustomKeyboard(Context context) {
         this(context, null, 0);
@@ -38,11 +42,17 @@ public class CustomKeyboard extends LinearLayout {
     }
 
     public void handleKeyboardButtonClose(){
-        ImageButton btnClose = findViewById(R.id.button_close);
+        btnClose = findViewById(R.id.button_close);
         LinearLayout llKeyboard = findViewById(R.id.llKeyboard);
         btnClose.setOnClickListener(view -> {
             llKeyboard.setVisibility(GONE);
             for( CustomKeyboardCloseListener listener : eventCloseListeners ) listener.onKeyboardButtonClose();
         });
     }
+
+    public void closeKeyboard(){
+        btnClose.performClick();
+        CustomKeyboard.isOpen = false;
+    }
+
 }

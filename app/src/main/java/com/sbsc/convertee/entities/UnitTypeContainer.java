@@ -63,7 +63,7 @@ public class UnitTypeContainer {
             {Numerative.id, String.valueOf(R.drawable.ic_ut_numerative)},
     };
 
-    public static void getLocalizedUnitTypeArray(Activity activity){
+    public static LocalizedUnitType[] getLocalizedUnitTypeArray(Activity activity){
         LocalizedUnitType[] localizedArr = new LocalizedUnitType[ unitTypeKeys.length ];
 
         for( int i=0 ; i < localizedArr.length ; i++ ){
@@ -74,7 +74,7 @@ public class UnitTypeContainer {
             tempUT.setUnitTypeName( HelperUtil.getStringResourceByName( ("unit_type_name_" + unitTypeRow[0]) , activity ) );
             localizedArr[i] = tempUT;
         }
-        localizedUnitTypes = localizedArr;
+        return localizedUnitTypes = localizedArr;
     }
 
     public static LocalizedUnitType getLocalizedUnitType( String id ){

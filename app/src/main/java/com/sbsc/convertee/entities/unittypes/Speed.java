@@ -7,7 +7,7 @@ public class Speed  extends UnitType {
     // SINGLETON
     private static Speed unitTypeInstance;
 
-    public static String id = "speed";
+    public static final String id = "speed";
 
     /**
      * Lazy initialization singleton

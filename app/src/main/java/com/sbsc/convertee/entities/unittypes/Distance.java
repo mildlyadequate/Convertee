@@ -7,7 +7,7 @@ public class Distance extends UnitType {
     // SINGLETON
     private static Distance unitTypeInstance;
 
-    public static String id = "distance";
+    public static final String id = "distance";
 
     /**
      * Lazy initialization singleton

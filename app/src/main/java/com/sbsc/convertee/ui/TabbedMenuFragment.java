@@ -81,11 +81,10 @@ public class TabbedMenuFragment extends Fragment {
             switch (position){
                 case 0:
                     return new QuickConverterFragment();
-                    // return new UnitOverviewFragment();
                 case 1:
                     return new UnitCategoriesFragment();
             }
-            return null;
+            return new UnitCategoriesFragment();
         }
 
         @Override

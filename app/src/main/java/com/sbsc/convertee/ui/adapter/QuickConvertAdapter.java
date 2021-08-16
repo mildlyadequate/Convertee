@@ -1,5 +1,6 @@
 package com.sbsc.convertee.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,9 +24,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.calculator.CalcCurrency;
 import com.sbsc.convertee.calculator.Calculator;
+import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
@@ -34,6 +36,7 @@ import com.sbsc.convertee.entities.unittypes.Currency;
 import com.sbsc.convertee.entities.unittypes.Numerative;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.tools.CompatibilityHandler;
+import com.sbsc.convertee.tools.HelperUtil;
 import com.sbsc.convertee.tools.HighlightArrayAdapter;
 import com.sbsc.convertee.ui.quickconverter.QuickConverterFragment;
 
@@ -79,28 +82,43 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         // Title
         String localizedUnitTypeName = unitType.getUnitTypeLocalizedName( context );
         holder.getTvQuickConvertTitle().setText( localizedUnitTypeName );
-        holder.getTilQuickConvertInput().setHintAnimationEnabled(false);
+
         // Edit Text Input Default
         EditText etInput = holder.getEtQuickConvertInput();
         etInput.setText( item.getDefaultValue() );
         holder.getTilQuickConvertInput().setHintAnimationEnabled(true);
-        etInput.setShowSoftInputOnFocus(false);
-        etInput.setOnFocusChangeListener((view, b) -> {
-            if( b ){
+
+        // KEYBOARD STUFF
+        if ( CompatibilityHandler.shouldUseCustomKeyboard() ) {
+            etInput.setShowSoftInputOnFocus(false);
+            etInput.setOnFocusChangeListener((view, b) -> {
+                if( b ){
+                    LocalizedUnit currentUnit = (LocalizedUnit) spQuickConvertFrom.getSelectedItem();
+                    quickConverterFragment.initCustomKeyboard( unitType , currentUnit.getUnitKey() , etInput );
+                }
+            });
+            etInput.setOnClickListener(view -> {
                 LocalizedUnit currentUnit = (LocalizedUnit) spQuickConvertFrom.getSelectedItem();
                 quickConverterFragment.initCustomKeyboard( unitType , currentUnit.getUnitKey() , etInput );
-            }
-        });
-        etInput.setOnClickListener(view -> {
-            LocalizedUnit currentUnit = (LocalizedUnit) spQuickConvertFrom.getSelectedItem();
-            quickConverterFragment.initCustomKeyboard( unitType , currentUnit.getUnitKey() , etInput );
-        });
+            });
+        } else {
+            etInput.setOnFocusChangeListener((view, b) -> {
+                if( b ){
+                    InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(etInput, InputMethodManager.SHOW_IMPLICIT);
+                }
+            });
+            etInput.setOnClickListener(view -> {
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(etInput, InputMethodManager.SHOW_IMPLICIT);
+            });
+            etInput.setShowSoftInputOnFocus(true);
+            etInput.clearFocus();
+        }
 
         if(position % 2 == 0) {
-            //holder.rootView.setBackgroundColor(Color.BLACK);
             holder.getClRoot().setBackgroundResource(R.color.themeDayDarkBackground);
         } else {
-            //holder.rootView.setBackgroundColor(Color.WHITE);
             holder.getClRoot().setBackgroundResource(R.color.themeDayWhiteBackground);
         }
 
@@ -125,7 +143,7 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
             public View getView(int position, View convertView, ViewGroup parent) {
                 LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 if( convertView == null ){
-                    final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
+                    @SuppressLint("InflateParams") final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
                     final TextView t = v.findViewById(android.R.id.text1);
                     t.setText(units[position].getNameShort());
                     return v;
@@ -141,7 +159,7 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
             public View getView(int position, View convertView, ViewGroup parent) {
                 LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 if( convertView == null ){
-                    final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
+                    @SuppressLint("InflateParams") final View v = vi.inflate(android.R.layout.simple_spinner_item,null);
                     final TextView t = v.findViewById(android.R.id.text1);
                     t.setText(units[position].getNameShort());
                     return v;
@@ -169,14 +187,17 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
                 adapterFrom.setSelection( position );
                 setTextInputHint( holder , unitType );
 
-                // Change input method based on selected unit
-                if( unitType.getId().equals(Numerative.id) ){
-                    LocalizedUnit currentUnit = (LocalizedUnit) spQuickConvertFrom.getSelectedItem();
-                    quickConverterFragment.initCustomKeyboard( unitType , currentUnit.getUnitKey() , etInput );
-                    etInput.setText("");
-                    etInput.setSelection(etInput.getText().length());
-                    etInput.requestFocus();
+                if ( CompatibilityHandler.shouldUseCustomKeyboard() ) {
+                    // Change input method based on selected unit
+                    if( unitType.getId().equals(Numerative.id) ){
+                        LocalizedUnit currentUnit = (LocalizedUnit) spQuickConvertFrom.getSelectedItem();
+                        quickConverterFragment.initCustomKeyboard( unitType , currentUnit.getUnitKey() , etInput );
+                        etInput.setText("");
+                        etInput.setSelection(etInput.getText().length());
+                        etInput.requestFocus();
+                    }
                 }
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
@@ -203,9 +224,16 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
             @Override
             public void afterTextChanged(Editable editable) { }
         });
+
         //Clear focus here from edittext
         etInput.setOnEditorActionListener((v, actionId, event) -> {
-            if(actionId== EditorInfo.IME_ACTION_DONE) etInput.clearFocus();
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+
+                if (!CompatibilityHandler.shouldUseCustomKeyboard()) {
+                    HelperUtil.hideKeyboard(quickConverterFragment.requireActivity());
+                }
+                etInput.clearFocus();
+            }
             return false;
         });
 
@@ -218,18 +246,21 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         // Delete
         holder.getBtnQuickConvertDelete().setOnClickListener(view -> {
 
+            //TODO Add strings for text / translate
             AlertDialog.Builder alert = new AlertDialog.Builder(context);
-            alert.setTitle("Delete favourite");
-            alert.setMessage("Are you sure you want to delete '"+localizedUnitTypeName+"'?");
-            alert.setPositiveButton("Yes", (dialog, which) -> {
+            alert.setTitle( context.getString(R.string.dialog_quickconvert_delete_title) );
+            alert.setMessage(
+                    context.getString(R.string.dialog_quickconvert_delete_message1) +
+                    localizedUnitTypeName +
+                    context.getString(R.string.dialog_quickconvert_delete_message2)
+            );
+            alert.setPositiveButton( context.getText( R.string.confirmation_dialog_confirm ), (dialog, which) -> {
                 quickConvertUnits.remove( item );
                 notifyItemRemoved( position );
                 notifyItemRangeChanged(position,getItemCount()-position);
                 quickConverterFragment.removeQuickConvertUnit( item );
             });
-
-            alert.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
-
+            alert.setNegativeButton( context.getText( R.string.confirmation_dialog_cancel ), (dialog, which) -> dialog.dismiss());
             alert.show();
 
         });
@@ -240,6 +271,8 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         // Open
         holder.getBtnQuickConvertOpen().setOnClickListener(view -> quickConverterFragment.openUnitTypeExtended( item.getUnitTypeId() ));
 
+        // Show result
+        tvQuickConvertResult.setText( getResultValue( etInput.getText().toString() , holder , unitType ) );
     }
 
     /**

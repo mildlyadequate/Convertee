@@ -7,7 +7,7 @@ public class Area extends UnitType {
     // SINGLETON
     private static Area unitTypeInstance;
 
-    public static String id = "area";
+    public static final String id = "area";
 
     /**
      * Lazy initialization singleton

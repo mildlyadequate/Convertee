@@ -10,6 +10,8 @@ public class CalcBraSize {
     // SINGLETON
     private static CalcBraSize calcBraSize;
 
+    private final String wrongInput = "N/A";
+
     /**
      * Lazy initialization singleton
      * @return instance of UnitType
@@ -29,7 +31,7 @@ public class CalcBraSize {
     public String getResultFor( String valueString , String originUnit , String targetUnit){
 
         if( valueString.trim().isEmpty() ) return "...";
-        if( !valueString.matches("\\d+[a-zA-Z]+") ) return getWrongInputReturn();
+        if( !valueString.matches("\\d+[a-zA-Z]+") ) return wrongInput;
 
         // Get BandSize from String
         int bandSize = 0;
@@ -55,11 +57,9 @@ public class CalcBraSize {
                 bandSizes.length <= targetUnitId || cupSizes.length <= targetUnitId ||
                 bandSizes[targetUnitId].length <= originBandSizeIndex ||
                 cupSizes[targetUnitId].length <= originCupSizeIndex
-        ) return getWrongInputReturn();
+        ) return wrongInput;
         return ""+bandSizes[targetUnitId][originBandSizeIndex]+cupSizes[targetUnitId][originCupSizeIndex];
     }
-
-    private String getWrongInputReturn(){ return "N/A"; }
 
     private int getUnitId( String unitKey ){
         return Integer.parseInt( BraSize.getInstance().getUnitFactor(unitKey) );

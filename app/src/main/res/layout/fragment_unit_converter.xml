@@ -5,6 +5,7 @@
     android:id="@+id/clUnitConverter"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
     tools:context=".ui.converter.UnitConverterFragment">
 
     <LinearLayout
@@ -35,12 +36,12 @@
                 android:id="@+id/etValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
+                android:focusableInTouchMode="true"
                 android:hint="@string/unit_type_value_text_hint"
-                android:imeOptions="normal"
-                android:inputType="none"
+                android:imeOptions="actionDone"
                 android:maxLength="20"
                 android:singleLine="true"
+                android:inputType="textNoSuggestions|text"
                 android:textColor="@color/themeDayLightText"
                 android:textColorHighlight="@color/themePrimary"
                 android:textIsSelectable="true"

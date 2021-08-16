@@ -1,5 +1,7 @@
 package com.sbsc.convertee.entities.calc;
 
+import androidx.annotation.NonNull;
+
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 
 public class CalculatedUnitItem {
@@ -32,6 +34,7 @@ public class CalculatedUnitItem {
 
     public void setValue(String value) { this.value = value; }
 
+    @NonNull
     @Override
     public String toString() {
         return value + " " + localizedUnitName + " - " + unitShort + "[" + unitKey + "]";

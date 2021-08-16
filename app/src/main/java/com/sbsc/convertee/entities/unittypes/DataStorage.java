@@ -7,7 +7,7 @@ public class DataStorage extends UnitType {
     // SINGLETON
     private static DataStorage unitTypeInstance;
 
-    public static String id = "datastorage";
+    public static final String id = "datastorage";
 
     /**
      * Lazy initialization singleton

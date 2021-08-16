@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -137,8 +138,6 @@ public class UnitConverterFragment extends Fragment {
         // Observes handle UI changes
         initViewModelObserves( root );
 
-        // CompatibilityHandler.setInputMethod( unitType , etValue );
-
         return root;
     }
 
@@ -184,14 +183,39 @@ public class UnitConverterFragment extends Fragment {
      */
     private void initEditTextValue( View root ){
         etValue = root.findViewById(R.id.etValue);
-        etValue.setShowSoftInputOnFocus(false);
-        etValue.setTextIsSelectable(true);
-        etValue.requestFocus();
 
-        etValue.setOnClickListener(view -> {
-            LocalizedUnit unit = unitConverterViewModel.getSelectedLocalizedUnitValue();
-            initCustomKeyboard( unit.getUnitKey() );
-        });
+        if( CompatibilityHandler.shouldUseCustomKeyboard() ){
+
+            etValue.setShowSoftInputOnFocus(false);
+            etValue.setTextIsSelectable(true);
+            etValue.setOnClickListener(view -> {
+                LocalizedUnit unit = unitConverterViewModel.getSelectedLocalizedUnitValue();
+                initCustomKeyboard( unit.getUnitKey() );
+            });
+
+        }else{
+
+            etValue.setOnClickListener(view -> {
+                InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(etValue, InputMethodManager.SHOW_IMPLICIT);
+            });
+            etValue.setShowSoftInputOnFocus(true);
+            etValue.setOnFocusChangeListener((view, b) -> {
+                if( b ){
+                    InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(etValue, InputMethodManager.SHOW_IMPLICIT);
+                }
+            });
+            etValue.setOnEditorActionListener((v, actionId, event) -> {
+                if(actionId == EditorInfo.IME_ACTION_DONE){
+                    HelperUtil.hideKeyboard( requireActivity() );
+                    etValue.clearFocus();
+                }
+                return false;
+            });
+
+        }
+        etValue.requestFocus();
 
         // Change hint in the layout rather than the EditText, otherwise it will duplicate
         etValueLayout = root.findViewById(R.id.tilInput);
@@ -288,28 +312,32 @@ public class UnitConverterFragment extends Fragment {
 
     private void initCustomKeyboard( String unitKey ){
 
-        if( currentKeyboard != null ){
-            rootLayout.removeView( currentKeyboard );
+        if( CompatibilityHandler.shouldUseCustomKeyboard() ){
+
+            if( currentKeyboard != null ){
+                rootLayout.removeView( currentKeyboard );
+            }
+
+            InputConnection ic = etValue.onCreateInputConnection(new EditorInfo());
+            currentKeyboard = KeyboardHandler.getKeyboardByType( unitType.getId() , unitKey , ic , requireContext() );
+
+            if( currentKeyboard == null ){
+                etValue.setShowSoftInputOnFocus(false);
+                return;
+            }
+
+            rootLayout.addView( currentKeyboard );
+
+            ConstraintSet constraintSet = new ConstraintSet();
+            constraintSet.clone(rootLayout);
+            constraintSet.connect(currentKeyboard.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
+            constraintSet.connect(currentKeyboard.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0);
+            constraintSet.connect(currentKeyboard.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0);
+
+            constraintSet.connect(rvCalculatedUnitList.getId(), ConstraintSet.BOTTOM, currentKeyboard.getId(), ConstraintSet.TOP, 0);
+            constraintSet.applyTo(rootLayout);
+
         }
-
-        InputConnection ic = etValue.onCreateInputConnection(new EditorInfo());
-        currentKeyboard = KeyboardHandler.getKeyboardByType( unitType , unitKey , ic , requireContext() );
-
-        if( currentKeyboard == null ){
-            etValue.setShowSoftInputOnFocus(false);
-            return;
-        }
-
-        rootLayout.addView( currentKeyboard );
-
-        ConstraintSet constraintSet = new ConstraintSet();
-        constraintSet.clone(rootLayout);
-        constraintSet.connect(currentKeyboard.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
-        constraintSet.connect(currentKeyboard.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0);
-        constraintSet.connect(currentKeyboard.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0);
-
-        constraintSet.connect(rvCalculatedUnitList.getId(), ConstraintSet.BOTTOM, currentKeyboard.getId(), ConstraintSet.TOP, 0);
-        constraintSet.applyTo(rootLayout);
 
     }
 
@@ -455,15 +483,17 @@ public class UnitConverterFragment extends Fragment {
         // Observe integer representing selected unit then update selected item in spinner
         unitConverterViewModel.getSelectedUnitIndex().observe(getViewLifecycleOwner(), integer -> {
 
-            // Change input method based on selected unit
-            if( unitType.getId().equals(Numerative.id) ){
+            if( CompatibilityHandler.shouldUseCustomKeyboard() ){
+                // Change input method based on selected unit
+                if( unitType.getId().equals(Numerative.id) ){
 
-                LocalizedUnit unit = unitConverterViewModel.getSelectedLocalizedUnitValue();
-                initCustomKeyboard( unit.getUnitKey() );
+                    LocalizedUnit unit = unitConverterViewModel.getSelectedLocalizedUnitValue();
+                    initCustomKeyboard( unit.getUnitKey() );
 
-                etValue.setText("");
-                etValue.setSelection(etValue.getText().length());
+                    etValue.setText("");
+                    etValue.setSelection(etValue.getText().length());
 
+                }
             }
 
             // Set progress
@@ -516,7 +546,7 @@ public class UnitConverterFragment extends Fragment {
                 unitConverterViewModel.getLocalizedUnitsValue(),
                 unitType
         );
-        adapter.setDistanceItems( resultList , unitConverterViewModel.getProModeActiveValue() );
+        adapter.setUnitItems( resultList , unitConverterViewModel.getProModeActiveValue() );
 
 
     }

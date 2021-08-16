@@ -7,7 +7,7 @@ public class Time extends UnitType {
     // SINGLETON
     private static Time unitTypeInstance;
 
-    public static String id = "time";
+    public static final String id = "time";
 
     /**
      * Lazy initialization singleton

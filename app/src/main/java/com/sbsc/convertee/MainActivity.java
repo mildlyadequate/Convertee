@@ -19,9 +19,10 @@ import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
 import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.DefaultHiddenUnits;
-import com.sbsc.convertee.ui.converter.UnitConverterFragment;
-import com.sbsc.convertee.ui.intro.AppIntroActivity;
+import com.sbsc.convertee.tools.keyboards.CustomKeyboard;
+import com.sbsc.convertee.tools.keyboards.KeyboardHandler;
 import com.sbsc.convertee.ui.TabbedMenuFragment;
+import com.sbsc.convertee.ui.converter.UnitConverterFragment;
 import com.sbsc.convertee.ui.quickconverter.QuickConvertEditorFragment;
 import com.sbsc.convertee.ui.settings.SettingsFragment;
 import com.sbsc.convertee.ui.settings.UnitSettingsFragment;
@@ -51,12 +52,16 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         else
             CompatibilityHandler.setLocale( this , language );
 
+        // sharedPref.edit().putBoolean( "showTutorialOnStart" , true ).apply();
         // Make sure application is NOT Re-Rendering for some reason eg. change of theme
         if( savedInstanceState == null ){
 
+            // Show App Setup if its the first start
             if( sharedPref.getBoolean( "showTutorialOnStart" ,true ) ){
                 sharedPref.edit().putBoolean( "showTutorialOnStart" , false ).apply();
-                Intent intent = new Intent(this, AppIntroActivity.class);
+                // TODO CHANGE HERE
+                // Intent intent = new Intent(this, AppIntroActivity.class);
+                Intent intent = new Intent(this, AppSetupActivity.class);
                 startActivity(intent);
                 finish();
                 return;
@@ -74,37 +79,15 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
             getSupportFragmentManager().addOnBackStackChangedListener(this);
 
             // Load preferences
-            Calculator.roundToDigits = Integer.parseInt(sharedPref.getString( getString(R.string.preference_round_value) , "4"));
+            int DEFAULT_ROUND_VALUE = 4;
+            Calculator.roundToDigits = Integer.parseInt(sharedPref.getString( getString(R.string.preference_round_value) , ""+ DEFAULT_ROUND_VALUE));
             Calculator.setLocale( sharedPref.getString( getString(R.string.preference_locale) , getString(R.string.preference_number_locale_default_UK)),this );
 
             // Load unit types with localization
             UnitTypeContainer.getLocalizedUnitTypeArray( this );
 
             // Open Home Fragment as Default Starting Page
-            // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UnitOverviewFragment()).commit();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TabbedMenuFragment() , "mainFrag").commit();
-
-            /*
-            // This makes sure when activity is restarted due to savedInstanceState, it opens the unit that was opened previously
-            if( getIntent().hasExtra("activeUnitConverter") ){
-
-                activeUnitConverterKey = getIntent().getStringExtra("activeUnitConverter");
-
-                if( activeUnitConverterKey.equals("options_app_settings") ){
-                    changeFragment( new SettingsFragment() , null , "appsettings");
-                }else if( activeUnitConverterKey.equals("options_unit_settings") ){
-                    changeFragment( new UnitSettingsFragment() , null , "unitsettings");
-                }else{
-                    String savedTextValue = getIntent().getStringExtra("activeUnitConverterTextValue");
-                    int savedSelectedIndex = getIntent().getIntExtra("activeUnitConverterSelectedIndex", -1);
-                    if( activeUnitConverterKey != null && !activeUnitConverterKey.isEmpty() ){
-                        Bundle bundle = new Bundle();
-                        bundle.putString( "activeUnitConverterTextValue" , savedTextValue );
-                        bundle.putInt( "activeUnitConverterSelectedIndex" , savedSelectedIndex );
-                        openUnitConverterWith(activeUnitConverterKey,bundle);
-                    }
-                }
-            }*/
 
         }else{
 
@@ -149,14 +132,19 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
     @Override
     public void onBackPressed() {
-        int fragments = getSupportFragmentManager().getBackStackEntryCount();
-        if (fragments == 0) {
-            finish();
-            return;
-        }else if( fragments == 1){
-            activeUnitConverterKey = "";
+        if( CustomKeyboard.isOpen ){
+            CustomKeyboard keyboard = findViewById( KeyboardHandler.KeyboardId );
+            keyboard.closeKeyboard();
+        }else{
+            int fragments = getSupportFragmentManager().getBackStackEntryCount();
+            if (fragments == 0) {
+                finish();
+                return;
+            }else if( fragments == 1){
+                activeUnitConverterKey = "";
+            }
+            super.onBackPressed();
         }
-        super.onBackPressed();
     }
 
     @Override

@@ -125,9 +125,9 @@ public class CalcShoeSize {
      */
     public static class ShoeSizeItem {
 
-        double eu;
-        double uk;
-        double mondo;
+        final double eu;
+        final double uk;
+        final double mondo;
 
         public ShoeSizeItem(double eu, double uk, double mondo ) {
             this.eu = eu;

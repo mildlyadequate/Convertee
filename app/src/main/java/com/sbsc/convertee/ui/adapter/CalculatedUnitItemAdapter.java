@@ -33,6 +33,8 @@ import java.util.List;
  */
 public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUnitItemAdapter.ViewHolder>{
 
+    //TODO THIS CLASS USES OR OVERRIDES A DEPRECATED API
+
     /**
      *  List containing all items to be displayed in this RecyclerView
      */
@@ -57,7 +59,7 @@ public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUn
      */
     public CalculatedUnitItemAdapter(List<CalculatedUnitItem> calculatedUnitItems) {
         this.calculatedUnitItems = new ArrayList<>();
-        setDistanceItems(calculatedUnitItems, false);
+        setUnitItems(calculatedUnitItems, false);
     }
 
     /**
@@ -65,7 +67,7 @@ public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUn
      * @param calculatedUnitItems new List to replace current
      * @param proModeActive boolean
      */
-    public void setDistanceItems(List<CalculatedUnitItem> calculatedUnitItems, boolean proModeActive) {
+    public void setUnitItems(List<CalculatedUnitItem> calculatedUnitItems, boolean proModeActive) {
 
         // Reverse list as we are drawing from bottom to top which would result in a wrong order
         Collections.reverse(calculatedUnitItems);
@@ -79,7 +81,7 @@ public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUn
         this.calculatedUnitItems.clear();
         this.calculatedUnitItems.addAll(calculatedUnitItems);
 
-        this.notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     // Create new views (invoked by the layout manager)
@@ -117,14 +119,18 @@ public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUn
 
         // User wants to highlight current row
         if( selectedPos == position ){
-            // viewHolder.getTextViewUnitValue().setTextColor( CompatibilityHandler.getColor( context , R.color.themeBackground) );
-            viewHolder.getTextViewUnitValue().setTextAppearance( context , R.style.Theme_Convertee_TextAppearance_UnitValue_Selected );
-            viewHolder.getTextViewUnitName().setTextAppearance( context , R.style.Theme_Convertee_TextAppearance_UnitNameSmall_Selected );
+            // OLD viewHolder.getTextViewUnitValue().setTextColor( CompatibilityHandler.getColor( context , R.color.themeBackground) );
+            // RECENT viewHolder.getTextViewUnitValue().setTextAppearance( context , R.style.Theme_Convertee_TextAppearance_UnitValue_Selected );
+            CompatibilityHandler.setTextViewAppearance( viewHolder.getTextViewUnitValue() , context , R.style.Theme_Convertee_TextAppearance_UnitValue_Selected );
+            // RECENT viewHolder.getTextViewUnitName().setTextAppearance( context , R.style.Theme_Convertee_TextAppearance_UnitNameSmall_Selected );
+            CompatibilityHandler.setTextViewAppearance( viewHolder.getTextViewUnitName() , context , R.style.Theme_Convertee_TextAppearance_UnitNameSmall_Selected );
             // Using a custom class we can make sure the view stays pressed (doesn't lose its 'pressed' state / styling)
             textUnitShort.setForcePressed(true);
         }else{
-            viewHolder.getTextViewUnitValue().setTextAppearance( context , R.style.Theme_Convertee_TextAppearance_UnitValue );
-            viewHolder.getTextViewUnitName().setTextAppearance( context , R.style.Theme_Convertee_TextAppearance_UnitNameSmall );
+            // RECENT viewHolder.getTextViewUnitValue().setTextAppearance( context , R.style.Theme_Convertee_TextAppearance_UnitValue );
+            CompatibilityHandler.setTextViewAppearance( viewHolder.getTextViewUnitValue() , context , R.style.Theme_Convertee_TextAppearance_UnitValue );
+            // RECENT viewHolder.getTextViewUnitName().setTextAppearance( context , R.style.Theme_Convertee_TextAppearance_UnitNameSmall );
+            CompatibilityHandler.setTextViewAppearance( viewHolder.getTextViewUnitName() , context , R.style.Theme_Convertee_TextAppearance_UnitNameSmall );
             textUnitShort.setForcePressed(false);
         }
         viewHolder.itemView.setBackgroundColor(selectedPos == position ? CompatibilityHandler.getColor( context , R.color.themePrimary ) : Color.TRANSPARENT);

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clSetupUnitDetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.appsetup.AppSetupLanguageFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/themeBackgroundDark"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvInitialSetup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="4dp"
+            android:text="@string/setup_label_title"
+            android:textAppearance="@style/SetupTitleText"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSelectLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:labelFor="@id/picker"
+            android:paddingStart="4dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="12dp"
+            android:text="@string/setup_label_select_language"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/SetupTitleText" />
+    </LinearLayout>
+
+    <com.shawnlin.numberpicker.NumberPicker
+
+        android:id="@+id/picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:np_dividerColor="@color/themeDayDarkText"
+        app:np_selectedTextColor="@color/themePrimary"
+        app:np_textColor="@color/themeDayDarkText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

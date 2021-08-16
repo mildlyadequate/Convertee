@@ -7,7 +7,7 @@ public class BraSize extends UnitType {
     // SINGLETON
     private static BraSize unitTypeInstance;
 
-    public static String id = "brasize";
+    public static final String id = "brasize";
 
     /**
      * Lazy initialization singleton

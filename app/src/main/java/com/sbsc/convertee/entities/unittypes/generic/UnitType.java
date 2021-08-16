@@ -113,7 +113,7 @@ public class UnitType{
      * @return array of filtered units
      */
     public static UnitTypeEntry[] filterUnits( Set<String> filter , UnitType unitType){
-        // This should be the only time Length.getInstance().entrySet() is called, to save performance
+
         ArrayList<UnitTypeEntry> filteredList = new ArrayList<>();
 
         // Iterate Set containing all values, if value is NOT inside filter, add it to filteredList

@@ -7,7 +7,7 @@ public class FuelEconomy extends UnitType {
     // SINGLETON
     private static FuelEconomy unitTypeInstance;
 
-    public static String id = "fueleconomy";
+    public static final String id = "fueleconomy";
 
     /**
      * Lazy initialization singleton

@@ -7,7 +7,7 @@ public class ColourCode extends UnitType {
     // SINGLETON
     private static ColourCode unitTypeInstance;
 
-    public static String id = "colour";
+    public static final String id = "colour";
 
     /**
      * Lazy initialization singleton

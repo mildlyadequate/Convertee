@@ -7,7 +7,7 @@ public class Numerative extends UnitType {
     // SINGLETON
     private static Numerative unitTypeInstance;
 
-    public static String id = "numerative";
+    public static final String id = "numerative";
 
     /**
      * Lazy initialization singleton

@@ -1,7 +1,6 @@
 package com.sbsc.convertee.calculator;
 
 import android.graphics.Color;
-import android.util.Log;
 
 import com.sbsc.convertee.ui.converter.UnitConverterViewModel;
 
@@ -262,10 +261,7 @@ public class CalcColourCode {
     }
 
     public boolean isCorrectInput( String value , String unitKey ){
-        if( getValueAsObject( value , unitKey ) == null )
-            return false;
-        else
-            return true;
+        return getValueAsObject(value, unitKey) != null;
     }
 
     /**
@@ -348,9 +344,9 @@ public class CalcColourCode {
         int lightness;
 
         HSL( float hue , float saturation , float lightness ){
-            this.hue = (int) Math.round(hue * 360);
-            this.saturation = (int) Math.round(saturation * 100);
-            this.lightness = (int) Math.round(lightness * 100);
+            this.hue = Math.round(hue * 360);
+            this.saturation = Math.round(saturation * 100);
+            this.lightness = Math.round(lightness * 100);
         }
 
         HSL( String hslText ){
@@ -436,9 +432,9 @@ public class CalcColourCode {
      * ColourName colour class
      */
     private static class ColourName extends CColour{
-        String name;
-        RGB colourCode;
-        int ral;
+        final String name;
+        final RGB colourCode;
+        final int ral;
 
         ColourName( String text , int red , int green , int blue , int ral){
             this.name = text;

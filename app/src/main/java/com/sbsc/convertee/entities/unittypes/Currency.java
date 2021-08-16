@@ -7,7 +7,7 @@ public class Currency extends UnitType {
     // SINGLETON
     private static Currency unitTypeInstance;
 
-    public static String id = "currency";
+    public static final String id = "currency";
 
     /**
      * Lazy initialization singleton

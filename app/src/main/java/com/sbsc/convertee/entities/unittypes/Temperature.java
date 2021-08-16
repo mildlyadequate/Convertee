@@ -7,7 +7,7 @@ public class Temperature extends UnitType {
     // SINGLETON
     private static Temperature unitTypeInstance;
 
-    public static String id = "temperature";
+    public static final String id = "temperature";
 
     /**
      * Lazy initialization singleton

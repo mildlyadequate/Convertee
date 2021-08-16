@@ -33,6 +33,11 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="SetupTitleText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/themeDayLightText</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/themeDayDarkText</item>
         <item name="boxStrokeWidth">1dp</item>
@@ -90,7 +95,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Convertee.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"></style>
+    <style name="Theme.Convertee.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Convertee.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -5,6 +5,8 @@
     <string name="app_name">Convertee</string>
     <string name="app_settings">Einstellungen</string>
     <string name="unit_settings">Einheiten selektieren</string>
+    <string name="confirmation_dialog_confirm">Bestätigen</string>
+    <string name="confirmation_dialog_cancel">Abbrechen</string>
 
     <!-- TUTORIAL -->
     <string name="tutorial_screen1_title">Hi!</string>
@@ -15,6 +17,26 @@
     <string name="tutorial_screen3_description">Klicke auf die Abkürzung einer Einheit rechts um sie für Andere oder dich selbst zu markieren. Außerdem kannst du das Ergebnis in jeder Zeile lange klicken um es zu kopieren!</string>
     <string name="tutorial_screen4_title">Große Auswahl</string>
     <string name="tutorial_screen4_description">Es sind sehr viele Einheiten vorhanden! Schau dir die Einstellungen \'Einheiten selektieren\' an um selten benutzte anzeigen zu lassen die standardmäßig ausgeblendet sind. Viel Spass!</string>
+
+    <!-- SETUP -->
+    <string name="setup_btn_next">Weiter</string>
+    <string name="setup_btn_finish">Fertig</string>
+    <string name="setup_btn_back">Zurück</string>
+    <string name="setup_btn_skip">Überspringen</string>
+    <string name="setup_skip_title">Ersteinrichtung überspringen?</string>
+    <string name="setup_skip_message">Bist du sicher dass du die Standardeinstellungen benutzen willst?</string>
+    <string name="setup_label_title">Ersteinrichtung:</string>
+    <string name="setup_label_select_language">Sprache</string>
+    <string name="setup_label_select_format">Zahlenformatierung</string>
+    <string name="setup_label_select_units">Favoriten</string>
+    <string name="setup_format_promode_desc">Einheitsname abkürzen</string>
+    <string name="setup_label_select_unit_details">Favoriten bearbeiten</string>
+    <string name="setup_format_entry_none">Keine</string>
+    <string name="setup_format_entry_ukus">UK/US</string>
+    <string name="setup_format_entry_de">DE</string>
+    <string name="setup_format_previewlabel">Vorschau</string>
+    <string name="setup_units_favourites_label">ausgewählt</string>
+    <string name="setup_favourite_details_info">Standardwerte werden bei dem Start der App angezeigt und können jederzeit geändert werden.</string>
 
     <!-- CONTENT DESCRIPTION -->
     <string name="content_description_unittype_icon">Bild für diese Einheit</string>
@@ -77,7 +99,7 @@
     <!-- Setting: Locale -->
     <string name="pref_number_locale_title">Zahlenformatierung</string>
     <string name="pref_number_locale_subtitle">Aktuell formatiert als </string>
-    <string name="pref_number_locale_none">None</string>
+    <string name="pref_number_locale_none_localized">Keine</string>
     <string name="locale_number_uk_desc">UK: z.B. 100.000,5</string>
     <string name="locale_number_de_desc">DE: z.B. 100,000.5</string>
 
@@ -332,7 +354,7 @@
     <string name="currency_unit_egp">Egyptischer Pfund</string>
     <string name="currency_unit_dkk">Dänische Krone</string>
     <!-- Currency Info -->
-    <string name="currency_info">Währungskurse können nur alle 24 Stunden aktualisiert werden und müssen jedes Mal in USD umgerechnet werden, bevor sie jedes Mal in andere Einheiten umgerechnet werden.\nIch habe versucht, diesen Vorgang so genau wie möglich zu machen, kann aber keine 100% genauen Werte garantieren.</string>
+    <string name="currency_info">Währungskurse können nur alle 24 Stunden aktualisiert werden und müssen jedes Mal in USD umgerechnet werden, bevor sie jedes Mal in andere Einheiten umgerechnet werden.\nIch habe versucht, diesen Vorgang so genau wie möglich zu machen, kann aber keine 100%% genauen Werte garantieren.</string>
 
     <!-- Colour Names -->
     <string name="colour_unit_name">Farb Name (ENG)</string>
@@ -362,5 +384,10 @@
     <string name="brasize_unit_frsp">Frankreich/Spanien</string>
     <string name="brasize_unit_jp">Japan</string>
     <string name="brasize_unit_au">Australien</string>
+    <string name="content_desc_keyboard_delete">Entfernen Taste</string>
+    <string name="content_desc_keyboard_close">Schließen Taste</string>
+    <string name="dialog_quickconvert_delete_title">Favorit entfernen</string>
+    <string name="dialog_quickconvert_delete_message1">Willst du den Favoriten \'</string>
+    <string name="dialog_quickconvert_delete_message2">\' wirklich entfernen?</string>
 
 </resources>
