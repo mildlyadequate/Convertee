@@ -86,11 +86,22 @@ public class StringCalculationParser {
                     while (ch >= 'a' && ch <= 'z') nextChar();
                     String func = str.substring(startPos, this.pos);
                     x = parseFactor();
-                    if (func.equals("sqrt")) x = BigDecimal.valueOf(Math.sqrt(x.doubleValue()));
-                    else if (func.equals("sin")) x = BigDecimal.valueOf(Math.sin(Math.toRadians(x.doubleValue())));
-                    else if (func.equals("cos")) x = BigDecimal.valueOf(Math.cos(Math.toRadians(x.doubleValue())));
-                    else if (func.equals("tan")) x = BigDecimal.valueOf(Math.tan(Math.toRadians(x.doubleValue())));
-                    else throw new RuntimeException("Unknown function: " + func);
+                    switch (func) {
+                        case "sqrt":
+                            x = BigDecimal.valueOf(Math.sqrt(x.doubleValue()));
+                            break;
+                        case "sin":
+                            x = BigDecimal.valueOf(Math.sin(Math.toRadians(x.doubleValue())));
+                            break;
+                        case "cos":
+                            x = BigDecimal.valueOf(Math.cos(Math.toRadians(x.doubleValue())));
+                            break;
+                        case "tan":
+                            x = BigDecimal.valueOf(Math.tan(Math.toRadians(x.doubleValue())));
+                            break;
+                        default:
+                            throw new RuntimeException("Unknown function: " + func);
+                    }
                 } else {
                     throw new RuntimeException("Unexpected: " + (char)ch);
                 }

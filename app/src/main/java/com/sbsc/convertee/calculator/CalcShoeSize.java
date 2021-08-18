@@ -87,7 +87,7 @@ public class CalcShoeSize {
         double value = Double.parseDouble(valueString);
 
         // Build a result string
-        StringBuilder result = new StringBuilder();
+        StringBuilder result = new StringBuilder(4);
         // Iterate all ShoeSizeItems
         for( ShoeSizeItem entry : shoeSizeItems){
 

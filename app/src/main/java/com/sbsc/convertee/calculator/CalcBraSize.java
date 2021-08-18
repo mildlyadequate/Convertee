@@ -10,8 +10,6 @@ public class CalcBraSize {
     // SINGLETON
     private static CalcBraSize calcBraSize;
 
-    private final String wrongInput = "N/A";
-
     /**
      * Lazy initialization singleton
      * @return instance of UnitType
@@ -31,6 +29,9 @@ public class CalcBraSize {
     public String getResultFor( String valueString , String originUnit , String targetUnit){
 
         if( valueString.trim().isEmpty() ) return "...";
+
+        String wrongInput = "N/A";
+
         if( !valueString.matches("\\d+[a-zA-Z]+") ) return wrongInput;
 
         // Get BandSize from String

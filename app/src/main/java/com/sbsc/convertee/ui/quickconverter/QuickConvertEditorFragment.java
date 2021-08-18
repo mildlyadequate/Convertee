@@ -6,7 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -19,16 +23,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.calculator.CalcColourCode;
 import com.sbsc.convertee.calculator.CalcNumerative;
+import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
@@ -84,11 +90,10 @@ public class QuickConvertEditorFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
         sharedPref = PreferenceManager
                 .getDefaultSharedPreferences(requireContext());
-
-        // TODO use resource instead
 
         editingUnitType = null;
         if (getArguments() != null) {
@@ -104,7 +109,6 @@ public class QuickConvertEditorFragment extends Fragment {
         }
 
         unitArr = new ArrayList<>();
-
     }
 
     @Override
@@ -300,41 +304,43 @@ public class QuickConvertEditorFragment extends Fragment {
 
     }
 
-
     private void initFinishButton(View root ){
         btnQuickConvertEditorSave = root.findViewById( R.id.btnQuickConvertEditorSave);
+        btnQuickConvertEditorSave.setOnClickListener(view -> handleSave() );
+        btnQuickConvertEditorSave.setVisibility(View.GONE);
+    }
 
-        btnQuickConvertEditorSave.setOnClickListener(view -> {
+    private void handleSave(){
+        Log.d("XD","started saving");
+        Set<String> quickConverterItems = new HashSet<>(sharedPref.getStringSet("QuickConvertItems", new HashSet<>()));
 
-            Set<String> quickConverterItems = new HashSet<>(sharedPref.getStringSet("QuickConvertItems", new HashSet<>()));
+        LocalizedUnitType type = (LocalizedUnitType) spQuickConvertEditorUnitType.getSelectedItem();
+        LocalizedUnit unitFrom = (LocalizedUnit) spQuickConvertEditorUnitFrom.getSelectedItem();
+        LocalizedUnit unitTo = (LocalizedUnit) spQuickConvertEditorUnitTo.getSelectedItem();
 
-            LocalizedUnitType type = (LocalizedUnitType) spQuickConvertEditorUnitType.getSelectedItem();
-            LocalizedUnit unitFrom = (LocalizedUnit) spQuickConvertEditorUnitFrom.getSelectedItem();
-            LocalizedUnit unitTo = (LocalizedUnit) spQuickConvertEditorUnitTo.getSelectedItem();
+        // If unit type is editing, exists already
+        boolean contains = false;
+        for( String s : quickConverterItems )
+            if ( s.startsWith(type.getUnitTypeKey()) ) {
+                quickConverterItems.remove(s);
+                quickConverterItems.add(
+                        type.getUnitTypeKey() + "::" + unitFrom.getUnitKey() + "::" + unitTo.getUnitKey() + "::" + etQuickConvertEditorValue.getText().toString()
+                );
+                contains = true;
+                break;
+            }
 
-            // If unit type is editing, exists already
-            boolean contains = false;
-            for( String s : quickConverterItems )
-                if ( s.startsWith(type.getUnitTypeKey()) ) {
-                    quickConverterItems.remove(s);
-                    quickConverterItems.add(
-                            type.getUnitTypeKey() + "::" + unitFrom.getUnitKey() + "::" + unitTo.getUnitKey() + "::" + etQuickConvertEditorValue.getText().toString()
-                    );
-                    contains = true;
-                    break;
-                }
+        // If adding new unit type
+        if( !contains ) quickConverterItems.add(
+                type.getUnitTypeKey() + "::" + unitFrom.getUnitKey() + "::" + unitTo.getUnitKey() + "::" + etQuickConvertEditorValue.getText().toString()
+        );
 
-            // If adding new unit type
-            if( !contains ) quickConverterItems.add(
-                    type.getUnitTypeKey() + "::" + unitFrom.getUnitKey() + "::" + unitTo.getUnitKey() + "::" + etQuickConvertEditorValue.getText().toString()
-            );
+        sharedPref.edit().remove( "QuickConvertItems" ).apply();
+        sharedPref.edit().putStringSet( "QuickConvertItems" , quickConverterItems ).apply();
 
-            sharedPref.edit().remove( "QuickConvertItems" ).apply();
-            sharedPref.edit().putStringSet( "QuickConvertItems" , quickConverterItems ).apply();
+        if( CustomKeyboard.isOpen ) requireActivity().onBackPressed();
 
-            requireActivity().onBackPressed();
-        });
-
+        requireActivity().onBackPressed();
     }
 
     /**
@@ -377,7 +383,7 @@ public class QuickConvertEditorFragment extends Fragment {
                 if( !isHidden ) result.add( unitType );
             }
 
-            requireActivity().setTitle( "Create favourite" );
+            requireActivity().setTitle( getString(R.string.quickconvert_editor_title_create) );
 
         }else{
 
@@ -389,7 +395,7 @@ public class QuickConvertEditorFragment extends Fragment {
                 }
             }
 
-            requireActivity().setTitle( "Edit "+result.get(0).getUnitTypeName());
+            requireActivity().setTitle( getString(R.string.quickconvert_editor_title_edit) +" "+ result.get(0).getUnitTypeName());
         }
         Collections.sort(result);
         return result.toArray(new LocalizedUnitType[0]);
@@ -416,7 +422,7 @@ public class QuickConvertEditorFragment extends Fragment {
         if( input.isEmpty() ) return true;
         if( unitTypeId.equals(Numerative.id) ) return !CalcNumerative.isNotAllowedInSystem( input , unit.getUnitKey() );
         if( unitTypeId.equals(ColourCode.id) ) return CalcColourCode.getInstance().isCorrectInput( input , unit.getUnitKey() );
-        return ( NumberUtils.isCreatable(input)); // TODO BraSize isnt checked yet
+        return ( NumberUtils.isCreatable(input)); // TODO BraSize isn't checked yet
     }
 
     private void initCustomKeyboard( String unitTypeKey , String unitKey ){
@@ -454,4 +460,30 @@ public class QuickConvertEditorFragment extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Hide save button in actionbar
+        showOptionsMenuSaveButton(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if( item.getItemId() == R.id.mni_quickconvert_save ){
+            handleSave();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        showOptionsMenuSaveButton(true);
+    }
+
+    private void showOptionsMenuSaveButton( boolean show ){
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.updateOptionsMenu( (show) ? MainActivity.OptionsMenuStatus.QuickConvertEdit : MainActivity.OptionsMenuStatus.Default );
+    }
 }

@@ -1,12 +1,17 @@
 package com.sbsc.convertee.ui.settings;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.MultiSelectListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.unittypes.Angle;
@@ -136,5 +141,28 @@ public class UnitSettingsFragment extends PreferenceFragmentCompat {
 
         // Hide keyboard if open
         HelperUtil.hideKeyboard(requireActivity());
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        updateOptionsMenu( false );
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        updateOptionsMenu( true );
+    }
+
+    private void updateOptionsMenu(boolean settingsActive ){
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.updateOptionsMenu( (settingsActive) ? MainActivity.OptionsMenuStatus.Settings : MainActivity.OptionsMenuStatus.Default );
     }
 }

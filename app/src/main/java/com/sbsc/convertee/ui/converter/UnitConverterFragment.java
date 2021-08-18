@@ -8,6 +8,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -23,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -35,6 +38,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.tools.keyboards.CustomKeyboard;
@@ -93,6 +97,12 @@ public class UnitConverterFragment extends Fragment {
     // Keyboard
     private CustomKeyboard currentKeyboard;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -114,13 +124,17 @@ public class UnitConverterFragment extends Fragment {
                 .getDefaultSharedPreferences( requireContext() );
 
         // Initialize potentially needed classes
-        if (unitType.getId().equals(ShoeSize.id)){
-            CalcShoeSize.getInstance();
-        }else if(unitType.getId().equals(Currency.id)){
-            CalcCurrency.getInstance();
-            CalcCurrency.getInstance().initializeCurrency( requireContext() , root , sharedPref , unitConverterViewModel );
-        }else if (unitType.getId().equals(ColourCode.id)) {
-            CalcColourCode.getInstance().setViewModel( unitConverterViewModel );
+        switch ( unitType.getId() ) {
+            case ShoeSize.id:
+                CalcShoeSize.getInstance();
+                break;
+            case Currency.id:
+                CalcCurrency.getInstance();
+                CalcCurrency.getInstance().initializeCurrency(requireContext(), root, sharedPref, unitConverterViewModel);
+                break;
+            case ColourCode.id:
+                CalcColourCode.getInstance().setViewModel(unitConverterViewModel);
+                break;
         }
 
         // Set root view
@@ -624,14 +638,35 @@ public class UnitConverterFragment extends Fragment {
         super.onStop();
 
         // Remove potentially initialized needed classes
-        if (unitType.getId().equals(ShoeSize.id)){
-            CalcShoeSize.deleteInstance();
-        }else if(unitType.getId().equals(Currency.id)){
-            CalcCurrency.deleteInstance();
-        }else if(unitType.getId().equals(ColourCode.id)){
-            CalcColourCode.deleteInstance();
+        switch ( unitType.getId() ) {
+            case ShoeSize.id:
+                CalcShoeSize.deleteInstance();
+                break;
+            case Currency.id:
+                CalcCurrency.deleteInstance();
+                break;
+            case ColourCode.id:
+                CalcColourCode.deleteInstance();
+                break;
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        updateOptionsMenu( false );
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        updateOptionsMenu(true);
+    }
+
+    private void updateOptionsMenu(boolean unitConverterActive ){
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.updateOptionsMenu( (unitConverterActive) ? MainActivity.OptionsMenuStatus.UnitConverter : MainActivity.OptionsMenuStatus.Default );
     }
 
     public String getCurrentTextValue(){
@@ -639,9 +674,5 @@ public class UnitConverterFragment extends Fragment {
     }
     public int getCurrentSelectedUnitIndex(){
         return spUnitSelector.getSelectedItemPosition();
-    }
-
-    public void log(Object text){
-        Log.d("UnitConverterFragment",""+text);
     }
 }

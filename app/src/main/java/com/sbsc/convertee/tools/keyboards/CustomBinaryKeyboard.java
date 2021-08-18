@@ -31,7 +31,7 @@ public class CustomBinaryKeyboard extends CustomKeyboard implements View.OnClick
 
     // This will map the button resource id to the String value that we want to
     // input when that button is clicked.
-    SparseArray<String> keyValues = new SparseArray<>();
+    private final SparseArray<String> keyValues = new SparseArray<>();
 
     private void init( Context context ) {
 

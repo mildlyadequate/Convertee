@@ -64,7 +64,7 @@ public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public static class SectionViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView title;
+        final TextView title;
 
         public SectionViewHolder(View view, int mTextResourceId) {
             super(view);
@@ -102,9 +102,9 @@ public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.
 
 
     public static class Section {
-        int firstPosition;
+        final int firstPosition;
         int sectionedPosition;
-        CharSequence title;
+        final CharSequence title;
 
         public Section(int firstPosition, CharSequence title) {
             this.firstPosition = firstPosition;

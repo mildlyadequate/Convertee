@@ -85,8 +85,10 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
 
         // Edit Text Input Default
         EditText etInput = holder.getEtQuickConvertInput();
+        TextInputLayout tilInput = holder.getTilQuickConvertInput();
+        tilInput.setHintAnimationEnabled(false);
         etInput.setText( item.getDefaultValue() );
-        holder.getTilQuickConvertInput().setHintAnimationEnabled(true);
+        tilInput.setHintAnimationEnabled(true);
 
         // KEYBOARD STUFF
         if ( CompatibilityHandler.shouldUseCustomKeyboard() ) {
@@ -246,7 +248,6 @@ public class QuickConvertAdapter extends RecyclerView.Adapter<QuickConvertAdapte
         // Delete
         holder.getBtnQuickConvertDelete().setOnClickListener(view -> {
 
-            //TODO Add strings for text / translate
             AlertDialog.Builder alert = new AlertDialog.Builder(context);
             alert.setTitle( context.getString(R.string.dialog_quickconvert_delete_title) );
             alert.setMessage(

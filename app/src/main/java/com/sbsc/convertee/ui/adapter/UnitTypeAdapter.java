@@ -92,8 +92,8 @@ public class UnitTypeAdapter extends RecyclerView.Adapter<UnitTypeAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            textUnitTypeName = view.findViewById(R.id.textUnitTypeName);
-            imageUnitIcon = view.findViewById(R.id.imgUnitIcon);
+            textUnitTypeName = view.findViewById(R.id.tvUnitTypeName);
+            imageUnitIcon = view.findViewById(R.id.ivUnitIcon);
             statusIcon = view.findViewById(R.id.ivStatus);
 
             view.setOnClickListener( this );

@@ -7,6 +7,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -111,4 +113,16 @@ public class HelperUtil {
         return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
+    public static boolean isParsableInt( String text ){
+        try{
+            if( NumberUtils.isParsable( text ) ){
+                int parsedVal = Integer.parseInt( text );
+                return true;
+            }else{
+                return false;
+            }
+        }catch( NumberFormatException e ){
+            return false;
+        }
+    }
 }

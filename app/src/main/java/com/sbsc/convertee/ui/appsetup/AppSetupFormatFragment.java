@@ -98,9 +98,9 @@ public class AppSetupFormatFragment extends Fragment {
 
     private void updateLocale(){
         binding.tvInitialSetup.setText( getString(R.string.setup_label_title) );
-        binding.tvSelectFormat.setText( R.string.setup_label_select_format );
+        binding.tvSelectFormat.setText( R.string.pref_select_format_title);
         binding.tvFormatPreviewLabel.setText( R.string.setup_format_previewlabel );
-        binding.swtProMode.setText( R.string.setup_format_promode_desc );
+        binding.swtProMode.setText( R.string.pref_promode_title);
         updatePreview();
     }
 

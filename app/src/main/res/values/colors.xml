@@ -12,7 +12,6 @@
     <color name="themeBackground">#edf2f4</color>
     <color name="themeBackgroundDark">#2B2D42</color>
     <color name="themeTertiary">#7EBDC2</color>
-    <color name="themeQuaternary">#7161EF</color>
     <color name="themeRed">#ff6542</color>
 
     <color name="themeDayBlackText">@color/black</color>

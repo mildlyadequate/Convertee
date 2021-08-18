@@ -27,9 +27,7 @@ public class CurrencyApiHandler {
                     CalcCurrency.getInstance().wasUpdated();
                     unitConverterViewModel.setCurrencyRatesUpdated();
                     Snackbar.make( view , ctx.getString(R.string.currency_snackbar_update_finished) , Snackbar.LENGTH_SHORT ).show();
-                }, error -> {
-                    Snackbar.make( view , ctx.getString(R.string.currency_snackbar_update_error)+ " " +error.getLocalizedMessage() , Snackbar.LENGTH_SHORT ).show();
-                });
+                }, error -> Snackbar.make( view , ctx.getString(R.string.currency_snackbar_update_error)+ " " +error.getLocalizedMessage() , Snackbar.LENGTH_SHORT ).show());
         queue.add(stringRequest);
     }
 
@@ -42,9 +40,7 @@ public class CurrencyApiHandler {
                     CalcCurrency.getInstance().wasUpdated();
                     unitConverterViewModel.setCurrencyRatesUpdated();
                     Snackbar.make( view , ctx.getString(R.string.currency_snackbar_update_finished) , Snackbar.LENGTH_SHORT ).show();
-                }, error -> {
-                    Snackbar.make( view , ctx.getString(R.string.currency_snackbar_update_error)+ " " +error.getLocalizedMessage() , Snackbar.LENGTH_SHORT ).show();
-        });
+                }, error -> Snackbar.make( view , ctx.getString(R.string.currency_snackbar_update_error)+ " " +error.getLocalizedMessage() , Snackbar.LENGTH_SHORT ).show() );
         queue.add(stringRequest);
     }
 

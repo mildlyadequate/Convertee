@@ -64,6 +64,9 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.0'
     implementation 'io.github.ShawnLin013:number-picker:2.4.13'
 
+    def acraVersion = '5.8.4'
+    implementation "ch.acra:acra-mail:$acraVersion"
+    implementation "ch.acra:acra-toast:$acraVersion"
 }
 
 allprojects {

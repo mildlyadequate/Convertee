@@ -97,7 +97,7 @@ public class SetupUnitTypeQuickConvertAdapter extends RecyclerView.Adapter<Setup
                 public View getView(int position, View convertView, ViewGroup parent) {
                     LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     if( convertView == null ){
-                        final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
+                        @SuppressLint("InflateParams") final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
                         final TextView t = v.findViewById(android.R.id.text1);
                         t.setText(item.getArrayUnitType()[position].getNameShort());
                         return v;
@@ -108,15 +108,7 @@ public class SetupUnitTypeQuickConvertAdapter extends RecyclerView.Adapter<Setup
             };
             adapterFrom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spFrom.setAdapter(adapterFrom);
-            spFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    adapterFrom.setSelection( position );
-                    item.setIdUnitFrom( item.getArrayUnitType()[position].getUnitKey() );
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) { }
-            });
+            spFrom.setOnItemSelectedListener( new OnSpinnerItemSelectedListener( adapterFrom , item , OnSpinnerItemSelectedListener.SpinnerType.FROM ) );
             spFrom.setSelection(0,false);
 
             // To
@@ -126,7 +118,7 @@ public class SetupUnitTypeQuickConvertAdapter extends RecyclerView.Adapter<Setup
                 public View getView(int position, View convertView, ViewGroup parent) {
                     LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     if( convertView == null ){
-                        final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
+                        @SuppressLint("InflateParams") final View v = vi.inflate(android.R.layout.simple_spinner_item, null);
                         final TextView t = v.findViewById(android.R.id.text1);
                         t.setText(item.getArrayUnitType()[position].getNameShort());
                         return v;
@@ -137,15 +129,7 @@ public class SetupUnitTypeQuickConvertAdapter extends RecyclerView.Adapter<Setup
             };
             adapterTo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spTo.setAdapter(adapterTo);
-            spTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    adapterTo.setSelection( position );
-                    item.setIdUnitTo( item.getArrayUnitType()[position].getUnitKey() );
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) { }
-            });
+            spTo.setOnItemSelectedListener( new OnSpinnerItemSelectedListener( adapterTo , item , OnSpinnerItemSelectedListener.SpinnerType.TO ) );
             spTo.setSelection(1,false);
 
             // EDIT TEXT
@@ -158,16 +142,7 @@ public class SetupUnitTypeQuickConvertAdapter extends RecyclerView.Adapter<Setup
             etInput.setText( unitSample );
             inputLayout.setHintAnimationEnabled(true);
             // Listener
-            etInput.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) { }
-                @Override
-                public void afterTextChanged(Editable s) {
-                    item.setDefaultValue( s.toString() );
-                }
-            });
+            etInput.addTextChangedListener(new UserInputTextWatcher(item));
 
             // KEYBOARD STUFF
             if ( CompatibilityHandler.shouldUseCustomKeyboard() ) {
@@ -197,7 +172,6 @@ public class SetupUnitTypeQuickConvertAdapter extends RecyclerView.Adapter<Setup
                 etInput.clearFocus();
             }
 
-            holder.setUnitTypeKey( item.getUnitTypeId() );
         }
 
         @Override
@@ -214,8 +188,6 @@ public class SetupUnitTypeQuickConvertAdapter extends RecyclerView.Adapter<Setup
             private final Spinner spinnerFrom;
             private final Spinner spinnerTo;
 
-            private String unitTypeKey;
-
             public ViewHolder(View view) {
                 super(view);
                 textUnitTypeName = view.findViewById(R.id.tvSetupQuickConvertTitle);
@@ -226,17 +198,58 @@ public class SetupUnitTypeQuickConvertAdapter extends RecyclerView.Adapter<Setup
                 textInputLayout = view.findViewById(R.id.tilSetupQuickConvertInput);
             }
 
-            // Setter
-            public void setUnitTypeKey( String unitTypeKey ){ this.unitTypeKey = unitTypeKey; }
-
             // Getter
             public TextView getTextUnitTypeName() { return textUnitTypeName; }
             public ImageView getImageUnitIcon() { return imageUnitIcon; }
-            public String getUnitTypeKey() { return unitTypeKey; }
             public Spinner getSpinnerFrom() { return spinnerFrom; }
             public Spinner getSpinnerTo() { return spinnerTo; }
             public EditText getEditTextValue() { return editTextValue; }
             public TextInputLayout getTextInputLayout() { return textInputLayout; }
         }
 
+    /**
+     * Class for the Unit Spinners in each favourite
+     */
+    private static class OnSpinnerItemSelectedListener implements AdapterView.OnItemSelectedListener {
+
+        private final HighlightArrayAdapter adapter;
+        private final QuickConvertUnit item;
+        private final SpinnerType type;
+        protected enum SpinnerType { FROM, TO }
+
+        public OnSpinnerItemSelectedListener( HighlightArrayAdapter adapter , QuickConvertUnit item , SpinnerType type ) {
+            this.adapter = adapter;
+            this.item = item;
+            this.type = type;
+        }
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            adapter.setSelection( position );
+            String unitId = item.getArrayUnitType()[position].getUnitKey();
+            if( type == SpinnerType.FROM ){
+                item.setIdUnitFrom( unitId );
+            }else{
+                item.setIdUnitTo( unitId );
+            }
+        }
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) { }
+    }
+
+    private static class UserInputTextWatcher implements TextWatcher {
+        private final QuickConvertUnit item;
+
+        public UserInputTextWatcher(QuickConvertUnit item) {
+            this.item = item;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) { }
+        @Override
+        public void afterTextChanged(Editable s) {
+            item.setDefaultValue( s.toString() );
+        }
+    }
 }

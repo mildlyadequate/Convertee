@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="20dp">
 
-    <com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory android:title="@string/pref_category_app_settings">
+    <com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory android:title="@string/app_settings">
 
         <EditTextPreference
             android:defaultValue="4"
@@ -21,13 +21,13 @@
             android:entries="@array/pref_number_format_locales_titles"
             android:entryValues="@array/pref_number_format_locales_values"
             android:key="@string/preference_locale"
-            android:title="@string/pref_number_locale_title"
+            android:title="@string/pref_select_format_title"
             app:defaultValue="@string/preference_number_locale_default_UK"
             app:summary="@string/pref_number_locale_subtitle" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="@string/preference_pro_mode"
-            android:title="@string/pref_pro_mode_select_title"
+            android:title="@string/pref_promode_title"
             app:summary="@string/pref_pro_mode_select_subtitle" />
     </com.sbsc.convertee.tools.customlayouts.CustomPreferenceCategory>
 

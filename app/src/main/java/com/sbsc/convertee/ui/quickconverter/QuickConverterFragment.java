@@ -1,6 +1,7 @@
 package com.sbsc.convertee.ui.quickconverter;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.inputmethod.InputConnection;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,6 +56,7 @@ public class QuickConverterFragment extends Fragment {
     private ConstraintLayout rlQuickConverterRoot;
     private ImageButton btnQuickConvertAdd;
     private FrameLayout flQuickConvertListContainer;
+    private LinearLayout llEmptyListPlaceholder;
 
     // Keyboard
     private CustomKeyboard currentKeyboard;
@@ -72,11 +75,14 @@ public class QuickConverterFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_quickconverter, container, false);
         rlQuickConverterRoot = root.findViewById(R.id.rlQuickConverterRoot);
         flQuickConvertListContainer = root.findViewById(R.id.flQuickConvertListContainer);
+        llEmptyListPlaceholder = root.findViewById(R.id.llEmptyListPlaceholder);
 
         initRecyclerViewQuickConvertList( root );
         loadQuickConvertUnits();
         initAddQuickConvertUnitButton( root );
         setupViewModelBindings();
+
+        shouldDisplayListPlaceholder( rvQuickConvertAdapter.getItemCount() );
 
         return root;
     }
@@ -105,6 +111,7 @@ public class QuickConverterFragment extends Fragment {
      */
     private void initAddQuickConvertUnitButton( View root ){
         btnQuickConvertAdd = root.findViewById(R.id.btnQuickConvertAdd);
+        btnQuickConvertAdd.setColorFilter(Color.argb(255, 255, 255, 255));
         btnQuickConvertAdd.setOnClickListener(view -> {
             MainActivity mainActivity = (MainActivity) requireActivity();
             mainActivity.openQuickConvertEditor( null );
@@ -157,6 +164,14 @@ public class QuickConverterFragment extends Fragment {
         constraintSet.applyTo(rlQuickConverterRoot);
     }
 
+    private void shouldDisplayListPlaceholder( int itemCount ){
+        if( itemCount > 0 ) {
+            llEmptyListPlaceholder.setVisibility(View.GONE);
+        }else{
+            llEmptyListPlaceholder.setVisibility(View.VISIBLE);
+        }
+    }
+
     /**
      * Get all quick convert units from shared preferences
      */
@@ -168,6 +183,7 @@ public class QuickConverterFragment extends Fragment {
             if(values.length>=4) defaultVal = values[3];
             addQuickConvertUnit( s , values[0] , values[1] , values[2] , defaultVal );
         }
+        commitQuickConvertItems();
     }
 
     /**
@@ -187,7 +203,6 @@ public class QuickConverterFragment extends Fragment {
         QuickConvertUnit newItem = new QuickConvertUnit( unitTypeId , fromValue , unitFromId , unitToId , loadUnitTypeUnits(UnitTypeContainer.getUnitType( unitTypeId )) );
         rvQuickConvertAdapter.addItem( newItem );
         quickConverterItems.add( packagedString );
-        commitQuickConvertItems();
     }
 
     /**
@@ -220,6 +235,7 @@ public class QuickConverterFragment extends Fragment {
     private void commitQuickConvertItems(){
         sharedPref.edit().remove("QuickConvertItems").apply();
         sharedPref.edit().putStringSet("QuickConvertItems" , quickConverterItems ).apply();
+        shouldDisplayListPlaceholder( rvQuickConvertAdapter.getItemCount() );
     }
 
     /**
@@ -261,6 +277,7 @@ public class QuickConverterFragment extends Fragment {
         if( CompatibilityHandler.shouldUseCustomKeyboard() ){
             rlQuickConverterRoot.requestFocus();
             if( currentKeyboard != null ){
+                CustomKeyboard.isOpen = false;
                 rlQuickConverterRoot.removeView( currentKeyboard );
                 ConstraintSet constraintSet = new ConstraintSet();
                 constraintSet.clone(rlQuickConverterRoot);

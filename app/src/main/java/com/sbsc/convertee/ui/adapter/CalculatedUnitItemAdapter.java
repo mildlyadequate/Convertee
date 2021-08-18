@@ -33,8 +33,6 @@ import java.util.List;
  */
 public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUnitItemAdapter.ViewHolder>{
 
-    //TODO THIS CLASS USES OR OVERRIDES A DEPRECATED API
-
     /**
      *  List containing all items to be displayed in this RecyclerView
      */
@@ -228,7 +226,12 @@ public class CalculatedUnitItemAdapter extends RecyclerView.Adapter<CalculatedUn
             // Put value into clipboard
             ClipboardManager clipboard = (ClipboardManager) ctx.getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText(ctx.getString(R.string.adapter_clipboard_label)+" "+unit,value);
-            if (clipboard != null) clipboard.setPrimaryClip(clip);
+            if (clipboard != null){
+                clipboard.setPrimaryClip(clip);
+            } else{
+                Snackbar.make( v , ctx.getString(R.string.adapter_clipboard_toast_error) , Snackbar.LENGTH_SHORT ).show();
+                return true;
+            }
 
             // Show message
             Snackbar.make( v ,value+" " +ctx.getString(R.string.adapter_clipboard_toast) , Snackbar.LENGTH_SHORT ).show();

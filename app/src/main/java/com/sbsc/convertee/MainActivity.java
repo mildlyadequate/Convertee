@@ -23,6 +23,7 @@ import com.sbsc.convertee.tools.keyboards.CustomKeyboard;
 import com.sbsc.convertee.tools.keyboards.KeyboardHandler;
 import com.sbsc.convertee.ui.TabbedMenuFragment;
 import com.sbsc.convertee.ui.converter.UnitConverterFragment;
+import com.sbsc.convertee.ui.intro.AppIntroActivity;
 import com.sbsc.convertee.ui.quickconverter.QuickConvertEditorFragment;
 import com.sbsc.convertee.ui.settings.SettingsFragment;
 import com.sbsc.convertee.ui.settings.UnitSettingsFragment;
@@ -35,6 +36,12 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
     private String activeUnitConverterKey = "";
+
+    private Menu optionsMenu;
+
+    public enum OptionsMenuStatus {
+        Default, QuickConvertEdit, UnitConverter, Settings
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +60,14 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
             CompatibilityHandler.setLocale( this , language );
 
         // sharedPref.edit().putBoolean( "showTutorialOnStart" , true ).apply();
+        // if( sharedPref.getBoolean( "showTutorialOnStart" ,true ) ) throw new EmptyStackException();
+
         // Make sure application is NOT Re-Rendering for some reason eg. change of theme
         if( savedInstanceState == null ){
 
             // Show App Setup if its the first start
             if( sharedPref.getBoolean( "showTutorialOnStart" ,true ) ){
                 sharedPref.edit().putBoolean( "showTutorialOnStart" , false ).apply();
-                // TODO CHANGE HERE
-                // Intent intent = new Intent(this, AppIntroActivity.class);
                 Intent intent = new Intent(this, AppSetupActivity.class);
                 startActivity(intent);
                 finish();
@@ -126,15 +133,51 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        this.optionsMenu = menu;
+        getMenuInflater().inflate(R.menu.main_options_menu, optionsMenu);
         return true;
+    }
+
+    /**
+     * Change options in Actionbar according to current screen
+     * @param status what options setup to use
+     */
+    public void updateOptionsMenu( OptionsMenuStatus status ){
+
+        switch(status){
+            case Default:
+                optionsMenu.findItem(R.id.mni_app_settings).setVisible(true);
+                optionsMenu.findItem(R.id.mni_unit_settings).setVisible(true);
+                optionsMenu.findItem(R.id.mni_app_tutorial).setVisible(true);
+                optionsMenu.findItem(R.id.mni_quickconvert_save).setVisible(false);
+                break;
+            case QuickConvertEdit:
+                optionsMenu.findItem(R.id.mni_app_settings).setVisible(false);
+                optionsMenu.findItem(R.id.mni_unit_settings).setVisible(false);
+                optionsMenu.findItem(R.id.mni_app_tutorial).setVisible(false);
+                optionsMenu.findItem(R.id.mni_quickconvert_save).setVisible(true);
+                break;
+            case UnitConverter:
+                optionsMenu.findItem(R.id.mni_app_settings).setVisible(false);
+                optionsMenu.findItem(R.id.mni_unit_settings).setVisible(true);
+                optionsMenu.findItem(R.id.mni_app_tutorial).setVisible(false);
+                optionsMenu.findItem(R.id.mni_quickconvert_save).setVisible(false);
+                break;
+            case Settings:
+                optionsMenu.findItem(R.id.mni_app_settings).setVisible(false);
+                optionsMenu.findItem(R.id.mni_unit_settings).setVisible(false);
+                optionsMenu.findItem(R.id.mni_app_tutorial).setVisible(false);
+                optionsMenu.findItem(R.id.mni_quickconvert_save).setVisible(false);
+                break;
+        }
+
     }
 
     @Override
     public void onBackPressed() {
         if( CustomKeyboard.isOpen ){
             CustomKeyboard keyboard = findViewById( KeyboardHandler.KeyboardId );
-            keyboard.closeKeyboard();
+            if( keyboard != null ) keyboard.closeKeyboard();
         }else{
             int fragments = getSupportFragmentManager().getBackStackEntryCount();
             if (fragments == 0) {
@@ -156,12 +199,15 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if( item.getItemId() == R.id.app_settings){
+        if( item.getItemId() == R.id.mni_app_settings){
             activeUnitConverterKey = "options_app_settings";
             changeFragment( new SettingsFragment() , null , "appsettings");
-        }else if( item.getItemId() == R.id.unit_settings){
+        }else if( item.getItemId() == R.id.mni_unit_settings){
             activeUnitConverterKey = "options_unit_settings";
             changeFragment( new UnitSettingsFragment() , null , "unitsettings");
+        }else if( item.getItemId() == R.id.mni_app_tutorial){
+            Intent i = new Intent(getApplicationContext(), AppIntroActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -199,12 +245,6 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
      */
     public void openUnitConverter(String unitTypeKey ){
         Bundle bundle = new Bundle();
-        bundle.putString( getString(R.string.bundle_selected_unittype) , unitTypeKey );
-        activeUnitConverterKey = unitTypeKey;
-        changeFragment( new UnitConverterFragment() , bundle , "converter");
-    }
-
-    public void openUnitConverter(String unitTypeKey , Bundle bundle ){
         bundle.putString( getString(R.string.bundle_selected_unittype) , unitTypeKey );
         activeUnitConverterKey = unitTypeKey;
         changeFragment( new UnitConverterFragment() , bundle , "converter");

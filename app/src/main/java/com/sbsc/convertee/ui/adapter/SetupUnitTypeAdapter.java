@@ -124,8 +124,8 @@ public class SetupUnitTypeAdapter extends RecyclerView.Adapter<SetupUnitTypeAdap
 
             public ViewHolder(View view) {
                 super(view);
-                textUnitTypeName = view.findViewById(R.id.textUnitTypeName);
-                imageUnitIcon = view.findViewById(R.id.imgUnitIcon);
+                textUnitTypeName = view.findViewById(R.id.tvUnitTypeName);
+                imageUnitIcon = view.findViewById(R.id.ivUnitIcon);
                 rowView = view.findViewById(R.id.unitTypeRow);
             }
 

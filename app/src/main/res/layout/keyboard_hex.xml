@@ -20,6 +20,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_1"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -31,6 +32,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_2"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -42,6 +44,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_3"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,6 +56,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_4"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -76,6 +80,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_5"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -87,6 +92,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_6"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -98,6 +104,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_7"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -109,6 +116,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_8"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -132,6 +140,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_9"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -143,6 +152,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_10"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -154,6 +164,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_11"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -165,6 +176,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_12"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -176,6 +188,7 @@
 
             <ImageButton
                 android:id="@+id/button_delete"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -192,6 +205,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_13"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -202,6 +216,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_14"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -213,6 +228,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_15"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -223,6 +239,7 @@
 
             <android.widget.Button
                 android:id="@+id/button_0"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -233,6 +250,7 @@
 
             <ImageButton
                 android:id="@+id/button_close"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

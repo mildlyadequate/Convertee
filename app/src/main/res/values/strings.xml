@@ -9,31 +9,31 @@
     <string name="confirmation_dialog_cancel">Cancel</string>
 
     <!-- TUTORIAL -->
-    <string name="tutorial_screen1_title">Hi there!</string>
-    <string name="tutorial_screen1_description">This app will be your assistant for the conversion of most unit types.</string>
-    <string name="tutorial_screen2_title">Customize</string>
-    <string name="tutorial_screen2_description">Pick your favourite unit types, hide ones you\'re not interested in, and hide specific units for every type.</string>
-    <string name="tutorial_screen3_title">Share</string>
-    <string name="tutorial_screen3_description">Click a unit abbreviation to mark a row or hold press on the converted value to copy it. It\'s that easy to share your results!</string>
-    <string name="tutorial_screen4_title">Large selection</string>
-    <string name="tutorial_screen4_description">There are a lot of units available! Check the unit preferences as some less common units are hidden by default. Enjoy!</string>
+    <string name="tutorial_screen1_title" translatable="false">Hi there!</string>
+    <string name="tutorial_screen1_description" translatable="false">This app will be your assistant for the conversion of most unit types.</string>
+    <string name="tutorial_screen2_title" translatable="false">Customize</string>
+    <string name="tutorial_screen2_description" translatable="false">Pick your favourite unit types, hide ones you\'re not interested in, and hide specific units for every type.</string>
+    <string name="tutorial_screen3_title" translatable="false">Share</string>
+    <string name="tutorial_screen3_description" translatable="false">Click a unit abbreviation to mark a row or hold press on the converted value to copy it. It\'s that easy to share your results!</string>
+    <string name="tutorial_screen4_title" translatable="false">Large selection</string>
+    <string name="tutorial_screen4_description" translatable="false">There are a lot of units available! Check the unit preferences as some less common units are hidden by default. Enjoy!</string>
 
     <!-- SETUP -->
     <string name="setup_btn_next">Next</string>
     <string name="setup_btn_finish">Finish</string>
     <string name="setup_btn_back">Back</string>
     <string name="setup_btn_skip">Skip Setup</string>
-    <string name="setup_skip_title">Skip initial setup?</string>
+    <string name="setup_skip_title">Skip setup?</string>
     <string name="setup_skip_message">Are you sure you want to use default settings to start with?</string>
     <string name="setup_label_title">Initial Setup:</string>
     <string name="setup_label_select_language">Language</string>
-    <string name="setup_label_select_format">Number Format</string>
-    <string name="setup_format_promode_desc">Shorten unit names</string>
+    <string name="pref_select_format_title">Number Format</string>
+    <string name="pref_promode_title">Shorten unit names</string>
     <string name="setup_label_select_units">Favourite Units</string>
     <string name="setup_label_select_unit_details">Edit Favourites</string>
-    <string name="setup_format_entry_none">None</string>
-    <string name="setup_format_entry_ukus">UK/US</string>
-    <string name="setup_format_entry_de">DE</string>
+    <string name="menu_select_none">None</string>
+    <string name="setup_format_entry_ukus" translatable="false">UK/US</string>
+    <string name="setup_format_entry_de" translatable="false">DE</string>
     <string name="setup_format_previewlabel">Preview</string>
     <string name="setup_format_preview_none" translatable="false">10300.5</string>
     <string name="setup_format_preview_ukus" translatable="false">10,300.5</string>
@@ -45,37 +45,30 @@
     <string name="bundle_selected_unittype" translatable="false">bundle_selected_unittype</string>
 
     <!-- CONTENT DESCRIPTION -->
-    <string name="content_description_unittype_icon">Icon for this unit type</string>
-    <string name="content_description_unittype_status">Shows this unit types current status eg. Favourite, Hidden</string>
-    <string name="content_description_fab_quickconverter_add">Button to add a favourite from unit types</string>
-    <string name="content_description_quickconvert_item_icon">Icon of this unit type</string>
-    <string name="content_description_quickconvert_item_edit">Button to edit this favourite unit type</string>
-    <string name="content_description_quickconvert_item_delete">Button to delete this favourite unit type</string>
+    <string name="content_desc_unittype_icon">Icon for this unit type</string>
+    <string name="content_desc_unittype_status">This unit type is set as favourite</string>
+    <string name="content_desc_fab_quickconverter_add">Add a favourite from unit types</string>
+    <string name="content_desc_quickconvert_item_edit">Edit this favourite unit type</string>
+    <string name="content_desc_quickconvert_item_delete">Delete this favourite unit type</string>
 
     <!-- TABBED PANE TABS -->
     <string name="tabbed_pane_tab_customized">Favourites</string>
     <string name="tabbed_pane_tab_categories">All</string>
 
     <!-- CATEGORIES -->
-    <string name="unit_type_categories_favourites" >Favourites</string>
-    <string name="unit_type_categories_all" >Others</string>
-    <string name="unit_type_categories_basics">Basics</string>
+    <string name="unit_type_categories_basics">Essential</string>
     <string name="unit_type_categories_living">Living</string>
     <string name="unit_type_categories_science">Science</string>
     <string name="unit_type_categories_maths">Maths</string>
     <string name="unit_type_categories_technology">Technology</string>
 
     <!-- ADAPTER -->
-    <string name="adapter_popup_favourite" >Favourite</string>
-    <string name="adapter_popup_unfavourite" >Unfavourite</string>
-    <string name="adapter_popup_hide" >Hide</string>
-    <string name="adapter_popup_show" >Show</string>
     <string name="adapter_clipboard_label">Value in</string>
     <string name="adapter_clipboard_toast">copied to clipboard</string>
     <string name="adapter_clipboard_toast_error" >ERROR: copying to clipboard failed</string>
 
     <!-- UNIT INFO -->
-    <string name="unit_info_button_description">Button to show info on the currently selected unit</string>
+    <string name="unit_info_button_description">Show info about the current unit</string>
 
     <!-- CURRENCY LAST UPDATE STRING -->
     <string name="currency_last_update_title">Last update:</string>
@@ -87,35 +80,29 @@
     <string name="colour_display_text">Colour Preview</string>
 
     <!-- ADAPTER PREFERENCE FAVOURITES -->
-    <string name="preference_favourite_unit_types" translatable="false" >preference_favourite_unit_types</string>
 
     <!-- PREFERENCES -->
-    <string name="pref_static_field_key" translatable="false"  />
-    <!-- Category: App Settings -->
-    <string name="pref_category_app_settings">App Settings</string>
     <!-- Setting: Round Value -->
-    <string name="pref_round_value_picker_title">Trailing Digit Count</string>
+    <string name="pref_round_value_picker_title">Decimal Count</string>
     <string name="pref_round_value_picker_subtitle">Currently rounding up to</string>
-    <string name="pref_round_value_picker_subtitle2">digits.</string>
+    <string name="pref_round_value_picker_subtitle2">decimals.</string>
     <string name="pref_round_value_picker_error">Not saved: Value must be between 1 and 15</string>
     <!-- Setting: Pro Mode -->
-    <string name="pref_pro_mode_select_title">Unit Pro-Mode</string>
     <string name="pref_pro_mode_select_subtitle">Hide full unit names. Recommended if you know the abbreviations well enough.</string>
     <!-- Setting: Language -->
     <string name="pref_language_title">Language</string>
     <string name="pref_language_subtitle">Currently: </string>
     <string name="preference_language_default" translatable="false">system</string>
     <string name="language_system_desc">System language</string>
-    <string name="language_en_desc">English</string>
-    <string name="language_de_desc">German</string>
+    <string name="language_en_desc" translatable="false">English</string>
+    <string name="language_de_desc" translatable="false">Deutsch</string>
+    <string name="language_fr_desc" translatable="false">Français</string>
     <!-- Setting: Locale -->
-    <string name="pref_number_locale_title">Number Formatting</string>
     <string name="pref_number_locale_subtitle">Currently as</string>
     <string name="pref_number_locale_none" translatable="false">None</string>
-    <string name="pref_number_locale_none_localized">None</string>
     <string name="preference_number_locale_default_UK" translatable="false">en-GB</string>
     <string name="locale_number_uk_desc">UK/US: e.g. 100.000,5</string>
-    <string name="locale_number_de_desc">DE: Bsp. 100,000.5</string>
+    <string name="locale_number_de_desc">DE: e.g. 100,000.5</string>
 
     <!-- Category: Select Units to hide -->
     <string name="pref_category_select_units">Units</string>
@@ -125,7 +112,7 @@
     <!-- Category: Other -->
     <string name="pref_category_other">Other</string>
     <!-- Setting Action: Reset everything -->
-    <string name="pref_action_reset_title">Reset application</string>
+    <string name="pref_action_reset_title">Reset app</string>
     <string name="pref_action_reset_subtitle">Delete all saved settings and preferences. Type \'</string>
     <string name="pref_action_reset_targetword">reset</string>
     <string name="pref_action_reset_subtitle2">\' to confirm.</string>
@@ -150,8 +137,8 @@
     <string name="quickconvert_editor_label_unittype">Unit Type</string>
     <string name="quickconvert_editor_default_unit">Default Unit</string>
     <string name="quickconvert_editor_default_value">Default Value</string>
-    <string name="quickconvert_editor_header_from">From</string>
-    <string name="quickconvert_editor_header_to">To</string>
+    <string name="quickconvert_editor_header_from">Default From</string>
+    <string name="quickconvert_editor_header_to">Default To</string>
     <string name="quickconvert_editor_button_save">Save</string>
 
     <!-- ACCESSIBILITY : contentDescription -->
@@ -282,7 +269,7 @@
     <string name="temperature_unit_f_short" translatable="false" >°F</string>
     <string name="temperature_unit_c_short" translatable="false" >°C</string>
     <string name="temperature_kelvin_info" >The Kelvin scale starts at absolute zero (0K), pure water freezes at 273.15K, and it boils at 373.15K.</string>
-    <string name="temperature_fahreinheit_info" >Absolute zero in the Fahreinheit scale is -459.67°F. Two important fixed points are the point at which pure water ice melts which is 32°F and the boiling point of water at 212°F.</string>
+    <string name="temperature_fahreinheit_info" >Absolute zero in the Fahrenheit scale is -459.67°F. Two important fixed points are the point at which pure water ice melts which is 32°F and the boiling point of water at 212°F.</string>
     <string name="temperature_celsius_info" >In the celsius scale the freezing point is defined as 0°C for pure water and the boiling point as 100°C.</string>
 
     <!-- Time Names -->
@@ -344,7 +331,7 @@
     <string name="shoesize_ukshoesize_info" >UK shoe sizes range from 2 to 15 and increase by 1 every size.</string>
     <string name="shoesize_mondoshoesize_info" >Mondopoint ranges from 215 to 320 and increases by 5 every size up. It\'s widely used in the sports industry but was also adopted as the primary shoe sizing system in the Soviet Union, Russia, China, Japan, Taiwan, and South Korea. NATO and other military services also use it for consistent boot sizes. </string>
     <string name="shoesize_usmshoesize_info" >The traditional US system is similar to British sizes but start counting at one rather than zero, so equivalent sizes are one greater.</string>
-    <string name="shoesize_uswshoesize_info" >Just like the men sizes in the traditional US system, the women sizes are similar to the British sizes, start counting at zero but are greater than men sizes by one.</string>
+    <string name="shoesize_uswshoesize_info" >Just like the men sizes in the traditional US system, the women sizes are similar to the British sizes. They start counting at zero as well, but are greater than men sizes by one.</string>
 
     <!-- Volume Names -->
     <string name="volume_unit_l" >Liter</string>
@@ -579,7 +566,7 @@
     <string name="currency_unit_aud" >Australian Dollar</string>
     <string name="currency_unit_nzd" >New Zealand Dollar</string>
     <string name="currency_unit_php" >Philippine Peso</string>
-    <string name="currency_unit_pln" >Polish Zloty</string>
+    <string name="currency_unit_pln" >Polish Złoty</string>
     <string name="currency_unit_rub" >Russian Ruble</string>
     <string name="currency_unit_zar" >South African Rand</string>
     <string name="currency_unit_xag" >Silver Ounce</string>
@@ -624,14 +611,14 @@
     <string name="currency_unit_egp_short" translatable="false" >EGP</string>
     <string name="currency_unit_dkk_short" translatable="false" >DKK</string>
     <!-- Currency Info -->
-    <string name="currency_info">Currency rates can only be updated once every 24 hours and have to be converted to USD before converting to other units every time.\nI tried to make this process as accurate as possible, but cannot guarantee 100%% accurate values.</string>
+    <string name="currency_info">Currency rates can only be updated once every 24 hours and have to be converted to USD before converting to other units every time. I tried to make this process as accurate as possible, but cannot guarantee 100%% accurate values.</string>
 
     <!-- Colour Names -->
     <string name="colour_unit_name" >Colour name (ENG)</string>
-    <string name="colour_unit_rgb" >RGB</string>
+    <string name="colour_unit_rgb" >Red Green Blue</string>
     <string name="colour_unit_hex" >Hexadecimal</string>
-    <string name="colour_unit_hsl" >HSL</string>
-    <string name="colour_unit_hsv" >HSV</string>
+    <string name="colour_unit_hsl" >Hue Saturation Lightness</string>
+    <string name="colour_unit_hsv" >Hue Saturation Value</string>
     <string name="colour_unit_cmyk" >CMYK</string>
     <string name="colour_unit_ral" >RAL</string>
     <!-- Colour Shorts -->
@@ -643,16 +630,11 @@
     <string name="colour_unit_cmyk_short" translatable="false" >CMYK</string>
     <string name="colour_unit_ral_short" translatable="false" >RAL</string>
     <!-- Colour Info -->
-    <string name="colour_colourrgb_info" >An RGB color value is specified with: rgb(red, green, blue), alternatively this app supports \'red,green,blue\' as well. This colour standard is predominantly used by digital screens.\n\nEach parameter (red, green, and blue) defines the intensity of the color as number between 0 and 255.\n\nFor example, rgb(0, 0, 255) is blue, because the blue parameter is set to its highest value (255) and the others are set to 0.
-    </string>
-    <string name="colour_colourhex_info" >A hexadecimal color is specified with: #RRGGBB, #RGB, RRGGBB, or RGB\n\nRR (red), GG (green) and BB (blue) are hexadecimal numbers between 00 (0) and FF (255) specifying the intensity of the color.\n\nFor example, #0000FF is displayed as blue, because the blue component is set to its highest value (FF) and the others are set to 00.
-    </string>
-    <string name="colour_colourhsl_info" formatted="false" >HSL stands for hue, saturation, and lightness.\n\nHSL color values are specified with: hsl(hue, saturation, lightness).\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nLIGHTNESS is also a percentage; 0% is black, 100% is white.
-    </string>
-    <string name="colour_colourhsv_info" formatted="false" >HSV stands for hue, saturation, and value.\n\nThe difference between HSL and HSV is that a color with maximum lightness in HSL is pure white, but a color with maximum value/brightness in HSV is analogous to shining a white light on a colored object (e.g. shining a bright white light on a red object causes the object to still appear red, just brighter and more intense, while shining a dim light on a red object causes the object to appear darker and less bright).\n\nHSV color values are specified with: hsv(hue, saturation, value)\n\nHUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue.\nSATURATION is a percentage value; 0% means a shade of gray and 100% is the full color.\nVALUE equals brightness and is also a percentage; 0% is dark, 100% is bright.
-    </string>
-    <string name="colour_colourcmyk_info" >CMYK colors is a combination of cyan, magenta, yellow , and black.\n\nIt\'s specified with: cmyk(cyan,magenta,yellow,black), alternatively this app supports \'cyan,magenta,yellow,black\' as well.\n\nThis colour standard is predominantly used for printing.
-    </string>
+    <string name="colour_colourrgb_info" >"An RGB color value is specified with: rgb(red, green, blue), alternatively this app supports 'red,green,blue' as well. This colour standard is predominantly used by digital screens.  Each parameter (red, green, and blue) defines the intensity of the color as number between 0 and 255.  For example, rgb(0, 0, 255) is blue, because the blue parameter is set to its highest value (255) and the others are set to 0.     "</string>
+    <string name="colour_colourhex_info" >"A hexadecimal color is specified with: #RRGGBB, #RGB, RRGGBB, or RGB.  RR (red), GG (green) and BB (blue) are hexadecimal numbers between 00 (0) and FF (255) specifying the intensity of the color.  For example, #0000FF is displayed as blue, because the blue component is set to its highest value (FF) and the others are set to 00.     "</string>
+    <string name="colour_colourhsl_info" formatted="false" >"HSL stands for hue, saturation, and lightness.  HSL color values are specified with: hsl(hue, saturation, lightness).  HUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue. SATURATION is a percentage value; 0% means a shade of gray and 100% is the full color. LIGHTNESS is also a percentage; 0% is black, 100% is white.     "</string>
+    <string name="colour_colourhsv_info" formatted="false" >"HSV stands for hue, saturation, and value.  The difference between HSL and HSV is that a color with maximum lightness in HSL is pure white, but a color with maximum value/brightness in HSV is analogous to shining a white light on a colored object (e.g. shining a bright white light on a red object causes the object to still appear red, just brighter and more intense, while shining a dim light on a red object causes the object to appear darker and less bright).  HSV color values are specified with: hsv(hue, saturation, value)  HUE is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue. SATURATION is a percentage value; 0% means a shade of gray and 100% is the full color. VALUE equals brightness and is also a percentage; 0% is dark, 100% is bright.     "</string>
+    <string name="colour_colourcmyk_info" >"CMYK colors is a combination of cyan, magenta, yellow , and black.  It's specified with: cmyk(cyan,magenta,yellow,black), alternatively this app supports 'cyan,magenta,yellow,black' as well.  This colour standard is predominantly used for printing.     "</string>
     <string name="colour_colourname_info" >The colour name is currently only available in english.</string>
 
     <!-- Bra Size Names -->
@@ -669,8 +651,24 @@
     <string name="brasize_unit_frsp_short" translatable="false" >FR/SP</string>
     <string name="brasize_unit_jp_short" translatable="false" >JP</string>
     <string name="brasize_unit_au_short" translatable="false">AU</string>
+
+    <!-- ADDED THROUGH EDITOR -->
+
     <string name="dialog_quickconvert_delete_title">Delete favourite</string>
     <string name="dialog_quickconvert_delete_message1">Are you sure you want to delete \'</string>
     <string name="dialog_quickconvert_delete_message2">\'?</string>
+    <string name="quickconvert_editor_title_create">Create Favourite</string>
+    <string name="quickconvert_editor_title_edit">Edit</string>
+    <string name="acra_toast_text">Sorry, the application crashed. Please send the E-Mail with the report to the developer.</string>
+    <string name="tutorial_title">Tutorial</string>
+    <string name="quickconvert_view_empty_list_text">You haven\'t added any favourites yet.</string>
+    <string name="content_desc_sad_face">Sad face emote</string>
+    <string name="quickconvert_header_from">From</string>
+    <string name="quickconvert_header_to">To</string>
+    <string name="content_desc_quickconvert_item_open">Open this unit type in the extended view</string>
+    <string name="content_desc_quickconvert_item_from">Choose which unit your value should be converted from</string>
+    <string name="content_desc_quickconvert_item_to">Choose which unit your value should be converted into</string>
+    <string name="content_desc_main_tabs">Switch between looking at all unit types and just your favourites</string>
+    <string name="content_desc_unit_converter_spinner">Pick which unit you\'re converting from</string>
 
 </resources>

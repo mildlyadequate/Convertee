@@ -3,32 +3,50 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2222222222222222" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_baseline_help_center_24.xml" value="0.24722222222222223" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_baseline_help_outline_24.xml" value="0.2222222222222222" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_favourite.xml" value="0.2222222222222222" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_menu_add.xml" value="0.2324074074074074" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_menu_add_circle.xml" value="0.2324074074074074" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_menu_delete.xml" value="0.24722222222222223" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_menu_edit.xml" value="0.2324074074074074" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_menu_help.xml" value="0.24722222222222223" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_menu_info.xml" value="0.24722222222222223" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_unfavourite.xml" value="0.2324074074074074" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/ic_unhappy.xml" value="0.24722222222222223" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/keyboard_button_selector.xml" value="0.22407407407407406" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/rounded_corner.xml" value="0.20833333333333334" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/unit_type_item_text_selector.xml" value="0.2796875" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/viewpager_tab_indicator_default.xml" value="0.2324074074074074" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/drawable/viewpager_tab_selector.xml" value="0.2324074074074074" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/activity_app_setup.xml" value="0.25364583333333335" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/activity_main.xml" value="0.13405797101449277" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/adapter_converted_unit_item.xml" value="0.5" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/adapter_quickconvert_item.xml" value="0.33" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/adapter_section.xml" value="0.13405797101449277" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/adapter_setup_quickconvert_item.xml" value="0.5" />
-        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/adapter_unit_type_item.xml" value="0.307518115942029" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/adapter_unit_type_item.xml" value="0.5" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/content_main.xml" value="0.13405797101449277" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_app_setup.xml" value="0.25" />
-        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_quickconverter.xml" value="0.307518115942029" />
-        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_setup_1_language.xml" value="0.22" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_main.xml" value="0.23097826086956522" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_quick_convert_editor.xml" value="0.33" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_quickconverter.xml" value="0.33" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_setup_1_language.xml" value="0.33" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_setup_2_format.xml" value="0.33" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_setup_3_units.xml" value="0.33" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_setup_4_unit_details.xml" value="0.2630208333333333" />
-        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/keyboard_binary.xml" value="0.13405797101449277" />
-        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/keyboard_hex.xml" value="0.13405797101449277" />
-        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/keyboard_number.xml" value="0.13405797101449277" />
-        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/keyboard_octal.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_unit_categories.xml" value="0.33" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/fragment_unit_converter.xml" value="0.23143115942028986" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/keyboard_binary.xml" value="0.33" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/keyboard_hex.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/keyboard_number.xml" value="0.5" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/keyboard_octal.xml" value="0.5" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/keyboard_text.xml" value="0.13405797101449277" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/layout/spinner_list_item.xml" value="0.23143115942028986" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/menu/main.xml" value="0.2526041666666667" />
         <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/menu/unit_type_context_menu.xml" value="0.23125" />
+        <entry key="..\:/Projects/AndroidProjects/Convertee/app/src/main/res/xml/app_preferences.xml" value="0.25" />
       </map>
     </option>
   </component>

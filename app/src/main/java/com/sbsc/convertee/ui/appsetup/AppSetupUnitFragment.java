@@ -23,8 +23,10 @@ import java.util.Arrays;
 /**
  * Step 2 in the Setup, set the number formatting and whether or not promode should be activated
  */
+@SuppressWarnings("unused")
 public class AppSetupUnitFragment extends Fragment {
 
+    @SuppressWarnings("unused")
     private FragmentSetup3UnitsBinding binding;
 
 
@@ -68,8 +70,6 @@ public class AppSetupUnitFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-
 
         LocalizedUnitType[] allUnitTypes = UnitTypeContainer.getLocalizedUnitTypeArray( getActivity() );
         SetupUnitTypeAdapter rvUnitAdapter = new SetupUnitTypeAdapter( Arrays.asList(allUnitTypes) , requireContext() , this );

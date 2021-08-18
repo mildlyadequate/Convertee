@@ -1,11 +1,16 @@
 package com.sbsc.convertee.ui.settings;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuInflater;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -61,13 +66,26 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private void makeRoundValuePref( EditTextPreference roundValuePref ){
         roundValuePref.setOnBindEditTextListener(editText -> editText.setInputType(InputType.TYPE_CLASS_NUMBER));
         roundValuePref.setOnPreferenceChangeListener((preference, newValue) -> {
-            if(Integer.parseInt((String)newValue) > 15 || Integer.parseInt((String)newValue) < 1){
-                Snackbar.make( requireView() , getString(R.string.pref_round_value_picker_error) , Snackbar.LENGTH_SHORT ).show();
+
+            @SuppressLint("ShowToast") Snackbar snackBarError = Snackbar.make( requireView() , getString(R.string.pref_round_value_picker_error) , Snackbar.LENGTH_SHORT );
+
+            if( HelperUtil.isParsableInt( newValue.toString() ) ) {
+
+                int value = Integer.parseInt( newValue.toString() );
+                if( value <= 15 && value >= 1){
+                    Calculator.roundToDigits = value;
+                    updateRoundValueSummary( "" + value , preference);
+                    return true;
+                }else{
+                    snackBarError.show();
+                    return false;
+                }
+
+            }else{
+                snackBarError.show();
                 return false;
             }
-            Calculator.roundToDigits = Integer.parseInt((String) newValue);
-            updateRoundValueSummary( ""+newValue , preference);
-            return true;
+
         });
         updateRoundValueSummary( roundValuePref.getText() , roundValuePref);
     }
@@ -121,8 +139,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             if( StringUtils.equalsIgnoreCase( (String)newValue , getString(R.string.pref_action_reset_targetword) ) ){
                 Snackbar.make( requireView() , getString(R.string.pref_action_reset_success) , Snackbar.LENGTH_SHORT ).show();
                 sharedPref.edit().clear().apply();
-                requireActivity().getIntent().setFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                requireActivity().getOnBackPressedDispatcher().onBackPressed();
+                //requireActivity().getIntent().setFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                //requireActivity().getOnBackPressedDispatcher().onBackPressed();
+                Intent i = requireActivity().getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage( requireActivity().getBaseContext().getPackageName() );
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
                 return false;
             }
             Snackbar.make( requireView() , getString(R.string.pref_action_reset_error) , Snackbar.LENGTH_SHORT ).show();
@@ -157,7 +179,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
      * @param newValue - amount of hidden units
      */
     private void updateNumberLocalePickerSummary( String newValue , Preference pref ){
-        if( newValue.equals( getString(R.string.pref_number_locale_none) ) ) newValue = getString(R.string.pref_number_locale_none_localized);
+        if( newValue.equals( getString(R.string.pref_number_locale_none) ) ) newValue = getString(R.string.menu_select_none);
         pref.setSummary(getString(R.string.pref_number_locale_subtitle) + " " + newValue);
     }
 
@@ -167,5 +189,28 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         // Hide keyboard if open
         HelperUtil.hideKeyboard(requireActivity());
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        updateOptionsMenu( false );
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        updateOptionsMenu( true );
+    }
+
+    private void updateOptionsMenu(boolean settingsActive ){
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.updateOptionsMenu( (settingsActive) ? MainActivity.OptionsMenuStatus.Settings : MainActivity.OptionsMenuStatus.Default );
     }
 }

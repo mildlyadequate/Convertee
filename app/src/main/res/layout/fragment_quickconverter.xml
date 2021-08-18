@@ -10,6 +10,37 @@
     android:focusableInTouchMode="true"
     tools:context=".ui.quickconverter.QuickConverterFragment">
 
+    <LinearLayout
+        android:id="@+id/llEmptyListPlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:alpha="0.5"
+            android:contentDescription="@string/content_desc_sad_face"
+            android:foregroundTintMode="src_in"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_unhappy"
+            app:tint="@color/themeDayDarkText"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/quickconvert_view_empty_list_text"
+            android:textAlignment="center" />
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/flQuickConvertListContainer"
         android:layout_width="match_parent"
@@ -47,7 +78,7 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/themePrimary"
         android:clickable="true"
-        android:contentDescription="@string/content_description_fab_quickconverter_add"
+        android:contentDescription="@string/content_desc_fab_quickconverter_add"
         android:focusable="true"
         android:scaleType="fitXY"
         android:src="@drawable/ic_menu_add"

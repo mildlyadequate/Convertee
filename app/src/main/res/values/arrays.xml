@@ -4,11 +4,12 @@
     <string-array name="setup_languages">
         <item>@string/language_en_desc</item>
         <item>@string/language_de_desc</item>
+        <item>@string/language_fr_desc</item>
     </string-array>
     <string-array name="setup_format_entries">
         <item>@string/setup_format_entry_ukus</item>
         <item>@string/setup_format_entry_de</item>
-        <item>@string/setup_format_entry_none</item>
+        <item>@string/menu_select_none</item>
     </string-array>
     <string-array name="setup_format_previews">
         <item>@string/setup_format_preview_ukus</item>
@@ -32,11 +33,13 @@
     <string-array name="pref_language_titles">
         <item>@string/language_en_desc</item>
         <item>@string/language_de_desc</item>
+        <item>@string/language_fr_desc</item>
         <item>@string/language_system_desc</item>
     </string-array>
     <string-array name="pref_language_values">
         <item>en</item>
         <item>de</item>
+        <item>fr</item>
         <item>system</item>
     </string-array>
 

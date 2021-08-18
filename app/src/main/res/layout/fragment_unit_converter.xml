@@ -66,7 +66,9 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/bg_spinner"
-                android:foregroundTint="#F1E7E7" />
+                android:contentDescription="@string/content_desc_unit_converter_spinner"
+                android:foregroundTint="#F1E7E7"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <ImageButton
                 android:id="@+id/btnUnitInfo"
@@ -78,7 +80,8 @@
                 android:background="?android:selectableItemBackground"
                 android:contentDescription="@string/unit_info_button_description"
                 android:scaleType="fitCenter"
-                android:src="@drawable/unit_info_icon_selector" />
+                android:src="@drawable/unit_info_icon_selector"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
         <TextView

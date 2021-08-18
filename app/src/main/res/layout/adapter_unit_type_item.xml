@@ -1,48 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.sbsc.convertee.tools.customlayouts.UnitTypeCustomView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/unitTypeRow"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/unit_type_item_background_selector"
     android:clickable="true"
     android:elevation="5dp"
-    android:focusable="true">
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="8dp">
 
     <ImageView
-        android:id="@+id/imgUnitIcon"
+        android:id="@+id/ivUnitIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:backgroundTint="@drawable/unit_type_item_text_selector"
-        android:contentDescription="@string/content_description_unittype_icon"
-        android:duplicateParentState="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:contentDescription="@string/content_desc_unittype_icon"
+        android:duplicateParentState="true" />
 
     <TextView
-        android:id="@+id/textUnitTypeName"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvUnitTypeName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_weight="1"
         android:duplicateParentState="true"
         android:textAppearance="@style/Theme.Convertee.TextAppearance.Large"
-        android:textColor="@drawable/unit_type_item_text_selector"
-        app:layout_constraintBottom_toBottomOf="@+id/imgUnitIcon"
-        app:layout_constraintStart_toEndOf="@+id/imgUnitIcon"
-        app:layout_constraintTop_toTopOf="@+id/imgUnitIcon" />
+        android:textColor="@drawable/unit_type_item_text_selector" />
 
     <ImageView
         android:id="@+id/ivStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="@string/content_description_unittype_status"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:contentDescription="@string/content_desc_unittype_status" />
 
-</com.sbsc.convertee.tools.customlayouts.UnitTypeCustomView>
+</LinearLayout>
