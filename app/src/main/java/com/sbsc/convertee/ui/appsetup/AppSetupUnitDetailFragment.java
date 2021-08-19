@@ -95,11 +95,16 @@ public class AppSetupUnitDetailFragment extends Fragment {
         if (activity != null) {
             String[] selectedUnitTypes = activity.getSelectedUnits();
             if( selectedUnitTypes != null ){
+
+                if( selectedUnitTypes.length == 0 ) binding.tvSetupUnitListEmpty.setVisibility(View.VISIBLE);
+                else binding.tvSetupUnitListEmpty.setVisibility(View.GONE);
+
                 binding.rvSetupUnitList.setVisibility(View.VISIBLE);
                 SetupUnitTypeQuickConvertAdapter rvUnitAdapter = new SetupUnitTypeQuickConvertAdapter(selectedUnitTypes, requireContext() , this );
                 binding.rvSetupUnitList.setAdapter( rvUnitAdapter );
             }else{
                 binding.rvSetupUnitList.setVisibility(View.GONE);
+                binding.tvSetupUnitListEmpty.setVisibility(View.VISIBLE);
             }
         }
 
@@ -120,13 +125,6 @@ public class AppSetupUnitDetailFragment extends Fragment {
         AppSetupActivity activity = (AppSetupActivity) getActivity();
         if (activity != null) {
             activity.initCustomKeyboard( unitType , unitKey , inputSource );
-        }
-    }
-
-    public void hideCustomKeyboard(){
-        AppSetupActivity activity = (AppSetupActivity) getActivity();
-        if (activity != null) {
-            activity.hideCustomKeyboard();
         }
     }
 

@@ -86,7 +86,7 @@ public class UnitTypeContainer {
      * Sets the unitType for this instance of the Fragment from the bundle sent when it was called
      * by the activity
      */
-    public static UnitType getUnitType(String unitTypeId ){
+    public static UnitType getUnitType( String unitTypeId ){
 
         UnitType unitType = null;
 

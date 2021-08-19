@@ -31,6 +31,7 @@ import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.QuickConvertUnit;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.tools.CompatibilityHandler;
+import com.sbsc.convertee.tools.HelperUtil;
 import com.sbsc.convertee.tools.keyboards.CustomKeyboard;
 import com.sbsc.convertee.tools.keyboards.KeyboardHandler;
 import com.sbsc.convertee.ui.adapter.QuickConvertAdapter;
@@ -267,6 +268,12 @@ public class QuickConverterFragment extends Fragment {
     public void onPause() {
         super.onPause();
         hideCustomKeyboard();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        HelperUtil.hideKeyboard(requireActivity());
     }
 
     /**

@@ -198,19 +198,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        updateOptionsMenu( false );
-    }
-
-    @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        updateOptionsMenu( true );
+        //super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
     }
 
-    private void updateOptionsMenu(boolean settingsActive ){
-        MainActivity mainActivity = (MainActivity) requireActivity();
-        mainActivity.updateOptionsMenu( (settingsActive) ? MainActivity.OptionsMenuStatus.Settings : MainActivity.OptionsMenuStatus.Default );
-    }
 }

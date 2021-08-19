@@ -37,12 +37,6 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
     private String activeUnitConverterKey = "";
 
-    private Menu optionsMenu;
-
-    public enum OptionsMenuStatus {
-        Default, QuickConvertEdit, UnitConverter, Settings
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,15 +53,15 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         else
             CompatibilityHandler.setLocale( this , language );
 
+        // TODO Remove, only for testing purposes
         // sharedPref.edit().putBoolean( "showTutorialOnStart" , true ).apply();
-        // if( sharedPref.getBoolean( "showTutorialOnStart" ,true ) ) throw new EmptyStackException();
+        // if( !sharedPref.getBoolean( "showTutorialOnStart" ,true ) ) throw new EmptyStackException();
 
         // Make sure application is NOT Re-Rendering for some reason eg. change of theme
         if( savedInstanceState == null ){
 
             // Show App Setup if its the first start
             if( sharedPref.getBoolean( "showTutorialOnStart" ,true ) ){
-                sharedPref.edit().putBoolean( "showTutorialOnStart" , false ).apply();
                 Intent intent = new Intent(this, AppSetupActivity.class);
                 startActivity(intent);
                 finish();
@@ -133,52 +127,19 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        this.optionsMenu = menu;
-        getMenuInflater().inflate(R.menu.main_options_menu, optionsMenu);
+        getMenuInflater().inflate(R.menu.main_options, menu);
         return true;
-    }
-
-    /**
-     * Change options in Actionbar according to current screen
-     * @param status what options setup to use
-     */
-    public void updateOptionsMenu( OptionsMenuStatus status ){
-
-        switch(status){
-            case Default:
-                optionsMenu.findItem(R.id.mni_app_settings).setVisible(true);
-                optionsMenu.findItem(R.id.mni_unit_settings).setVisible(true);
-                optionsMenu.findItem(R.id.mni_app_tutorial).setVisible(true);
-                optionsMenu.findItem(R.id.mni_quickconvert_save).setVisible(false);
-                break;
-            case QuickConvertEdit:
-                optionsMenu.findItem(R.id.mni_app_settings).setVisible(false);
-                optionsMenu.findItem(R.id.mni_unit_settings).setVisible(false);
-                optionsMenu.findItem(R.id.mni_app_tutorial).setVisible(false);
-                optionsMenu.findItem(R.id.mni_quickconvert_save).setVisible(true);
-                break;
-            case UnitConverter:
-                optionsMenu.findItem(R.id.mni_app_settings).setVisible(false);
-                optionsMenu.findItem(R.id.mni_unit_settings).setVisible(true);
-                optionsMenu.findItem(R.id.mni_app_tutorial).setVisible(false);
-                optionsMenu.findItem(R.id.mni_quickconvert_save).setVisible(false);
-                break;
-            case Settings:
-                optionsMenu.findItem(R.id.mni_app_settings).setVisible(false);
-                optionsMenu.findItem(R.id.mni_unit_settings).setVisible(false);
-                optionsMenu.findItem(R.id.mni_app_tutorial).setVisible(false);
-                optionsMenu.findItem(R.id.mni_quickconvert_save).setVisible(false);
-                break;
-        }
-
     }
 
     @Override
     public void onBackPressed() {
         if( CustomKeyboard.isOpen ){
+
             CustomKeyboard keyboard = findViewById( KeyboardHandler.KeyboardId );
             if( keyboard != null ) keyboard.closeKeyboard();
+
         }else{
+
             int fragments = getSupportFragmentManager().getBackStackEntryCount();
             if (fragments == 0) {
                 finish();
@@ -187,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                 activeUnitConverterKey = "";
             }
             super.onBackPressed();
+
         }
     }
 
@@ -200,14 +162,15 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if( item.getItemId() == R.id.mni_app_settings){
+
             activeUnitConverterKey = "options_app_settings";
             changeFragment( new SettingsFragment() , null , "appsettings");
-        }else if( item.getItemId() == R.id.mni_unit_settings){
-            activeUnitConverterKey = "options_unit_settings";
-            changeFragment( new UnitSettingsFragment() , null , "unitsettings");
+
         }else if( item.getItemId() == R.id.mni_app_tutorial){
+
             Intent i = new Intent(getApplicationContext(), AppIntroActivity.class);
             startActivity(i);
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -243,13 +206,27 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
      * Open the unit converter of given unit type key
      * @param unitTypeKey converter type to open
      */
-    public void openUnitConverter(String unitTypeKey ){
+    public void openUnitConverter( String unitTypeKey ){
         Bundle bundle = new Bundle();
-        bundle.putString( getString(R.string.bundle_selected_unittype) , unitTypeKey );
+        bundle.putString( "selected_unit_type" , unitTypeKey );
         activeUnitConverterKey = unitTypeKey;
         changeFragment( new UnitConverterFragment() , bundle , "converter");
     }
 
+    /**
+     * Open the unit converter of given unit type key
+     * @param unitTypeKey converter type to open
+     */
+    public void openUnitTypeSettings( String unitTypeKey ){
+        Bundle bundle = new Bundle();
+        bundle.putString( "selected_unit_type" , unitTypeKey );
+        changeFragment( new UnitSettingsFragment() , bundle , "unitsettings");
+    }
+
+    /**
+     * Open the Editor for QuickConvertUnits
+     * @param quickConvertUnit edit this specific unit
+     */
     public void openQuickConvertEditor( QuickConvertUnit quickConvertUnit ){
         Bundle bundle = new Bundle();
         if ( quickConvertUnit!= null )
@@ -263,5 +240,4 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
     /*
      * =========================================== Getter Setter ===================================
      */
-
 }

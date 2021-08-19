@@ -30,7 +30,6 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
-import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.calculator.CalcColourCode;
 import com.sbsc.convertee.calculator.CalcNumerative;
@@ -429,9 +428,7 @@ public class QuickConvertEditorFragment extends Fragment {
 
         if( CompatibilityHandler.shouldUseCustomKeyboard() ){
 
-            if( currentKeyboard != null ){
-                clEditorRoot.removeView( currentKeyboard );
-            }
+            if( currentKeyboard != null ){ clEditorRoot.removeView( currentKeyboard ); }
 
             InputConnection ic = etQuickConvertEditorValue.onCreateInputConnection(new EditorInfo());
             currentKeyboard = KeyboardHandler.getKeyboardByType( unitTypeKey , unitKey , ic , requireContext() );
@@ -443,7 +440,6 @@ public class QuickConvertEditorFragment extends Fragment {
 
             // OnKeyboardCloseEvent remove focus from edit text
             currentKeyboard.addKeyboardClosingListener( () -> clEditorRoot.requestFocus() );
-
             clEditorRoot.addView( currentKeyboard );
 
             ConstraintSet constraintSet = new ConstraintSet();
@@ -455,16 +451,7 @@ public class QuickConvertEditorFragment extends Fragment {
             constraintSet.connect(nsvEditorContainer.getId(), ConstraintSet.BOTTOM, currentKeyboard.getId(), ConstraintSet.TOP, 0);
 
             constraintSet.applyTo(clEditorRoot);
-
         }
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        // Hide save button in actionbar
-        showOptionsMenuSaveButton(false);
     }
 
     @Override
@@ -478,12 +465,9 @@ public class QuickConvertEditorFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        showOptionsMenuSaveButton(true);
+        // super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.editor, menu);
     }
 
-    private void showOptionsMenuSaveButton( boolean show ){
-        MainActivity mainActivity = (MainActivity) requireActivity();
-        mainActivity.updateOptionsMenu( (show) ? MainActivity.OptionsMenuStatus.QuickConvertEdit : MainActivity.OptionsMenuStatus.Default );
-    }
 }

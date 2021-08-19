@@ -1,6 +1,7 @@
 package com.sbsc.convertee;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.preference.PreferenceManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
@@ -40,6 +42,8 @@ public class AppSetupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         binding = ActivityAppSetupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -74,6 +78,7 @@ public class AppSetupActivity extends AppCompatActivity {
                 alert.setTitle( getString(R.string.setup_skip_title) );
                 alert.setMessage( getString(R.string.setup_skip_message) );
                 alert.setPositiveButton( getString(R.string.confirmation_dialog_confirm) , (dialog , which) -> {
+                    sharedPref.edit().putBoolean( "showTutorialOnStart" , false ).apply();
                     Intent intent = new Intent( this , MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -98,6 +103,7 @@ public class AppSetupActivity extends AppCompatActivity {
                             .findFragmentByTag("f" + binding.appSetupViewpager.getCurrentItem() );
                     if( fragment != null ) fragment.getCurrentQuickConvertItems();
                 }
+                sharedPref.edit().putBoolean( "showTutorialOnStart" , false ).apply();
                 Intent intent = new Intent( this , MainActivity.class);
                 startActivity(intent);
                 finish();

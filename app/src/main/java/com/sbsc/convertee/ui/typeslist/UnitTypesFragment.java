@@ -1,12 +1,17 @@
-package com.sbsc.convertee.ui.categories;
+package com.sbsc.convertee.ui.typeslist;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -16,10 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
 import com.sbsc.convertee.entities.UnitTypeContainer;
+import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
+import com.sbsc.convertee.entities.unittypes.generic.UnitType;
+import com.sbsc.convertee.entities.unittypes.generic.UnitTypeEntry;
 import com.sbsc.convertee.tools.HelperUtil;
 import com.sbsc.convertee.ui.adapter.UnitTypeAdapter;
-import com.sbsc.convertee.ui.adapter.UnitTypeSectionedAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +34,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class UnitCategoriesFragment extends Fragment {
+public class UnitTypesFragment extends Fragment{
 
     // Preferences
     private SharedPreferences sharedPreferences;
@@ -39,6 +46,12 @@ public class UnitCategoriesFragment extends Fragment {
     private UnitTypeAdapter rvUnitTypeAdapter;
 
     private List<String> favouriteUnitTypeKeys;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,7 +65,7 @@ public class UnitCategoriesFragment extends Fragment {
         // Load favourites
         favouriteUnitTypeKeys = new ArrayList<>();
 
-        View root = inflater.inflate(R.layout.fragment_unit_categories, container, false);
+        View root = inflater.inflate(R.layout.fragment_unit_types, container, false);
 
         initRecyclerViewCalcUnitList( root );
 
@@ -73,6 +86,13 @@ public class UnitCategoriesFragment extends Fragment {
             // If the current unit type is favourite
             unitType.setFavourite(favouriteUnitTypeKeys.contains(unitType.getUnitTypeKey()));
 
+            List<String> searchTagList = new ArrayList<>();
+            for( UnitTypeEntry entry : UnitType.filterUnits( new HashSet<>() , unitType.getUnitTypeObject() )){
+                LocalizedUnit localizedUnit = entry.localize(requireContext());
+                searchTagList.add( localizedUnit.getLocalizedName() );
+                searchTagList.add( localizedUnit.getNameShort() );
+            }
+            unitType.setTags( searchTagList );
         }
         return tempList;
     }
@@ -103,22 +123,22 @@ public class UnitCategoriesFragment extends Fragment {
         rvCalculatedUnitList.addItemDecoration(new DividerItemDecoration(requireContext() ,LinearLayoutManager.VERTICAL));
 
         // Item Adapter
-        rvUnitTypeAdapter = new UnitTypeAdapter( getFilteredUnitTypes() , this , true , requireContext() );
+        rvUnitTypeAdapter = new UnitTypeAdapter( getFilteredUnitTypes() , this , requireContext() );
 
         // Section Adapter
         // The correct order is set in UnitTypeContainer
-        List<UnitTypeSectionedAdapter.Section> sections = new ArrayList<>();
-        sections.add( new UnitTypeSectionedAdapter.Section(0, getString(R.string.unit_type_categories_basics) ));
-        sections.add( new UnitTypeSectionedAdapter.Section( 4 , getString(R.string.unit_type_categories_living) ));
-        sections.add( new UnitTypeSectionedAdapter.Section( 10 , getString(R.string.unit_type_categories_science) ));
-        sections.add( new UnitTypeSectionedAdapter.Section( 14 , getString(R.string.unit_type_categories_maths) ));
-        sections.add( new UnitTypeSectionedAdapter.Section( 15 , getString(R.string.unit_type_categories_technology) ));
+        //List<UnitTypeSectionedAdapter.Section> sections = new ArrayList<>();
+        //sections.add( new UnitTypeSectionedAdapter.Section(0, getString(R.string.unit_type_categories_basics) ));
+        //sections.add( new UnitTypeSectionedAdapter.Section( 4 , getString(R.string.unit_type_categories_living) ));
+        //sections.add( new UnitTypeSectionedAdapter.Section( 10 , getString(R.string.unit_type_categories_science) ));
+        //sections.add( new UnitTypeSectionedAdapter.Section( 14 , getString(R.string.unit_type_categories_maths) ));
+        //sections.add( new UnitTypeSectionedAdapter.Section( 15 , getString(R.string.unit_type_categories_technology) ));
 
-        UnitTypeSectionedAdapter.Section[] dummy = new UnitTypeSectionedAdapter.Section[sections.size()];
-        UnitTypeSectionedAdapter rvUnitTypeSectionedAdapter = new UnitTypeSectionedAdapter(requireContext(), R.layout.adapter_section, R.id.section_text, rvUnitTypeAdapter);
-        rvUnitTypeSectionedAdapter.setSections(sections.toArray(dummy));
+        //UnitTypeSectionedAdapter.Section[] dummy = new UnitTypeSectionedAdapter.Section[sections.size()];
+        //rvUnitTypeSectionedAdapter = new UnitTypeSectionedAdapter(requireContext(), R.layout.adapter_section, R.id.section_text, rvUnitTypeAdapter);
+        //rvUnitTypeSectionedAdapter.setSections(sections.toArray(dummy));
 
-        rvCalculatedUnitList.setAdapter(rvUnitTypeSectionedAdapter);
+        rvCalculatedUnitList.setAdapter(rvUnitTypeAdapter);
     }
 
     /*
@@ -131,6 +151,7 @@ public class UnitCategoriesFragment extends Fragment {
      */
     public void handleUnitTypeClick(String unitTypeKey ){
         MainActivity mainActivity = (MainActivity) requireActivity();
+        HelperUtil.hideKeyboard(mainActivity);
         mainActivity.openUnitConverter( unitTypeKey );
     }
 
@@ -149,6 +170,32 @@ public class UnitCategoriesFragment extends Fragment {
     public void onPause() {
         super.onPause();
         wasPaused = true;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        //super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.main_options_search, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.sv_unit_type_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            //TODO implement search
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                rvUnitTypeAdapter.getFilter().filter( newText );
+                return false;
+            }
+        });
+
     }
 
 }

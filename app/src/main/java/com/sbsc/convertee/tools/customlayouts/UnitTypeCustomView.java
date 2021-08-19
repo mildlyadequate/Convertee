@@ -2,12 +2,12 @@ package com.sbsc.convertee.tools.customlayouts;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class UnitTypeCustomView extends ConstraintLayout {
+public class UnitTypeCustomView extends LinearLayout {
 
     private boolean forcePressed = false;
 

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -16,7 +15,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.ui.categories.UnitCategoriesFragment;
+import com.sbsc.convertee.tools.HelperUtil;
+import com.sbsc.convertee.ui.typeslist.UnitTypesFragment;
 import com.sbsc.convertee.ui.quickconverter.QuickConverterFragment;
 
 import org.jetbrains.annotations.NotNull;
@@ -48,6 +48,15 @@ public class TabbedMenuFragment extends Fragment {
             }
         }).attach();
 
+        // Remove the keyboard from the searchbar when switching while its open
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                HelperUtil.hideKeyboard(requireActivity());
+            }
+        });
+
         return root;
     }
 
@@ -63,15 +72,7 @@ public class TabbedMenuFragment extends Fragment {
 
     static class Adapter extends FragmentStateAdapter {
 
-        public Adapter(@NonNull @NotNull FragmentActivity fragmentActivity) {
-            super(fragmentActivity);
-        }
-
-        public Adapter(@NonNull @NotNull Fragment fragment) {
-            super(fragment);
-        }
-
-        public Adapter(@NonNull @NotNull FragmentManager fragmentManager, @NonNull @NotNull Lifecycle lifecycle) {
+        public Adapter(@NonNull @NotNull FragmentManager fragmentManager, @NonNull @NotNull Lifecycle lifecycle ) {
             super(fragmentManager, lifecycle);
         }
 
@@ -82,9 +83,9 @@ public class TabbedMenuFragment extends Fragment {
                 case 0:
                     return new QuickConverterFragment();
                 case 1:
-                    return new UnitCategoriesFragment();
+                    return new UnitTypesFragment();
             }
-            return new UnitCategoriesFragment();
+            return new UnitTypesFragment();
         }
 
         @Override

@@ -109,7 +109,8 @@ public class SetupUnitTypeAdapter extends RecyclerView.Adapter<SetupUnitTypeAdap
             }else{
                 holder.getRowView().setForcePressed(false);
                 holder.getRowView().setBackgroundColor( CompatibilityHandler.getColor(context, R.color.themeDayWhiteBackground) );
-                holder.getTextUnitTypeName().setTextColor( CompatibilityHandler.getColor(context, R.color.themeSecondaryDark) );
+                holder.getTextUnitTypeName().setTextColor( CompatibilityHandler.getColor(context, R.color.themeDayDarkText) );
+                holder.getImageUnitIcon().setBackgroundTintList( ColorStateList.valueOf( CompatibilityHandler.getColor(context, R.color.themeDayDarkText) ) );
             }
         }
 

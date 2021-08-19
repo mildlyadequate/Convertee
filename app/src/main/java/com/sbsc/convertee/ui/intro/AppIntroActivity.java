@@ -1,6 +1,7 @@
 package com.sbsc.convertee.ui.intro;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -16,6 +17,8 @@ public class AppIntroActivity extends AppIntro2 {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Toast.makeText( this , "TUTORIAL IS OUTDATED / WORK IN PROGRESS", Toast.LENGTH_LONG).show();
 
         try{
 

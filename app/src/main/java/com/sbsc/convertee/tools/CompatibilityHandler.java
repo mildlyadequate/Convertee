@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
 import java.util.Locale;
 
 @SuppressWarnings("deprecation")
@@ -75,6 +78,21 @@ public class CompatibilityHandler {
         } else {
             textView.setTextAppearance( resId );
         }
+    }
+
+    /**
+     * Check if a lists strings contain the queried string; Doesn't need Java8
+     * @param list List of Strings
+     * @param query String
+     * @return true if List contains a string that contains the query
+     */
+    public static boolean containsIgnoreCase( List<String> list, String query ) {
+        for (String current : list) {
+            if ( StringUtils.containsIgnoreCase( current , query ) ) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

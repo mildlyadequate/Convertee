@@ -5,12 +5,15 @@ import androidx.annotation.NonNull;
 import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 
+import java.util.List;
+
 public class LocalizedUnitType implements Comparable<LocalizedUnitType>{
 
     private String unitTypeKey;
     private String unitTypeName;
     private int iconId;
     private boolean favourite;
+    private List<String> tags;
 
     public LocalizedUnitType(String unitTypeKey, String unitTypeName, int iconId) {
         this.unitTypeKey = unitTypeKey;
@@ -36,12 +39,14 @@ public class LocalizedUnitType implements Comparable<LocalizedUnitType>{
         return iconId;
     }
     public boolean isFavourite() { return favourite; }
+    public void setTags(List<String> tags) { this.tags = tags; }
 
     // Setter
     public void setUnitTypeKey(String unitTypeKey) { this.unitTypeKey = unitTypeKey; }
     public void setUnitTypeName(String unitTypeName) { this.unitTypeName = unitTypeName; }
     public void setIconId(int iconId) { this.iconId = iconId; }
     public void setFavourite(boolean favourite) { this.favourite = favourite; }
+    public List<String> getTags() { return tags; }
 
     @NonNull
     @Override

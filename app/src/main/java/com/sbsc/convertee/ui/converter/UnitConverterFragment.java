@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -40,14 +41,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.sbsc.convertee.MainActivity;
 import com.sbsc.convertee.R;
-import com.sbsc.convertee.entities.UnitTypeContainer;
-import com.sbsc.convertee.tools.keyboards.CustomKeyboard;
-import com.sbsc.convertee.tools.keyboards.KeyboardHandler;
-import com.sbsc.convertee.ui.adapter.CalculatedUnitItemAdapter;
 import com.sbsc.convertee.calculator.CalcColourCode;
 import com.sbsc.convertee.calculator.CalcCurrency;
 import com.sbsc.convertee.calculator.CalcShoeSize;
 import com.sbsc.convertee.calculator.Calculator;
+import com.sbsc.convertee.entities.UnitTypeContainer;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnit;
 import com.sbsc.convertee.entities.adapteritems.LocalizedUnitType;
 import com.sbsc.convertee.entities.calc.CalculatedUnitItem;
@@ -60,6 +58,9 @@ import com.sbsc.convertee.entities.unittypes.generic.UnitType;
 import com.sbsc.convertee.entities.unittypes.generic.UnitTypeEntry;
 import com.sbsc.convertee.tools.CompatibilityHandler;
 import com.sbsc.convertee.tools.HelperUtil;
+import com.sbsc.convertee.tools.keyboards.CustomKeyboard;
+import com.sbsc.convertee.tools.keyboards.KeyboardHandler;
+import com.sbsc.convertee.ui.adapter.CalculatedUnitItemAdapter;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -113,7 +114,7 @@ public class UnitConverterFragment extends Fragment {
         // Get unit type object
         String unitTypeId = HelperUtil.getBundleString(
                 requireArguments() ,
-                requireActivity().getString(R.string.bundle_selected_unittype),
+                "selected_unit_type",
                 UnitType.id
         );
         unitType = UnitTypeContainer.getUnitType( unitTypeId );
@@ -653,20 +654,20 @@ public class UnitConverterFragment extends Fragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        updateOptionsMenu( false );
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        // super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.unit_converter, menu);
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        updateOptionsMenu(true);
-    }
-
-    private void updateOptionsMenu(boolean unitConverterActive ){
-        MainActivity mainActivity = (MainActivity) requireActivity();
-        mainActivity.updateOptionsMenu( (unitConverterActive) ? MainActivity.OptionsMenuStatus.UnitConverter : MainActivity.OptionsMenuStatus.Default );
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if( item.getItemId() == R.id.mni_unit_converter_settings ){
+            MainActivity mainActivity = (MainActivity) requireActivity();
+            mainActivity.openUnitTypeSettings( unitType.getId() );
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public String getCurrentTextValue(){

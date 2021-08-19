@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class UnitTypeSectionedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context mContext;
     private static final int SECTION_TYPE = 0;

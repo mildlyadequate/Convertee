@@ -41,9 +41,6 @@
     <string name="setup_units_favourites_label">Favourites (You can still add more later)</string>
     <string name="setup_favourite_details_info">Default values are just for convenience, they are displayed when the app launches and can always be changed.</string>
 
-    <!-- ACTIVITY -->
-    <string name="bundle_selected_unittype" translatable="false">bundle_selected_unittype</string>
-
     <!-- CONTENT DESCRIPTION -->
     <string name="content_desc_unittype_icon">Icon for this unit type</string>
     <string name="content_desc_unittype_status">This unit type is set as favourite</string>
@@ -670,5 +667,7 @@
     <string name="content_desc_quickconvert_item_to">Choose which unit your value should be converted into</string>
     <string name="content_desc_main_tabs">Switch between looking at all unit types and just your favourites</string>
     <string name="content_desc_unit_converter_spinner">Pick which unit you\'re converting from</string>
+    <string name="unit_settings_hidden_title">Hide / Show specific units</string>
+    <string name="setup_unit_list_empty_message">No favourites selected.\nGo to the previous screen to set favourites and edit them here.</string>
 
 </resources>
