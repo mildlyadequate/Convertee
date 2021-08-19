@@ -8,23 +8,23 @@
  ## Features :toolbox:
  
  ### - A LOT of units
- Right now there are 17 unit types (eg. weight), and more than 170 units (eg. kg) available.
+ Right now there are 18 unit types (eg. weight), and more than 170 units (eg. kg) available.
  
  ### - Intuitive controls
- Especially the slider bar allows a quick selection of a specific unit without having to scroll through a list in a popup (which is still an option if you prefer).
+ Quick conversion of your most used unit types by selecting them as favourite. The search function makes sure you don't waste any time trying to find other units.
  
  ### - Customizable
- Remove any unit type you don't like (No one NEEDS to know binary, right?) as well as any unit you don't want to see (Imperial units maybe?).
+ Remove any unit you don't need (Imperial units maybe?), select favourites, decide on the number formatting, and more.
  
  ### - Accurate
- You decide how many trailing digits will be displayed!
+ You decide how many decimals will be displayed!
  
- ### - Expandable
- Need to convert a specific unit type that isn't available yet? Just send me a message!
+ ### - Smart and Small
+ The app is optimized to run on any Android phone starting at 5.1 without performance issues, while also only taking up less than 8mb.
  
  ## Requirements
  - Minimum Android 5.1 Lollipop (API level 22)
  - Only requires Internet permission to access the Currency Conversion API (Everything else works fine without this permission)
  
  ## Translation
- Currently only in English :uk: and German :de:
+ Currently only in English :uk:, German :de:, and French :fr:
